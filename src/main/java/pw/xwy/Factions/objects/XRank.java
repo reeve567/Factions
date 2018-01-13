@@ -9,7 +9,7 @@ import java.util.UUID;
 public class XRank {
 	
 	public int order;
-	private String name;
+	public String name;
 	private ArrayList<UUID> users = new ArrayList<>();
 	private ArrayList<String> perms = new ArrayList<>();
 	private XFactionConfig config;
@@ -25,6 +25,7 @@ public class XRank {
 		List<String> uuids = config.getStringList("ranks.rank." + name + ".members");
 		for (String s : uuids) {
 			users.add(UUID.fromString(s));
+			faction.players.add(UUID.fromString(s));
 		}
 		perms = (ArrayList<String>) config.getStringList("ranks.rank." + name + ".perms");
 		order = num;

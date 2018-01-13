@@ -1,0 +1,5 @@
+pw\xwy\Factions\utility\ItemNames.class
+pw\xwy\Factions\commands\shop\Shop.class
+pw\xwy\Factions\utility\inventories\MainMenu.class
+pw\xwy\Factions\commands\SubCommand.class
+pw\xwy\Factions\utility\handlers\LeaveHandler.class

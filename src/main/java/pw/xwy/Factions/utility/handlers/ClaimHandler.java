@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import pw.xwy.Factions.utility.managers.ClaimManager;
+import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class ClaimHandler implements Listener {
@@ -16,7 +17,7 @@ public class ClaimHandler implements Listener {
 			if (!PlayerManager.getPlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
 				e.setCancelled(true);
 			}
-			else if (!PermissionsManager.hasPerm(Permissions.BREAK,PlayerManager.getXPlayer(pl))) {
+			else if (!FactionManager.getUUIDFaction(pl.getUniqueId()).getRole(pl.getUniqueId()).hasPerm("break",true)) {
 				e.setCancelled(true);
 			}
 		}

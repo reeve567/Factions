@@ -5,14 +5,12 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.enums.RoleType;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,13 +20,14 @@ public class XFaction {
 	public String color = "f";
 	public XFactionConfig factionConfig;
 	public XClaim claim = new XClaim();
+	public List<XRank> ranks = new ArrayList<>();
 	private String name;
 	private boolean systemFac = false;
 	private double power = 0.0;
 	private double balance = 0.0;
 	private UUID leader;
 	private Location home = null;
-	public List<XRank> ranks = new ArrayList<>();
+	public ArrayList<UUID> players = new ArrayList<>();
 	private XRank recruit;
 	private ArrayList<XFaction> allies = new ArrayList<>();
 	
@@ -84,7 +83,7 @@ public class XFaction {
 			
 			List<String> rankList = factionConfig.getRankList();
 			for (int i = 0; i < rankList.size(); i++) {
-				ranks.add(new XRank(0,this));
+				ranks.add(new XRank(0, this));
 			}
 			
 			String leader = factionConfig.getLeader();
@@ -233,7 +232,7 @@ public class XFaction {
 	
 	public void disband(XPlayer pl) {
 		if (!isSystemFac()) {
-			if (!leader.equals(pl.getID()))  {
+			if (!leader.equals(pl.getID())) {
 				for (UUID p : getEveryone()) {
 					Player player = Bukkit.getPlayer(p);
 					leave(PlayerManager.getXPlayer(player), false);
