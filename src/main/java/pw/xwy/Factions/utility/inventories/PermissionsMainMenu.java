@@ -21,12 +21,21 @@ public class PermissionsMainMenu {
 						.setName("&7&l» &6&l" + rank.name)
 						.setDurability(1).get());
 			}
+			while (slot < 9) {
+				inv.setItem(slot++, new ItemBuilder(Material.STAINED_GLASS_PANE)
+						.setName("&c&lCreate a Group")
+						.setDurability(7).get());
+			}
 		} else {
-			XRank r = faction.getRole(p.getUniqueId());
-			for (XRank rank : r.lower) {
+			for (XRank rank : faction.ranks) {
 				inv.setItem(slot++, new ItemBuilder(Material.STAINED_GLASS_PANE)
 						.setName("&7&l» &6&l" + rank.name)
 						.setDurability(1).get());
+			}
+			while (slot < 9) {
+				inv.setItem(slot++, new ItemBuilder(Material.STAINED_GLASS_PANE)
+						.setName("&c&lCreate a Group")
+						.setDurability(7).get());
 			}
 		}
 		

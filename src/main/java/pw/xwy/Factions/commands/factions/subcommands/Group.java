@@ -3,14 +3,13 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.utility.inventories.PermissionsMainMenu;
 import pw.xwy.Factions.utility.managers.FactionManager;
 
 import java.util.UUID;
 
-public class Groups extends SubCommand {
-	public Groups() {
-		super("groups", "", "&7Displays groups menu.");
+public class Group extends SubCommand {
+	public Group() {
+		super("group", "&6<create/delete/set> <name/prefix>", "&7Allows you to create/delete permissions groups for your faction, or set their prefix.");
 	}
 	
 	@Override
@@ -21,7 +20,7 @@ public class Groups extends SubCommand {
 		boolean hasPerm = faction.getRole(id).hasPerm("ManagePerms",true);
 		
 		if (isLeader || hasPerm) {
-			p.openInventory(PermissionsMainMenu.get(p,isLeader));
+		
 		}
 		
 	}

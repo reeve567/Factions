@@ -7,16 +7,18 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
 import pw.xwy.Factions.commands.shop.Sell;
 import pw.xwy.Factions.commands.shop.Shop;
-import pw.xwy.Factions.commands.SubCommand;
-import pw.xwy.Factions.commands.factions.subcommands.*;
 import pw.xwy.Factions.enums.Messages;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Config;
 import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.handlers.*;
+import pw.xwy.Factions.utility.handlers.ClaimHandler;
+import pw.xwy.Factions.utility.handlers.JoinHandler;
+import pw.xwy.Factions.utility.handlers.LeaveHandler;
+import pw.xwy.Factions.utility.handlers.MoveHandler;
 import pw.xwy.Factions.utility.managers.ChatManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 import pw.xwy.Factions.utility.tasks.PowerIncreaseTask;
@@ -67,27 +69,31 @@ public class XFactionsCore extends JavaPlugin {
 			log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
 			setEnabled(false);
 		}
-		getServer().getPluginManager().registerEvents(new JoinHandler(), this);
-		getServer().getPluginManager().registerEvents(new LeaveHandler(), this);
-		getServer().getPluginManager().registerEvents(new ChatManager(), this);
-		getServer().getPluginManager().registerEvents(new ClaimHandler(),this);
-		getServer().getPluginManager().registerEvents(new MoveHandler(),this);
-		//getServer().getPluginManager().registerEvents(new UnknownCommandHandler(),this);
-		//getServer().getPluginManager().registerEvents(new CitizensHandler(),this);
-		//getServer().getPluginManager().registerEvents(new InventoryHandler(econ),this);
-		
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			XPlayer xPlayer = new XPlayer(p.getUniqueId(), Config.getPlayer(String.valueOf(p.getUniqueId())));
-			PlayerManager.addXPlayer(xPlayer);
-			if (xPlayer.getFaction() != null) {
-				xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
+		if (isEnabled()) {
+			getServer().getPluginManager().registerEvents(new JoinHandler(), this);
+			getServer().getPluginManager().registerEvents(new LeaveHandler(), this);
+			getServer().getPluginManager().registerEvents(new ChatManager(), this);
+			getServer().getPluginManager().registerEvents(new ClaimHandler(), this);
+			getServer().getPluginManager().registerEvents(new MoveHandler(), this);
+			//getServer().getPluginManager().registerEvents(new UnknownCommandHandler(),this);
+			//getServer().getPluginManager().registerEvents(new CitizensHandler(),this);
+			//getServer().getPluginManager().registerEvents(new InventoryHandler(econ),this);
+			
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				XPlayer xPlayer = new XPlayer(p.getUniqueId(), Config.getPlayer(String.valueOf(p.getUniqueId())));
+				PlayerManager.addXPlayer(xPlayer);
+				if (xPlayer.getFaction() != null) {
+					xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
+				}
+				
+				xPlayer.playerConfig.save();
 			}
 			
-			xPlayer.playerConfig.save();
+			new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);
+			
+			System.out.println("factions v" + getDescription().getVersion() + " loaded.");
+			
 		}
-		
-		new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);
-		
 	}
 	
 	@Override
@@ -158,20 +164,17 @@ public class XFactionsCore extends JavaPlugin {
 				
 				
 			}
-		}
-		else if (command.getLabel().equalsIgnoreCase("spawn") && Config.spawnEnabled) {
+		} else if (command.getLabel().equalsIgnoreCase("spawn") && Config.spawnEnabled) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
 				XPlayer xPlayer = PlayerManager.getXPlayer(p);
 				if (xPlayer.spawnCooldown > 0) {
 					p.sendMessage(StringUtility.conv("&cYou're already teleporting!"));
-				}
-				else {
-					new SpawnWarmupTask(xPlayer).runTaskTimerAsynchronously(this,0,2);
+				} else {
+					new SpawnWarmupTask(xPlayer).runTaskTimerAsynchronously(this, 0, 2);
 				}
 			}
-		}
-		else if (command.getLabel().equalsIgnoreCase("setspawn") && Config.spawnEnabled) {
+		} else if (command.getLabel().equalsIgnoreCase("setspawn") && Config.spawnEnabled) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
 				if (p.hasPermission("factions.setspawn")) {
@@ -180,12 +183,10 @@ public class XFactionsCore extends JavaPlugin {
 					p.sendMessage(StringUtility.conv("&aSpawn has been set to your location."));
 				}
 			}
-		}
-		else if (command.getLabel().equalsIgnoreCase("shop")) {
+		} else if (command.getLabel().equalsIgnoreCase("shop")) {
 			Shop.run(sender);
-		}
-		else if (command.getLabel().equalsIgnoreCase("sell")) {
-			Sell.run(sender,econ);
+		} else if (command.getLabel().equalsIgnoreCase("sell")) {
+			Sell.run(sender, econ);
 		}
 		return false;
 	}

@@ -6,6 +6,7 @@ import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.enums.Messages;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.utility.StringUtil;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -76,6 +77,7 @@ public class Who extends SubCommand {
 			p.sendMessage(prefix + StringUtility.conv("&7Power: &6" + faction.getPower() + "/" + faction.getEveryone().size()* Config.maxPower));
 			p.sendMessage(prefix + StringUtility.conv("&7Balance: &6" + faction.getBalance()));
 			p.sendMessage(prefix + StringUtility.conv("&7Players Online: &6" + faction.getOnlinePlayers()));
+			p.sendMessage(prefix + StringUtility.conv("&7Faction groups:"));
 			p.sendMessage(prefix + StringUtility.conv("&7Leader: &6" + leader.getName()));
 			
 			recuits(p,faction,prefix);
@@ -87,20 +89,16 @@ public class Who extends SubCommand {
 	
 	private void recuits(Player p, XFaction target, String prefix) {
 		ArrayList<UUID> players = new ArrayList<>();
-		for (UUID pl : target.playerRanks.keySet()) {
-			if (target.playerRanks.get(pl).equalsIgnoreCase("")) {
-				players.add(pl);
-			}
-		}
+		players.addAll(target.recruit.users);
 		if (players.size() > 0) {
 			if (players.size() > 1) {
 				String te = "";
 				for (UUID uuid : players) {
 					te += Bukkit.getPlayer(uuid).getName();
 				}
-				p.sendMessage(prefix + StringUtility.conv("&7Officers: &6" + te));
+				p.sendMessage(prefix + StringUtility.conv("&7Recruits: &6" + te));
 			} else {
-				p.sendMessage(prefix + StringUtility.conv("&7Officer: &6" + Bukkit.getPlayer(target.getOfficers().get(0)).getName()));
+				p.sendMessage(prefix + StringUtility.conv("&7Recruit: &6" + Bukkit.getPlayer(target.recruit.users.get(0)).getName()));
 			}
 		}
 	}

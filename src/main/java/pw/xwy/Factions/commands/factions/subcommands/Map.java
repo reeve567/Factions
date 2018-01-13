@@ -18,7 +18,7 @@ public class Map extends SubCommand {
 	}
 	
 	public static String getCardinalDirection(Player player) {
-		double rotation = (player.getLocation().getYaw() - 90) % 360;
+		double rotation = (player.getLocation().getYaw() - 180) % 360;
 		if (rotation < 0) {
 			rotation += 360.0;
 		}
@@ -94,9 +94,9 @@ public class Map extends SubCommand {
 					row += "&b+";
 				} else {
 					if (j > width - 1 && i < -height + 3) {
-						if (i == -height + 2) row += top;
+						if (i == -height + 2) row += bot;
 						else if (i == -height + 1) row += mid;
-						else row += bot;
+						else row += top;
 					} else if ((j < width - 2 || i > -height + 2)) {
 						if (xFaction != null) {
 							if (!key.keySet().contains(xFaction)) {

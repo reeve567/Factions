@@ -10,14 +10,15 @@ public class XRank {
 	
 	public int order;
 	public String name;
-	private ArrayList<UUID> users = new ArrayList<>();
+	public ArrayList<UUID> users = new ArrayList<>();
+	public ArrayList<XRank> lower = new ArrayList<>();
 	private ArrayList<String> perms = new ArrayList<>();
 	private XFactionConfig config;
-	public ArrayList<XRank> lower = new ArrayList<>();
 	private XFaction faction;
 	
 	//load from config
 	public XRank(int num, XFaction faction) {
+		this.faction = faction;
 		this.config = faction.factionConfig;
 		List<String> ranks;
 		ranks = config.getStringList("ranks.list");
@@ -32,15 +33,16 @@ public class XRank {
 	}
 	
 	public XRank(String name, int order, XFaction faction) {
+		this.faction = faction;
 		this.name = name;
 		this.order = order;
 		this.config = faction.factionConfig;
 	}
 	
 	public XRank(XFaction faction) {
+		this.faction = faction;
 		this.config = faction.factionConfig;
 		name = "Recruit";
-		
 	}
 	
 	private void setName() {

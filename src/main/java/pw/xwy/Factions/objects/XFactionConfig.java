@@ -11,8 +11,8 @@ import java.util.List;
 
 public class XFactionConfig {
 	
-	private File file;
 	public FileConfiguration fileConfiguration;
+	private File file;
 	
 	public XFactionConfig(String name) {
 		File factionData = Config.factiondata;
@@ -89,7 +89,6 @@ public class XFactionConfig {
 			fileConfiguration.createSection("permissions");
 			
 			
-			
 			try {
 				fileConfiguration.save(file);
 			} catch (IOException e) {
@@ -112,8 +111,8 @@ public class XFactionConfig {
 			set("info.leader", xFaction.getLeader().toString());
 			set("others.home", xFaction.getHomeString());
 			
-			set("ranks.players", xFaction.playerRanks);
-			set("ranks.list",xFaction.ranks);
+			set("ranks.players", xFaction.players);
+			set("ranks.list", xFaction.ranks);
 			
 			
 		}
@@ -197,7 +196,7 @@ public class XFactionConfig {
 	}
 	
 	public void remove() {
-		file.deleteOnExit();
+		file.delete();
 	}
 }
 

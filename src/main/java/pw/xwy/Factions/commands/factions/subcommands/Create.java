@@ -75,6 +75,7 @@ public class Create extends SubCommand {
 			if (!found) {
 				if (Config.isChargeToMakeFaction()) {
 					if (XFactionsCore.getEcononomy().getBalance(p) >= Config.getFactionCreationPrice()) {
+						p.sendMessage("made faction for " + Config.getFactionCreationPrice());
 						XFactionsCore.getEcononomy().withdrawPlayer(p, Config.getFactionCreationPrice());
 						XFaction faction = new XFaction(args[1], p);
 						FactionManager.addFaction(faction);
@@ -82,7 +83,11 @@ public class Create extends SubCommand {
 						Config.saveFactions();
 						PlayerManager.getXPlayer(p).playerConfig.save();
 					}
+					else {
+						p.sendMessage("not enough money");
+					}
 				} else {
+					p.sendMessage("made faction");
 					XFaction faction = new XFaction(args[1], p);
 					FactionManager.addFaction(faction);
 					PlayerManager.setFaction(PlayerManager.getXPlayer(p), faction);

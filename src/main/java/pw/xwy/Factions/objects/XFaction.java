@@ -21,14 +21,14 @@ public class XFaction {
 	public XFactionConfig factionConfig;
 	public XClaim claim = new XClaim();
 	public List<XRank> ranks = new ArrayList<>();
+	public ArrayList<UUID> players = new ArrayList<>();
+	public XRank recruit;
 	private String name;
 	private boolean systemFac = false;
 	private double power = 0.0;
 	private double balance = 0.0;
 	private UUID leader;
 	private Location home = null;
-	public ArrayList<UUID> players = new ArrayList<>();
-	private XRank recruit;
 	private ArrayList<XFaction> allies = new ArrayList<>();
 	
 	
@@ -37,6 +37,7 @@ public class XFaction {
 		this.name = name;
 		onlinePlayers++;
 		factionConfig = new XFactionConfig(this);
+		recruit = new XRank(this);
 	}
 	
 	public XFaction(String name, String color) {
@@ -232,7 +233,7 @@ public class XFaction {
 	
 	public void disband(XPlayer pl) {
 		if (!isSystemFac()) {
-			if (!leader.equals(pl.getID())) {
+			if (leader.equals(pl.getID())) {
 				for (UUID p : getEveryone()) {
 					Player player = Bukkit.getPlayer(p);
 					leave(PlayerManager.getXPlayer(player), false);

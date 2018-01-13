@@ -27,7 +27,7 @@ public class Claim extends SubCommand {
 						}
 					}
 				}
-			} else if (PlayerManager.getPlayerFaction(p).getRole(p.getUniqueId()).equals(RoleType.LEADER)) {
+			} else if (PlayerManager.getPlayerFaction(p).getLeader().equals(p.getUniqueId())) {
 				XFaction xFaction = PlayerManager.getPlayerFaction(p);
 				if (!ClaimManager.isClaimed(p.getLocation().getChunk())) {
 					xFaction.claim(p.getLocation().getChunk());

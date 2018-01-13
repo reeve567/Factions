@@ -15,6 +15,7 @@ public class Faction extends MainCommand {
 		add(new Claim());
 		add(new Create());
 		add(new Disband());
+		add(new Groups());
 		add(new Invite());
 		add(new Join());
 		add(new Leave());

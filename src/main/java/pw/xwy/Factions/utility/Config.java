@@ -1,6 +1,5 @@
 package pw.xwy.Factions.utility;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,9 +19,6 @@ public class Config {
 	public static double maxPower;
 	public static double minPower;
 	public static boolean usePermissions;
-	public static boolean spawnEnabled;
-	public static double spawnTeleportWarmupTime;
-	public static Location spawn;
 	private static File configF;
 	private static FileConfiguration config;
 	private static XFactionsCore xFactionsCore = XFactionsCore.getXFactionsCore();
@@ -58,11 +54,6 @@ public class Config {
 		maxPower = config.getDouble("max-power");
 		minPower = config.getDouble("min-power");
 		usePermissions = config.getBoolean("use-permissions");
-		spawnTeleportWarmupTime = config.getDouble("spawn-teleport-warmup-time");
-		if (!config.getString("spawn-location").equalsIgnoreCase("nospawn")) {
-			spawn = StringUtility.fromString(config.getString("spawn-location"));
-		}
-		spawnEnabled = config.getBoolean("spawn-enabled");
 	}
 	
 	public static void loadFactions() {
@@ -95,20 +86,20 @@ public class Config {
 	}
 	
 	public static void setSpawn(Location loc) {
-		config.set("spawn-location",StringUtility.toString(loc));
+		config.set("spawn-location", StringUtility.toString(loc));
 		saveConfig();
 	}
 	
 	public static XPlayerConfig getPlayer(UUID uuid) {
-		return new XPlayerConfig(Bukkit.getPlayer(uuid));
+		return new XPlayerConfig(uuid);
 	}
 	
 	public static XPlayerConfig getPlayer(String uuid) {
-		return new XPlayerConfig(Bukkit.getPlayer(UUID.fromString(uuid)));
+		return new XPlayerConfig(UUID.fromString(uuid));
 	}
 	
 	public static XPlayerConfig getPlayer(Player player) {
-		return new XPlayerConfig(player);
+		return new XPlayerConfig(player.getUniqueId());
 	}
 	
 	public static double getFactionCreationPrice() {
