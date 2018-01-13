@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3b6aca8-a14e-40c3-9080-a20643047b85" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/ItemBuilder.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XRank.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XRank.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/ClaimHandler.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/ClaimHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/inventories/PermissionsMainMenu.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/inventories/PermissionsMainMenu.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/enums/RoleType.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ChatManager.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ChatManager.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -134,11 +132,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClaimHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClaimHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/ClaimHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="462">
               <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChatManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ChatManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="471">
+              <caret line="36" column="36" lean-forward="true" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -227,7 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/subcommands/Promote.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/Sell.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/inventories/BuyMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/InventoryClick.java" />
@@ -278,6 +285,7 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XRank.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/inventories/PermissionsMainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/ClaimHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ChatManager.java" />
       </list>
     </option>
   </component>
@@ -311,8 +319,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="984" />
-    <option name="y" value="58" />
+    <option name="x" value="1741" />
+    <option name="y" value="816" />
     <option name="width" value="974" />
     <option name="height" value="1048" />
   </component>
@@ -631,12 +639,12 @@
       <workItem from="1515778975069" duration="777000" />
       <workItem from="1515784714430" duration="1728000" />
       <workItem from="1515817729024" duration="641000" />
-      <workItem from="1515864317929" duration="11189000" />
+      <workItem from="1515864317929" duration="12771000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147268000" />
+    <option name="totallyTimeSpent" value="148850000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2762" height="1770" extended-state="6" />
@@ -978,14 +986,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ChatManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1452">
-          <caret line="57" column="48" lean-forward="false" selection-start-line="57" selection-start-column="48" selection-end-line="57" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/PermissionsManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1176,6 +1176,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
           <caret line="20" column="37" lean-forward="true" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ChatManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="471">
+          <caret line="36" column="36" lean-forward="true" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
           <folding />
         </state>
       </provider>

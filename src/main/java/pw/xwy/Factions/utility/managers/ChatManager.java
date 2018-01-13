@@ -6,9 +6,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pw.xwy.Factions.enums.ChatType;
-import pw.xwy.Factions.enums.RoleType;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.StringUtility;
 
 import java.util.Collections;
@@ -23,7 +23,7 @@ public class ChatManager implements Listener {
 		XPlayer xPlayer = PlayerManager.getXPlayer(player);
 		ChatType chatType = xPlayer.getChatType();
 		XFaction xFaction = xPlayer.getFaction();
-		RoleType roleType = null;
+		XRank roleType = null;
 		if (xFaction != null) {
 			roleType = xFaction.getRole(xPlayer.getPlayer().getUniqueId());
 		}
@@ -31,39 +31,20 @@ public class ChatManager implements Listener {
 		boolean staffchat;
 		
 		String prefix = "";
-		if (roleType != null) {
-			switch (roleType){
-				case RECRUIT:
-					prefix = "-";
-					break;
-				case MEMBER:
-					prefix = "✪";
-					break;
-				case OFFICER:
-					prefix = "♚";
-					break;
-				case COLEADER:
-					prefix = "♜";
-					break;
-				case LEADER:
-					prefix = "♛";
-			}
-			
 			switch (chatType) {
 				case PUBLIC:
-					e.setFormat(prefix + xFaction.getName() + " " + e.getFormat());
+					if (roleType != null) {
+						e.setFormat();
+					}
+					
+					
+					
 					break;
 				case FACTION:
 					e.setCancelled(true);
 					Set<Player> recipients = Collections.emptySet();
-					for (UUID uuid: xFaction.getRecruits()) {
-						recipients.add(Bukkit.getPlayer(uuid));
-					}
-					for (UUID uuid: xFaction.getMembers()) {
-						recipients.add(Bukkit.getPlayer(uuid));
-					}
-					for (UUID uuid: xFaction.getOfficers()) {
-						recipients.add(Bukkit.getPlayer(uuid));
+					for (UUID p: xFaction.players) {
+						recipients.add(Bukkit.getPlayer(p));
 					}
 					recipients.add(Bukkit.getPlayer(xFaction.getLeader()));
 					for (Player p: recipients) {
