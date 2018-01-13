@@ -13,7 +13,7 @@ public class XRank {
 	private ArrayList<UUID> users = new ArrayList<>();
 	private ArrayList<String> perms = new ArrayList<>();
 	private XFactionConfig config;
-	private ArrayList<XRank> lower = new ArrayList<>();
+	public ArrayList<XRank> lower = new ArrayList<>();
 	private XFaction faction;
 	
 	//load from config
