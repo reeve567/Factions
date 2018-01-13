@@ -51,8 +51,6 @@ public class Who extends SubCommand {
 				p.sendMessage(prefix + StringUtility.conv("&7Balance: &6" + faction.getBalance()));
 				p.sendMessage(prefix + StringUtility.conv("&7Players Online: &6" + faction.getOnlinePlayers()));
 				p.sendMessage(prefix + StringUtility.conv("&7Leader: &6" + leader.getName()));
-				officers(p, faction, prefix);
-				members(p,faction,prefix);
 				recuits(p,faction,prefix);
 			}
 		} else {
@@ -79,8 +77,7 @@ public class Who extends SubCommand {
 			p.sendMessage(prefix + StringUtility.conv("&7Balance: &6" + faction.getBalance()));
 			p.sendMessage(prefix + StringUtility.conv("&7Players Online: &6" + faction.getOnlinePlayers()));
 			p.sendMessage(prefix + StringUtility.conv("&7Leader: &6" + leader.getName()));
-			officers(p, faction, prefix);
-			members(p,faction,prefix);
+			
 			recuits(p,faction,prefix);
 		}
 		p.sendMessage("");
