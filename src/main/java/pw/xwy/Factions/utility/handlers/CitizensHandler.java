@@ -1,0 +1,39 @@
+package pw.xwy.Factions.utility.handlers;
+
+import net.citizensnpcs.api.event.NPCRightClickEvent;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import pw.xwy.Factions.utility.StringUtil;
+import pw.xwy.Factions.utility.inventories.*;
+
+public class CitizensHandler implements Listener {
+	
+	@EventHandler
+	public void onCitizenClick(NPCRightClickEvent e) {
+		Player player = e.getClicker().getPlayer();
+		if (e.getNPC().getName().equalsIgnoreCase(ChatColor.BLUE + "" + ChatColor.BOLD + "Tools")) {
+			player.openInventory(ToolsMenu.getInv());
+		} else if (e.getNPC().getName().equalsIgnoreCase(StringUtil.chatColorConv("&2&lFarming"))) {
+			player.openInventory(FarmingMenu.getInv());
+		} else if (e.getNPC().getName().equalsIgnoreCase(StringUtil.chatColorConv("&b&lCombat"))) {
+			player.openInventory(CombatMenu.getInv());
+		} else if (e.getNPC().getName().equalsIgnoreCase(StringUtil.chatColorConv("&3&lSpawners"))) {
+			player.openInventory(SpawnersMenu.getInv());
+		} else if (e.getNPC().getName().equalsIgnoreCase(StringUtil.chatColorConv("&a&lBrewing"))) {
+			player.openInventory(BrewingMenu.getInv());
+		} else if (e.getNPC().getName().equalsIgnoreCase(StringUtil.chatColorConv("&4&lRaiding"))) {
+			player.openInventory(RaidingMenu.getInv());
+		} else if (e.getNPC().getName().equalsIgnoreCase(StringUtil.chatColorConv("&lMiscellaneous"))) {
+			player.openInventory(MiscMenu.getInv());
+		} else if (e.getNPC().getName().equalsIgnoreCase(StringUtil.chatColorConv("&5&lBuilding"))) {
+			player.openInventory(BuildingMenu.getInv());
+		} else if (e.getNPC().getName().equalsIgnoreCase(StringUtil.chatColorConv("&6&lSell Shop"))) {
+			player.openInventory(SellMenu.getInv(player));
+		} else if (e.getNPC().getName().equalsIgnoreCase(ChatColor.GOLD + "ShopKeeper")) {
+			player.openInventory(MainMenu.getInv());
+		}
+	}
+	
+}
