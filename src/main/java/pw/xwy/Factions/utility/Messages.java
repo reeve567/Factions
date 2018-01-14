@@ -13,7 +13,6 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Messages {
@@ -25,6 +24,7 @@ public class Messages {
 	private static List<String> header;
 	private static List<String> footer;
 	private static List<String> commandHelpFormat;
+	private static List<String> helpMenuExtra;
 	private static String mapHeader;
 	private static String mapMidFooter;
 	private static String mapFinalFooter;
@@ -33,9 +33,12 @@ public class Messages {
 	private static List<String> whoSystem;
 	private static List<String> whoTarget;
 	private static List<String> whoSender;
+	private static List<String> allyRequest;
+	private static List<String> allyRequestRecieved;
+	private static List<String> allyRequestAccepted;
 	
 	
-	public static void loadConfig() {
+	static void loadConfig() {
 		createConfig();
 		saveConfig();
 		
@@ -50,6 +53,10 @@ public class Messages {
 		whoSystem = config.getStringList("who.system");
 		whoTarget = config.getStringList("who.target-no-faction");
 		whoSender = config.getStringList("who.sender-no-faction");
+		helpMenuExtra = config.getStringList("general.help-menu-extra");
+		allyRequest = config.getStringList("general.ally-request-sent");
+		allyRequestRecieved = config.getStringList("general.ally-request-recieved");
+		allyRequestAccepted = config.getStringList("general.ally-request-accepted");
 		
 	}
 	
@@ -57,36 +64,19 @@ public class Messages {
 		
 		configF = new File(xFactionsCore.getDataFolder(), "messages.yml");
 		
+		config = new YamlConfiguration();
+		
 		if (!configF.exists()) {
 			configF.getParentFile().mkdirs();
-			config = YamlConfiguration.loadConfiguration(configF);
-			config.createSection("general");
-			set("general.header", Arrays.asList("", "&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m"));
-			set("general.footer", Arrays.asList("", "&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m", ""));
-			set("general.command-help", Arrays.asList("&8&l&m    »&7 <sub-command> &6<args>", "<description>"));
-			set("general.help-menu-extra", "&8Sub-commands");
-			
-			config.createSection("map");
-			set("map.header", "&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m");
-			set("map.mid-footer", "&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m");
-			set("map.final-footer", "&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m");
-			
-			config.createSection("who");
-			set("who.top", Arrays.asList("&7Name: &6<faction-name>", "&7Desc: &6<faction-desc>", "&7Claim: &6<faction-claimed-land>&7/&6<faction-max-land>", "&7Members online: &6<faction-members-online>&7/&6<faction-members-total>", "&7Leader: &6<faction-leader>"));
-			set("who.groupsList", Arrays.asList("&7<faction-group-name>: &6<faction-group-members>"));
-			set("who.system", Arrays.asList("&7Name: <faction-color><faction-name>", "&7Desc: &6<faction-desc>"));
-			set("who.target-no-faction", Arrays.asList("&7They are not in a faction."));
-			set("who.sender-no-faction", Arrays.asList("&7You are not in a faction."));
-			
-			//xFactionsCore.saveResource("messages.yml", false);
+			xFactionsCore.saveResource("messages.yml", false);
 		}
-		
 		
 		try {
 			config.load(configF);
 		} catch (InvalidConfigurationException | IOException e) {
 			e.printStackTrace();
 		}
+		
 		
 	}
 	
@@ -116,6 +106,10 @@ public class Messages {
 	
 	public static ArrayList<String> getFooter() {
 		return colorConv(footer);
+	}
+	
+	public static List<String> getHelpMenuExtra() {
+		return colorConv(helpMenuExtra);
 	}
 	
 	public static List<String> getCommandHelpFormat(SubCommand command) {
@@ -170,6 +164,15 @@ public class Messages {
 		return colorConv(whoSystem);
 	}
 	
+	public static List<String> getAllyRequest(XFaction faction) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : allyRequest) {
+			s = s.replace("<ally>", faction.getName());
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
 	public static List<String> getWhoTop() {
 		return colorConv(whoTop);
 	}
@@ -186,4 +189,21 @@ public class Messages {
 		return s;
 	}
 	
+	public static List<String> getAllyRequestRecieved(XFaction faction) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : allyRequestRecieved) {
+			s = s.replace("<ally>", faction.getName());
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static List<String> getAllyRequestAccepted(XFaction faction) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : allyRequestAccepted) {
+			s = s.replace("<ally>", faction.getName());
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
 }

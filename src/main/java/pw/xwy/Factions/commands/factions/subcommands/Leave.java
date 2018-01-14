@@ -6,7 +6,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Leave extends SubCommand {
 	public Leave() {
-		super("leave", "", "&7Leaves your current faction.");
+		super("leave", "", "Leaves your current faction.");
 	}
 	
 	@Override

@@ -1,0 +1,39 @@
+general:
+  header:
+  - ''
+  - '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
+  footer:
+  - ''
+  - '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
+  - ''
+  command-help:
+  - '&8&l&m    »&7 <sub-command> &6<args>'
+  - '&7<description>'
+  help-menu-extra:
+  - '&8Sub-commands'
+  ally-request-sent:
+  - '&aRecieved ally request from &e<ally>'
+  ally-request-recieved:
+  - '&aAlly request sent to &e<ally>'
+  ally-request-accepted:
+  - '&aYour faction is not allies with &e<ally>'
+map:
+  header: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
+  mid-footer: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
+  final-footer: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
+who:
+  top:
+  - '&7Name: &6<faction-name>'
+  - '&7Desc: &6<faction-desc>'
+  - '&7Claim: &6<faction-claimed-land>&7/&6<faction-max-land>'
+  - '&7Members online: &6<faction-members-online>&7/&6<faction-members-total>'
+  - '&7Leader: &6<faction-leader>'
+  groupsList:
+  - '&7<faction-group-name>: &6<faction-group-members>'
+  system:
+  - '&7Name: <faction-color><faction-name>'
+  - '&7Desc: &6<faction-desc>'
+  target-no-faction:
+  - '&7They are not in a faction.'
+  sender-no-faction:
+  - '&7You are not in a faction.'

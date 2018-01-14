@@ -19,6 +19,7 @@ public class Config {
 	public static double maxPower;
 	public static double minPower;
 	public static boolean usePermissions;
+	public static int commandsPerPage;
 	private static File configF;
 	private static FileConfiguration config;
 	private static XFactionsCore xFactionsCore = XFactionsCore.getXFactionsCore();
@@ -37,6 +38,7 @@ public class Config {
 		maxPower = config.getDouble("max-power");
 		minPower = config.getDouble("min-power");
 		usePermissions = config.getBoolean("use-permissions");
+		commandsPerPage = config.getInt("commands-per-help-page");
 	}
 	
 	private static void createConfig() {

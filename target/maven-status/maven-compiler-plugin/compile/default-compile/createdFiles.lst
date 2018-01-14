@@ -1,11 +1,14 @@
 pw\xwy\Factions\objects\XChunk.class
 pw\xwy\Factions\commands\factions\subcommands\Invite.class
 pw\xwy\Factions\enums\sell\Brewing.class
+pw\xwy\Factions\commands\factions\subcommands\Ally.class
+pw\xwy\Factions\commands\factions\subcommands\Help.class
 pw\xwy\Factions\utility\managers\ChatManager$1.class
 pw\xwy\Factions\commands\factions\subcommands\Leave.class
 pw\xwy\Factions\utility\handlers\MoveHandler.class
 pw\xwy\Factions\utility\handlers\CitizensHandler.class
 pw\xwy\Factions\enums\sell\Raiding.class
+pw\xwy\Factions\utility\inventories\PermissionsSubMenu.class
 pw\xwy\Factions\commands\factions\subcommands\Claim.class
 pw\xwy\Factions\commands\factions\subcommands\Who.class
 pw\xwy\Factions\objects\XRank.class
@@ -38,7 +41,6 @@ pw\xwy\Factions\enums\sell\Spawner.class
 pw\xwy\Factions\objects\XFactionConfig.class
 pw\xwy\Factions\enums\sell\Tools.class
 pw\xwy\Factions\commands\SubCommand.class
-pw\xwy\Factions\commands\factions\subcommands\Promote.class
 pw\xwy\Factions\objects\XPlayer.class
 pw\xwy\Factions\commands\factions\subcommands\Create.class
 pw\xwy\Factions\utility\inventories\BuyMenu.class

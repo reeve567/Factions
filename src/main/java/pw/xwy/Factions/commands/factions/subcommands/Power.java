@@ -7,7 +7,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Power extends SubCommand {
 	public Power() {
-		super("power", "", "&7Displays your current power");
+		super("power", "", "Displays your current power");
 	}
 	
 	@Override

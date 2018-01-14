@@ -10,7 +10,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Join extends SubCommand {
 	public Join() {
-		super("join", "&6<faction>", "&7Accept an invite with this command, and join a faction.");
+		super("join", "<faction>", "Accept an invite with this command, and join a faction.");
 	}
 	
 	@Override

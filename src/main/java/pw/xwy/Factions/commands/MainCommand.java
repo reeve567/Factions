@@ -22,5 +22,8 @@ public abstract class MainCommand {
 	
 	public abstract void init();
 	
+	protected void add(SubCommand subCommand) {
+		subCommands.add(subCommand);
+	}
 	
 }

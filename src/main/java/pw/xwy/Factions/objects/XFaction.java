@@ -6,6 +6,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.utility.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -25,6 +26,7 @@ public class XFaction {
 	public ArrayList<UUID> players = new ArrayList<>();
 	public XRank recruit;
 	public String desc;
+	public ArrayList<XFaction> allyRequests = new ArrayList<>();
 	private String name;
 	private boolean systemFac = false;
 	private double power = 0.0;
@@ -32,7 +34,6 @@ public class XFaction {
 	private UUID leader;
 	private Location home = null;
 	private ArrayList<XFaction> allies = new ArrayList<>();
-	
 	
 	public XFaction(String name, Player creator) {
 		leader = creator.getUniqueId();
@@ -107,19 +108,52 @@ public class XFaction {
 			temp = temp.replaceFirst(String.valueOf(x) + ' ', "");
 			int z = Integer.parseInt(temp);
 			Chunk c = Bukkit.getWorld(world).getChunkAt(x, z);
-			claim(c);
+			claim(c, 1);
 			System.out.println("found claim at " + c.getX() + c.getZ());
 		}
 		
 	}
 	
-	public void claim(Chunk c) {
-		claim.add(c, this);
-		factionConfig.save(this);
+	public void claim(Chunk c, int radius) {
+		if (!ClaimManager.isClaimed(c) && claim.get().size() <= getMaxPower() + 1 || systemFac) {
+			claim.add(c, this);
+			for (int i = -radius; i <= radius; i++)
+				for (int j = -radius; j <= radius; j++)
+					if (i != 0 && j != 0) {
+						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
+						if (ClaimManager.getChunk(ch) != null && claim.get().size() <= getMaxPower() + 1 || systemFac)
+							claim.add(c, this);
+					}
+			factionConfig.save(this);
+		}
 	}
 	
 	public double getMaxPower() {
 		return players.size() * Config.maxPower;
+	}
+	
+	public void claim(Chunk c, int radius, Player p) {
+		if (!ClaimManager.isClaimed(c)) if (claim.get().size() <= getMaxPower() + 1 || systemFac) {
+			claim.add(c, this);
+			for (int i = -radius; i <= radius; i++)
+				for (int j = -radius; j <= radius; j++)
+					if (i != 0 && j != 0) {
+						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
+						if (ClaimManager.getChunk(ch) != null)
+							if (claim.get().size() <= getMaxPower() + 1 || systemFac) {
+								claim.add(c, this);
+							} else {
+								//not enough power
+							}
+					}
+			factionConfig.save(this);
+		} else {
+			//not enough power
+		}
+		else {
+			//already claimed
+			
+		}
 	}
 	
 	public XRank getRole(UUID p) {
@@ -189,6 +223,19 @@ public class XFaction {
 	
 	public void setLeader(UUID leader) {
 		this.leader = leader;
+	}
+	
+	public void addAlly(XFaction faction) {
+		allyRequests.remove(faction);
+		allies.add(faction);
+		for (UUID ID : players) {
+			if (Bukkit.getPlayer(ID).isOnline()) {
+				Messages.sendMessages(Bukkit.getPlayer(ID).getPlayer(), Messages.getAllyRequestRecieved(faction));
+			}
+		}
+		if (Bukkit.getPlayer(leader).isOnline()) {
+			Messages.sendMessages(Bukkit.getPlayer(leader), Messages.getAllyRequestAccepted(faction));
+		}
 	}
 	
 	public ArrayList<XFaction> getAllies() {
@@ -299,5 +346,36 @@ public class XFaction {
 	
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+	
+	public void sendAllyRequest(XFaction faction) {
+		faction.getAllyRequest(this);
+	}
+	
+	public void getAllyRequest(XFaction faction) {
+		allyRequests.add(faction);
+		for (UUID id : players) {
+			if (Bukkit.getPlayer(id).isOnline()) {
+				Player p = Bukkit.getPlayer(id);
+				Messages.sendMessages(p, Messages.getAllyRequest(faction));
+			}
+		}
+		if (Bukkit.getPlayer(leader).isOnline()) {
+			Messages.sendMessages(Bukkit.getPlayer(leader), Messages.getAllyRequest(faction));
+		}
+	}
+	
+	public void addRank(XRank xRank) {
+		ranks.add(xRank);
+	}
+	
+	public boolean removeRank(String arg) {
+		for (XRank rank : ranks) {
+			if (rank.name.equalsIgnoreCase(arg)) {
+				ranks.remove(rank);
+				return true;
+			}
+		}
+		return false;
 	}
 }

@@ -6,7 +6,7 @@ import pw.xwy.Factions.utility.managers.FactionManager;
 
 public class List extends SubCommand {
 	public List() {
-		super("list", "", "&7List all factions in order of online members");
+		super("list", "", "List all factions in order of online members");
 	}
 	
 	@Override

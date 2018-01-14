@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 public class Map extends SubCommand {
 	public Map() {
-		super("map", "", "&7Displays a map showing the claimed land in the area.");
+		super("map", "", "Displays a map showing the claimed land in the area.");
 	}
 	
 	@Override

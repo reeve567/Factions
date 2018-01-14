@@ -16,7 +16,7 @@ import java.util.UUID;
 public class Who extends SubCommand {
 	
 	public Who() {
-		super("who", "&6[player/faction]", "&7Displays info about either the selected player's faction, the selected faction, or your faction.");
+		super("who", "[player/faction]", "Displays info about either the selected player's faction, the selected faction, or your faction.");
 	}
 	
 	@Override
