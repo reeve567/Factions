@@ -5,6 +5,7 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
+import pw.xwy.Factions.utility.Config;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -23,6 +24,7 @@ public class XFaction {
 	public List<XRank> ranks = new ArrayList<>();
 	public ArrayList<UUID> players = new ArrayList<>();
 	public XRank recruit;
+	public String desc;
 	private String name;
 	private boolean systemFac = false;
 	private double power = 0.0;
@@ -111,6 +113,15 @@ public class XFaction {
 		
 	}
 	
+	public void claim(Chunk c) {
+		claim.add(c, this);
+		factionConfig.save(this);
+	}
+	
+	public double getMaxPower() {
+		return players.size() * Config.maxPower;
+	}
+	
 	public XRank getRole(UUID p) {
 		for (XRank rank : ranks) {
 			if (rank.isIn(p)) {
@@ -134,12 +145,10 @@ public class XFaction {
 		this.power = ((int) (power * 10)) / 10.0;
 	}
 	
-	public double getPower() {
-		return power;
-	}
-	
-	public void setPower(double power) {
-		this.power = power;
+	public ArrayList<UUID> getEveryone() {
+		ArrayList<UUID> everyone = new ArrayList<>();
+		everyone.add(leader);
+		return everyone;
 	}
 	
 	public String getName() {
@@ -156,14 +165,6 @@ public class XFaction {
 	
 	public void setHome(Location home) {
 		this.home = home;
-	}
-	
-	public boolean isSystemFac() {
-		return systemFac;
-	}
-	
-	public void setSystemFac(boolean systemFac) {
-		this.systemFac = systemFac;
 	}
 	
 	public int getOnlinePlayers() {
@@ -190,32 +191,12 @@ public class XFaction {
 		this.leader = leader;
 	}
 	
-	
-	public ArrayList<UUID> getEveryone() {
-		ArrayList<UUID> everyone = new ArrayList<>();
-		everyone.add(leader);
-		return everyone;
-	}
-	
 	public ArrayList<XFaction> getAllies() {
 		return allies;
 	}
 	
 	public void setAllies(ArrayList<XFaction> allies) {
 		this.allies = allies;
-	}
-	
-	public void claim(Chunk c) {
-		claim.add(c, this);
-		factionConfig.save(this);
-	}
-	
-	public double getBalance() {
-		return balance;
-	}
-	
-	public void setBalance(double balance) {
-		this.balance = balance;
 	}
 	
 	public void removeBalance(double amount) {
@@ -252,13 +233,12 @@ public class XFaction {
 		}
 	}
 	
-	public void disband() {
-		if (isSystemFac()) {
-			Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded."));
-			FactionManager.removeFaction(this);
-			ClaimManager.removeChunks(this);
-			factionConfig.remove();
-		}
+	public boolean isSystemFac() {
+		return systemFac;
+	}
+	
+	public void setSystemFac(boolean systemFac) {
+		this.systemFac = systemFac;
 	}
 	
 	public void leave(XPlayer player, boolean announce) {
@@ -271,6 +251,15 @@ public class XFaction {
 			}
 			onlinePlayers--;
 			factionConfig.save(this);
+		}
+	}
+	
+	public void disband() {
+		if (isSystemFac()) {
+			Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded."));
+			FactionManager.removeFaction(this);
+			ClaimManager.removeChunks(this);
+			factionConfig.remove();
 		}
 	}
 	
@@ -294,5 +283,21 @@ public class XFaction {
 	
 	String getHomeString() {
 		return StringUtility.toString(home);
+	}
+	
+	public double getPower() {
+		return power;
+	}
+	
+	public void setPower(double power) {
+		this.power = power;
+	}
+	
+	public double getBalance() {
+		return balance;
+	}
+	
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 }

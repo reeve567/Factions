@@ -11,7 +11,6 @@ public class Faction extends MainCommand {
 	
 	@Override
 	public void init() {
-		add(new Balance());
 		add(new Claim());
 		add(new Create());
 		add(new Disband());

@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class Group extends SubCommand {
 	public Group() {
-		super("group", "&6<create/delete/set> <name/prefix>", "&7Allows you to create/delete permissions groups for your faction, or set their prefix.");
+		super("group", "<create/delete/set> <name/prefix>", "Allows you to create/delete permissions groups for your faction, or set their prefix.");
 	}
 	
 	@Override
@@ -17,7 +17,7 @@ public class Group extends SubCommand {
 		UUID id = p.getUniqueId();
 		XFaction faction = FactionManager.getUUIDFaction(id);
 		boolean isLeader = faction.getLeader().equals(id);
-		boolean hasPerm = faction.getRole(id).hasPerm("ManagePerms",true);
+		boolean hasPerm = faction.getRole(id).hasPerm("ManagePerms", true);
 		
 		if (isLeader || hasPerm) {
 		

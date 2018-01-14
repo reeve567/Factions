@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class Groups extends SubCommand {
 	public Groups() {
-		super("groups", "", "&7Displays groups menu.");
+		super("groups", "", "Displays groups menu.");
 	}
 	
 	@Override
@@ -18,10 +18,10 @@ public class Groups extends SubCommand {
 		UUID id = p.getUniqueId();
 		XFaction faction = FactionManager.getUUIDFaction(id);
 		boolean isLeader = faction.getLeader().equals(id);
-		boolean hasPerm = faction.getRole(id).hasPerm("ManagePerms",true);
+		boolean hasPerm = faction.getRole(id).hasPerm("ManagePerms", true);
 		
 		if (isLeader || hasPerm) {
-			p.openInventory(PermissionsMainMenu.get(p,isLeader));
+			p.openInventory(PermissionsMainMenu.get(p, isLeader));
 		}
 		
 	}

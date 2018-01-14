@@ -9,11 +9,9 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
-import pw.xwy.Factions.commands.shop.Sell;
-import pw.xwy.Factions.commands.shop.Shop;
-import pw.xwy.Factions.enums.Messages;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.utility.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.handlers.ClaimHandler;
 import pw.xwy.Factions.utility.handlers.JoinHandler;
@@ -22,7 +20,6 @@ import pw.xwy.Factions.utility.handlers.MoveHandler;
 import pw.xwy.Factions.utility.managers.ChatManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 import pw.xwy.Factions.utility.tasks.PowerIncreaseTask;
-import pw.xwy.Factions.utility.tasks.SpawnWarmupTask;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
@@ -133,25 +130,18 @@ public class XFactionsCore extends JavaPlugin {
 				ArrayList<SubCommand> subCommands = faction.subCommands;
 				
 				if (args.length < 1) {
-					String prefix = Messages.PREFIX.get();
-					p.sendMessage("");
-					p.sendMessage(Messages.HEADER.get());
-					p.sendMessage(StringUtility.conv("&8Sub-commands"));
 					for (SubCommand subCommand : subCommands) {
 						if (Config.usePermissions || subCommand.adminCommand) {
 							if (p.hasPermission(subCommand.permission)) {
-								p.sendMessage(prefix + StringUtility.conv("&7" + subCommand.command + " " + subCommand.help));
-								p.sendMessage(subCommand.help1);
+								Messages.sendMessages(p,Messages.getCommandHelpFormat(subCommand));
 							}
 						} else {
-							p.sendMessage(prefix + StringUtility.conv("&7" + subCommand.command + " " + subCommand.help));
-							p.sendMessage(subCommand.help1);
+							Messages.sendMessages(p,Messages.getCommandHelpFormat(subCommand));
 						}
 					}
 					
-					p.sendMessage("");
-					p.sendMessage(Messages.HEADER.get());
-					p.sendMessage("");
+					for (String s : Messages.getFooter());
+					
 				} else {
 					for (SubCommand subCommand : subCommands) {
 						if (subCommand.command.equalsIgnoreCase(args[0])) {
@@ -164,7 +154,7 @@ public class XFactionsCore extends JavaPlugin {
 				
 				
 			}
-		} else if (command.getLabel().equalsIgnoreCase("spawn") && Config.spawnEnabled) {
+		} /*else if (command.getLabel().equalsIgnoreCase("spawn") && Config.spawnEnabled) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
 				XPlayer xPlayer = PlayerManager.getXPlayer(p);
@@ -187,7 +177,7 @@ public class XFactionsCore extends JavaPlugin {
 			Shop.run(sender);
 		} else if (command.getLabel().equalsIgnoreCase("sell")) {
 			Sell.run(sender, econ);
-		}
+		}*/
 		return false;
 	}
 	

@@ -1,7 +1,6 @@
 package pw.xwy.Factions.commands;
 
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.utility.StringUtility;
 
 public abstract class SubCommand {
@@ -16,7 +15,7 @@ public abstract class SubCommand {
 		this.command = command;
 		this.help = StringUtility.conv(help);
 		this.help1 = StringUtility.conv(help1);
-		this.permission = "factions." + command.toLowerCase();
+		this.permission = "f." + command.toLowerCase();
 	}
 	
 	public SubCommand(String command, String help, String help1, boolean adminCommand) {
@@ -24,7 +23,7 @@ public abstract class SubCommand {
 		this.command = command;
 		this.help = StringUtility.conv(help);
 		this.help1 = StringUtility.conv(help1);
-		this.permission = "factions." + command.toLowerCase();
+		this.permission = "f." + command.toLowerCase();
 	}
 	
 	public abstract void run(Player p, String[] args);

@@ -10,7 +10,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Disband extends SubCommand {
 	public Disband() {
-		super("disband", "", "&7Disband your faction.");
+		super("disband", "", "Disband your faction.");
 	}
 	
 	@Override

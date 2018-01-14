@@ -9,7 +9,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Claim extends SubCommand {
 	public Claim() {
-		super("claim", "", "&7Claim area for your faction");
+		super("claim", "", "Claim area for your faction");
 	}
 	
 	@Override
@@ -18,8 +18,7 @@ public class Claim extends SubCommand {
 			if (p.hasPermission("factions.claim.others")) {
 				if (args.length != 2) {
 					p.sendMessage("f claim <faction>");
-				}
-				else {
+				} else {
 					XFaction faction = FactionManager.getFactionByName(args[1]);
 					if (faction != null) {
 						if (!ClaimManager.isClaimed(p.getLocation().getChunk())) {
