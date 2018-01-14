@@ -13,13 +13,13 @@ public class PermissionsMainMenu {
 	
 	public static Inventory get(Player p, boolean leader) {
 		Inventory inv = Bukkit.createInventory(null, 9, "Groups");
-		XFaction faction = FactionManager.getUUIDFaction(p.getUniqueId());
+		XFaction faction = FactionManager.getPlayerUUIDFaction(p.getUniqueId());
 		int slot = 0;
 		if (!leader) {
 			for (XRank rank : faction.getRole(p.getUniqueId()).lower) {
 				inv.setItem(slot++, new ItemBuilder(Material.STAINED_GLASS_PANE)
 						.setName("&7&l» &6&l" + rank.name)
-						.setDurability(1).get());
+						.setDurability(1).addGlow().get());
 			}
 			while (slot < 9) {
 				inv.setItem(slot++, new ItemBuilder(Material.STAINED_GLASS_PANE)
@@ -30,7 +30,7 @@ public class PermissionsMainMenu {
 			for (XRank rank : faction.ranks) {
 				inv.setItem(slot++, new ItemBuilder(Material.STAINED_GLASS_PANE)
 						.setName("&7&l» &6&l" + rank.name)
-						.setDurability(1).get());
+						.setDurability(1).addGlow().get());
 			}
 			while (slot < 9) {
 				inv.setItem(slot++, new ItemBuilder(Material.STAINED_GLASS_PANE)

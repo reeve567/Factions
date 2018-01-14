@@ -37,6 +37,13 @@ public class ItemBuilder {
 		return this;
 	}
 	
+	public ItemBuilder addGlow() {
+		ItemMeta meta = itemStack.getItemMeta();
+		meta.addEnchant(new Glow(999),1,true);
+		itemStack.setItemMeta(meta);
+		return this;
+	}
+	
 	public ItemBuilder setLore(String s) {
 		List<String> lores = new ArrayList<>();
 		lores.add(s);

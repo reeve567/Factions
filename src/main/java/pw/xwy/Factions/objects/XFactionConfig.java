@@ -8,21 +8,23 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class XFactionConfig {
 	
 	public FileConfiguration fileConfiguration;
 	private File file;
 	
-	public XFactionConfig(String name) {
+	public XFactionConfig(String uuid) {
 		File factionData = Config.factiondata;
 		
-		file = new File(factionData, File.separator + name + ".yml");
+		file = new File(factionData, File.separator + uuid + ".yml");
 		fileConfiguration = YamlConfiguration.loadConfiguration(file);
 		
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
-			set("info.name", name);
+			set("info.name", "");
+			set("info.uuid", uuid);
 			set("info.balance", 0.0);
 			set("info.power", 0.0);
 			set("info.leader", "noleader");
@@ -57,6 +59,7 @@ public class XFactionConfig {
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
 			set("info.name", name);
+			set("info.uuid",name);
 			set("info.color", color);
 			set("info.systemFac", true);
 			fileConfiguration.createSection("others");
@@ -78,6 +81,7 @@ public class XFactionConfig {
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
 			set("info.name", faction.getName());
+			set("info.uuid",faction.id.toString());
 			set("info.balance", 0.0);
 			set("info.power", 0.0);
 			set("info.leader", faction.getLeader().toString());
@@ -137,6 +141,10 @@ public class XFactionConfig {
 	
 	public String getName() {
 		return getString("info.name");
+	}
+	
+	public UUID getUUID() {
+		return UUID.fromString(getString("info.uuid"));
 	}
 	
 	public String getString(String path) {

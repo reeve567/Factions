@@ -21,6 +21,7 @@ C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\enums\Chat
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\enums\sell\Combat.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\inventories\SpawnersMenu.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\enums\sell\Tools.java
+C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Ally.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Power.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Leave.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\enums\sell\Raiding.java
@@ -38,6 +39,7 @@ C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\f
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\objects\XPlayer.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\enums\sell\Miscellaneous.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\objects\XFactionConfig.java
+C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\objects\Glow.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Group.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Map.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\objects\XFaction.java
@@ -53,6 +55,7 @@ C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\XFactionsC
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\inventories\ToolsMenu.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\tasks\SpawnWarmupTask.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Who.java
+C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Unclaim.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\managers\ChatManager.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\List.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\handlers\JoinHandler.java
@@ -60,10 +63,10 @@ C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\in
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\SubCommand.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\inventories\PermissionsMainMenu.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\StringUtility.java
-C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Promote.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\enums\sell\Farming.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\handlers\MoveHandler.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\ItemUtil.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\ItemNames.java
+C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Help.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\utility\managers\PlayerManager.java
 C:\Users\spam\Documents\GitHub\Factions\src\main\java\pw\xwy\Factions\objects\XChunk.java

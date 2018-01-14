@@ -68,4 +68,6 @@ pw\xwy\Factions\enums\sell\Combat.class
 pw\xwy\Factions\utility\inventories\PermissionsMainMenu.class
 pw\xwy\Factions\commands\shop\Shop.class
 pw\xwy\Factions\utility\handlers\ClaimHandler.class
+pw\xwy\Factions\commands\factions\subcommands\Unclaim.class
 pw\xwy\Factions\commands\MainCommand.class
+pw\xwy\Factions\objects\Glow.class

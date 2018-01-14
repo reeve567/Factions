@@ -13,7 +13,7 @@ public class Ally extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
-		XFaction faction = FactionManager.getUUIDFaction(p.getUniqueId());
+		XFaction faction = FactionManager.getPlayerUUIDFaction(p.getUniqueId());
 		if (faction.getRole(p.getUniqueId()).hasPerm("ally",true)) {
 			if (args.length < 2) {
 				Messages.sendMessages(p,Messages.getCommandHelpFormat(this));

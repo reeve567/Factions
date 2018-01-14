@@ -10,9 +10,6 @@ import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
-import java.util.ArrayList;
-import java.util.UUID;
-
 public class Who extends SubCommand {
 	
 	public Who() {
@@ -23,11 +20,11 @@ public class Who extends SubCommand {
 	public void run(Player p, String[] args) {
 		
 		if (args.length < 2) {
-			display(p, p);
+			display(p, FactionManager.getPlayerUUIDFaction(p.getUniqueId()),false);
 		} else if (FactionManager.getFactionByName(args[1]) != null) {
 			XFaction faction = FactionManager.getFactionByName(args[1]);
 			assert faction != null;
-			display(p, faction);
+			display(p, faction, true);
 		} else if (Bukkit.getPlayerExact(args[1]) != null) {
 			display(p, Bukkit.getPlayerExact(args[1]).getPlayer());
 		} else {
@@ -39,44 +36,34 @@ public class Who extends SubCommand {
 	
 	private void display(Player p, Player target) {
 		XFaction faction = PlayerManager.getPlayerFaction(target);
-		display(p, faction);
+		display(p, faction, true);
 	}
 	
-	private void display(Player p, XFaction faction) {
+	private void display(Player p, XFaction faction, boolean someoneElse) {
 		Messages.sendMessages(p, Messages.getHeader());
-		if (!faction.isSystemFac()) {
-			for (String s : Messages.getWhoTop()) {
-				p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
-			}
-			for (XRank rank: faction.ranks) {
-				Messages.sendMessages(p,Messages.getWhoList(rank));
+		if (faction != null) {
+			if (!faction.isSystemFac()) {
+				for (String s : Messages.getWhoTop()) {
+					p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
+				}
+				for (XRank rank : faction.ranks) {
+					Messages.sendMessages(p, Messages.getWhoList(rank));
+				}
+				Messages.sendMessages(p, Messages.getWhoList(faction.recruit));
+			} else {
+				for (String s : Messages.getWhoSystem()) {
+					p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
+				}
 			}
 		} else {
-			for (String s : Messages.getWhoSystem()) {
-				p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
+			if (someoneElse) {
+				Messages.sendMessages(p, Messages.getWhoTarget());
+			} else {
+				Messages.sendMessages(p, Messages.getWhoSender());
 			}
 		}
 		Messages.sendMessages(p, Messages.getFooter());
 	}
 	
-	private void recuits(Player p, XFaction target, String prefix) {
-		ArrayList<UUID> players = new ArrayList<>();
-		players.addAll(target.recruit.users);
-		if (players.size() > 0) {
-			if (players.size() > 1) {
-				String te = "";
-				for (UUID uuid : players) {
-					te += Bukkit.getPlayer(uuid).getName();
-				}
-				p.sendMessage(prefix + StringUtility.conv("&7Recruits: &6" + te));
-			} else {
-				p.sendMessage(prefix + StringUtility.conv("&7Recruit: &6" + Bukkit.getPlayer(target.recruit.users.get(0)).getName()));
-			}
-		}
-	}
-	
-	private void disp(Player p, XFaction faction) {
-	
-	}
 	
 }

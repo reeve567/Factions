@@ -15,9 +15,35 @@ public class FactionManager {
 		factions.add(f);
 	}
 	
-	public static XFaction getUUIDFaction(UUID id) {
-		String p = Config.getPlayer(id).getFactionName();
-		return getFactionByName(p.substring(p.indexOf(";") + 1, p.length()));
+	public static XFaction getPlayerUUIDFaction(UUID id) {
+		String p = Config.getPlayer(id).getFactionUUID();
+		return getFactionFromUUID(p);
+	}
+	
+	private static XFaction getFactionFromUUID(String p) {
+		try {
+			return getFactionFromUUID(UUID.fromString(p));
+		} catch (IllegalArgumentException e) {
+			return null;
+		}
+	}
+	
+	public static XFaction getFactionFromUUID(UUID id) {
+		for (XFaction f : factions) {
+			if (f.id.equals(id)) {
+				return f;
+			}
+		}
+		return null;
+	}
+	
+	public static UUID getAvailableUUID() {
+		UUID id;
+		do {
+			id = UUID.randomUUID();
+		}
+		while (getFactionFromUUID(id) != null);
+		return id;
 	}
 	
 	public static XFaction getFactionByName(String s) {

@@ -10,6 +10,9 @@ import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Create extends SubCommand {
 	public Create() {
 		super("create", "<name>", "Creates a faction with the name chosen.");
@@ -54,12 +57,19 @@ public class Create extends SubCommand {
 	}
 	
 	private void makeFaction(Player p, String args[]) {
-		String[] notAllowedCharacters = {";", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", ",", "\\", "/", ".", "|", ":", "\"", "\'", "`", "~"};
+		List<Character> chars = new ArrayList<>();
+		for (int i = 97; i < 123; i++) {
+			chars.add((char) i);
+		}
+		for (int i = 65; i < 133; i++) {
+			chars.add((char) i);
+		}
+		for (int i = 48; i < 58; i++) {
+			chars.add((char) i);
+		}
 		boolean found = false;
-		for (String s : notAllowedCharacters) {
-			if (args[1].contains(s)) {
-				found = true;
-			}
+		for (char c: chars) {
+			if (!chars.contains(c)) found = true;
 		}
 		for (XFaction faction : FactionManager.getFactions()) {
 			if (faction.getName().equalsIgnoreCase(args[1])) found = true;

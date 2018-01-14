@@ -61,7 +61,7 @@ public class XPlayerConfig {
 	public void save(XPlayer xPlayer) {
 		set("info.power", xPlayer.getPower());
 		if (xPlayer.getFaction() != null) {
-			set("info.faction", xPlayer.getFaction().getName());
+			set("info.faction", xPlayer.getFaction().id.toString());
 		} else {
 			set("info.faction", "no-faction");
 		}
@@ -82,7 +82,7 @@ public class XPlayerConfig {
 		return fileConfiguration.getString(path);
 	}
 	
-	public String getFactionName() {
+	public String getFactionUUID() {
 		return getString("info.faction");
 	}
 	

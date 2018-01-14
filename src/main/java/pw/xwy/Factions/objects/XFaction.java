@@ -25,8 +25,9 @@ public class XFaction {
 	public List<XRank> ranks = new ArrayList<>();
 	public ArrayList<UUID> players = new ArrayList<>();
 	public XRank recruit;
-	public String desc;
+	public String desc = "Default faction description D:";
 	public ArrayList<XFaction> allyRequests = new ArrayList<>();
+	public UUID id;
 	private String name;
 	private boolean systemFac = false;
 	private double power = 0.0;
@@ -37,14 +38,17 @@ public class XFaction {
 	
 	public XFaction(String name, Player creator) {
 		leader = creator.getUniqueId();
+		id = FactionManager.getAvailableUUID();
 		this.name = name;
 		onlinePlayers++;
 		factionConfig = new XFactionConfig(this);
 		recruit = new XRank(this);
+		
 	}
 	
 	public XFaction(String name, String color) {
 		this.name = name;
+		id = FactionManager.getAvailableUUID();
 		systemFac = true;
 		this.color = color;
 		factionConfig = new XFactionConfig(name, color);
@@ -54,8 +58,8 @@ public class XFaction {
 	public XFaction(String facString) {
 		System.out.println("Started loading " + facString + "...");
 		factionConfig = new XFactionConfig(facString);
-		this.name = facString;
-		
+		name = factionConfig.getName();
+		id = factionConfig.getUUID();
 		
 		if (factionConfig.isSystem()) {
 			systemFac = true;

@@ -16,7 +16,7 @@ public class Groups extends SubCommand {
 	@Override
 	public void run(Player p, String[] args) {
 		UUID id = p.getUniqueId();
-		XFaction faction = FactionManager.getUUIDFaction(id);
+		XFaction faction = FactionManager.getPlayerUUIDFaction(id);
 		boolean isLeader = faction.getLeader().equals(id);
 		boolean hasPerm = faction.getRole(id).hasPerm("ManagePerms", true);
 		

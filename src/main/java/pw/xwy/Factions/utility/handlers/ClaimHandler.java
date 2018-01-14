@@ -17,7 +17,7 @@ public class ClaimHandler implements Listener {
 		if (ClaimManager.isClaimed(e.getBlock().getChunk())) {
 			if (!PlayerManager.getPlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
 				e.setCancelled(true);
-			} else if (!FactionManager.getUUIDFaction(pl.getUniqueId()).getRole(pl.getUniqueId()).hasPerm("break", true)) {
+			} else if (!FactionManager.getPlayerUUIDFaction(pl.getUniqueId()).getRole(pl.getUniqueId()).hasPerm("break", true)) {
 				e.setCancelled(true);
 			}
 		}
@@ -29,7 +29,7 @@ public class ClaimHandler implements Listener {
 		if (ClaimManager.isClaimed(e.getBlock().getChunk())) {
 			if (!PlayerManager.getPlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
 				e.setCancelled(true);
-			} else if (!FactionManager.getUUIDFaction(pl.getUniqueId()).getRole(pl.getUniqueId()).hasPerm("place", true)) {
+			} else if (!FactionManager.getPlayerUUIDFaction(pl.getUniqueId()).getRole(pl.getUniqueId()).hasPerm("place", true)) {
 				e.setCancelled(true);
 			}
 		}
