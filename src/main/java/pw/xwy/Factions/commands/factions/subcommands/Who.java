@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -38,52 +38,25 @@ public class Who extends SubCommand {
 	}
 	
 	private void display(Player p, Player target) {
-		p.sendMessage("");
-		Messages.sendMessages(p, Messages.getHeader());
 		XFaction faction = PlayerManager.getPlayerFaction(target);
-		if (faction != null) {
-			ArrayList<String> who = Messages.
-					
-					
-					p.sendMessage(prefix + StringUtility.conv("&7Name: &6" + faction.getName()));
-			if (!faction.isSystemFac()) {
-				Player leader = Bukkit.getPlayer(faction.getLeader());
-				p.sendMessage(prefix + StringUtility.conv("&7Power: &6" + faction.getPower() + "/" + faction.getEveryone().size() * Config.maxPower));
-				p.sendMessage(prefix + StringUtility.conv("&7Balance: &6" + faction.getBalance()));
-				p.sendMessage(prefix + StringUtility.conv("&7Players Online: &6" + faction.getOnlinePlayers()));
-				p.sendMessage(prefix + StringUtility.conv("&7Leader: &6" + leader.getName()));
-				recuits(p, faction, prefix);
-			}
-		} else {
-			if (p.equals(target)) {
-				p.sendMessage(prefix + "You are not in a faction.");
-			} else {
-				p.sendMessage(prefix + "They are not in a faction.");
-			}
-		}
-		p.sendMessage("");
-		p.sendMessage(Messages.HEADER.get());
-		p.sendMessage("");
+		display(p, faction);
 	}
 	
 	private void display(Player p, XFaction faction) {
-		String prefix = Messages.PREFIX.get();
-		p.sendMessage("");
-		p.sendMessage(Messages.HEADER.get());
-		p.sendMessage(prefix + StringUtility.conv("&7Name: &6" + faction.getName()));
+		Messages.sendMessages(p, Messages.getHeader());
 		if (!faction.isSystemFac()) {
-			Player leader = Bukkit.getPlayer(faction.getLeader());
-			p.sendMessage(prefix + StringUtility.conv("&7Power: &6" + faction.getPower() + "/" + faction.getEveryone().size() * Config.maxPower));
-			p.sendMessage(prefix + StringUtility.conv("&7Balance: &6" + faction.getBalance()));
-			p.sendMessage(prefix + StringUtility.conv("&7Players Online: &6" + faction.getOnlinePlayers()));
-			p.sendMessage(prefix + StringUtility.conv("&7Faction groups:"));
-			p.sendMessage(prefix + StringUtility.conv("&7Leader: &6" + leader.getName()));
-			
-			recuits(p, faction, prefix);
+			for (String s : Messages.getWhoTop()) {
+				p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
+			}
+			for (XRank rank: faction.ranks) {
+				Messages.sendMessages(p,Messages.getWhoList(rank));
+			}
+		} else {
+			for (String s : Messages.getWhoSystem()) {
+				p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
+			}
 		}
-		p.sendMessage("");
-		p.sendMessage(Messages.HEADER.get());
-		p.sendMessage("");
+		Messages.sendMessages(p, Messages.getFooter());
 	}
 	
 	private void recuits(Player p, XFaction target, String prefix) {
@@ -100,6 +73,10 @@ public class Who extends SubCommand {
 				p.sendMessage(prefix + StringUtility.conv("&7Recruit: &6" + Bukkit.getPlayer(target.recruit.users.get(0)).getName()));
 			}
 		}
+	}
+	
+	private void disp(Player p, XFaction faction) {
+	
 	}
 	
 }

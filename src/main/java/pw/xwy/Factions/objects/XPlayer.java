@@ -11,10 +11,10 @@ import java.util.UUID;
 
 public class XPlayer {
 	
-	private Player player;
 	public XPlayerConfig playerConfig;
 	public int spawnCooldown = 0;
 	public boolean canceled = false;
+	private Player player;
 	private double power = 0.0;
 	private XFaction faction = null;
 	private ChatType chatType = ChatType.PUBLIC;
@@ -23,10 +23,6 @@ public class XPlayer {
 	public XPlayer(Player player) {
 		this.player = player;
 		playerConfig = new XPlayerConfig(this);
-	}
-	
-	public double getPower() {
-		return power;
 	}
 	
 	//load from string
@@ -44,20 +40,23 @@ public class XPlayer {
 		}
 	}
 	
+	public double getPower() {
+		return power;
+	}
+	
 	@Override
 	public String toString() {
 		if (faction != null) {
 			return power + ";" + faction.getName();
-		}
-		else {
+		} else {
 			return power + ";no-faction";
 		}
 	}
 	
 	public void addPower() {
-		int po = (int) (power*10);
+		int po = (int) (power * 10);
 		po += 1;
-		power = po/10.0;
+		power = po / 10.0;
 		if (po >= Config.maxPower) {
 			power = Config.maxPower;
 		}
@@ -85,12 +84,12 @@ public class XPlayer {
 		return invites.contains(faction);
 	}
 	
-	public void setChatType(ChatType chatType) {
-		this.chatType = chatType;
-	}
-	
 	public ChatType getChatType() {
 		return chatType;
+	}
+	
+	public void setChatType(ChatType chatType) {
+		this.chatType = chatType;
 	}
 	
 	public void nextChatType() {
@@ -116,10 +115,9 @@ public class XPlayer {
 	public void setFaction(XFaction xFaction) {
 		faction = xFaction;
 		if (xFaction != null) {
-			playerConfig.set("info.faction",xFaction.getName());
-		}
-		else {
-			playerConfig.set("info.faction","no-faction");
+			playerConfig.set("info.faction", xFaction.getName());
+		} else {
+			playerConfig.set("info.faction", "no-faction");
 		}
 		
 		playerConfig.save();

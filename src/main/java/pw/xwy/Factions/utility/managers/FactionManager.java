@@ -31,7 +31,7 @@ public class FactionManager {
 	
 	public static ArrayList<XFaction> getNonSystemFactions() {
 		ArrayList<XFaction> nonSystem = new ArrayList<>();
-		for (XFaction f: factions) {
+		for (XFaction f : factions) {
 			if (!f.isSystemFac()) nonSystem.add(f);
 		}
 		return nonSystem;
@@ -46,7 +46,7 @@ public class FactionManager {
 	}
 	
 	public static XFaction findClaim(Chunk c) {
-		for (XFaction f: factions) {
+		for (XFaction f : factions) {
 			if (f.claim.isInClaim(c)) {
 				return f;
 			}

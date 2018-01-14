@@ -12,6 +12,7 @@ public class StringUtil {
 		return one.equals(ChatColor.translateAlternateColorCodes('&', two));
 	}
 	
+	
 	public static ArrayList<String> getStringList(char seperator, String list) {
 		ArrayList<String> strings = new ArrayList<>();
 		do {

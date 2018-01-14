@@ -16,10 +16,6 @@ public class PlayerManager {
 		return getXPlayer(p).getFaction();
 	}
 	
-	public static ArrayList<XPlayer> getPlayers() {
-		return players;
-	}
-	
 	public static XPlayer getXPlayer(Player p) {
 		for (XPlayer pl : players) {
 			if (pl.getPlayer().equals(p)) {
@@ -31,8 +27,12 @@ public class PlayerManager {
 		return xp;
 	}
 	
+	public static ArrayList<XPlayer> getPlayers() {
+		return players;
+	}
+	
 	public static XPlayer getOfflinePlayer(UUID p) {
-		return new XPlayer(p,new XPlayerConfig(p));
+		return new XPlayer(p, new XPlayerConfig(p));
 	}
 	
 	public static void addXPlayer(XPlayer xPlayer) {
@@ -40,7 +40,7 @@ public class PlayerManager {
 	}
 	
 	public static void setFaction(XPlayer xPlayer, XFaction xFaction) {
-		for (XPlayer p: players) {
+		for (XPlayer p : players) {
 			if (p.equals(xPlayer)) {
 				p.setFaction(xFaction);
 			}

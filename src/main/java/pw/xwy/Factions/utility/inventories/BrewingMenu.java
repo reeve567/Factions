@@ -10,20 +10,19 @@ import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.enums.sell.Brewing;
 
 public class BrewingMenu {
-
-	private static Inventory inv = Bukkit.createInventory(null,18, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
-
-
-
+	
+	private static Inventory inv = Bukkit.createInventory(null, 18, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
+	
+	
 	static {
-		ItemStack pGlass = new ItemStack(Material.STAINED_GLASS_PANE,1);
-		pGlass.setDurability((short)7);
+		ItemStack pGlass = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+		pGlass.setDurability((short) 7);
 		for (int i = 0; i < 18; i++) {
-			inv.setItem(i,pGlass);
+			inv.setItem(i, pGlass);
 		}
-
+		
 		int j = 0;
-
+		
 		for (Brewing b : Brewing.values()) {
 			if (j < 18) {
 				inv.setItem(j, b.getItem());
@@ -31,9 +30,9 @@ public class BrewingMenu {
 			j++;
 		}
 	}
-
+	
 	public static Inventory getInv() {
-
+		
 		return inv;
 	}
 }

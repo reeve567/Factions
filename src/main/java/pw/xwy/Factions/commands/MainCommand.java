@@ -9,15 +9,15 @@ public abstract class MainCommand {
 	public boolean adminCommand = false;
 	public String permission;
 	
+	public MainCommand(String command, String permission, boolean admin) {
+		this(command, permission);
+		adminCommand = admin;
+	}
+	
 	public MainCommand(String command, String permission) {
 		this.command = command;
 		this.permission = permission;
 		init();
-	}
-	
-	public MainCommand(String command, String permission, boolean admin) {
-		this(command,permission);
-		adminCommand = admin;
 	}
 	
 	public abstract void init();

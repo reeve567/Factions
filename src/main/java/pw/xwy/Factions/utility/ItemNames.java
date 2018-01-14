@@ -12,19 +12,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ItemNames {
-
+	
 	private static Map<String, String> Items = new HashMap<String, String>();
-
+	
 	static {
 		URL url = null;
 		try {
 			url = new URL("http://minecraft-ids.grahamedgecombe.com/items.tsv");
-		} catch (MalformedURLException ignored) {}
-
-
+		} catch (MalformedURLException ignored) {
+		}
+		
+		
 		if (url != null) {
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8))) {
-
+				
 				String row;
 				while ((row = reader.readLine()) != null) {
 					row = row.trim();
@@ -37,15 +38,17 @@ public class ItemNames {
 					String idAndMetadata = metadata.equals("0") ? id : (id + ":" + metadata);
 					Items.put(idAndMetadata, name);
 				}
-			} catch (IOException ignored) {}
+			} catch (IOException ignored) {
+			}
 		}
 	}
-
+	
 	public static String get(String ID) {
-
+		
 		return Items.get(ID);
 	}
-	public static String get(String ID,short dur) {
+	
+	public static String get(String ID, short dur) {
 		if (dur == 99) {
 			return "Spawn Iron Golem";
 		}

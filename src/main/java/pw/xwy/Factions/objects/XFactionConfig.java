@@ -45,6 +45,10 @@ public class XFactionConfig {
 		}
 	}
 	
+	public void set(String path, Object value) {
+		fileConfiguration.set(path, value);
+	}
+	
 	public XFactionConfig(String name, String color) {
 		File factionData = Config.factiondata;
 		
@@ -127,24 +131,28 @@ public class XFactionConfig {
 		}
 	}
 	
-	public void set(String path, Object value) {
-		fileConfiguration.set(path, value);
+	public boolean isSystem() {
+		return fileConfiguration.getBoolean("info.systemFac");
 	}
 	
 	public String getName() {
 		return getString("info.name");
 	}
 	
+	public String getString(String path) {
+		return fileConfiguration.getString(path);
+	}
+	
 	public Double getPower() {
 		return getDouble("info.power");
 	}
 	
-	public String getLeader() {
-		return getString("info.leader");
+	public Double getDouble(String path) {
+		return fileConfiguration.getDouble(path);
 	}
 	
-	public boolean isSystem() {
-		return fileConfiguration.getBoolean("info.systemFac");
+	public String getLeader() {
+		return getString("info.leader");
 	}
 	
 	public boolean hasLand() {
@@ -163,20 +171,12 @@ public class XFactionConfig {
 		return getStringList("others.claim");
 	}
 	
-	public String getColor() {
-		return getString("info.color");
-	}
-	
-	public String getString(String path) {
-		return fileConfiguration.getString(path);
-	}
-	
-	public Double getDouble(String path) {
-		return fileConfiguration.getDouble(path);
-	}
-	
 	public List<String> getStringList(String path) {
 		return fileConfiguration.getStringList(path);
+	}
+	
+	public String getColor() {
+		return getString("info.color");
 	}
 	
 	public List<String> getRankList() {

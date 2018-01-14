@@ -30,7 +30,7 @@ public class ItemBuilder {
 			if (itemStack.getItemMeta().hasLore()) {
 				lores = itemStack.getItemMeta().getLore();
 			}
-			lores.add(ChatColor.translateAlternateColorCodes('&',s));
+			lores.add(ChatColor.translateAlternateColorCodes('&', s));
 			im.setLore(lores);
 			itemStack.setItemMeta(im);
 		}

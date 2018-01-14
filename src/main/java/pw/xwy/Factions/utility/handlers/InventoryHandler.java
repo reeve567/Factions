@@ -25,16 +25,6 @@ public class InventoryHandler implements Listener {
 		this.eco = eco;
 	}
 	
-	private boolean balCheck(Player p, Double price) {
-		
-		return (eco.getBalance(p) - price) >= 0;
-	}
-	
-	private void balRem(Player p, Double price) {
-		
-		eco.withdrawPlayer(p, price);
-	}
-	
 	@EventHandler
 	public void InventoryClick(InventoryClickEvent e) {
 		
@@ -318,6 +308,11 @@ public class InventoryHandler implements Listener {
 		
 	}
 	
+	private boolean balCheck(Player p, Double price) {
+		
+		return (eco.getBalance(p) - price) >= 0;
+	}
+	
 	private boolean acCheck(InventoryAction a, InventoryClickEvent e) {
 		
 		return e.getAction().equals(a);
@@ -338,6 +333,11 @@ public class InventoryHandler implements Listener {
 			price = 0;
 		}
 		return new int[]{total, amount};
+	}
+	
+	private void balRem(Player p, Double price) {
+		
+		eco.withdrawPlayer(p, price);
 	}
 	
 }

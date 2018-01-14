@@ -18,13 +18,9 @@ public class ClaimManager {
 		return chunkMap.get(c) != null;
 	}
 	
-	public static XFaction getChunk(Chunk c) {
-		return chunkMap.get(c);
-	}
-	
 	public static void removeChunks(XFaction f) {
 		if (factionMap.containsKey(f)) {
-			for (Chunk c: factionMap.get(f)) {
+			for (Chunk c : factionMap.get(f)) {
 				chunkMap.remove(c);
 			}
 		}
@@ -35,16 +31,18 @@ public class ClaimManager {
 			String name = getChunk(c).getName();
 			if (getChunk(c).getEveryone().contains(p.getUniqueId())) {
 				name = StringUtility.conv("&a" + name);
-			}
-			else {
+			} else {
 				name = StringUtility.conv("&f" + name);
 			}
 			return StringUtility.conv("&6You are now entering " + name + "&6.");
-		}
-		else {
+		} else {
 			return StringUtility.conv("&6You are now entering &2Wilderness&6.");
 		}
 		
+	}
+	
+	public static XFaction getChunk(Chunk c) {
+		return chunkMap.get(c);
 	}
 	
 }

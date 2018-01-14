@@ -5,6 +5,7 @@ import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.utility.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -20,9 +21,7 @@ public class Create extends SubCommand {
 	public void run(Player p, String[] args) {
 		if (p.hasPermission("factions.create.system")) {
 			if (args.length < 2) {
-				String prefix = Messages.PREFIX.get();
-				p.sendMessage(prefix + StringUtility.conv("&7" + command + " " + help + "[system]"));
-				p.sendMessage(help1);
+				Messages.sendMessages(p,Messages.getCommandHelpFormat(this));
 			} else if (args.length == 2) {
 				makeFaction(p, args);
 			} else if (args.length == 3) {
@@ -46,9 +45,7 @@ public class Create extends SubCommand {
 			}
 		} else {
 			if (args.length != 2) {
-				String prefix = Messages.PREFIX.get();
-				p.sendMessage(prefix + StringUtility.conv("&7" + command + " " + help));
-				p.sendMessage(help1);
+				Messages.sendMessages(p,Messages.getCommandHelpFormat(this));
 				if (Config.isChargeToMakeFaction()) {
 					p.sendMessage(StringUtility.conv("&7In order to create a faction, you must pay &2$&a" + Config.getFactionCreationPrice() + "&7."));
 				}

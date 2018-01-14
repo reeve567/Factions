@@ -26,7 +26,7 @@ public class BuyMenu {
 			inv.setItem(i, ItemUtil.changeName(new ItemStack(Material.IRON_FENCE), "&f", true));
 		}
 		
-		inv.setItem(40, ItemUtil.changeName(new ItemStack(Material.FIREWORK_CHARGE), StringUtil.chatColorConv("&a$&2" + String.valueOf(price)),false));
+		inv.setItem(40, ItemUtil.changeName(new ItemStack(Material.FIREWORK_CHARGE), StringUtil.chatColorConv("&a$&2" + String.valueOf(price)), false));
 		
 		
 		inv.setItem(39, ItemUtil.changeName(new ItemStack(Material.STAINED_CLAY, 1, (short) 14), "&cCancel", true));

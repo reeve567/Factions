@@ -1,7 +1,6 @@
 package pw.xwy.Factions.objects;
 
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pw.xwy.Factions.utility.Config;
@@ -27,8 +26,20 @@ public class XPlayerConfig {
 			set("info.name", Bukkit.getPlayer(p).getName());
 			set("info.faction", "");
 			set("info.power", 0.0);
-			set("info.rank","");
+			set("info.rank", "");
 			save();
+		}
+	}
+	
+	public void set(String path, Object value) {
+		fileConfiguration.set(path, value);
+	}
+	
+	public void save() {
+		try {
+			fileConfiguration.save(file);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -47,22 +58,12 @@ public class XPlayerConfig {
 		}
 	}
 	
-	
-	public void save() {
-		try {
-			fileConfiguration.save(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void save(XPlayer xPlayer) {
 		set("info.power", xPlayer.getPower());
 		if (xPlayer.getFaction() != null) {
-			set("info.faction",xPlayer.getFaction().getName());
-		}
-		else {
-			set("info.faction","no-faction");
+			set("info.faction", xPlayer.getFaction().getName());
+		} else {
+			set("info.faction", "no-faction");
 		}
 		
 		
@@ -71,14 +72,14 @@ public class XPlayerConfig {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void set(String path, Object value) {
-		fileConfiguration.set(path, value);
 	}
 	
 	public String getName() {
 		return getString("info.name");
+	}
+	
+	public String getString(String path) {
+		return fileConfiguration.getString(path);
 	}
 	
 	public String getFactionName() {
@@ -87,10 +88,6 @@ public class XPlayerConfig {
 	
 	public Double getPower() {
 		return getDouble("info.power");
-	}
-	
-	public String getString(String path) {
-		return fileConfiguration.getString(path);
 	}
 	
 	public Double getDouble(String path) {

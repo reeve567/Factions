@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XRank;
+import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +30,10 @@ public class Messages {
 	private static String mapFinalFooter;
 	private static List<String> whoTop;
 	private static List<String> whoList;
+	private static List<String> whoSystem;
+	private static List<String> whoTarget;
+	private static List<String> whoSender;
+	
 	
 	public static void loadConfig() {
 		createConfig();
@@ -41,6 +47,9 @@ public class Messages {
 		mapFinalFooter = config.getString("map.final-footer");
 		whoTop = config.getStringList("who.top");
 		whoList = config.getStringList("who.list");
+		whoSystem = config.getStringList("who.system");
+		whoTarget = config.getStringList("who.target-no-faction");
+		whoSender = config.getStringList("who.sender-no-faction");
 		
 	}
 	
@@ -64,7 +73,10 @@ public class Messages {
 			
 			config.createSection("who");
 			set("who.top", Arrays.asList("&7Name: &6<faction-name>", "&7Desc: &6<faction-desc>", "&7Claim: &6<faction-claimed-land>&7/&6<faction-max-land>", "&7Members online: &6<faction-members-online>&7/&6<faction-members-total>", "&7Leader: &6<faction-leader>"));
-			set("who.groupsList", Arrays.asList("&7<faction-group-name>: &6 <faction-group-members>"));
+			set("who.groupsList", Arrays.asList("&7<faction-group-name>: &6<faction-group-members>"));
+			set("who.system", Arrays.asList("&7Name: <faction-color><faction-name>", "&7Desc: &6<faction-desc>"));
+			set("who.target-no-faction", Arrays.asList("&7They are not in a faction."));
+			set("who.sender-no-faction", Arrays.asList("&7You are not in a faction."));
 			
 			//xFactionsCore.saveResource("messages.yml", false);
 		}
@@ -106,7 +118,7 @@ public class Messages {
 		return colorConv(footer);
 	}
 	
-	public static ArrayList<String> getCommandHelpFormat(SubCommand command) {
+	public static List<String> getCommandHelpFormat(SubCommand command) {
 		List<String> st = commandHelpFormat;
 		List<String> temp = new ArrayList<>();
 		for (String s : st) {
@@ -132,12 +144,30 @@ public class Messages {
 		return StringUtility.conv(mapHeader);
 	}
 	
+	public static List<String> getWhoSender() {
+		return colorConv(whoSender);
+	}
+	
+	public static List<String> getWhoTarget() {
+		return colorConv(whoTarget);
+	}
+	
 	public static String getMapMidFooter() {
 		return StringUtility.conv(mapMidFooter);
 	}
 	
-	public static List<String> getWhoList() {
-		return colorConv(whoList);
+	public static List<String> getWhoList(XRank rank) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : whoList) {
+			s = s.replace("<faction-group-name>", rank.properName());
+			s = s.replace("<faction-group-members>", rank.memberString());
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static List<String> getWhoSystem() {
+		return colorConv(whoSystem);
 	}
 	
 	public static List<String> getWhoTop() {
@@ -149,8 +179,11 @@ public class Messages {
 		s = s.replace("<faction-desc>", faction.desc);
 		s = s.replace("<faction-claimed-land>", String.valueOf(faction.claim.get().size()));
 		s = s.replace("<faction-max-land>", String.valueOf((int) faction.getMaxPower()));
-		
-		
+		s = s.replace("<faction-members-online>", String.valueOf(faction.getOnlinePlayers()));
+		s = s.replace("<faction-members-total>", String.valueOf(faction.players.size() + 1));
+		s = s.replace("<faction-leader>", PlayerManager.getOfflinePlayer(faction.getLeader()).getPlayer().getName());
+		s = s.replace("<faction-color>", "&" + faction.color);
 		return s;
 	}
+	
 }

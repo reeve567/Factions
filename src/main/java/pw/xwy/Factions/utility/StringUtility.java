@@ -25,7 +25,7 @@ public class StringUtility {
 		String world = loc.substring(0, loc.indexOf(" "));
 		loc = loc.replaceFirst(world + " ", "");
 		double x = Double.parseDouble(loc.substring(0, loc.indexOf(" ")));
-		loc = loc.replaceFirst(String.valueOf(x) +  " ", "");
+		loc = loc.replaceFirst(String.valueOf(x) + " ", "");
 		double y = Double.parseDouble(loc.substring(0, loc.indexOf(" ")));
 		loc = loc.replaceFirst(String.valueOf(y) + " ", "");
 		double z = Double.parseDouble(loc.substring(0, loc.indexOf(" ")));

@@ -15,6 +15,5 @@ public class Power extends SubCommand {
 		p.sendMessage("power: " + PlayerManager.getXPlayer(p).getPower() + "/" + Config.maxPower);
 		
 		
-		
 	}
 }

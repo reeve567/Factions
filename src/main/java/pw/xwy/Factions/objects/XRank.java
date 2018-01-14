@@ -1,6 +1,7 @@
 package pw.xwy.Factions.objects;
 
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,25 @@ public class XRank {
 	
 	public void add(UUID uuid) {
 		users.add(uuid);
+	}
+	
+	public String properName() {
+		char[] chars = name.toLowerCase().toCharArray();
+		chars[0] = String.valueOf(chars[0]).toUpperCase().charAt(0);
+		return String.valueOf(chars);
+	}
+	
+	public String memberString() {
+		String s = "";
+		for (UUID id: users) {
+			if (users.indexOf(id) != users.size()-1) {
+				s += PlayerManager.getOfflinePlayer(id).getPlayer().getName() + ", ";
+			}
+			else {
+				s += PlayerManager.getOfflinePlayer(id).getPlayer().getName();
+			}
+		}
+		return s;
 	}
 	
 	public boolean hasPerm(String s, boolean deep) {

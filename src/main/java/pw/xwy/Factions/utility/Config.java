@@ -27,6 +27,18 @@ public class Config {
 	private static boolean chargeToMakeFaction;
 	private static double factionCreationPrice;
 	
+	public static void loadConfig() {
+		Messages.loadConfig();
+		createConfig();
+		saveConfig();
+		
+		factionCreationPrice = config.getDouble("creation-price");
+		chargeToMakeFaction = config.getBoolean("charge-for-faction-creation");
+		maxPower = config.getDouble("max-power");
+		minPower = config.getDouble("min-power");
+		usePermissions = config.getBoolean("use-permissions");
+	}
+	
 	private static void createConfig() {
 		
 		configF = new File(xFactionsCore.getDataFolder(), "config.yml");
@@ -45,15 +57,12 @@ public class Config {
 		
 	}
 	
-	public static void loadConfig() {
-		createConfig();
-		saveConfig();
-		
-		factionCreationPrice = config.getDouble("creation-price");
-		chargeToMakeFaction = config.getBoolean("charge-for-faction-creation");
-		maxPower = config.getDouble("max-power");
-		minPower = config.getDouble("min-power");
-		usePermissions = config.getBoolean("use-permissions");
+	private static void saveConfig() {
+		try {
+			config.save(configF);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void loadFactions() {
@@ -68,14 +77,6 @@ public class Config {
 					FactionManager.addFaction(new XFaction(f.getName().substring(0, f.getName().indexOf("."))));
 				}
 			}
-		}
-	}
-	
-	private static void saveConfig() {
-		try {
-			config.save(configF);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	
