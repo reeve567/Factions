@@ -51,15 +51,15 @@ public class XFactionConfig {
 		fileConfiguration.set(path, value);
 	}
 	
-	public XFactionConfig(String name, String color) {
+	public XFactionConfig(String id, String color, String name) {
 		File factionData = Config.factiondata;
 		
-		file = new File(factionData, File.separator + name + ".yml");
+		file = new File(factionData, File.separator + id + ".yml");
 		fileConfiguration = YamlConfiguration.loadConfiguration(file);
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
 			set("info.name", name);
-			set("info.uuid",name);
+			set("info.uuid", name);
 			set("info.color", color);
 			set("info.systemFac", true);
 			fileConfiguration.createSection("others");
@@ -81,7 +81,7 @@ public class XFactionConfig {
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
 			set("info.name", faction.getName());
-			set("info.uuid",faction.id.toString());
+			set("info.uuid", faction.id.toString());
 			set("info.balance", 0.0);
 			set("info.power", 0.0);
 			set("info.leader", faction.getLeader().toString());
@@ -107,9 +107,10 @@ public class XFactionConfig {
 	
 	public void save(XFaction xFaction) {
 		if (!isSystem()) {
+			saveRanks(xFaction);
 			List<String> allies = new ArrayList<>();
 			for (XFaction faction : xFaction.getAllies()) {
-				allies.add(faction.getName());
+				allies.add(faction.id.toString());
 			}
 			set("others.allies", allies);
 			
@@ -119,11 +120,10 @@ public class XFactionConfig {
 			set("info.leader", xFaction.getLeader().toString());
 			set("others.home", xFaction.getHomeString());
 			
-			set("ranks.players", xFaction.players);
-			set("ranks.list", xFaction.ranks);
-			
-			
+			set("ranks.players", xFaction.getPlayersList());
+			set("ranks.list", xFaction.getRanksStringList());
 		}
+		set("info.name",xFaction.getName());
 		set("info.color", xFaction.getColor());
 		set("others.claim", xFaction.getClaimStrings());
 		
@@ -139,16 +139,22 @@ public class XFactionConfig {
 		return fileConfiguration.getBoolean("info.systemFac");
 	}
 	
+	public void saveRanks(XFaction faction) {
+		for (XRank rank : faction.ranks) {
+			rank.save();
+		}
+	}
+	
 	public String getName() {
 		return getString("info.name");
 	}
 	
-	public UUID getUUID() {
-		return UUID.fromString(getString("info.uuid"));
-	}
-	
 	public String getString(String path) {
 		return fileConfiguration.getString(path);
+	}
+	
+	public UUID getUUID() {
+		return UUID.fromString(getString("info.uuid"));
 	}
 	
 	public Double getPower() {

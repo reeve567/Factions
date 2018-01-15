@@ -65,14 +65,15 @@ public class Help extends SubCommand {
 					remove = new ArrayList<>();
 					pages.put(cu,used);
 					used = new ArrayList<>();
-					if (cu == page) {
-						break;
-					}
 				}
 				
+				Messages.sendMessages(p,Messages.getHeader());
+				Messages.sendMessages(p,Messages.getHelpMenuExtra());
 				for (SubCommand subCommand : pages.get(page)) {
 					Messages.sendMessages(p,Messages.getCommandHelpFormat(subCommand));
 				}
+				Messages.sendMessages(p,Messages.getHelpMenuExtraBottom(page,pages.size()));
+				Messages.sendMessages(p,Messages.getFooter());
 				
 			} catch (NumberFormatException ignored) {
 			

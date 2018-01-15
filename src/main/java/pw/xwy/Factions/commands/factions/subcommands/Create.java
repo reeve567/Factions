@@ -28,7 +28,7 @@ public class Create extends SubCommand {
 			} else if (args.length == 2) {
 				makeFaction(p, args);
 			} else if (args.length == 3) {
-				boolean isSystem = args[2].equalsIgnoreCase("system") || args[1].equalsIgnoreCase("sys");
+				boolean isSystem = args[2].equalsIgnoreCase("system") || args[2].equalsIgnoreCase("sys");
 				String[] notAllowedCharacters = {";", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", ",", "\\", "/", ".", "|", ":", "\"", "\'", "`", "~"};
 				boolean found = false;
 				for (String s : notAllowedCharacters) {

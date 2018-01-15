@@ -6,7 +6,7 @@
 
     <groupId>pw.xwy.Factions</groupId>
     <artifactId>Factions</artifactId>
-    <version>ALPHA</version>
+    <version>BETA</version>
     <build>
         <plugins>
             <plugin>

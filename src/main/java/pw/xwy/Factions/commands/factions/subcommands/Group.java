@@ -43,7 +43,7 @@ public class Group extends SubCommand {
 						if (!chars.contains(c)) found = true;
 					}
 					if (!found) {
-						faction.addRank(new XRank(args[2], faction.ranks.size(), faction));
+						faction.addRank(new XRank(args[2], faction.ranks.size(), faction,false));
 					} else {
 						p.sendMessage("asdlgja");
 					}

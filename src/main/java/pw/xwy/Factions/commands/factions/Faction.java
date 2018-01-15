@@ -11,9 +11,10 @@ public class Faction extends MainCommand {
 	
 	@Override
 	public void init() {
-		add(new Disband());
+		add(new Ally());
 		add(new Claim());
 		add(new Create());
+		add(new Disband());
 		add(new Group());
 		add(new Groups());
 		add(new Help(this));

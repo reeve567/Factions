@@ -1,5 +1,5 @@
 #Should we charge people to make a faction?
-charge-for-faction-creation: true
+charge-for-faction-creation: false
 #How much should we charge them if we are?
 creation-price: 100
 

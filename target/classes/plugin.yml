@@ -1,6 +1,6 @@
 main: pw.xwy.Factions.XFactionsCore
-name: XFactionsCore-Alpha
-version: 0.1
+name: XFactionsCore
+version: 0.2
 depend: [Vault]
 author: Xwy
 commands:

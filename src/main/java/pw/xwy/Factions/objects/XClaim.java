@@ -10,16 +10,9 @@ public class XClaim {
 	private ArrayList<Chunk> claim = new ArrayList<>();
 	
 	public void add(Chunk c, XFaction faction) {
-		if (ClaimManager.factionMap.containsKey(faction)) {
-			ArrayList<Chunk> temp = new ArrayList<>();
-			temp.add(c);
-			ClaimManager.factionMap.put(faction, temp);
-		} else {
-			ArrayList<Chunk> temp = new ArrayList<>();
-			temp.add(c);
-			ClaimManager.factionMap.put(faction, temp);
-		}
-		
+		ArrayList<Chunk> temp = claim;
+		temp.add(c);
+		ClaimManager.factionMap.put(faction, temp);
 		ClaimManager.chunkMap.put(c, faction);
 		claim.add(c);
 	}

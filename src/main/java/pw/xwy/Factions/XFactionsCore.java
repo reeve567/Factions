@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
 import pw.xwy.Factions.objects.Glow;
+import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Config;
 import pw.xwy.Factions.utility.Messages;
@@ -19,6 +20,7 @@ import pw.xwy.Factions.utility.handlers.JoinHandler;
 import pw.xwy.Factions.utility.handlers.LeaveHandler;
 import pw.xwy.Factions.utility.handlers.MoveHandler;
 import pw.xwy.Factions.utility.managers.ChatManager;
+import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 import pw.xwy.Factions.utility.tasks.PowerIncreaseTask;
 
@@ -54,7 +56,7 @@ public class XFactionsCore extends JavaPlugin {
 		loadCommands();
 		System.out.println("Loading Economy 4/5...");
 		if (!setupEconomy()) {
-			log.severe(String.format("[%s] - Disabled due to no Vault dependency found!", getDescription().getName()));
+			log.severe(String.format("[%s] - Disabled because of either no Vault or no economy plugin!", getDescription().getName()));
 			setEnabled(false);
 		}
 		System.out.println("Loading Glow 5/5");
@@ -126,7 +128,9 @@ public class XFactionsCore extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-	
+		for (XFaction faction: FactionManager.getFactions()) {
+			faction.factionConfig.save(faction);
+		}
 	}
 	
 	@Override
@@ -161,20 +165,13 @@ public class XFactionsCore extends JavaPlugin {
 				ArrayList<SubCommand> subCommands = faction.subCommands;
 				
 				if (args.length < 1) {
-					Messages.sendMessages(p, Messages.getHeader());
-					Messages.sendMessages(p, Messages.getHelpMenuExtra());
+					String[] newArgs = {"help","1"};
 					
-					for (SubCommand subCommand : subCommands) {
-						if (Config.usePermissions || subCommand.adminCommand) {
-							if (p.hasPermission(subCommand.permission)) {
-								Messages.sendMessages(p, Messages.getCommandHelpFormat(subCommand));
-							}
-						} else {
-							Messages.sendMessages(p, Messages.getCommandHelpFormat(subCommand));
+					for (SubCommand subCommand :subCommands) {
+						if (subCommand.command.equalsIgnoreCase("help")) {
+							subCommand.run(p,newArgs);
 						}
 					}
-					
-					Messages.sendMessages(p, Messages.getFooter());
 					
 				} else {
 					for (SubCommand subCommand : subCommands) {

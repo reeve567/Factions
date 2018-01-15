@@ -51,7 +51,7 @@ public class XFaction {
 		id = FactionManager.getAvailableUUID();
 		systemFac = true;
 		this.color = color;
-		factionConfig = new XFactionConfig(name, color);
+		factionConfig = new XFactionConfig(name, color, id.toString());
 	}
 	
 	//load from config
@@ -91,7 +91,7 @@ public class XFaction {
 			
 			List<String> rankList = factionConfig.getRankList();
 			for (int i = 0; i < rankList.size(); i++) {
-				ranks.add(new XRank(0, this));
+				ranks.add(new XRank(rankList.get(i), i, this, true));
 			}
 			
 			String leader = factionConfig.getLeader();
@@ -112,23 +112,21 @@ public class XFaction {
 			temp = temp.replaceFirst(String.valueOf(x) + ' ', "");
 			int z = Integer.parseInt(temp);
 			Chunk c = Bukkit.getWorld(world).getChunkAt(x, z);
-			claim(c, 1);
-			System.out.println("found claim at " + c.getX() + c.getZ());
+			claim(c, 1, true);
 		}
 		
 	}
 	
-	public void claim(Chunk c, int radius) {
-		if (!ClaimManager.isClaimed(c) && claim.get().size() <= getMaxPower() + 1 || systemFac) {
+	public void claim(Chunk c, int radius, boolean force) {
+		if (!ClaimManager.isClaimed(c)) if (claim.get().size() <= getMaxPower() + 1 || systemFac || force) {
 			claim.add(c, this);
-			for (int i = -radius; i <= radius; i++)
-				for (int j = -radius; j <= radius; j++)
+			if (radius != 1) for (int i = -radius / 2; i <= radius / 2; i++)
+				for (int j = -radius / 2; j <= radius / 2; j++)
 					if (i != 0 && j != 0) {
 						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
-						if (ClaimManager.getChunk(ch) != null && claim.get().size() <= getMaxPower() + 1 || systemFac)
+						if (ClaimManager.isClaimed(ch) && claim.get().size() <= getMaxPower() + 1 || systemFac || force)
 							claim.add(c, this);
 					}
-			factionConfig.save(this);
 		}
 	}
 	
@@ -137,27 +135,40 @@ public class XFaction {
 	}
 	
 	public void claim(Chunk c, int radius, Player p) {
-		if (!ClaimManager.isClaimed(c)) if (claim.get().size() <= getMaxPower() + 1 || systemFac) {
-			claim.add(c, this);
-			for (int i = -radius; i <= radius; i++)
-				for (int j = -radius; j <= radius; j++)
-					if (i != 0 && j != 0) {
+		if (!ClaimManager.isClaimed(c))
+			if (hasEnoughPower(c, radius)) {
+				for (int i = -radius; i <= radius; i++)
+					for (int j = -radius; j <= radius; j++) {
 						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
 						if (ClaimManager.getChunk(ch) != null)
-							if (claim.get().size() <= getMaxPower() + 1 || systemFac) {
-								claim.add(c, this);
-							} else {
-								//not enough power
-							}
+							claim.add(c, this);
 					}
-			factionConfig.save(this);
-		} else {
-			//not enough power
-		}
+				factionConfig.save(this);
+			} else {
+				//not enough power
+				
+			}
 		else {
 			//already claimed
 			
 		}
+	}
+	
+	public boolean hasEnoughPower(Chunk c, int radius) {
+		int total = 0;
+		if (systemFac) return true;
+		for (int i = -radius; i <= radius; i++)
+			for (int j = -radius; j <= radius; j++) {
+				Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
+				if (ClaimManager.getChunk(ch) != null)
+					if (claim.get().size() <= getMaxPower() + total + 1 || systemFac) {
+						total++;
+					} else {
+						//not enough power
+						return false;
+					}
+			}
+		return true;
 	}
 	
 	public XRank getRole(UUID p) {
@@ -197,6 +208,16 @@ public class XFaction {
 		this.name = name;
 	}
 	
+	public List<String> getPlayersList() {
+		List<String> players = new ArrayList<>();
+		
+		for (UUID uuid : this.players) {
+			players.add(uuid.toString());
+		}
+		
+		return players;
+	}
+	
 	public Location getHome() {
 		return home;
 	}
@@ -227,6 +248,16 @@ public class XFaction {
 	
 	public void setLeader(UUID leader) {
 		this.leader = leader;
+	}
+	
+	public List<String> getRanksStringList() {
+		List<String> stings = new ArrayList<>();
+		
+		for (XRank rank : ranks) {
+			stings.add(rank.name);
+		}
+		
+		return stings;
 	}
 	
 	public void addAlly(XFaction faction) {

@@ -55,12 +55,12 @@ public class Map extends SubCommand {
 		int num = 0;
 		
 		int height = 6;
-		int width = 12;
+		int width = 22;
 		p.sendMessage(Messages.getMapHeader());
 		for (int i = -height; i <= height; i++) {
 			String row = "";
 			for (int j = width; j >= -width; j--) {
-				Chunk c = world.getChunkAt(x + i, z + j);
+				Chunk c = world.getChunkAt(x - j, z + i);
 				XFaction xFaction = ClaimManager.getChunk(c);
 				if (i == 0 && j == 0) {
 					row += "&b+";

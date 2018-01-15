@@ -17,27 +17,22 @@ public class XRank {
 	private XFactionConfig config;
 	private XFaction faction;
 	
-	//load from config
-	public XRank(int num, XFaction faction) {
-		this.faction = faction;
-		this.config = faction.factionConfig;
-		List<String> ranks;
-		ranks = config.getStringList("ranks.list");
-		name = config.getString("ranks.rank." + ranks.get(num) + ".name");
-		List<String> uuids = config.getStringList("ranks.rank." + name + ".members");
-		for (String s : uuids) {
-			users.add(UUID.fromString(s));
-			faction.players.add(UUID.fromString(s));
-		}
-		perms = (ArrayList<String>) config.getStringList("ranks.rank." + name + ".perms");
-		order = num;
-	}
-	
-	public XRank(String name, int order, XFaction faction) {
+	public XRank(String name, int order, XFaction faction, boolean useConfig) {
 		this.faction = faction;
 		this.name = name;
 		this.order = order;
 		this.config = faction.factionConfig;
+		if (useConfig) {
+			this.faction = faction;
+			this.config = faction.factionConfig;
+			List<String> uuids = config.getStringList("ranks.rank." + name + ".members");
+			for (String s : uuids) {
+				users.add(UUID.fromString(s));
+				faction.players.add(UUID.fromString(s));
+			}
+			perms = (ArrayList<String>) config.getStringList("ranks.rank." + name + ".perms");
+		}
+		
 	}
 	
 	public XRank(XFaction faction) {
@@ -46,8 +41,9 @@ public class XRank {
 		name = "Recruit";
 	}
 	
-	private void setName() {
-		config.set("ranks.rank." + name + ".name", name);
+	public void save() {
+		setUsers();
+		setPerms();
 	}
 	
 	private void setUsers() {

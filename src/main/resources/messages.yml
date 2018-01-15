@@ -9,8 +9,10 @@ general:
   command-help:
   - '&8&l&m    »&7 <sub-command> &6<args>'
   - '&7<description>'
-  help-menu-extra:
+  help-menu-extra-top:
   - '&8Sub-commands'
+  help-menu-extra-bottom:
+  - '&7Page: &6<page>&7/&6<total-pages>'
   ally-request-sent:
   - '&aRecieved ally request from &e<ally>'
   ally-request-recieved:

@@ -31,7 +31,13 @@ public class XPlayer {
 			playerConfig = s;
 			player = Bukkit.getPlayer(id);
 			power = s.getPower();
-			faction = FactionManager.getFactionFromUUID(UUID.fromString(s.getFactionUUID()));
+			String st = s.getFactionUUID();
+			
+			if (!st.equalsIgnoreCase("") && !st.equalsIgnoreCase("no-faction")) {
+				faction = FactionManager.getFactionFromUUID(UUID.fromString(st));
+			} else {
+				faction = null;
+			}
 		} catch (NullPointerException ignored) {
 			System.out.println("Player not found in config, creating file now...");
 			player = Bukkit.getPlayer(id);

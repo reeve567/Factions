@@ -25,6 +25,7 @@ public class Messages {
 	private static List<String> footer;
 	private static List<String> commandHelpFormat;
 	private static List<String> helpMenuExtra;
+	private static List<String> helpMenuExtraBottom;
 	private static String mapHeader;
 	private static String mapMidFooter;
 	private static String mapFinalFooter;
@@ -49,11 +50,12 @@ public class Messages {
 		mapMidFooter = config.getString("map.mid-footer");
 		mapFinalFooter = config.getString("map.final-footer");
 		whoTop = config.getStringList("who.top");
-		whoList = config.getStringList("who.list");
+		whoList = config.getStringList("who.groupsList");
 		whoSystem = config.getStringList("who.system");
 		whoTarget = config.getStringList("who.target-no-faction");
 		whoSender = config.getStringList("who.sender-no-faction");
-		helpMenuExtra = config.getStringList("general.help-menu-extra");
+		helpMenuExtra = config.getStringList("general.help-menu-extra-top");
+		helpMenuExtraBottom = config.getStringList("general.help-menu-extra-bottom");
 		allyRequest = config.getStringList("general.ally-request-sent");
 		allyRequestRecieved = config.getStringList("general.ally-request-recieved");
 		allyRequestAccepted = config.getStringList("general.ally-request-accepted");
@@ -86,10 +88,6 @@ public class Messages {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	private static void set(String s, Object ob) {
-		config.set(s, ob);
 	}
 	
 	public static ArrayList<String> getHeader() {
@@ -146,12 +144,23 @@ public class Messages {
 		return colorConv(whoTarget);
 	}
 	
+	public static List<String> getHelpMenuExtraBottom(int page, int maxPage) {
+		List<String> temp = new ArrayList<>();
+		for (String s: helpMenuExtraBottom) {
+			s = s.replace("<page>",String.valueOf(page));
+			s = s.replace("<total-pages>",String.valueOf(maxPage));
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
 	public static String getMapMidFooter() {
 		return StringUtility.conv(mapMidFooter);
 	}
 	
+	
 	public static List<String> getWhoList(XRank rank) {
-		ArrayList<String> temp = new ArrayList<>();
+		List<String> temp = new ArrayList<>();
 		for (String s : whoList) {
 			s = s.replace("<faction-group-name>", rank.properName());
 			s = s.replace("<faction-group-members>", rank.memberString());

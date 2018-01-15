@@ -13,6 +13,35 @@ public class Claim extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
+		if (p.hasPermission("factions.claim.others")) {
+		if (args.length == 1) {
+			XFaction xFaction = PlayerManager.getPlayerFaction(p);
+			if (xFaction.getRole(p.getUniqueId()).hasPerm("claim", true)) {
+				xFaction.claim(p.getLocation().getChunk(), 0, p);
+			}
+		}
+		
+		
+		}
+		else {
+			if (PlayerManager.getPlayerFaction(p) != null) {
+				if (args.length != 2) {
+				
+				}
+				if (Integer.parseInt(args[1]) > 8) {
+					System.out.println("too big");
+				} else {
+					XFaction xFaction = PlayerManager.getPlayerFaction(p);
+					if (xFaction.getRole(p.getUniqueId()).hasPerm("claim", true)) {
+						xFaction.claim(p.getLocation().getChunk(), Integer.parseInt(args[1]), p);
+					} else {
+						System.out.println("no perm");
+						
+					}
+				}
+			}
+		}
+		
 		if (PlayerManager.getPlayerFaction(p) != null) {
 			if (p.hasPermission("factions.claim.others")) {
 				if (args.length != 3) {
@@ -20,25 +49,21 @@ public class Claim extends SubCommand {
 				} else {
 					XFaction faction = FactionManager.getFactionByName(args[2]);
 					if (faction != null) {
-						faction.claim(p.getLocation().getChunk(), Integer.parseInt(args[1]),p);
+						faction.claim(p.getLocation().getChunk(), Integer.parseInt(args[1]), p);
 					}
 				}
 			} else if (PlayerManager.getPlayerFaction(p).getLeader().equals(p.getUniqueId())) {
-				if (args.length != 2) {
-					XFaction xFaction = PlayerManager.getPlayerFaction(p);
-					if (xFaction.getRole(p.getUniqueId()).hasPerm("claim", true)) {
-						xFaction.claim(p.getLocation().getChunk(), 1,p);
-					}
-				}
-				if (Integer.parseInt(args[1]) > 8) {
-				
+			
+			}
+		}
+		else {
+			if (p.hasPermission("factions.claim.others")) {
+				if (args.length != 3) {
+					p.sendMessage("f claim [radius] <faction>");
 				} else {
-					XFaction xFaction = PlayerManager.getPlayerFaction(p);
-					if (xFaction.getRole(p.getUniqueId()).hasPerm("claim", true)) {
-						xFaction.claim(p.getLocation().getChunk(), Integer.parseInt(args[1]),p);
-					} else {
-						//no perm
-						
+					XFaction faction = FactionManager.getFactionByName(args[2]);
+					if (faction != null) {
+						faction.claim(p.getLocation().getChunk(), Integer.parseInt(args[1]), p);
 					}
 				}
 			}
