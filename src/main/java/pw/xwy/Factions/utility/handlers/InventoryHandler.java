@@ -12,9 +12,12 @@ import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.enums.sell.Sell;
+import pw.xwy.Factions.objects.Glow;
+import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.ItemUtil;
 import pw.xwy.Factions.utility.StringUtil;
 import pw.xwy.Factions.utility.inventories.*;
+import pw.xwy.Factions.utility.managers.FactionManager;
 
 public class InventoryHandler implements Listener {
 	
@@ -27,7 +30,6 @@ public class InventoryHandler implements Listener {
 	
 	@EventHandler
 	public void InventoryClick(InventoryClickEvent e) {
-		
 		if (e.getInventory().getName().equalsIgnoreCase(ChatColor.GOLD + "Shops")) {
 			e.setCancelled(true);
 			if (e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName()) {
@@ -304,8 +306,26 @@ public class InventoryHandler implements Listener {
 				}
 			}
 			e.setCancelled(true);
+		} else if (e.getInventory().getName().startsWith("Permissions")) {
+			if (e.getAction() != InventoryAction.NOTHING && e.getCurrentItem() != null) {
+				ItemStack item = e.getCurrentItem();
+				if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
+					boolean toggled = item.containsEnchantment(new Glow(999));
+					String rank = e.getInventory().getName().substring(13, e.getInventory().getName().length());
+					Player player = (Player) e.getWhoClicked();
+					if (FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRole(player.getUniqueId()).hasPerm("ManagePerms", true)) {
+						XRank rank1 = FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRank(rank);
+						if (rank1 != null) {
+
+						}
+						
+						
+					}
+					
+					
+				}
+			}
 		}
-		
 	}
 	
 	private boolean balCheck(Player p, Double price) {

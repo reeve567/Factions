@@ -78,11 +78,10 @@ public class XRank {
 	
 	public String memberString() {
 		String s = "";
-		for (UUID id: users) {
-			if (users.indexOf(id) != users.size()-1) {
+		for (UUID id : users) {
+			if (users.indexOf(id) != users.size() - 1) {
 				s += PlayerManager.getOfflinePlayer(id).getPlayer().getName() + ", ";
-			}
-			else {
+			} else {
 				s += PlayerManager.getOfflinePlayer(id).getPlayer().getName();
 			}
 		}
@@ -91,12 +90,14 @@ public class XRank {
 	
 	public boolean hasPerm(String s, boolean deep) {
 		if (deep) {
+			/*
 			updateLower();
 			for (XRank rank : lower) {
 				if (rank.hasPerm(s, false)) {
 					return true;
 				}
 			}
+			*/
 		}
 		return perms.contains(s);
 	}

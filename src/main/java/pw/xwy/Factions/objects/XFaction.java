@@ -305,6 +305,15 @@ public class XFaction {
 		}
 	}
 	
+	public XRank getRank(String s) {
+		for (XRank rank : ranks) {
+			if (rank.name.equalsIgnoreCase(s)) {
+				return rank;
+			}
+		}
+		return null;
+	}
+	
 	public void disband() {
 		if (isSystemFac()) {
 			Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded."));
