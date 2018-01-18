@@ -307,6 +307,7 @@ public class InventoryHandler implements Listener {
 			}
 			e.setCancelled(true);
 		} else if (e.getInventory().getName().startsWith("Permissions")) {
+			e.setCancelled(true);
 			if (e.getAction() != InventoryAction.NOTHING && e.getCurrentItem() != null) {
 				ItemStack item = e.getCurrentItem();
 				if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
@@ -316,12 +317,18 @@ public class InventoryHandler implements Listener {
 					if (FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRole(player.getUniqueId()).hasPerm("ManagePerms", true)) {
 						XRank rank1 = FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRank(rank);
 						if (rank1 != null) {
-
+						
 						}
-						
-						
 					}
+				}
+			}
+		} else if (e.getInventory().getName().equalsIgnoreCase("Groups")) {
+			e.setCancelled(true);
+			if (e.getAction() != InventoryAction.NOTHING && e.getCurrentItem() != null) {
+				if (e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName() && e.getCurrentItem().getDurability() == 1) {
+					Player p = (Player) e.getWhoClicked();
 					
+					p.sendMessage("yo you clicked " + e.getCurrentItem().getItemMeta().getDisplayName());
 					
 				}
 			}

@@ -13,8 +13,7 @@ import pw.xwy.Factions.commands.factions.Faction;
 import pw.xwy.Factions.objects.Glow;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.utility.Config;
-import pw.xwy.Factions.utility.Messages;
+import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.handlers.ClaimHandler;
 import pw.xwy.Factions.utility.handlers.JoinHandler;
 import pw.xwy.Factions.utility.handlers.LeaveHandler;
@@ -128,7 +127,7 @@ public class XFactionsCore extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		for (XFaction faction: FactionManager.getFactions()) {
+		for (XFaction faction : FactionManager.getFactions()) {
 			faction.factionConfig.save(faction);
 		}
 	}
@@ -165,11 +164,11 @@ public class XFactionsCore extends JavaPlugin {
 				ArrayList<SubCommand> subCommands = faction.subCommands;
 				
 				if (args.length < 1) {
-					String[] newArgs = {"help","1"};
+					String[] newArgs = {"help", "1"};
 					
-					for (SubCommand subCommand :subCommands) {
+					for (SubCommand subCommand : subCommands) {
 						if (subCommand.command.equalsIgnoreCase("help")) {
-							subCommand.run(p,newArgs);
+							subCommand.run(p, newArgs);
 						}
 					}
 					

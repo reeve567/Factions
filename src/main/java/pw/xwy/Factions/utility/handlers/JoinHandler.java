@@ -4,7 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class JoinHandler implements Listener {

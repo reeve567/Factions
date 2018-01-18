@@ -5,8 +5,8 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.utility.Config;
-import pw.xwy.Factions.utility.Messages;
+import pw.xwy.Factions.utility.Configurations.Config;
+import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -25,12 +25,14 @@ public class XFaction {
 	public List<XRank> ranks = new ArrayList<>();
 	public ArrayList<UUID> players = new ArrayList<>();
 	public XRank recruit;
+	public boolean open = false;
 	public String desc = "Default faction description D:";
 	public ArrayList<XFaction> allyRequests = new ArrayList<>();
 	public UUID id;
 	private String name;
 	private boolean systemFac = false;
 	private double power = 0.0;
+	private double value = 0.0;
 	private double balance = 0.0;
 	private UUID leader;
 	private Location home = null;
@@ -132,6 +134,10 @@ public class XFaction {
 	
 	public double getMaxPower() {
 		return players.size() * Config.maxPower;
+	}
+	
+	public void valueCheck(Chunk c) {
+	
 	}
 	
 	public void claim(Chunk c, int radius, Player p) {
@@ -421,5 +427,13 @@ public class XFaction {
 			}
 		}
 		return false;
+	}
+	
+	public double getValue() {
+		return value;
+	}
+	
+	public void setValue(double value) {
+		this.value = value;
 	}
 }

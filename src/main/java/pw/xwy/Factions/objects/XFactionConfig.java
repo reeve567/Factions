@@ -2,7 +2,7 @@ package pw.xwy.Factions.objects;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.utility.Configurations.Config;
 
 import java.io.File;
 import java.io.IOException;

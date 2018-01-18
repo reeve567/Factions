@@ -2,7 +2,7 @@ package pw.xwy.Factions.utility.managers;
 
 import org.bukkit.Chunk;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.utility.Configurations.Config;
 
 import java.util.ArrayList;
 import java.util.UUID;

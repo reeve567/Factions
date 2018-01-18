@@ -5,7 +5,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.utility.Messages;
+import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -97,13 +97,12 @@ public class Map extends SubCommand {
 			p.sendMessage(StringUtility.conv("&aYour faction: $"));
 		}
 		if (key.keySet().size() > 0) {
+			p.sendMessage(Messages.getMapMidFooter());
 			for (XFaction faction : key.keySet()) {
 				if (!faction.equals(xFaction)) {
 					p.sendMessage(StringUtility.conv("&" + faction.getColor() + faction.getName() + ": " + key.get(faction)));
 				}
 			}
-			p.sendMessage(Messages.getMapMidFooter());
-			
 		}
 		p.sendMessage(Messages.getMapFinalFooter());
 	}

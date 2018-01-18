@@ -3,7 +3,7 @@ package pw.xwy.Factions.objects;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.enums.ChatType;
-import pw.xwy.Factions.utility.Config;
+import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.managers.FactionManager;
 
 import java.util.ArrayList;

@@ -1,5 +1,6 @@
-package pw.xwy.Factions.utility;
+package pw.xwy.Factions.utility.Configurations;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -8,6 +9,7 @@ import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XRank;
+import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.io.File;
@@ -90,24 +92,30 @@ public class Messages {
 		}
 	}
 	
-	public static ArrayList<String> getHeader() {
+	public static List<String> getHeader() {
 		return colorConv(header);
 	}
 	
-	private static ArrayList<String> colorConv(List<String> s) {
+	private static List<String> colorConv(List<String> s) {
 		ArrayList<String> temp = new ArrayList<>();
 		for (String st : s) {
 			temp.add(StringUtility.conv(st));
 		}
-		return temp;
+		return convGeneralPlaceHolders(temp);
 	}
 	
-	public static ArrayList<String> getFooter() {
+	public static List<String> getFooter() {
 		return colorConv(footer);
 	}
 	
-	public static List<String> getHelpMenuExtra() {
-		return colorConv(helpMenuExtra);
+	public static List<String> getHelpMenuExtra(int page, int maxpage) {
+		List<String> temp = new ArrayList<>();
+		for (String s : helpMenuExtra) {
+			s = s.replace("<page>", String.valueOf(page));
+			s = s.replace("<total-pages>", String.valueOf(maxpage));
+			temp.add(s);
+		}
+		return colorConv(temp);
 	}
 	
 	public static List<String> getCommandHelpFormat(SubCommand command) {
@@ -146,9 +154,9 @@ public class Messages {
 	
 	public static List<String> getHelpMenuExtraBottom(int page, int maxPage) {
 		List<String> temp = new ArrayList<>();
-		for (String s: helpMenuExtraBottom) {
-			s = s.replace("<page>",String.valueOf(page));
-			s = s.replace("<total-pages>",String.valueOf(maxPage));
+		for (String s : helpMenuExtraBottom) {
+			s = s.replace("<page>", String.valueOf(page));
+			s = s.replace("<total-pages>", String.valueOf(maxPage));
 			temp.add(s);
 		}
 		return colorConv(temp);
@@ -176,7 +184,7 @@ public class Messages {
 	public static List<String> getAllyRequest(XFaction faction) {
 		ArrayList<String> temp = new ArrayList<>();
 		for (String s : allyRequest) {
-			s = s.replace("<ally>", faction.getName());
+			s = replaceFactionValues(s.replace("<ally>", faction.getName()),faction);
 			temp.add(s);
 		}
 		return colorConv(temp);
@@ -201,16 +209,28 @@ public class Messages {
 	public static List<String> getAllyRequestRecieved(XFaction faction) {
 		ArrayList<String> temp = new ArrayList<>();
 		for (String s : allyRequestRecieved) {
-			s = s.replace("<ally>", faction.getName());
+			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
 			temp.add(s);
 		}
 		return colorConv(temp);
 	}
 	
+	public static List<String> convGeneralPlaceHolders(List<String> strings) {
+		XFactionsCore core = XFactionsCore.getXFactionsCore();
+		List<String> st = new ArrayList<>();
+		for (String s : strings) {
+			s = s.replace("<plugin-name>", core.getDescription().getFullName());
+			s = s.replace("<plugin-version>", core.getDescription().getVersion());
+			s = s.replace("<players-online-total>", String.valueOf(Bukkit.getOnlinePlayers().size()));
+			st.add(s);
+		}
+		return st;
+	}
+	
 	public static List<String> getAllyRequestAccepted(XFaction faction) {
 		ArrayList<String> temp = new ArrayList<>();
 		for (String s : allyRequestAccepted) {
-			s = s.replace("<ally>", faction.getName());
+			s = replaceFactionValues(s.replace("<ally>", faction.getName()),faction);
 			temp.add(s);
 		}
 		return colorConv(temp);

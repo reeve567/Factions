@@ -1,10 +1,14 @@
 package pw.xwy.Factions.utility.handlers;
 
+import org.bukkit.Material;
+import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -21,6 +25,16 @@ public class ClaimHandler implements Listener {
 				e.setCancelled(true);
 			}
 		}
+		if (!e.isCancelled()) {
+			XFaction faction = ClaimManager.getChunk(e.getBlock().getChunk());
+			if (faction != null) {
+				if (e.getBlock().getType() == Material.MOB_SPAWNER) {
+					CreatureSpawner creature = (CreatureSpawner) e.getBlock();
+					faction.setValue(faction.getValue() - Spawners.getInstance().getPrice(creature.getSpawnedType()));
+				}
+				
+			}
+		}
 	}
 	
 	@EventHandler
@@ -33,7 +47,15 @@ public class ClaimHandler implements Listener {
 				e.setCancelled(true);
 			}
 		}
+		if (!e.isCancelled()) {
+			XFaction faction = ClaimManager.getChunk(e.getBlock().getChunk());
+			if (faction != null) {
+				if (e.getBlockPlaced().getType() == Material.MOB_SPAWNER) {
+					CreatureSpawner creature = (CreatureSpawner) e.getBlockPlaced();
+					faction.setValue(faction.getValue() + Spawners.getInstance().getPrice(creature.getSpawnedType()));
+				}
+				
+			}
+		}
 	}
-	
-	
 }

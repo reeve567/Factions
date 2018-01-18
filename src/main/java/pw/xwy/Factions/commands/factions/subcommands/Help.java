@@ -3,8 +3,8 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
-import pw.xwy.Factions.utility.Config;
-import pw.xwy.Factions.utility.Messages;
+import pw.xwy.Factions.utility.Configurations.Config;
+import pw.xwy.Factions.utility.Configurations.Messages;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,17 +63,17 @@ public class Help extends SubCommand {
 					}
 					subCommands.removeAll(remove);
 					remove = new ArrayList<>();
-					pages.put(cu,used);
+					pages.put(cu, used);
 					used = new ArrayList<>();
 				}
 				
-				Messages.sendMessages(p,Messages.getHeader());
-				Messages.sendMessages(p,Messages.getHelpMenuExtra());
+				Messages.sendMessages(p, Messages.getHeader());
+				Messages.sendMessages(p, Messages.getHelpMenuExtra(page, pages.size()));
 				for (SubCommand subCommand : pages.get(page)) {
-					Messages.sendMessages(p,Messages.getCommandHelpFormat(subCommand));
+					Messages.sendMessages(p, Messages.getCommandHelpFormat(subCommand));
 				}
-				Messages.sendMessages(p,Messages.getHelpMenuExtraBottom(page,pages.size()));
-				Messages.sendMessages(p,Messages.getFooter());
+				Messages.sendMessages(p, Messages.getHelpMenuExtraBottom(page, pages.size()));
+				Messages.sendMessages(p, Messages.getFooter());
 				
 			} catch (NumberFormatException ignored) {
 			
