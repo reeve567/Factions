@@ -7,6 +7,7 @@ pw\xwy\Factions\utility\managers\ChatManager$1.class
 pw\xwy\Factions\commands\factions\subcommands\Leave.class
 pw\xwy\Factions\utility\handlers\MoveHandler.class
 pw\xwy\Factions\utility\handlers\CitizensHandler.class
+pw\xwy\Factions\utility\FancyText.class
 pw\xwy\Factions\enums\sell\Raiding.class
 pw\xwy\Factions\utility\inventories\PermissionsSubMenu.class
 pw\xwy\Factions\commands\factions\subcommands\Claim.class
@@ -42,6 +43,7 @@ pw\xwy\Factions\commands\factions\subcommands\Power.class
 pw\xwy\Factions\enums\sell\Spawner.class
 pw\xwy\Factions\objects\XFactionConfig.class
 pw\xwy\Factions\enums\sell\Tools.class
+pw\xwy\Factions\utility\FancyText$MessageComponent.class
 pw\xwy\Factions\commands\SubCommand.class
 pw\xwy\Factions\objects\XPlayer.class
 pw\xwy\Factions\commands\factions\subcommands\Create.class
@@ -60,6 +62,7 @@ pw\xwy\Factions\commands\factions\subcommands\Map.class
 pw\xwy\Factions\utility\handlers\JoinHandler.class
 pw\xwy\Factions\commands\factions\subcommands\Groups.class
 pw\xwy\Factions\utility\inventories\MainMenu.class
+pw\xwy\Factions\commands\factions\subcommands\Top.class
 pw\xwy\Factions\commands\factions\subcommands\Join.class
 pw\xwy\Factions\utility\inventories\ToolsMenu.class
 pw\xwy\Factions\utility\tasks\ChunkValueTask.class

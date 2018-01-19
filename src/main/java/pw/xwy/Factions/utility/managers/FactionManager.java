@@ -63,6 +63,29 @@ public class FactionManager {
 		return nonSystem;
 	}
 	
+	public static ArrayList<XFaction> getMostValueble() {
+		ArrayList<XFaction> factions = new ArrayList<>();
+		ArrayList<XFaction> temp = getFactions();
+		for (XFaction faction : temp) {
+			
+			boolean found = false;
+			for (XFaction faction1 : factions) {
+				if (faction.getValue() > faction1.getValue()) {
+					found = true;
+					factions.add(factions.indexOf(faction1), faction);
+					break;
+				}
+			}
+			if (!found) {
+				factions.add(faction);
+			}
+			
+			
+		}
+		
+		return factions;
+	}
+	
 	public static ArrayList<XFaction> getSystemFactions() {
 		ArrayList<XFaction> system = new ArrayList<>();
 		for (XFaction f : factions) {

@@ -24,6 +24,8 @@ public class Faction extends MainCommand {
 		add(new List());
 		add(new Map());
 		add(new Power());
+		add(new Top());
+		add(new Unclaim());
 		//add(new Version());
 		add(new Who());
 	}

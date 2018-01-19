@@ -1,7 +1,9 @@
 package pw.xwy.Factions.objects;
 
 import org.bukkit.Chunk;
+import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.utility.managers.ClaimManager;
+import pw.xwy.Factions.utility.tasks.ChunkValueTask;
 
 import java.util.ArrayList;
 
@@ -15,6 +17,7 @@ public class XClaim {
 		ClaimManager.factionMap.put(faction, temp);
 		ClaimManager.chunkMap.put(c, faction);
 		claim.add(c);
+		new ChunkValueTask(faction, c).runTask(XFactionsCore.getXFactionsCore());
 	}
 	
 	public boolean isInClaim(Chunk c) {

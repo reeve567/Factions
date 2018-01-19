@@ -2,32 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3b6aca8-a14e-40c3-9080-a20643047b85" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Spawners.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/ChunkValueTask.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_bukkit_bukkit_1_8_8_R0_1_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bukkit_bukkit_1_8_8_R0_1_SNAPSHOT.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_8_8_R0_1_SNAPSHOT.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_api_1_8_8_R0_1_SNAPSHOT.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_spigotmc_spigot_1_8_8_R0_1_SNAPSHOT.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Top.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/FancyText.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/XFactionsCore.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/XFactionsCore.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Ally.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Ally.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Create.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Create.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Group.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Group.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Help.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Help.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Invite.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Invite.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Join.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Join.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Map.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Map.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Power.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Power.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Who.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Who.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFactionConfig.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFactionConfig.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XPlayer.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XPlayer.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XPlayerConfig.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XPlayerConfig.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Config.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Config.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Messages.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Messages.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/ClaimHandler.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/ClaimHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/InventoryHandler.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/InventoryHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/JoinHandler.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/JoinHandler.java" />
+      <change beforePath="$PROJECT_DIR$/Factions.iml" afterPath="$PROJECT_DIR$/Factions.iml" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/Faction.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/Faction.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Unclaim.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Unclaim.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XClaim.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XClaim.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Spawners.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Spawners.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/FactionManager.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/FactionManager.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/ChunkValueTask.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/ChunkValueTask.java" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -41,21 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
-      <file leaf-file-name="XFactionsCore.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/XFactionsCore.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4587">
-              <caret line="168" column="29" lean-forward="false" selection-start-line="168" selection-start-column="29" selection-end-line="168" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="XFaction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+            <state relative-caret-position="2013">
+              <caret line="75" column="16" lean-forward="false" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
               <folding>
                 <element signature="e#11243#11244#0" expanded="true" />
                 <element signature="e#11262#11263#0" expanded="true" />
@@ -66,38 +42,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="XFactionConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFactionConfig.java">
+      <file leaf-file-name="FactionManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/FactionManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Spawners.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Spawners.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="788">
-              <caret line="35" column="83" lean-forward="false" selection-start-line="35" selection-start-column="83" selection-end-line="35" selection-end-column="83" />
+            <state relative-caret-position="2574">
+              <caret line="85" column="24" lean-forward="false" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#946#947#0" expanded="true" />
-                <element signature="e#1027#1028#0" expanded="true" />
-                <element signature="e#1069#1070#0" expanded="true" />
-                <element signature="e#1091#1092#0" expanded="true" />
+                <element signature="e#2452#2453#0" expanded="true" />
+                <element signature="e#2474#2475#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClaimHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/ClaimHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1287">
-              <caret line="50" column="78" lean-forward="false" selection-start-line="50" selection-start-column="78" selection-end-line="50" selection-end-column="78" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -105,8 +58,8 @@
       <file leaf-file-name="ChunkValueTask.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/ChunkValueTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="939">
-              <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+            <state relative-caret-position="396">
+              <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -114,41 +67,67 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InventoryHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/InventoryHandler.java">
+      <file leaf-file-name="Top.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Top.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10362">
-              <caret line="331" column="20" lean-forward="false" selection-start-line="331" selection-start-column="20" selection-end-line="331" selection-end-column="20" />
+            <state relative-caret-position="1269">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#436#437#0" expanded="true" />
+                <element signature="e#516#517#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Faction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/Faction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="759">
+              <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Messages.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Messages.java">
+      <file leaf-file-name="FancyText.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/FancyText.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+            <state relative-caret-position="1551">
+              <caret line="53" column="44" lean-forward="false" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1947">
+              <caret line="59" column="30" lean-forward="false" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Config.java">
+      <file leaf-file-name="messages.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/messages.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="726">
-              <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+            <state relative-caret-position="297">
+              <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Who.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Who.java">
+      <file leaf-file-name="Claim.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="990">
+              <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -202,9 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/PermissionsManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFactionPermissions.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/PlayerManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Perms.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/ItemUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ChatManager.java" />
@@ -227,9 +203,6 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/inventories/PermissionsMainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/inventories/PermissionsSubMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XPlayerConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/FactionManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/Faction.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/plugin.yml" />
         <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Group.java" />
@@ -237,7 +210,6 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Create.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFactionConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ClaimManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XClaim.java" />
         <option value="$PROJECT_DIR$/src/main/resources/messages.yml" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Map.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Messages.java" />
@@ -247,12 +219,19 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/InventoryHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/XFactionsCore.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/ChunkValueTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Messages.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Config.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Spawners.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/handlers/ClaimHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Spawners.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/ChunkValueTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XClaim.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/FactionManager.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Unclaim.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/Faction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/FancyText.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Top.java" />
       </list>
     </option>
   </component>
@@ -307,10 +286,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -417,6 +394,16 @@
               <item name="Factions" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="Factions" type="462c0819:PsiDirectoryNode" />
+              <item name="utility" type="462c0819:PsiDirectoryNode" />
+              <item name="managers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Factions" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Factions" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -428,6 +415,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -596,11 +585,16 @@
       <workItem from="1516133405538" duration="3738000" />
       <workItem from="1516206811640" duration="1988000" />
       <workItem from="1516210408240" duration="1228000" />
+      <workItem from="1516308680522" duration="15000" />
+      <workItem from="1516374525120" duration="2331000" />
+      <workItem from="1516377814655" duration="4157000" />
+      <workItem from="1516382515493" duration="1211000" />
+      <workItem from="1516384079919" duration="537000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201222000" />
+    <option name="totallyTimeSpent" value="209473000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2762" height="1770" extended-state="6" />
@@ -614,7 +608,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22987765" sideWeight="0.501462" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11001462" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16097875" sideWeight="0.49853802" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16097875" sideWeight="0.49853802" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296845" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -677,36 +671,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Balance.java" />
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/src.zip!/java/lang/String.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/StringUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Invite.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/SubCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/MainCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Join.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -740,13 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Unclaim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -785,27 +742,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/FactionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-544">
-          <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/Faction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="17" column="25" lean-forward="false" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Ally.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -824,13 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="84" column="36" lean-forward="true" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -856,13 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XClaim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="45" lean-forward="false" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/ClaimManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
@@ -874,13 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3036">
           <caret line="104" column="13" lean-forward="false" selection-start-line="104" selection-start-column="13" selection-end-line="104" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/messages.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="20" column="41" lean-forward="false" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -907,13 +822,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java___jb_tmp___" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="37" column="20" lean-forward="false" selection-start-line="37" selection-start-column="20" selection-end-line="37" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/bukkit/1.8.8-R0.1-SNAPSHOT/bukkit-1.8.8-R0.1-SNAPSHOT.jar!/org/bukkit/entity/HumanEntity.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -953,49 +861,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFactionConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="18" column="38" lean-forward="false" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/bukkit/bukkit/1.8.8-R0.1-SNAPSHOT/bukkit-1.8.8-R0.1-SNAPSHOT.jar!/org/bukkit/entity/EntityType.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1248">
           <caret line="157" column="19" lean-forward="false" selection-start-line="157" selection-start-column="19" selection-end-line="157" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="34" column="21" lean-forward="true" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-          <folding>
-            <element signature="e#11243#11244#0" expanded="true" />
-            <element signature="e#11262#11263#0" expanded="true" />
-            <element signature="e#11302#11303#0" expanded="true" />
-            <element signature="e#11327#11328#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/ChunkValueTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="939">
-          <caret line="29" column="32" lean-forward="false" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1009,14 +878,173 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Spawners.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="788">
-          <caret line="35" column="83" lean-forward="false" selection-start-line="35" selection-start-column="83" selection-end-line="35" selection-end-column="83" />
+        <state relative-caret-position="330">
+          <caret line="16" column="10" lean-forward="false" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1393#1394#0" expanded="false" />
+            <element signature="e#1415#1416#0" expanded="false" />
+            <element signature="e#1457#1458#0" expanded="false" />
+            <element signature="e#1538#1539#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XClaim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="19" column="81" lean-forward="false" selection-start-line="19" selection-start-column="81" selection-end-line="19" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/Configurations/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Claim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFactionConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2013">
+          <caret line="75" column="16" lean-forward="false" selection-start-line="75" selection-start-column="16" selection-end-line="75" selection-end-column="16" />
+          <folding>
+            <element signature="e#11243#11244#0" expanded="true" />
+            <element signature="e#11262#11263#0" expanded="true" />
+            <element signature="e#11302#11303#0" expanded="true" />
+            <element signature="e#11327#11328#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot/1.8.8-R0.1-SNAPSHOT/spigot-1.8.8-R0.1-SNAPSHOT.jar!/org/bukkit/craftbukkit/v1_8_R3/entity/CraftPlayer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-9306">
+          <caret line="127" column="48" lean-forward="true" selection-start-line="127" selection-start-column="48" selection-end-line="127" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot/1.8.8-R0.1-SNAPSHOT/spigot-1.8.8-R0.1-SNAPSHOT.jar!/net/minecraft/server/v1_8_R3/ChatModifier.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7590">
+          <caret line="305" column="29" lean-forward="false" selection-start-line="305" selection-start-column="29" selection-end-line="305" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Unclaim.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#194#195#0" expanded="false" />
+            <element signature="e#238#239#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_144/src.zip!/java/util/LinkedHashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="437" column="13" lean-forward="false" selection-start-line="437" selection-start-column="13" selection-end-line="437" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot/1.8.8-R0.1-SNAPSHOT/spigot-1.8.8-R0.1-SNAPSHOT.jar!/net/minecraft/server/v1_8_R3/ChatBaseComponent.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="76" column="47" lean-forward="false" selection-start-line="76" selection-start-column="47" selection-end-line="76" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/ChunkValueTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#946#947#0" expanded="true" />
-            <element signature="e#1027#1028#0" expanded="true" />
-            <element signature="e#1069#1070#0" expanded="true" />
-            <element signature="e#1091#1092#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/managers/FactionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2574">
+          <caret line="85" column="24" lean-forward="false" selection-start-line="85" selection-start-column="24" selection-end-line="85" selection-end-column="24" />
+          <folding>
+            <element signature="e#2452#2453#0" expanded="true" />
+            <element signature="e#2474#2475#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/Faction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="27" column="27" lean-forward="false" selection-start-line="27" selection-start-column="27" selection-end-line="27" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/messages.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1947">
+          <caret line="59" column="30" lean-forward="false" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/FancyText.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1551">
+          <caret line="53" column="44" lean-forward="false" selection-start-line="53" selection-start-column="44" selection-end-line="53" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Top.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1269">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#436#437#0" expanded="true" />
+            <element signature="e#516#517#0" expanded="true" />
           </folding>
         </state>
       </provider>
