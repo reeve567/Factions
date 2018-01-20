@@ -30,7 +30,8 @@ public class ChunkValueTask extends BukkitRunnable {
 							Block b = c.getBlock(x, y, z);
 							if (b instanceof CreatureSpawner) {
 								CreatureSpawner creatureSpawner = (CreatureSpawner) b;
-								if (spawners.prices.keySet().contains(creatureSpawner.getSpawnedType())) {
+								if (spawners.arrayList.contains(creatureSpawner.getSpawnedType())) {
+									faction.spawners.put(creatureSpawner.getSpawnedType(),faction.spawners.get(creatureSpawner.getSpawnedType()) + 1);
 									faction.setValue(faction.getValue() + spawners.prices.get(creatureSpawner.getSpawnedType()));
 								}
 							}

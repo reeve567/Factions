@@ -3,16 +3,17 @@ package pw.xwy.Factions.objects;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Messages;
+import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.FactionManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,13 +33,15 @@ public class XFaction {
 	private String name;
 	private boolean systemFac = false;
 	private double power = 0.0;
-	private double value = 0.0;
+	private int value = 0;
+	public HashMap<EntityType, Integer> spawners = new HashMap<>();
 	private double balance = 0.0;
 	private UUID leader;
 	private Location home = null;
 	private ArrayList<XFaction> allies = new ArrayList<>();
 	
 	public XFaction(String name, Player creator) {
+		spawnersInit();
 		leader = creator.getUniqueId();
 		id = FactionManager.getAvailableUUID();
 		this.name = name;
@@ -49,6 +52,7 @@ public class XFaction {
 	}
 	
 	public XFaction(String name, String color) {
+		spawnersInit();
 		this.name = name;
 		id = FactionManager.getAvailableUUID();
 		systemFac = true;
@@ -58,6 +62,7 @@ public class XFaction {
 	
 	//load from config
 	public XFaction(String facString) {
+		spawnersInit();
 		System.out.println("Started loading " + facString + "...");
 		factionConfig = new XFactionConfig(facString);
 		name = factionConfig.getName();
@@ -103,6 +108,12 @@ public class XFaction {
 			}
 		}
 		System.out.println("Done loading " + facString + ".");
+	}
+	
+	private void spawnersInit() {
+		for (EntityType et : Spawners.getInstance().spawnerTypes) {
+			spawners.put(et,0);
+		}
 	}
 	
 	private void loadClaim(List<String> s) {
@@ -175,15 +186,6 @@ public class XFaction {
 					}
 			}
 		return true;
-	}
-	
-	public XRank getRole(UUID p) {
-		for (XRank rank : ranks) {
-			if (rank.isIn(p)) {
-				return rank;
-			}
-		}
-		return recruit;
 	}
 	
 	public void addRecruit(UUID p) {
@@ -300,29 +302,30 @@ public class XFaction {
 		balance += amount;
 	}
 	
-	public void disband(XPlayer pl) {
+	public void disband(Player p, boolean b) {
 		if (!isSystemFac()) {
-			if (leader.equals(pl.getID())) {
-				for (UUID p : getEveryone()) {
-					Player player = Bukkit.getPlayer(p);
-					leave(PlayerManager.getXPlayer(player), false);
-				}
-				pl.setFaction(null);
-				Player player = Bukkit.getPlayer(leader);
-				XFactionsCore.getEcononomy().depositPlayer(player, balance);
+			if (getRole(p.getUniqueId()).hasPerm("disband", true) || b) {
+				factionConfig.remove();
 				Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded."));
 				FactionManager.removeFaction(this);
 				ClaimManager.removeChunks(this);
-				factionConfig.remove();
-				
 			}
 		} else {
-			System.out.println(pl.getPlayer().getName() + " has tried to disband a system faction though the normal method!");
+			System.out.println(p.getName() + " has tried to disband a system faction though the normal method!");
 		}
 	}
 	
 	public boolean isSystemFac() {
 		return systemFac;
+	}
+	
+	public XRank getRole(UUID p) {
+		for (XRank rank : ranks) {
+			if (rank.isIn(p)) {
+				return rank;
+			}
+		}
+		return recruit;
 	}
 	
 	public void setSystemFac(boolean systemFac) {
@@ -429,11 +432,11 @@ public class XFaction {
 		return false;
 	}
 	
-	public double getValue() {
+	public int getValue() {
 		return value;
 	}
 	
-	public void setValue(double value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 }

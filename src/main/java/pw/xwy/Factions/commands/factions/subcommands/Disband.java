@@ -17,21 +17,20 @@ public class Disband extends SubCommand {
 	public void run(Player p, String[] args) {
 		if (p.hasPermission("factions.disband.others")) {
 			if (args.length < 2) {
-				p.sendMessage("f disband <faction>");
+				PlayerManager.getPlayerFaction(p).disband(p,true);
 			} else {
 				XFaction xFaction = FactionManager.getFactionByName(args[1]);
 				if (xFaction != null) {
 					if (!xFaction.isSystemFac()) {
-						xFaction.disband(PlayerManager.getXPlayer(Bukkit.getPlayer(xFaction.getLeader())));
+						xFaction.disband(p,true);
 					} else {
 						xFaction.disband();
 					}
 				}
 			}
 		} else {
-			XPlayer xPlayer = PlayerManager.getXPlayer(p);
-			if (xPlayer != null && xPlayer.getFaction() != null) {
-				xPlayer.getFaction().disband(xPlayer);
+			if (PlayerManager.getPlayerFaction(p) != null) {
+				PlayerManager.getPlayerFaction(p).disband(p,false);
 			}
 		}
 	}

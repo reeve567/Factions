@@ -13,6 +13,7 @@ pw\xwy\Factions\utility\inventories\PermissionsSubMenu.class
 pw\xwy\Factions\commands\factions\subcommands\Claim.class
 pw\xwy\Factions\commands\factions\subcommands\Who.class
 pw\xwy\Factions\objects\XRank.class
+pw\xwy\Factions\commands\factions\subcommands\Update.class
 pw\xwy\Factions\utility\inventories\SpawnersMenu.class
 pw\xwy\Factions\utility\managers\PlayerManager.class
 pw\xwy\Factions\utility\Configurations\Spawners.class
@@ -37,6 +38,8 @@ pw\xwy\Factions\commands\shop\Sell.class
 pw\xwy\Factions\utility\inventories\BrewingMenu.class
 pw\xwy\Factions\objects\ItemBuilder.class
 pw\xwy\Factions\enums\sell\Farming.class
+pw\xwy\Factions\utility\DRM.class
+pw\xwy\Factions\commands\factions\subcommands\Update$1.class
 pw\xwy\Factions\enums\sell\Miscellaneous.class
 pw\xwy\Factions\objects\XFaction.class
 pw\xwy\Factions\commands\factions\subcommands\Power.class
@@ -46,6 +49,7 @@ pw\xwy\Factions\enums\sell\Tools.class
 pw\xwy\Factions\utility\FancyText$MessageComponent.class
 pw\xwy\Factions\commands\SubCommand.class
 pw\xwy\Factions\objects\XPlayer.class
+pw\xwy\Factions\commands\factions\FactionTop.class
 pw\xwy\Factions\commands\factions\subcommands\Create.class
 pw\xwy\Factions\utility\inventories\BuyMenu.class
 pw\xwy\Factions\utility\inventories\BuildingMenu.class

@@ -14,6 +14,7 @@ public class XPlayer {
 	public XPlayerConfig playerConfig;
 	public int spawnCooldown = 0;
 	public boolean canceled = false;
+	String name;
 	private Player player;
 	private double power = 0.0;
 	private XFaction faction = null;
@@ -25,11 +26,11 @@ public class XPlayer {
 		playerConfig = new XPlayerConfig(this);
 	}
 	
-	//load from string
 	public XPlayer(UUID id, XPlayerConfig s) {
 		try {
 			playerConfig = s;
 			player = Bukkit.getPlayer(id);
+			this.name = playerConfig.getName();
 			power = s.getPower();
 			String st = s.getFactionUUID();
 			
@@ -103,6 +104,10 @@ public class XPlayer {
 	
 	public Player getPlayer() {
 		return player;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	public XFaction getFaction() {

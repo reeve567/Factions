@@ -76,9 +76,9 @@ public class XRank {
 		String s = "";
 		for (UUID id : users) {
 			if (users.indexOf(id) != users.size() - 1) {
-				s += PlayerManager.getOfflinePlayer(id).getPlayer().getName() + ", ";
+				s += PlayerManager.getOfflinePlayer(id).getName() + ", ";
 			} else {
-				s += PlayerManager.getOfflinePlayer(id).getPlayer().getName();
+				s += PlayerManager.getOfflinePlayer(id).getName();
 			}
 		}
 		return s;

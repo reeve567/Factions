@@ -35,6 +35,10 @@ public class PlayerManager {
 		return new XPlayer(p, new XPlayerConfig(p));
 	}
 	
+	public static String getOfflinePlayerName(UUID p) {
+		return getOfflinePlayer(p).getName();
+	}
+	
 	public static void addXPlayer(XPlayer xPlayer) {
 		players.add(xPlayer);
 	}

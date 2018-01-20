@@ -18,6 +18,14 @@ public class StringUtility {
 		}
 	}
 	
+	public static String properName(String name) {
+		char[] chars = name.toLowerCase().toCharArray();
+		chars[0] = String.valueOf(chars[0]).toUpperCase().charAt(0);
+		String s = String.valueOf(chars);
+		s = s.replaceAll("_"," ");
+		return s;
+	}
+	
 	public static Location fromString(String temp) {
 		String loc = temp;
 		

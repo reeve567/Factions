@@ -6,14 +6,18 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.fusesource.jansi.internal.Kernel32;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
 import pw.xwy.Factions.objects.Glow;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
+import pw.xwy.Factions.utility.Configurations.Spawners;
+import pw.xwy.Factions.utility.DRM;
 import pw.xwy.Factions.utility.handlers.ClaimHandler;
 import pw.xwy.Factions.utility.handlers.JoinHandler;
 import pw.xwy.Factions.utility.handlers.LeaveHandler;
@@ -23,8 +27,12 @@ import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 import pw.xwy.Factions.utility.tasks.PowerIncreaseTask;
 
+import java.io.File;
 import java.lang.reflect.Field;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class XFactionsCore extends JavaPlugin {
@@ -32,9 +40,9 @@ public class XFactionsCore extends JavaPlugin {
 	private static final Logger log = Logger.getLogger("Minecraft");
 	private static XFactionsCore xFactionsCore;
 	private static Economy econ = null;
+	private String name = "Factions-BETA";
 	
 	private Faction faction;
-	
 	
 	public static Economy getEcononomy() {
 		return econ;
@@ -46,49 +54,60 @@ public class XFactionsCore extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		XFactionsCore.xFactionsCore = this;
-		System.out.println("Loading config 1/5...");
-		Config.loadConfig();
-		System.out.println("Loading XFactionsCore 2/5...");
-		Config.loadFactions();
-		System.out.println("Loading Commands 3/5...");
-		loadCommands();
-		System.out.println("Loading Economy 4/5...");
-		if (!setupEconomy()) {
-			log.severe(String.format("[%s] - Disabled because of either no Vault or no economy plugin!", getDescription().getName()));
-			setEnabled(false);
-		}
-		System.out.println("Loading Glow 5/5");
-		registerGlow();
-		if (isEnabled()) {
-			getServer().getPluginManager().registerEvents(new JoinHandler(), this);
-			getServer().getPluginManager().registerEvents(new LeaveHandler(), this);
-			getServer().getPluginManager().registerEvents(new ChatManager(), this);
-			getServer().getPluginManager().registerEvents(new ClaimHandler(), this);
-			getServer().getPluginManager().registerEvents(new MoveHandler(), this);
-			//getServer().getPluginManager().registerEvents(new UnknownCommandHandler(),this);
-			//getServer().getPluginManager().registerEvents(new CitizensHandler(),this);
-			//getServer().getPluginManager().registerEvents(new InventoryHandler(econ),this);
-			
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				XPlayer xPlayer = new XPlayer(p.getUniqueId(), Config.getPlayer(String.valueOf(p.getUniqueId())));
-				PlayerManager.addXPlayer(xPlayer);
-				if (xPlayer.getFaction() != null) {
-					xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
+		DRM drm = new DRM(name);
+		
+		if (!drm.remove()) {
+			XFactionsCore.xFactionsCore = this;
+			System.out.println("Loading config 1/5...");
+			Config.loadConfig();
+			new Spawners();
+			System.out.println("Loading XFactionsCore 2/5...");
+			Config.loadFactions();
+			System.out.println("Loading Commands 3/5...");
+			loadCommands();
+			System.out.println("Loading Economy 4/5...");
+			if (!setupEconomy()) {
+				log.severe(String.format("[%s] - Disabled because of either no Vault or no economy plugin!", getDescription().getName()));
+				setEnabled(false);
+			}
+			System.out.println("Loading Glow 5/5");
+			registerGlow();
+			if (isEnabled()) {
+				getServer().getPluginManager().registerEvents(new JoinHandler(), this);
+				getServer().getPluginManager().registerEvents(new LeaveHandler(), this);
+				getServer().getPluginManager().registerEvents(new ChatManager(), this);
+				getServer().getPluginManager().registerEvents(new ClaimHandler(), this);
+				getServer().getPluginManager().registerEvents(new MoveHandler(), this);
+				//getServer().getPluginManager().registerEvents(new UnknownCommandHandler(),this);
+				//getServer().getPluginManager().registerEvents(new CitizensHandler(),this);
+				//getServer().getPluginManager().registerEvents(new InventoryHandler(econ),this);
+				
+				for (Player p : Bukkit.getOnlinePlayers()) {
+					XPlayer xPlayer = new XPlayer(p.getUniqueId(), Config.getPlayer(String.valueOf(p.getUniqueId())));
+					PlayerManager.addXPlayer(xPlayer);
+					if (xPlayer.getFaction() != null) {
+						xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
+					}
+					
+					xPlayer.playerConfig.save();
 				}
 				
-				xPlayer.playerConfig.save();
+				new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);
+				
+				System.out.println("factions v" + getDescription().getVersion() + " loaded.");
+				
 			}
-			
-			new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);
-			
-			System.out.println("factions v" + getDescription().getVersion() + " loaded.");
-			
+		}
+		else {
+			for (Plugin p: getServer().getPluginManager().getPlugins()) {
+				getPluginLoader().disablePlugin(p);
+			}
 		}
 	}
 	
 	private void loadCommands() {
 		faction = new Faction();
+		
 		//new Shop();
 		//new Sell();
 		

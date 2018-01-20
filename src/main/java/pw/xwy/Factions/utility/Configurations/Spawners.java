@@ -6,6 +6,9 @@ import org.bukkit.entity.EntityType;
 import pw.xwy.Factions.XFactionsCore;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Spawners {
@@ -13,11 +16,13 @@ public class Spawners {
 	private static Spawners spawners;
 	private FileConfiguration fileConfiguration;
 	private File file;
-	private EntityType[] spawnerTypes = {EntityType.CHICKEN, EntityType.CAVE_SPIDER, EntityType.SPIDER, EntityType.SHEEP, EntityType.PIG, EntityType.COW, EntityType.ZOMBIE, EntityType.SKELETON, EntityType.PIG_ZOMBIE, EntityType.BLAZE, EntityType.CREEPER, EntityType.ENDERMAN, EntityType.VILLAGER, EntityType.SILVERFISH, EntityType.IRON_GOLEM};
-	public HashMap<EntityType, Double> prices = new HashMap<>();
+	public ArrayList<EntityType> arrayList = new ArrayList<>();
+	public EntityType[] spawnerTypes = {EntityType.SILVERFISH,EntityType.VILLAGER,EntityType.IRON_GOLEM,EntityType.CREEPER,EntityType.PIG_ZOMBIE,EntityType.BLAZE,EntityType.ENDERMAN,EntityType.SKELETON,EntityType.ZOMBIE,EntityType.SPIDER,EntityType.CAVE_SPIDER,EntityType.COW,EntityType.PIG,EntityType.SHEEP,EntityType.CHICKEN};
+	public HashMap<EntityType, Integer> prices = new HashMap<>();
 	
 	public Spawners() {
 		spawners = this;
+		arrayList.addAll(Arrays.asList(spawnerTypes));
 		file = new File(XFactionsCore.getXFactionsCore().getDataFolder(), "spawners.yml");
 		fileConfiguration = new YamlConfiguration();
 		
@@ -26,7 +31,7 @@ public class Spawners {
 			
 			for (EntityType entityType : spawnerTypes) {
 				fileConfiguration.addDefault("values." + entityType.toString().toLowerCase(), 1000.0);
-				prices.put(entityType, 1000.0);
+				prices.put(entityType, 1000);
 			}
 			
 		} else {
@@ -40,7 +45,7 @@ public class Spawners {
 		return spawners;
 	}
 	
-	public double getPrice(EntityType e) {
-		return fileConfiguration.getDouble("values." + e.toString().toLowerCase());
+	public int getPrice(EntityType e) {
+		return fileConfiguration.getInt("values." + e.toString().toLowerCase());
 	}
 }

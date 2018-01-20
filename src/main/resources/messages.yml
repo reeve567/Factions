@@ -3,7 +3,6 @@ general:
   - ''
   - '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
   footer:
-  - ''
   - '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
   - ''
   command-help:
@@ -12,6 +11,7 @@ general:
   help-menu-extra-top:
   - '&8Sub-commands'
   help-menu-extra-bottom:
+  - ''
   - '&7Page: &6<page>&7/&6<total-pages>'
   ally-request-sent:
   - '&aRecieved ally request from &e<ally>'
