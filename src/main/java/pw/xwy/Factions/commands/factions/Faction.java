@@ -23,6 +23,7 @@ public class Faction extends MainCommand {
 	public void init() {
 		add(new Ally());
 		add(new Claim());
+		add(new Close());
 		add(new Create());
 		add(new Disband());
 		add(new Fly());
@@ -35,7 +36,9 @@ public class Faction extends MainCommand {
 		add(new Leave());
 		add(new List());
 		add(new Map());
+		add(new Open());
 		add(new Power());
+		add(new Rename());
 		add(new Sethome());
 		add(new Top());
 		add(new Unclaim());
