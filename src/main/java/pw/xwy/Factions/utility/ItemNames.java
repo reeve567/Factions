@@ -11,6 +11,15 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class ItemNames {
 	
 	private static Map<String, String> Items = new HashMap<String, String>();

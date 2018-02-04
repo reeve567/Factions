@@ -5,6 +5,15 @@ import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Power extends SubCommand {
 	public Power() {
 		super("power", "", "Displays your current power");

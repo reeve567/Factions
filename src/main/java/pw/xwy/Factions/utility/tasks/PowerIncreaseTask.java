@@ -7,13 +7,22 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class PowerIncreaseTask extends BukkitRunnable {
+	
+	private ArrayList<XFaction> factions = new ArrayList<>();
 	
 	public PowerIncreaseTask() {
 		System.out.println(getClass().getSimpleName() + " has been started!");
 	}
-	
-	private ArrayList<XFaction> factions = new ArrayList<>();
 	
 	@Override
 	public void run() {
@@ -24,7 +33,7 @@ public class PowerIncreaseTask extends BukkitRunnable {
 				factions.add(p.getFaction());
 			}
 		}
-		for (XFaction faction: factions) {
+		for (XFaction faction : factions) {
 			if (faction != null) {
 				faction.updatePower();
 			}

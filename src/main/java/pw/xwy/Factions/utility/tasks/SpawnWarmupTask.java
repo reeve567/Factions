@@ -3,6 +3,15 @@ package pw.xwy.Factions.utility.tasks;
 import org.bukkit.scheduler.BukkitRunnable;
 import pw.xwy.Factions.objects.XPlayer;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class SpawnWarmupTask extends BukkitRunnable {
 	
 	private XPlayer xPlayer;

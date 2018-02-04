@@ -9,6 +9,15 @@ import pw.xwy.Factions.utility.ItemNames;
 import java.util.ArrayList;
 import java.util.List;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public enum Miscellaneous {
 	BOOK(10, Material.BOOK),
 	BEACON(25000, Material.BEACON),
@@ -57,17 +66,17 @@ public enum Miscellaneous {
 	ENDERCHEST(1000, Material.ENDER_CHEST),
 	CHEST(100, Material.CHEST),
 	TRAPPEDCHEST(200, Material.TRAPPED_CHEST);
-
+	
 	private final double price;
 	private final Material material;
 	private final ItemStack item;
 	private final int durability;
-
+	
 	Miscellaneous(int pr, Material mat) {
-
+		
 		this.price = pr;
 		this.material = mat;
-
+		
 		ItemStack it = new ItemStack(mat);
 		ItemMeta im = it.getItemMeta();
 		im.setDisplayName(ChatColor.GREEN + ItemNames.get(String.valueOf(it.getTypeId())));
@@ -75,47 +84,47 @@ public enum Miscellaneous {
 		lores.add(ChatColor.GREEN + "$" + ChatColor.DARK_GREEN + pr);
 		im.setLore(lores);
 		it.setItemMeta(im);
-
-
+		
+		
 		this.item = it;
 		this.durability = 0;
 	}
-
+	
 	Miscellaneous(int pr, Material mat, int dur) {
-
+		
 		this.price = pr;
 		this.material = mat;
-
+		
 		ItemStack it = new ItemStack(mat, 1, (short) dur);
 		ItemMeta im = it.getItemMeta();
-		im.setDisplayName(ChatColor.GREEN + ItemNames.get(it.getTypeId()+ ":" + dur));
+		im.setDisplayName(ChatColor.GREEN + ItemNames.get(it.getTypeId() + ":" + dur));
 		List<String> lores = new ArrayList<>();
 		lores.add(ChatColor.GREEN + "$" + ChatColor.DARK_GREEN + pr);
 		im.setLore(lores);
 		it.setItemMeta(im);
-
-
+		
+		
 		this.item = it;
 		this.durability = dur;
 	}
-
-	public double getPrice() {
-
-		return price;
-	}
-
+	
 	public int getDurability() {
-
+		
 		return durability;
 	}
-
+	
 	public ItemStack getItem() {
-
+		
 		return item;
 	}
-
+	
 	public Material getMaterial() {
-
+		
 		return material;
+	}
+	
+	public double getPrice() {
+		
+		return price;
 	}
 }

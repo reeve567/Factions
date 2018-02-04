@@ -10,28 +10,19 @@ import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Who extends SubCommand {
 	
 	public Who() {
 		super("who", "[player/faction]", "Displays info about either the selected player's faction, the selected faction, or your faction.");
-	}
-	
-	@Override
-	public void run(Player p, String[] args) {
-		
-		if (args.length < 2) {
-			display(p, FactionManager.getPlayerUUIDFaction(p.getUniqueId()),false);
-		} else if (FactionManager.getFactionByName(args[1]) != null) {
-			XFaction faction = FactionManager.getFactionByName(args[1]);
-			assert faction != null;
-			display(p, faction, true);
-		} else if (Bukkit.getPlayerExact(args[1]) != null) {
-			display(p, Bukkit.getPlayerExact(args[1]).getPlayer());
-		} else {
-			p.sendMessage(StringUtility.conv("&7This faction/player does not exist."));
-		}
-		
-		
 	}
 	
 	private void display(Player p, Player target) {
@@ -63,6 +54,24 @@ public class Who extends SubCommand {
 			}
 		}
 		Messages.sendMessages(p, Messages.getFooter());
+	}
+	
+	@Override
+	public void run(Player p, String[] args) {
+		
+		if (args.length < 2) {
+			display(p, FactionManager.getPlayerUUIDFaction(p.getUniqueId()), false);
+		} else if (FactionManager.getFactionByName(args[1]) != null) {
+			XFaction faction = FactionManager.getFactionByName(args[1]);
+			assert faction != null;
+			display(p, faction, true);
+		} else if (Bukkit.getPlayerExact(args[1]) != null) {
+			display(p, Bukkit.getPlayerExact(args[1]).getPlayer());
+		} else {
+			p.sendMessage(StringUtility.conv("&7This faction/player does not exist."));
+		}
+		
+		
 	}
 	
 	

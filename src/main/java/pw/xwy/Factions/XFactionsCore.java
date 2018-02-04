@@ -12,16 +12,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.fusesource.jansi.internal.Kernel32;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
+import pw.xwy.Factions.commands.factions.FactionTop;
 import pw.xwy.Factions.objects.Glow;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.DRM;
-import pw.xwy.Factions.utility.handlers.ClaimHandler;
-import pw.xwy.Factions.utility.handlers.JoinHandler;
-import pw.xwy.Factions.utility.handlers.LeaveHandler;
-import pw.xwy.Factions.utility.handlers.MoveHandler;
+import pw.xwy.Factions.utility.StringUtil;
+import pw.xwy.Factions.utility.handlers.*;
 import pw.xwy.Factions.utility.managers.ChatManager;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -35,6 +34,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class XFactionsCore extends JavaPlugin {
 	
 	private static final Logger log = Logger.getLogger("Minecraft");
@@ -43,6 +51,7 @@ public class XFactionsCore extends JavaPlugin {
 	private String name = "Factions-BETA";
 	
 	private Faction faction;
+	private FactionTop ftop;
 	
 	public static Economy getEcononomy() {
 		return econ;
@@ -61,7 +70,7 @@ public class XFactionsCore extends JavaPlugin {
 			System.out.println("Loading config 1/5...");
 			Config.loadConfig();
 			new Spawners();
-			System.out.println("Loading XFactionsCore 2/5...");
+			System.out.println("Loading Factions 2/5...");
 			Config.loadFactions();
 			System.out.println("Loading Commands 3/5...");
 			loadCommands();
@@ -80,7 +89,7 @@ public class XFactionsCore extends JavaPlugin {
 				getServer().getPluginManager().registerEvents(new MoveHandler(), this);
 				//getServer().getPluginManager().registerEvents(new UnknownCommandHandler(),this);
 				//getServer().getPluginManager().registerEvents(new CitizensHandler(),this);
-				//getServer().getPluginManager().registerEvents(new InventoryHandler(econ),this);
+				getServer().getPluginManager().registerEvents(new InventoryHandler(econ),this);
 				
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					XPlayer xPlayer = new XPlayer(p.getUniqueId(), Config.getPlayer(String.valueOf(p.getUniqueId())));
@@ -107,6 +116,8 @@ public class XFactionsCore extends JavaPlugin {
 	
 	private void loadCommands() {
 		faction = new Faction();
+		ftop = new FactionTop();
+		
 		
 		//new Shop();
 		//new Sell();
@@ -115,15 +126,16 @@ public class XFactionsCore extends JavaPlugin {
 	
 	private boolean setupEconomy() {
 		if (getServer().getPluginManager().getPlugin("Vault") == null) {
-			System.out.println(1);
+			System.out.println("Eco status: 1");
 			return false;
 		}
 		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
 		if (rsp == null) {
-			System.out.println(2);
+			System.out.println("Eco status: 2");
 			return false;
 		}
 		econ = rsp.getProvider();
+		System.out.println("Eco status: 3");
 		return econ != null;
 	}
 	
@@ -188,6 +200,7 @@ public class XFactionsCore extends JavaPlugin {
 					for (SubCommand subCommand : subCommands) {
 						if (subCommand.command.equalsIgnoreCase("help")) {
 							subCommand.run(p, newArgs);
+							return true;
 						}
 					}
 					
@@ -196,14 +209,23 @@ public class XFactionsCore extends JavaPlugin {
 						if (subCommand.command.equalsIgnoreCase(args[0])) {
 							if (p.hasPermission(subCommand.permission)) {
 								subCommand.run(p, args);
+								return true;
 							}
 						}
 					}
+					p.sendMessage(StringUtil.chatColorConv("&cUnknown subcommand"));
 				}
 				
 				
 			}
-		} /*else if (command.getLabel().equalsIgnoreCase("spawn") && Config.spawnEnabled) {
+		} else if (command.getLabel().equalsIgnoreCase("ftop")) {
+			if (sender instanceof Player) {
+				ftop.run((Player) sender,args);
+			}
+		}
+		
+		
+		/*else if (command.getLabel().equalsIgnoreCase("spawn") && Config.spawnEnabled) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
 				XPlayer xPlayer = PlayerManager.getXPlayer(p);

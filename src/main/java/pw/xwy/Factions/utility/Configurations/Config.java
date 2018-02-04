@@ -15,10 +15,20 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Config {
 	
 	public static double maxPower;
 	public static double minPower;
+	public static double homeWarmupTime;
 	public static boolean usePermissions;
 	public static int commandsPerPage;
 	private static File configF;
@@ -28,19 +38,6 @@ public class Config {
 	public static File factiondata = new File(xFactionsCore.getDataFolder(), File.separator + "FactionData");
 	private static boolean chargeToMakeFaction;
 	private static double factionCreationPrice;
-	
-	public static void loadConfig() {
-		Messages.loadConfig();
-		createConfig();
-		saveConfig();
-		
-		factionCreationPrice = config.getDouble("creation-price");
-		chargeToMakeFaction = config.getBoolean("charge-for-faction-creation");
-		maxPower = config.getDouble("max-power");
-		minPower = config.getDouble("min-power");
-		usePermissions = config.getBoolean("use-permissions");
-		commandsPerPage = config.getInt("commands-per-help-page");
-	}
 	
 	private static void createConfig() {
 		
@@ -60,12 +57,38 @@ public class Config {
 		
 	}
 	
-	private static void saveConfig() {
-		try {
-			config.save(configF);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public static double getFactionCreationPrice() {
+		return factionCreationPrice;
+	}
+	
+	public static XPlayerConfig getPlayer(UUID uuid) {
+		return new XPlayerConfig(uuid);
+	}
+	
+	public static XPlayerConfig getPlayer(String uuid) {
+		return new XPlayerConfig(UUID.fromString(uuid));
+	}
+	
+	public static XPlayerConfig getPlayer(Player player) {
+		return new XPlayerConfig(player.getUniqueId());
+	}
+	
+	public static boolean isChargeToMakeFaction() {
+		return chargeToMakeFaction;
+	}
+	
+	public static void loadConfig() {
+		Messages.loadConfig();
+		createConfig();
+		saveConfig();
+		
+		factionCreationPrice = config.getDouble("creation-price");
+		chargeToMakeFaction = config.getBoolean("charge-for-faction-creation");
+		homeWarmupTime = config.getDouble("home-warmup-time");
+		maxPower = config.getDouble("max-power");
+		minPower = config.getDouble("min-power");
+		usePermissions = config.getBoolean("use-permissions");
+		commandsPerPage = config.getInt("commands-per-help-page");
 	}
 	
 	public static void loadFactions() {
@@ -83,6 +106,14 @@ public class Config {
 		}
 	}
 	
+	private static void saveConfig() {
+		try {
+			config.save(configF);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void saveFactions() {
 		for (XFaction xFaction : FactionManager.getFactions()) {
 			xFaction.factionConfig.save(xFaction);
@@ -92,25 +123,5 @@ public class Config {
 	public static void setSpawn(Location loc) {
 		config.set("spawn-location", StringUtility.toString(loc));
 		saveConfig();
-	}
-	
-	public static XPlayerConfig getPlayer(UUID uuid) {
-		return new XPlayerConfig(uuid);
-	}
-	
-	public static XPlayerConfig getPlayer(String uuid) {
-		return new XPlayerConfig(UUID.fromString(uuid));
-	}
-	
-	public static XPlayerConfig getPlayer(Player player) {
-		return new XPlayerConfig(player.getUniqueId());
-	}
-	
-	public static double getFactionCreationPrice() {
-		return factionCreationPrice;
-	}
-	
-	public static boolean isChargeToMakeFaction() {
-		return chargeToMakeFaction;
 	}
 }

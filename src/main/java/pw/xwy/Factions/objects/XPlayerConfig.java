@@ -9,6 +9,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class XPlayerConfig {
 	
 	private File file;
@@ -31,18 +40,6 @@ public class XPlayerConfig {
 		}
 	}
 	
-	public void set(String path, Object value) {
-		fileConfiguration.set(path, value);
-	}
-	
-	public void save() {
-		try {
-			fileConfiguration.save(file);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public XPlayerConfig(UUID p) {
 		File userdata = Config.userdata;
 		
@@ -56,6 +53,26 @@ public class XPlayerConfig {
 			set("info.power", 0.0);
 			save();
 		}
+	}
+	
+	public Double getDouble(String path) {
+		return fileConfiguration.getDouble(path);
+	}
+	
+	public String getFactionUUID() {
+		return getString("info.faction");
+	}
+	
+	public String getName() {
+		return getString("info.name");
+	}
+	
+	public Double getPower() {
+		return getDouble("info.power");
+	}
+	
+	public String getString(String path) {
+		return fileConfiguration.getString(path);
 	}
 	
 	public void save(XPlayer xPlayer) {
@@ -74,23 +91,15 @@ public class XPlayerConfig {
 		}
 	}
 	
-	public String getName() {
-		return getString("info.name");
+	public void save() {
+		try {
+			fileConfiguration.save(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public String getString(String path) {
-		return fileConfiguration.getString(path);
-	}
-	
-	public String getFactionUUID() {
-		return getString("info.faction");
-	}
-	
-	public Double getPower() {
-		return getDouble("info.power");
-	}
-	
-	public Double getDouble(String path) {
-		return fileConfiguration.getDouble(path);
+	public void set(String path, Object value) {
+		fileConfiguration.set(path, value);
 	}
 }

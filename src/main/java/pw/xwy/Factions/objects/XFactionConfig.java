@@ -6,16 +6,23 @@ import pw.xwy.Factions.utility.Configurations.Config;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
+
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
 
 public class XFactionConfig {
 	
-	public FileConfiguration fileConfiguration;
+	private FileConfiguration fileConfiguration;
 	private File file;
 	
-	public XFactionConfig(String uuid) {
+	XFactionConfig(String uuid) {
 		File factionData = Config.factiondata;
 		
 		file = new File(factionData, File.separator + uuid + ".yml");
@@ -34,7 +41,7 @@ public class XFactionConfig {
 			fileConfiguration.createSection("others");
 			set("others.allies", new ArrayList<>());
 			set("others.claim", new ArrayList<String>());
-			set("others.home", "null");
+			set("others.home", new HashMap<>());
 			fileConfiguration.createSection("ranks");
 			set("ranks.players", new ArrayList<String>());
 			set("ranks.list", new ArrayList<String>());
@@ -47,11 +54,7 @@ public class XFactionConfig {
 		}
 	}
 	
-	public void set(String path, Object value) {
-		fileConfiguration.set(path, value);
-	}
-	
-	public XFactionConfig(String id, String color, String name) {
+	XFactionConfig(String id, String color, String name) {
 		File factionData = Config.factiondata;
 		
 		file = new File(factionData, File.separator + id + ".yml");
@@ -72,7 +75,7 @@ public class XFactionConfig {
 		}
 	}
 	
-	public XFactionConfig(XFaction faction) {
+	XFactionConfig(XFaction faction) {
 		File factionData = Config.factiondata;
 		
 		file = new File(factionData, File.separator + faction.getName() + ".yml");
@@ -91,7 +94,7 @@ public class XFactionConfig {
 			fileConfiguration.createSection("others");
 			set("others.allies", new ArrayList<String>());
 			set("others.claim", new ArrayList<String>());
-			set("others.home", "null");
+			set("others.home", new HashMap<>());
 			
 			
 			fileConfiguration.createSection("permissions");
@@ -103,6 +106,78 @@ public class XFactionConfig {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public double getBalance() {
+		return getDouble("info.balance");
+	}
+	
+	public List<String> getClaim() {
+		return getStringList("others.claim");
+	}
+	
+	public String getColor() {
+		return getString("info.color");
+	}
+	
+	public Double getDouble(String path) {
+		return fileConfiguration.getDouble(path);
+	}
+	
+	public Map<String, Object> getHome() {
+		return getString("others.home");
+	}
+	
+	public String getLeader() {
+		return getString("info.leader");
+	}
+	
+	public String getName() {
+		return getString("info.name");
+	}
+	
+	public List<String> getPlayerRanks() {
+		return getStringList("ranks.players");
+	}
+	
+	public Double getPower() {
+		return getDouble("info.power");
+	}
+	
+	public List<String> getRankList() {
+		return getStringList("ranks.list");
+	}
+	
+	public List<String> getRankPermissions() {
+		return getStringList("ranks.permissions");
+	}
+	
+	public String getString(String path) {
+		return fileConfiguration.getString(path);
+	}
+	
+	public List<String> getStringList(String path) {
+		return fileConfiguration.getStringList(path);
+	}
+	
+	public UUID getUUID() {
+		return UUID.fromString(getString("info.uuid"));
+	}
+	
+	public boolean hasHome() {
+		return !getString("others.home").equalsIgnoreCase("null");
+	}
+	
+	public boolean hasLand() {
+		return !getString("others.claim").equalsIgnoreCase("noclaim");
+	}
+	
+	public boolean isSystem() {
+		return fileConfiguration.getBoolean("info.systemFac");
+	}
+	
+	public void remove() {
+		file.delete();
 	}
 	
 	public void save(XFaction xFaction) {
@@ -123,7 +198,7 @@ public class XFactionConfig {
 			set("ranks.players", xFaction.getPlayersList());
 			set("ranks.list", xFaction.getRanksStringList());
 		}
-		set("info.name",xFaction.getName());
+		set("info.name", xFaction.getName());
 		set("info.color", xFaction.getColor());
 		set("others.claim", xFaction.getClaimStrings());
 		
@@ -135,82 +210,14 @@ public class XFactionConfig {
 		}
 	}
 	
-	public boolean isSystem() {
-		return fileConfiguration.getBoolean("info.systemFac");
-	}
-	
 	public void saveRanks(XFaction faction) {
 		for (XRank rank : faction.ranks) {
 			rank.save();
 		}
 	}
 	
-	public String getName() {
-		return getString("info.name");
-	}
-	
-	public String getString(String path) {
-		return fileConfiguration.getString(path);
-	}
-	
-	public UUID getUUID() {
-		return UUID.fromString(getString("info.uuid"));
-	}
-	
-	public Double getPower() {
-		return getDouble("info.power");
-	}
-	
-	public Double getDouble(String path) {
-		return fileConfiguration.getDouble(path);
-	}
-	
-	public String getLeader() {
-		return getString("info.leader");
-	}
-	
-	public boolean hasLand() {
-		return !getString("others.claim").equalsIgnoreCase("noclaim");
-	}
-	
-	public boolean hasHome() {
-		return !getString("others.home").equalsIgnoreCase("null");
-	}
-	
-	public String getHome() {
-		return getString("others.home");
-	}
-	
-	public List<String> getClaim() {
-		return getStringList("others.claim");
-	}
-	
-	public List<String> getStringList(String path) {
-		return fileConfiguration.getStringList(path);
-	}
-	
-	public String getColor() {
-		return getString("info.color");
-	}
-	
-	public List<String> getRankList() {
-		return getStringList("ranks.list");
-	}
-	
-	public List<String> getRankPermissions() {
-		return getStringList("ranks.permissions");
-	}
-	
-	public List<String> getPlayerRanks() {
-		return getStringList("ranks.players");
-	}
-	
-	public double getBalance() {
-		return getDouble("info.balance");
-	}
-	
-	public void remove() {
-		file.delete();
+	public void set(String path, Object value) {
+		fileConfiguration.set(path, value);
 	}
 }
 

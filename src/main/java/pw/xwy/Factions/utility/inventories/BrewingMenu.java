@@ -9,6 +9,15 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.enums.sell.Brewing;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class BrewingMenu {
 	
 	private static Inventory inv = Bukkit.createInventory(null, 18, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");

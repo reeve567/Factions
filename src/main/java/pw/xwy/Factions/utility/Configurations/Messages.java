@@ -17,6 +17,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Messages {
 	
 	private static File configF;
@@ -40,6 +49,150 @@ public class Messages {
 	private static List<String> allyRequestRecieved;
 	private static List<String> allyRequestAccepted;
 	
+	private static List<String> colorConv(List<String> s) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String st : s) {
+			temp.add(StringUtility.conv(st));
+		}
+		return convGeneralPlaceHolders(temp);
+	}
+	
+	public static List<String> convGeneralPlaceHolders(List<String> strings) {
+		XFactionsCore core = XFactionsCore.getXFactionsCore();
+		List<String> st = new ArrayList<>();
+		for (String s : strings) {
+			s = s.replace("<plugin-name>", core.getDescription().getFullName());
+			s = s.replace("<plugin-version>", core.getDescription().getVersion());
+			s = s.replace("<players-online-total>", String.valueOf(Bukkit.getOnlinePlayers().size()));
+			st.add(s);
+		}
+		return st;
+	}
+	
+	private static void createConfig() {
+		
+		configF = new File(xFactionsCore.getDataFolder(), "messages.yml");
+		
+		config = new YamlConfiguration();
+		
+		if (!configF.exists()) {
+			configF.getParentFile().mkdirs();
+			xFactionsCore.saveResource("messages.yml", false);
+		}
+		
+		try {
+			config.load(configF);
+		} catch (InvalidConfigurationException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	public static List<String> getAllyRequest(XFaction faction) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : allyRequest) {
+			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static List<String> getAllyRequestAccepted(XFaction faction) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : allyRequestAccepted) {
+			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static List<String> getAllyRequestRecieved(XFaction faction) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : allyRequestRecieved) {
+			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static List<String> getCommandHelpFormat(SubCommand command) {
+		List<String> st = commandHelpFormat;
+		List<String> temp = new ArrayList<>();
+		for (String s : st) {
+			s = s.replace("<sub-command>", command.command);
+			s = s.replace("<args>", command.help);
+			s = s.replace("<description>", command.help1);
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static List<String> getFooter() {
+		return colorConv(footer);
+	}
+	
+	public static List<String> getHeader() {
+		return colorConv(header);
+	}
+	
+	public static List<String> getHelpMenuExtra(int page, int maxpage) {
+		List<String> temp = new ArrayList<>();
+		for (String s : helpMenuExtra) {
+			s = s.replace("<page>", String.valueOf(page));
+			s = s.replace("<total-pages>", String.valueOf(maxpage));
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static List<String> getHelpMenuExtraBottom(int page, int maxPage) {
+		List<String> temp = new ArrayList<>();
+		for (String s : helpMenuExtraBottom) {
+			s = s.replace("<page>", String.valueOf(page));
+			s = s.replace("<total-pages>", String.valueOf(maxPage));
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static String getMapFinalFooter() {
+		return StringUtility.conv(mapFinalFooter);
+	}
+	
+	public static String getMapHeader() {
+		return StringUtility.conv(mapHeader);
+	}
+	
+	public static String getMapMidFooter() {
+		return StringUtility.conv(mapMidFooter);
+	}
+	
+	public static List<String> getWhoList(XRank rank) {
+		List<String> temp = new ArrayList<>();
+		for (String s : whoList) {
+			s = s.replace("<faction-group-name>", rank.properName());
+			s = s.replace("<faction-group-members>", rank.memberString());
+			temp.add(s);
+		}
+		return colorConv(temp);
+	}
+	
+	public static List<String> getWhoSender() {
+		return colorConv(whoSender);
+	}
+	
+	public static List<String> getWhoSystem() {
+		return colorConv(whoSystem);
+	}
+	
+	public static List<String> getWhoTarget() {
+		return colorConv(whoTarget);
+	}
+	
+	public static List<String> getWhoTop() {
+		return colorConv(whoTop);
+	}
 	
 	static void loadConfig() {
 		createConfig();
@@ -64,136 +217,6 @@ public class Messages {
 		
 	}
 	
-	private static void createConfig() {
-		
-		configF = new File(xFactionsCore.getDataFolder(), "messages.yml");
-		
-		config = new YamlConfiguration();
-		
-		if (!configF.exists()) {
-			configF.getParentFile().mkdirs();
-			xFactionsCore.saveResource("messages.yml", false);
-		}
-		
-		try {
-			config.load(configF);
-		} catch (InvalidConfigurationException | IOException e) {
-			e.printStackTrace();
-		}
-		
-		
-	}
-	
-	private static void saveConfig() {
-		try {
-			config.save(configF);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static List<String> getHeader() {
-		return colorConv(header);
-	}
-	
-	private static List<String> colorConv(List<String> s) {
-		ArrayList<String> temp = new ArrayList<>();
-		for (String st : s) {
-			temp.add(StringUtility.conv(st));
-		}
-		return convGeneralPlaceHolders(temp);
-	}
-	
-	public static List<String> getFooter() {
-		return colorConv(footer);
-	}
-	
-	public static List<String> getHelpMenuExtra(int page, int maxpage) {
-		List<String> temp = new ArrayList<>();
-		for (String s : helpMenuExtra) {
-			s = s.replace("<page>", String.valueOf(page));
-			s = s.replace("<total-pages>", String.valueOf(maxpage));
-			temp.add(s);
-		}
-		return colorConv(temp);
-	}
-	
-	public static List<String> getCommandHelpFormat(SubCommand command) {
-		List<String> st = commandHelpFormat;
-		List<String> temp = new ArrayList<>();
-		for (String s : st) {
-			s = s.replace("<sub-command>", command.command);
-			s = s.replace("<args>", command.help);
-			s = s.replace("<description>", command.help1);
-			temp.add(s);
-		}
-		return colorConv(temp);
-	}
-	
-	public static void sendMessages(Player p, List<String> messages) {
-		for (String s : messages) {
-			p.sendMessage(s);
-		}
-	}
-	
-	public static String getMapFinalFooter() {
-		return StringUtility.conv(mapFinalFooter);
-	}
-	
-	public static String getMapHeader() {
-		return StringUtility.conv(mapHeader);
-	}
-	
-	public static List<String> getWhoSender() {
-		return colorConv(whoSender);
-	}
-	
-	public static List<String> getWhoTarget() {
-		return colorConv(whoTarget);
-	}
-	
-	public static List<String> getHelpMenuExtraBottom(int page, int maxPage) {
-		List<String> temp = new ArrayList<>();
-		for (String s : helpMenuExtraBottom) {
-			s = s.replace("<page>", String.valueOf(page));
-			s = s.replace("<total-pages>", String.valueOf(maxPage));
-			temp.add(s);
-		}
-		return colorConv(temp);
-	}
-	
-	public static String getMapMidFooter() {
-		return StringUtility.conv(mapMidFooter);
-	}
-	
-	
-	public static List<String> getWhoList(XRank rank) {
-		List<String> temp = new ArrayList<>();
-		for (String s : whoList) {
-			s = s.replace("<faction-group-name>", rank.properName());
-			s = s.replace("<faction-group-members>", rank.memberString());
-			temp.add(s);
-		}
-		return colorConv(temp);
-	}
-	
-	public static List<String> getWhoSystem() {
-		return colorConv(whoSystem);
-	}
-	
-	public static List<String> getAllyRequest(XFaction faction) {
-		ArrayList<String> temp = new ArrayList<>();
-		for (String s : allyRequest) {
-			s = replaceFactionValues(s.replace("<ally>", faction.getName()),faction);
-			temp.add(s);
-		}
-		return colorConv(temp);
-	}
-	
-	public static List<String> getWhoTop() {
-		return colorConv(whoTop);
-	}
-	
 	public static String replaceFactionValues(String s, XFaction faction) {
 		s = s.replace("<faction-name>", faction.getName());
 		s = s.replace("<faction-desc>", faction.desc);
@@ -206,33 +229,17 @@ public class Messages {
 		return s;
 	}
 	
-	public static List<String> getAllyRequestRecieved(XFaction faction) {
-		ArrayList<String> temp = new ArrayList<>();
-		for (String s : allyRequestRecieved) {
-			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
-			temp.add(s);
+	private static void saveConfig() {
+		try {
+			config.save(configF);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return colorConv(temp);
 	}
 	
-	public static List<String> convGeneralPlaceHolders(List<String> strings) {
-		XFactionsCore core = XFactionsCore.getXFactionsCore();
-		List<String> st = new ArrayList<>();
-		for (String s : strings) {
-			s = s.replace("<plugin-name>", core.getDescription().getFullName());
-			s = s.replace("<plugin-version>", core.getDescription().getVersion());
-			s = s.replace("<players-online-total>", String.valueOf(Bukkit.getOnlinePlayers().size()));
-			st.add(s);
+	public static void sendMessages(Player p, List<String> messages) {
+		for (String s : messages) {
+			p.sendMessage(s);
 		}
-		return st;
-	}
-	
-	public static List<String> getAllyRequestAccepted(XFaction faction) {
-		ArrayList<String> temp = new ArrayList<>();
-		for (String s : allyRequestAccepted) {
-			s = replaceFactionValues(s.replace("<ally>", faction.getName()),faction);
-			temp.add(s);
-		}
-		return colorConv(temp);
 	}
 }

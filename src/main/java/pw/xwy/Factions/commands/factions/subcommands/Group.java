@@ -11,6 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Group extends SubCommand {
 	public Group() {
 		super("group", "<create/delete/set> <name value/prefix> [prefix value] [group-name]", "Allows you to create/delete permissions groups for your faction, or set their prefix.");
@@ -43,7 +52,7 @@ public class Group extends SubCommand {
 						if (!chars.contains(c)) found = true;
 					}
 					if (!found) {
-						faction.addRank(new XRank(args[2], faction.ranks.size(), faction,false));
+						faction.addRank(new XRank(args[2], faction.ranks.size(), faction, false));
 					} else {
 						p.sendMessage("asdlgja");
 					}
@@ -61,8 +70,7 @@ public class Group extends SubCommand {
 					Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
 				}
 			}
-		}
-		else {
+		} else {
 			p.sendMessage("not in faction");
 		}
 		

@@ -9,6 +9,15 @@ import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.managers.FactionManager;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class PermissionsMainMenu {
 	
 	public static Inventory get(Player p, boolean leader) {

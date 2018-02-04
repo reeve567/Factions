@@ -9,12 +9,27 @@ import pw.xwy.Factions.utility.managers.FactionManager;
 import java.util.ArrayList;
 import java.util.UUID;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * For the most part this isn't used, however it is still updated to work with things
+ */
+
+@Deprecated
 public class XPlayer {
 	
 	public XPlayerConfig playerConfig;
 	public int spawnCooldown = 0;
+	public int homeCooldown = 0;
 	public boolean canceled = false;
-	String name;
+	private String name;
 	private Player player;
 	private double power = 0.0;
 	private XFaction faction = null;
@@ -47,10 +62,6 @@ public class XPlayer {
 		}
 	}
 	
-	public double getPower() {
-		return power;
-	}
-	
 	public void addPower() {
 		int po = (int) (power * 10);
 		po += 1;
@@ -62,52 +73,12 @@ public class XPlayer {
 		
 	}
 	
-	public boolean invite(XFaction faction) {
-		if (!invites.contains(faction)) {
-			invites.add(faction);
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean revokeInvite(XFaction faction) {
-		if (invites.contains(faction)) {
-			invites.remove(faction);
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean hasInvite(XFaction faction) {
-		return invites.contains(faction);
-	}
-	
 	public ChatType getChatType() {
 		return chatType;
 	}
 	
 	public void setChatType(ChatType chatType) {
 		this.chatType = chatType;
-	}
-	
-	public void nextChatType() {
-		int num = chatType.ordinal();
-		if (++num > ChatType.TRUCE.ordinal()) {
-			num = 0;
-		}
-		chatType = ChatType.values()[num];
-	}
-	
-	public UUID getID() {
-		return player.getUniqueId();
-	}
-	
-	public Player getPlayer() {
-		return player;
-	}
-	
-	public String getName() {
-		return name;
 	}
 	
 	public XFaction getFaction() {
@@ -123,5 +94,49 @@ public class XPlayer {
 		}
 		
 		playerConfig.save();
+	}
+	
+	public UUID getID() {
+		return player.getUniqueId();
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+	
+	public double getPower() {
+		return power;
+	}
+	
+	public boolean hasInvite(XFaction faction) {
+		return invites.contains(faction);
+	}
+	
+	public boolean invite(XFaction faction) {
+		if (!invites.contains(faction)) {
+			invites.add(faction);
+			return true;
+		}
+		return false;
+	}
+	
+	public void nextChatType() {
+		int num = chatType.ordinal();
+		if (++num > ChatType.TRUCE.ordinal()) {
+			num = 0;
+		}
+		chatType = ChatType.values()[num];
+	}
+	
+	public boolean revokeInvite(XFaction faction) {
+		if (invites.contains(faction)) {
+			invites.remove(faction);
+			return true;
+		}
+		return false;
 	}
 }

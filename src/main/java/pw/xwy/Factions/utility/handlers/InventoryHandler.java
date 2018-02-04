@@ -13,11 +13,22 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.enums.sell.Sell;
 import pw.xwy.Factions.objects.Glow;
+import pw.xwy.Factions.objects.ItemBuilder;
 import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.ItemUtil;
 import pw.xwy.Factions.utility.StringUtil;
 import pw.xwy.Factions.utility.inventories.*;
 import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.Factions.utility.managers.PlayerManager;
+
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
 
 public class InventoryHandler implements Listener {
 	
@@ -26,6 +37,57 @@ public class InventoryHandler implements Listener {
 	public InventoryHandler(Economy eco) {
 		
 		this.eco = eco;
+	}
+	
+	private boolean acCheck(InventoryAction a, InventoryClickEvent e) {
+		
+		return e.getAction().equals(a);
+	}
+	
+	private boolean balCheck(Player p, Double price) {
+		
+		return (eco.getBalance(p) - price) >= 0;
+	}
+	
+	private void balRem(Player p, Double price) {
+		
+		eco.withdrawPlayer(p, price);
+	}
+	
+	private int[] calcTotal(InventoryClickEvent e) {
+		int price = 0;
+		int total = 0;
+		int amount = 0;
+		for (int i = 0; i < 27; i++) {
+			for (Sell s : Sell.values()) {
+				if (e.getInventory() != null && e.getInventory().getItem(i) != null && s.getMaterial().equals(e.getInventory().getItem(i).getType())) {
+					price = (int) (s.getPrice() * e.getInventory().getItem(i).getAmount());
+					amount += e.getInventory().getItem(i).getAmount();
+				}
+			}
+			total += price;
+			price = 0;
+		}
+		return new int[]{total, amount};
+	}
+	
+	private ItemStack toggle(boolean toggled, ItemStack it, XRank rank) {
+		ItemBuilder builder = new ItemBuilder(it);
+		String s = it.getItemMeta().getDisplayName().substring(4);
+		String prefix;
+		if (toggled) {
+			builder.removeGlow();
+			prefix = "&c&l";
+			rank.removePerm(PermissionsSubMenu.perms.get(s));
+			
+		} else {
+			builder.addGlow();
+			prefix = "&a&l";
+			rank.addPerm(PermissionsSubMenu.perms.get(s));
+			
+		}
+		it = builder.setName(prefix + s).get();
+		return it;
 	}
 	
 	@EventHandler
@@ -312,12 +374,14 @@ public class InventoryHandler implements Listener {
 				ItemStack item = e.getCurrentItem();
 				if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
 					boolean toggled = item.containsEnchantment(new Glow(999));
-					String rank = e.getInventory().getName().substring(13, e.getInventory().getName().length());
+					String rank = e.getInventory().getName().substring(14);
 					Player player = (Player) e.getWhoClicked();
-					if (FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRole(player.getUniqueId()).hasPerm("ManagePerms", true)) {
-						XRank rank1 = FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRank(rank);
+					player.sendMessage(rank);
+					if (FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRole(player.getUniqueId()).hasPerm("ManagePerms", true) || PlayerManager.getPlayerFaction(player).isLeader(player)) {
+						XRank rank1 = FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRole(rank);
 						if (rank1 != null) {
-						
+							player.sendMessage(rank + " - " + toggled + " - ");
+							e.setCurrentItem(toggle(toggled, e.getCurrentItem(), rank1));
 						}
 					}
 				}
@@ -327,44 +391,12 @@ public class InventoryHandler implements Listener {
 			if (e.getAction() != InventoryAction.NOTHING && e.getCurrentItem() != null) {
 				if (e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName() && e.getCurrentItem().getDurability() == 1) {
 					Player p = (Player) e.getWhoClicked();
-					
-					p.sendMessage("yo you clicked " + e.getCurrentItem().getItemMeta().getDisplayName());
-					
+					String group = e.getCurrentItem().getItemMeta().getDisplayName().substring(10);
+					p.sendMessage("yo you clicked " + group);
+					p.closeInventory();
+					p.openInventory(PermissionsSubMenu.get(p, PlayerManager.getPlayerFaction(p).getRole(group)));
 				}
 			}
 		}
 	}
-	
-	private boolean balCheck(Player p, Double price) {
-		
-		return (eco.getBalance(p) - price) >= 0;
-	}
-	
-	private boolean acCheck(InventoryAction a, InventoryClickEvent e) {
-		
-		return e.getAction().equals(a);
-	}
-	
-	private int[] calcTotal(InventoryClickEvent e) {
-		int price = 0;
-		int total = 0;
-		int amount = 0;
-		for (int i = 0; i < 27; i++) {
-			for (Sell s : Sell.values()) {
-				if (e.getInventory() != null && e.getInventory().getItem(i) != null && s.getMaterial().equals(e.getInventory().getItem(i).getType())) {
-					price = (int) (s.getPrice() * e.getInventory().getItem(i).getAmount());
-					amount += e.getInventory().getItem(i).getAmount();
-				}
-			}
-			total += price;
-			price = 0;
-		}
-		return new int[]{total, amount};
-	}
-	
-	private void balRem(Player p, Double price) {
-		
-		eco.withdrawPlayer(p, price);
-	}
-	
 }

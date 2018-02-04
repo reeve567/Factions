@@ -8,6 +8,15 @@ import org.bukkit.event.Listener;
 import pw.xwy.Factions.utility.StringUtil;
 import pw.xwy.Factions.utility.inventories.*;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class CitizensHandler implements Listener {
 	
 	@EventHandler

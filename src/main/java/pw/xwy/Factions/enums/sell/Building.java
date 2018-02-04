@@ -9,6 +9,15 @@ import pw.xwy.Factions.utility.ItemNames;
 import java.util.ArrayList;
 import java.util.List;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public enum Building {
 	STONE(3, Material.STONE),
 	GRANITE(3, Material.STONE, 1),
@@ -162,18 +171,18 @@ public enum Building {
 	REDSMOOTHSANDSTONE(3, Material.RED_SANDSTONE, 2),
 	REDSANDSTONESTAIRS(3, Material.RED_SANDSTONE_STAIRS),
 	REDSANDSTONESLAB(3, Material.STONE_SLAB2);
-
-
+	
+	
 	private final double price;
 	private final Material material;
 	private final ItemStack item;
 	private final int durability;
-
+	
 	Building(int pr, Material mat) {
-
+		
 		this.price = pr;
 		this.material = mat;
-
+		
 		ItemStack it = new ItemStack(mat);
 		ItemMeta im = it.getItemMeta();
 		im.setDisplayName(ChatColor.GREEN + ItemNames.get(String.valueOf(it.getTypeId())));
@@ -181,17 +190,17 @@ public enum Building {
 		lores.add(ChatColor.translateAlternateColorCodes('&', "&a$&2" + pr));
 		im.setLore(lores);
 		it.setItemMeta(im);
-
-
+		
+		
 		this.item = it;
 		this.durability = 0;
 	}
-
+	
 	Building(int pr, Material mat, int dur) {
-
+		
 		this.price = pr;
 		this.material = mat;
-
+		
 		ItemStack it = new ItemStack(mat, 1, (short) dur);
 		ItemMeta im = it.getItemMeta();
 		im.setDisplayName(ChatColor.GREEN + ItemNames.get(it.getTypeId() + ":" + dur));
@@ -199,29 +208,29 @@ public enum Building {
 		lores.add(ChatColor.GREEN + "$" + ChatColor.DARK_GREEN + pr);
 		im.setLore(lores);
 		it.setItemMeta(im);
-
-
+		
+		
 		this.item = it;
 		this.durability = dur;
 	}
-
-	public double getPrice() {
-
-		return price;
-	}
-
+	
 	public int getDurability() {
-
+		
 		return durability;
 	}
-
+	
 	public ItemStack getItem() {
-
+		
 		return item;
 	}
-
+	
 	public Material getMaterial() {
-
+		
 		return material;
+	}
+	
+	public double getPrice() {
+		
+		return price;
 	}
 }

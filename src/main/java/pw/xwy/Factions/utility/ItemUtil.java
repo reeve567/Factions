@@ -10,6 +10,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class ItemUtil {
 	
 	private static ItemStack next = new ItemStack(Material.ARROW);
@@ -18,14 +27,6 @@ public class ItemUtil {
 	static {
 		next = ItemUtil.changeName(next, "&aNext Page", true);
 		previous = ItemUtil.changeName(previous, "&cPrevious Page", true);
-	}
-	
-	public static ItemStack changeName(ItemStack is, String name, boolean trans) {
-		ItemMeta meta = is.getItemMeta();
-		if (trans) meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
-		else meta.setDisplayName(name);
-		is.setItemMeta(meta);
-		return is;
 	}
 	
 	public static ItemStack addLore(ItemStack itemStack, String lore) {
@@ -42,12 +43,12 @@ public class ItemUtil {
 		return itemStack;
 	}
 	
-	public static void setLore(ItemStack itemStack, String lore) {
-		List<String> lores = new ArrayList<>();
-		lores.add(lore);
-		ItemMeta im = itemStack.getItemMeta();
-		im.setLore(lores);
-		itemStack.setItemMeta(im);
+	public static ItemStack changeName(ItemStack is, String name, boolean trans) {
+		ItemMeta meta = is.getItemMeta();
+		if (trans) meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
+		else meta.setDisplayName(name);
+		is.setItemMeta(meta);
+		return is;
 	}
 	
 	public static ItemStack next() {
@@ -56,5 +57,13 @@ public class ItemUtil {
 	
 	public static ItemStack previous() {
 		return previous;
+	}
+	
+	public static void setLore(ItemStack itemStack, String lore) {
+		List<String> lores = new ArrayList<>();
+		lores.add(lore);
+		ItemMeta im = itemStack.getItemMeta();
+		im.setLore(lores);
+		itemStack.setItemMeta(im);
 	}
 }

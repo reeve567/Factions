@@ -8,22 +8,23 @@ import pw.xwy.Factions.utility.StringUtility;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class ClaimManager {
 	
 	public static HashMap<Chunk, XFaction> chunkMap = new HashMap<>();
 	
 	public static HashMap<XFaction, ArrayList<Chunk>> factionMap = new HashMap<>();
 	
-	public static boolean isClaimed(Chunk c) {
-		return chunkMap.get(c) != null;
-	}
-	
-	public static void removeChunks(XFaction f) {
-		if (factionMap.containsKey(f)) {
-			for (Chunk c : factionMap.get(f)) {
-				chunkMap.remove(c);
-			}
-		}
+	public static XFaction getChunk(Chunk c) {
+		return chunkMap.get(c);
 	}
 	
 	public static String getMessage(Chunk c, Player p) {
@@ -41,8 +42,16 @@ public class ClaimManager {
 		
 	}
 	
-	public static XFaction getChunk(Chunk c) {
-		return chunkMap.get(c);
+	public static boolean isClaimed(Chunk c) {
+		return chunkMap.get(c) != null;
+	}
+	
+	public static void removeChunks(XFaction f) {
+		if (factionMap.containsKey(f)) {
+			for (Chunk c : factionMap.get(f)) {
+				chunkMap.remove(c);
+			}
+		}
 	}
 	
 }

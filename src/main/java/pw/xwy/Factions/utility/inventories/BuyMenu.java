@@ -9,6 +9,15 @@ import org.bukkit.inventory.meta.ItemMeta;
 import pw.xwy.Factions.utility.ItemUtil;
 import pw.xwy.Factions.utility.StringUtil;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class BuyMenu {
 	
 	public static void open(Player player, ItemStack it, ItemMeta im, double price) {

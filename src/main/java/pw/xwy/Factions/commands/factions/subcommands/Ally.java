@@ -6,6 +6,15 @@ import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.FactionManager;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Ally extends SubCommand {
 	public Ally() {
 		super("ally", "<faction>", "Allows you to send another faction an ally request.");
@@ -14,11 +23,10 @@ public class Ally extends SubCommand {
 	@Override
 	public void run(Player p, String[] args) {
 		XFaction faction = FactionManager.getPlayerUUIDFaction(p.getUniqueId());
-		if (faction.getRole(p.getUniqueId()).hasPerm("ally",true)) {
+		if (faction.getRole(p.getUniqueId()).hasPerm("ally", true)) {
 			if (args.length < 2) {
-				Messages.sendMessages(p,Messages.getCommandHelpFormat(this));
-			}
-			else {
+				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+			} else {
 				XFaction faction1 = FactionManager.getFactionByName(args[1]);
 				
 				if (faction1 != null) {
@@ -26,20 +34,17 @@ public class Ally extends SubCommand {
 						if (faction.allyRequests.contains(faction1)) {
 							//accept ally request from faction1
 							faction.addAlly(faction1);
-						}
-						else {
+						} else {
 							//send ally request
 							faction.sendAllyRequest(faction1);
-							Messages.sendMessages(p,Messages.getAllyRequestRecieved(faction1));
+							Messages.sendMessages(p, Messages.getAllyRequestRecieved(faction1));
 						}
 						
-					}
-					else {
+					} else {
 						//already ally
 						
 					}
-				}
-				else {
+				} else {
 					//not a faction
 					
 				}

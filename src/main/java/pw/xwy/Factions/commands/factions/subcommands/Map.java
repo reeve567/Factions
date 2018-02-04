@@ -12,14 +12,50 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.HashMap;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Map extends SubCommand {
 	public Map() {
 		super("map", "", "Displays a map showing the claimed land in the area.");
 	}
 	
+	public static String getCardinalDirection(Player player) {
+		double rotation = (player.getLocation().getYaw() - 180) % 360;
+		if (rotation < 0) {
+			rotation += 360.0;
+		}
+		if (0 <= rotation && rotation < 22.5) {
+			return "N";
+		} else if (22.5 <= rotation && rotation < 67.5) {
+			return "NE";
+		} else if (67.5 <= rotation && rotation < 112.5) {
+			return "E";
+		} else if (112.5 <= rotation && rotation < 157.5) {
+			return "SE";
+		} else if (157.5 <= rotation && rotation < 202.5) {
+			return "S";
+		} else if (202.5 <= rotation && rotation < 247.5) {
+			return "SW";
+		} else if (247.5 <= rotation && rotation < 292.5) {
+			return "W";
+		} else if (292.5 <= rotation && rotation < 337.5) {
+			return "NW";
+		} else if (337.5 <= rotation && rotation < 360.0) {
+			return "N";
+		} else {
+			return null;
+		}
+	}
+	
 	@Override
 	public void run(Player p, String[] args) {
-		
 		String top = "&6\\N/";
 		String mid = "&6W+E";
 		String bot = "&6/S\\";
@@ -93,11 +129,11 @@ public class Map extends SubCommand {
 			p.sendMessage(StringUtility.conv(row));
 		}
 		XFaction xFaction = PlayerManager.getPlayerFaction(p);
-		if (key.keySet().contains(xFaction)) {
-			p.sendMessage(StringUtility.conv("&aYour faction: $"));
-		}
 		if (key.keySet().size() > 0) {
 			p.sendMessage(Messages.getMapMidFooter());
+			if (key.keySet().contains(xFaction)) {
+				p.sendMessage(StringUtility.conv("&aYour faction: $"));
+			}
 			for (XFaction faction : key.keySet()) {
 				if (!faction.equals(xFaction)) {
 					p.sendMessage(StringUtility.conv("&" + faction.getColor() + faction.getName() + ": " + key.get(faction)));
@@ -105,33 +141,5 @@ public class Map extends SubCommand {
 			}
 		}
 		p.sendMessage(Messages.getMapFinalFooter());
-	}
-	
-	public static String getCardinalDirection(Player player) {
-		double rotation = (player.getLocation().getYaw() - 180) % 360;
-		if (rotation < 0) {
-			rotation += 360.0;
-		}
-		if (0 <= rotation && rotation < 22.5) {
-			return "N";
-		} else if (22.5 <= rotation && rotation < 67.5) {
-			return "NE";
-		} else if (67.5 <= rotation && rotation < 112.5) {
-			return "E";
-		} else if (112.5 <= rotation && rotation < 157.5) {
-			return "SE";
-		} else if (157.5 <= rotation && rotation < 202.5) {
-			return "S";
-		} else if (202.5 <= rotation && rotation < 247.5) {
-			return "SW";
-		} else if (247.5 <= rotation && rotation < 292.5) {
-			return "W";
-		} else if (292.5 <= rotation && rotation < 337.5) {
-			return "NW";
-		} else if (337.5 <= rotation && rotation < 360.0) {
-			return "N";
-		} else {
-			return null;
-		}
 	}
 }

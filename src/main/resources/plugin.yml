@@ -5,5 +5,6 @@ depend: [Vault]
 author: Xwy
 commands:
   f:
+  ftop:
   faction:
   factions:

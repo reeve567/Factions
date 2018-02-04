@@ -6,6 +6,8 @@ creation-price: 100
 #Should we use permissions to allow access to player commands?
 use-permissions: true
 
+home-warmup-time: 10.0
+
 #What should the most power a player can have be?
 max-power: 30
 #What should the minimum be?

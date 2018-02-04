@@ -8,6 +8,15 @@ import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Join extends SubCommand {
 	public Join() {
 		super("join", "<faction>", "Accept an invite with this command, and join a faction.");

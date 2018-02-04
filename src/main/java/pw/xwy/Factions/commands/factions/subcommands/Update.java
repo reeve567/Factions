@@ -12,44 +12,33 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class Update extends SubCommand {
 	public Update() {
 		super("update", "", "gets the version saved in the cloud", true);
 	}
 	
-	@Override
-	public void run(final Player p, String[] args) {
-		Thread download = new Thread(){
-			public void run(){
-				
-				URL url= null;
-				try {
-					url = new URL("https://drive.google.com/uc?export=download&id=142E7FitZxBAJ0oVupUaXRVzwWiN0Lm_j");
-				} catch (MalformedURLException e) {
-					p.sendMessage(ChatColor.RED + "Could not get file");
-				}
-				String localFilename= System.getProperty("user.dir") + "/plugins/Factions-BETA.jar"; //needs to be replaced with local file path
-				try {
-					downloadFromUrl(url, localFilename,p);
-				} catch (IOException e) {
-					p.sendMessage(ChatColor.RED + "Could not get file");
-				}
-			}
-		};
-		download.start();
-	}
-	
-	private void downloadFromUrl(URL url, String localFilename,CommandSender sender) throws IOException {
+	private void downloadFromUrl(URL url, String localFilename, CommandSender sender) throws IOException {
 		InputStream is = null;
 		FileOutputStream fos = null;
 		
 		try {
-			URLConnection urlConn = url.openConnection();//connect
-			
-			is = urlConn.getInputStream();               //get connection inputstream
-			fos = new FileOutputStream(localFilename);   //open outputstream to local file
-			
-			byte[] buffer = new byte[4096];              //declare 4KB buffer
+			//connect
+			URLConnection urlConn = url.openConnection();
+			//get connection inputstream
+			is = urlConn.getInputStream();
+			//open outputstream to local file
+			fos = new FileOutputStream(localFilename);
+			//declare 4KB buffer
+			byte[] buffer = new byte[4096];
 			int len;
 			
 			//while we have availble data, continue downloading and storing to local file
@@ -68,5 +57,28 @@ public class Update extends SubCommand {
 				}
 			}
 		}
+	}
+	
+	@Override
+	public void run(final Player p, String[] args) {
+		Thread download = new Thread() {
+			public void run() {
+				
+				URL url = null;
+				try {
+					url = new URL("https://drive.google.com/uc?export=download&id=142E7FitZxBAJ0oVupUaXRVzwWiN0Lm_j");
+				} catch (MalformedURLException e) {
+					p.sendMessage(ChatColor.RED + "Could not get file");
+				}
+				String localFilename = System.getProperty("user.dir") + "/plugins/Factions-BETA.jar"; //needs to be replaced with local file path
+				try {
+					assert url != null;
+					downloadFromUrl(url, localFilename, p);
+				} catch (IOException e) {
+					p.sendMessage(ChatColor.RED + "Could not get file");
+				}
+			}
+		};
+		download.start();
 	}
 }

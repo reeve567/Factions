@@ -7,6 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
+
 public class XRank {
 	
 	public int order;
@@ -41,9 +50,8 @@ public class XRank {
 		name = "Recruit";
 	}
 	
-	public void save() {
-		setUsers();
-		setPerms();
+	private void setPerms() {
+		config.set("ranks.rank." + name + ".perms", perms);
 	}
 	
 	private void setUsers() {
@@ -54,34 +62,16 @@ public class XRank {
 		config.set("ranks.rank." + name + ".members", users);
 	}
 	
-	private void setPerms() {
-		config.set("ranks.rank." + name + ".perms", perms);
-	}
-	
-	public boolean isIn(UUID uuid) {
-		return users.contains(uuid);
+	private void updateLower() {
+		for (XRank rank : faction.ranks) {
+			if (rank.order > order) {
+				lower.add(rank);
+			}
+		}
 	}
 	
 	public void add(UUID uuid) {
 		users.add(uuid);
-	}
-	
-	public String properName() {
-		char[] chars = name.toLowerCase().toCharArray();
-		chars[0] = String.valueOf(chars[0]).toUpperCase().charAt(0);
-		return String.valueOf(chars);
-	}
-	
-	public String memberString() {
-		String s = "";
-		for (UUID id : users) {
-			if (users.indexOf(id) != users.size() - 1) {
-				s += PlayerManager.getOfflinePlayer(id).getName() + ", ";
-			} else {
-				s += PlayerManager.getOfflinePlayer(id).getName();
-			}
-		}
-		return s;
 	}
 	
 	public boolean hasPerm(String s, boolean deep) {
@@ -98,16 +88,43 @@ public class XRank {
 		return perms.contains(s);
 	}
 	
-	private void updateLower() {
-		for (XRank rank : faction.ranks) {
-			if (rank.order > order) {
-				lower.add(rank);
-			}
-		}
+	public void addPerm(String s) {
+		perms.add(s);
+	}
+	
+	public void removePerm(String s) {
+		perms.remove(s);
+	}
+	
+	public boolean isIn(UUID uuid) {
+		return users.contains(uuid);
 	}
 	
 	public boolean isIn(Player p) {
 		return users.contains(p.getUniqueId());
+	}
+	
+	public String memberString() {
+		String s = "";
+		for (UUID id : users) {
+			if (users.indexOf(id) != users.size() - 1) {
+				s += PlayerManager.getOfflinePlayer(id).getName() + ", ";
+			} else {
+				s += PlayerManager.getOfflinePlayer(id).getName();
+			}
+		}
+		return s;
+	}
+	
+	public String properName() {
+		char[] chars = name.toLowerCase().toCharArray();
+		chars[0] = String.valueOf(chars[0]).toUpperCase().charAt(0);
+		return String.valueOf(chars);
+	}
+	
+	public void save() {
+		setUsers();
+		setPerms();
 	}
 	
 }

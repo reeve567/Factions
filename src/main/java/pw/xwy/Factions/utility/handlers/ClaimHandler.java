@@ -1,23 +1,29 @@
 package pw.xwy.Factions.utility.handlers;
 
 import org.bukkit.Material;
-import org.bukkit.block.CreatureSpawner;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import pw.xwy.Factions.enums.sell.Spawner;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.managers.ClaimManager;
-import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
-import java.util.ArrayList;
+////////////////////////////////////////////////////////////////////////////////
+// File copyright last updated on: 2/3/18 9:22 AM                              /
+//                                                                             /
+// Copyright (c) 2018.                                                         /
+// All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
+//                                                                             /
+//                                                                             /
+////////////////////////////////////////////////////////////////////////////////
 
 public class ClaimHandler implements Listener {
+	
+	private boolean noPerms(String s, Player p) {
+		return !PlayerManager.getPlayerFaction(p).getRole(p.getUniqueId()).hasPerm(s, true) && !PlayerManager.getPlayerFaction(p).getLeader().equals(p.getUniqueId());
+	}
 	
 	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
@@ -25,7 +31,7 @@ public class ClaimHandler implements Listener {
 		if (ClaimManager.isClaimed(e.getBlock().getChunk())) {
 			if (!PlayerManager.getPlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
 				e.setCancelled(true);
-			} else if (!FactionManager.getPlayerUUIDFaction(pl.getUniqueId()).getRole(pl.getUniqueId()).hasPerm("break", true)) {
+			} else if (noPerms("break", e.getPlayer())) {
 				e.setCancelled(true);
 			}
 		}
@@ -33,13 +39,8 @@ public class ClaimHandler implements Listener {
 			XFaction faction = ClaimManager.getChunk(e.getBlock().getChunk());
 			if (faction != null) {
 				if (e.getBlock().getType() == Material.MOB_SPAWNER) {
-					CreatureSpawner creature = (CreatureSpawner) e.getBlock();
-					if (Spawners.getInstance().arrayList.contains(creature.getSpawnedType())) {
-						faction.spawners.put(creature.getSpawnedType(),faction.spawners.get(creature.getSpawnedType()) - 1);
-						faction.setValue(faction.getValue() - Spawners.getInstance().getPrice(creature.getSpawnedType()));
-					}
+					faction.claim.getChunk(e.getBlock().getChunk()).calculateValue();
 				}
-				
 			}
 		}
 	}
@@ -50,7 +51,7 @@ public class ClaimHandler implements Listener {
 		if (ClaimManager.isClaimed(e.getBlock().getChunk())) {
 			if (!PlayerManager.getPlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
 				e.setCancelled(true);
-			} else if (!FactionManager.getPlayerUUIDFaction(pl.getUniqueId()).getRole(pl.getUniqueId()).hasPerm("place", true)) {
+			} else if (noPerms("place", e.getPlayer())) {
 				e.setCancelled(true);
 			}
 		}
@@ -58,13 +59,9 @@ public class ClaimHandler implements Listener {
 			XFaction faction = ClaimManager.getChunk(e.getBlock().getChunk());
 			if (faction != null) {
 				if (e.getBlockPlaced().getType() == Material.MOB_SPAWNER) {
-					CreatureSpawner creature = (CreatureSpawner) e.getBlock();
-					if (Spawners.getInstance().arrayList.contains(creature.getSpawnedType())) {
-						faction.spawners.put(creature.getSpawnedType(),faction.spawners.get(creature.getSpawnedType()) + 1);
-						faction.setValue(faction.getValue() + Spawners.getInstance().getPrice(creature.getSpawnedType()));
-					}
+					faction.claim.getChunk(e.getBlock().getChunk()).calculateValue();
+					
 				}
-				
 			}
 		}
 	}
