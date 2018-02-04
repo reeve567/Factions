@@ -54,8 +54,10 @@ public class ChatManager implements Listener {
 				assert xFaction != null;
 				e.setCancelled(true);
 				ArrayList<UUID> recipients = new ArrayList<>(xFaction.players);
+				String pre = xFaction.isLeader(player) ? xFaction.leaderRank.prefix : xFaction.getRole(player.getUniqueId()).prefix;
+				System.out.println(pre);
 				for (UUID p : recipients) {
-					Bukkit.getPlayer(p).sendMessage(StringUtility.conv("&a[" + prefix + player.getName() + "] " + xFaction.getRole(player.getUniqueId()).prefix + " " + e.getMessage()));
+					Bukkit.getPlayer(p).sendMessage(StringUtility.conv("&a[" + prefix + player.getName() + "] " + pre + " " + e.getMessage()));
 				}
 				break;
 			case ALLY:

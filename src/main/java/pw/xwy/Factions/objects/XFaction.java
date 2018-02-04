@@ -35,6 +35,7 @@ public class XFaction {
 	public List<XRank> ranks = new ArrayList<>();
 	public ArrayList<UUID> players = new ArrayList<>();
 	public XRank recruit;
+	public XRank leaderRank;
 	public boolean open = false;
 	public String desc = "Default faction description D:";
 	public ArrayList<XFaction> allyRequests = new ArrayList<>();
@@ -57,24 +58,26 @@ public class XFaction {
 		this.name = name;
 		onlinePlayers++;
 		factionConfig = new XFactionConfig(this);
-		recruit = new XRank(this);
+		recruit = new XRank(this, false, false);
+		leaderRank = new XRank(this, true, false);
 		players.add(leader);
 	}
 	
+	//SYSTEM FACTION INITIALIZATION
 	public XFaction(String name, String color) {
 		spawnersInit();
 		this.name = name;
 		id = FactionManager.getAvailableUUID();
 		systemFac = true;
 		this.color = color;
-		factionConfig = new XFactionConfig(name, color, id.toString());
+		factionConfig = new XFactionConfig(id.toString(), color, name);
 	}
 	
 	//load from config
-	public XFaction(String facString) {
+	public XFaction(String fileName) {
 		spawnersInit();
-		System.out.println("Started loading " + facString + "...");
-		factionConfig = new XFactionConfig(facString);
+		System.out.println("Started loading " + fileName + "...");
+		factionConfig = new XFactionConfig(fileName);
 		name = factionConfig.getName();
 		id = factionConfig.getUUID();
 		
@@ -85,21 +88,22 @@ public class XFaction {
 				loadClaim(factionConfig.getClaim());
 			}
 		} else {
-			recruit = new XRank(this);
+			recruit = new XRank(this, false, true);
+			leaderRank = new XRank(this, true, true);
 			if (factionConfig.hasHome()) {
-				facString = factionConfig.getHome();
+				String homeString = factionConfig.getHome();
 				
-				String world = facString.substring(0, facString.indexOf(" "));
-				facString = facString.replaceFirst(world + " ", "");
-				double x = Double.parseDouble(facString.substring(0, facString.indexOf(" ")));
-				facString = facString.replaceFirst(String.valueOf(x) + " ", "");
-				double y = Double.parseDouble(facString.substring(0, facString.indexOf(" ")));
-				facString = facString.replaceFirst(String.valueOf(y) + " ", "");
-				double z = Double.parseDouble(facString.substring(0, facString.indexOf(" ")));
-				facString = facString.replaceFirst(String.valueOf(z) + " ", "");
-				float pitch = Float.parseFloat(facString.substring(0, facString.indexOf(" ")));
-				facString = facString.replaceFirst(String.valueOf(pitch), "");
-				float yaw = Float.parseFloat(facString);
+				String world = homeString.substring(0, homeString.indexOf(" "));
+				homeString = homeString.replaceFirst(world + " ", "");
+				double x = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
+				homeString = homeString.replaceFirst(String.valueOf(x) + " ", "");
+				double y = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
+				homeString = homeString.replaceFirst(String.valueOf(y) + " ", "");
+				double z = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
+				homeString = homeString.replaceFirst(String.valueOf(z) + " ", "");
+				float pitch = Float.parseFloat(homeString.substring(0, homeString.indexOf(" ")));
+				homeString = homeString.replaceFirst(String.valueOf(pitch), "");
+				float yaw = Float.parseFloat(homeString);
 				home = new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
 			}
 			
@@ -118,7 +122,7 @@ public class XFaction {
 				loadClaim(factionConfig.getClaim());
 			}
 		}
-		System.out.println("Done loading " + facString + ".");
+		System.out.println("Done loading " + fileName + ".");
 	}
 	
 	List<String> getClaimStrings() {
@@ -302,6 +306,10 @@ public class XFaction {
 	
 	public void setHome(Location home) {
 		this.home = home;
+	}
+	
+	public UUID getId() {
+		return id;
 	}
 	
 	public UUID getLeader() {

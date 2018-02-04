@@ -26,7 +26,6 @@ import java.util.List;
 public class Create extends SubCommand {
 	public Create() {
 		super("create", "<name>", "Creates a faction with the name chosen.");
-		
 	}
 	
 	private void makeFaction(Player p, String args[]) {
