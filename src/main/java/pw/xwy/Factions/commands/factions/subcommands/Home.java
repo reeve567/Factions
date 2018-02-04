@@ -26,19 +26,20 @@ public class Home extends SubCommand {
 	public void run(Player p, String[] args) {
 		XFaction faction = PlayerManager.getPlayerFaction(p);
 		if (faction != null) {
-			if (faction.hasPermission(p,"home")) {
-			
+			if (faction.hasPermission(p, "home")) {
+				
 				if (faction.getHome() != null) {
-					new HomeWarmupTask(p).runTaskTimer(XFactionsCore.getXFactionsCore(),0,2);
+					p.sendMessage("asdg");
+					new HomeWarmupTask(p).runTaskTimer(XFactionsCore.getXFactionsCore(), 0, 2);
+				} else {
+					p.sendMessage("null");
 				}
-			
+				
 			} else {
 				p.sendMessage("no permission");
 			}
-			
-			
 		} else {
-			Messages.sendMessages(p,Messages.getWhoSender());
+			Messages.sendMessages(p, Messages.getWhoSender());
 		}
 	}
 }

@@ -9,7 +9,6 @@
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/test.xml" />
       <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Fly.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Home.java" />
       <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Sethome.java" />
       <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/HomeWarmupTask.java" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
@@ -28,6 +27,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Group.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Group.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Groups.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Groups.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Help.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Help.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Home.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Home.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Invite.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Invite.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Join.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Join.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Leave.java" afterPath="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Leave.java" />
@@ -185,8 +185,8 @@
       <file leaf-file-name="Home.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Home.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="990">
-              <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+            <state relative-caret-position="845">
+              <caret line="31" column="39" lean-forward="false" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1080#1081#0" expanded="true" />
@@ -307,9 +307,9 @@
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/utility/tasks/HomeWarmupTask.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XPlayer.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/Faction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Home.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFactionConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/objects/XFaction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Home.java" />
       </list>
     </option>
   </component>
@@ -694,16 +694,15 @@
       <workItem from="1517524414692" duration="8883000" />
       <workItem from="1517601778381" duration="82000" />
       <workItem from="1517602241511" duration="16437000" />
-      <workItem from="1517749578429" duration="7747000" />
+      <workItem from="1517749578429" duration="7926000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="266091000" />
+    <option name="totallyTimeSpent" value="266270000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-13" y="-13" width="2762" height="1770" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -717,7 +716,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18351577" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20358187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20358187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21957502" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1214,8 +1213,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/pw/xwy/Factions/commands/factions/subcommands/Home.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+        <state relative-caret-position="845">
+          <caret line="31" column="39" lean-forward="false" selection-start-line="31" selection-start-column="39" selection-end-line="31" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1080#1081#0" expanded="true" />
