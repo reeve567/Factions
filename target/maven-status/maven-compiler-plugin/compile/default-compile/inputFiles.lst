@@ -14,6 +14,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\comman
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\sell\Sell.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\ChatType.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XClaim.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\DamageHandler.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\RaidingMenu.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\managers\ChatManager.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\tasks\SpawnWarmupTask.java
@@ -67,6 +68,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utilit
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Who.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\tasks\HomeWarmupTask.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Fly.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Chat.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Help.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\PermissionsMainMenu.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\managers\ClaimManager.java
@@ -74,6 +76,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utilit
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\ItemNames.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\JoinHandler.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\SellMenu.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Open.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\ClaimHandler.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\List.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\MiscMenu.java

@@ -24,6 +24,7 @@ public class XRank {
 	public ArrayList<XRank> lower = new ArrayList<>();
 	private ArrayList<String> perms = new ArrayList<>();
 	private XFactionConfig config;
+	public String prefix;
 	private XFaction faction;
 	
 	public XRank(String name, int order, XFaction faction, boolean useConfig) {

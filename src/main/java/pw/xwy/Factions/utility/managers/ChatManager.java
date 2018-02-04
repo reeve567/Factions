@@ -12,6 +12,7 @@ import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.StringUtil;
 import pw.xwy.Factions.utility.StringUtility;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Set;
 import java.util.UUID;
@@ -43,35 +44,26 @@ public class ChatManager implements Listener {
 		String prefix = "";
 		switch (chatType) {
 			case PUBLIC:
-				if (roleType != null) {
+				if (xFaction != null) {
 					e.setFormat(e.getFormat().replace("<faction>", StringUtil.chatColorConv("&8[&7" + xFaction.getName() + "&8]&r ")));
 				} else {
 					e.setFormat(e.getFormat().replace("<faction>", ""));
 				}
-				
-				
 				break;
 			case FACTION:
+				assert xFaction != null;
 				e.setCancelled(true);
-				Set<Player> recipients = Collections.emptySet();
-				for (UUID p : xFaction.players) {
-					recipients.add(Bukkit.getPlayer(p));
+				ArrayList<UUID> recipients = new ArrayList<>(xFaction.players);
+				for (UUID p : recipients) {
+					Bukkit.getPlayer(p).sendMessage(StringUtility.conv("&a[" + prefix + player.getName() + "] " + xFaction.getRole(player.getUniqueId()).prefix + " " + e.getMessage()));
 				}
-				recipients.add(Bukkit.getPlayer(xFaction.getLeader()));
-				for (Player p : recipients) {
-					p.sendMessage(StringUtility.conv("&a[" + prefix + player.getName() + "] "));
-				}
-				
 				break;
 			case ALLY:
 				e.setCancelled(true);
-			
 			case TRUCE:
 				e.setCancelled(true);
-			
 			case OFFICER:
 				e.setCancelled(true);
-			
 		}
 	}
 	

@@ -86,7 +86,7 @@ public class Create extends SubCommand {
 	public void run(Player p, String[] args) {
 		if (p.hasPermission("factions.create.system")) {
 			if (args.length < 2) {
-				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+				sendHelpMessage(p);
 			} else if (args.length == 2) {
 				makeFaction(p, args);
 			} else if (args.length == 3) {

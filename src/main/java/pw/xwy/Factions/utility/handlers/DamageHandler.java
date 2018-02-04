@@ -31,7 +31,6 @@ public class DamageHandler implements Listener {
 		}
 	}
 	
-	
 	@EventHandler
 	public void onHit(EntityDamageByEntityEvent e) {
 		if (!e.isCancelled()) {

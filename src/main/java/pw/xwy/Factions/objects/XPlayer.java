@@ -78,8 +78,21 @@ public class XPlayer {
 		return chatType;
 	}
 	
-	public void setChatType(ChatType chatType) {
+	public void getChatType(ChatType chatType) {
 		this.chatType = chatType;
+	}
+	
+	public ChatType getChatType(String s) {
+		if (s.equalsIgnoreCase("f")) {
+			return ChatType.FACTION;
+		}
+		else if (s.equalsIgnoreCase("a")) {
+			return ChatType.ALLY;
+		}
+		else if (s.equalsIgnoreCase("p")) {
+			return ChatType.PUBLIC;
+		}
+		return null;
 	}
 	
 	public XFaction getFaction() {

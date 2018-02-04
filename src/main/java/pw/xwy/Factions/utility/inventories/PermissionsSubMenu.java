@@ -42,6 +42,7 @@ public class PermissionsSubMenu {
 		perms.put("Faction fly","fly");
 		perms.put("Place blocks","place");
 		perms.put("Destroy blocks","break");
+		perms.put("Toggle faction openness","toggleOpen");
 	}
 	
 	
@@ -65,7 +66,8 @@ public class PermissionsSubMenu {
 				get("Use faction warps", "Allows using faction warps", rank, "warps"),
 				get("Faction fly", "Allows fling in your claims", rank, "fly"),
 				get("Place blocks", "Gives the ability to place blocks", rank, "place"),
-				get("Destroy blocks", "Gives the ability to break blocks", rank, "break")
+				get("Destroy blocks", "Gives the ability to break blocks", rank, "break"),
+				get("Toggle faction openness","Can toggle whether or not the faction is open to players",rank,"toggleOpen")
 		));
 		
 		int slot = 0;

@@ -1,6 +1,7 @@
 package pw.xwy.Factions.commands;
 
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -36,5 +37,9 @@ public abstract class SubCommand {
 	}
 	
 	public abstract void run(Player p, String[] args);
+	
+	public void sendHelpMessage(Player p) {
+		Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+	}
 	
 }
