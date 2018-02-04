@@ -18,10 +18,11 @@ import java.util.UUID;
 
 public class XRank {
 	
-	public int order;
 	public String name;
-	public ArrayList<UUID> users = new ArrayList<>();
 	public ArrayList<XRank> lower = new ArrayList<>();
+	public String prefix;
+	private int order;
+	private ArrayList<UUID> users = new ArrayList<>();
 	private ArrayList<String> perms = new ArrayList<>();
 	private XFactionConfig config;
 	private XFaction faction;
@@ -31,6 +32,7 @@ public class XRank {
 		this.name = name;
 		this.order = order;
 		this.config = faction.factionConfig;
+		this.prefix = name;
 		if (useConfig) {
 			this.faction = faction;
 			this.config = faction.factionConfig;
@@ -40,18 +42,30 @@ public class XRank {
 				faction.players.add(UUID.fromString(s));
 			}
 			perms = (ArrayList<String>) config.getStringList("ranks.rank." + name + ".perms");
+			prefix = config.getString("ranks.rank." + name + ".prefix");
 		}
 		
 	}
 	
-	public XRank(XFaction faction) {
+	public XRank(XFaction faction, boolean isLeader, boolean useConfig) {
 		this.faction = faction;
 		this.config = faction.factionConfig;
-		name = "Recruit";
+		if (!useConfig) {
+			name = isLeader ? "Leader" : "Recruit";
+			prefix = name;
+		}
+		else {
+			name = isLeader ? "Leader" : "Recruit";
+			prefix = config.getString("ranks.rank." + name + ".prefix");
+		}
 	}
 	
 	private void setPerms() {
 		config.set("ranks.rank." + name + ".perms", perms);
+	}
+	
+	private void setPrefix(String s) {
+		prefix = s;
 	}
 	
 	private void setUsers() {
@@ -74,6 +88,10 @@ public class XRank {
 		users.add(uuid);
 	}
 	
+	public void addPerm(String s) {
+		perms.add(s);
+	}
+	
 	public boolean hasPerm(String s, boolean deep) {
 		if (deep) {
 			/*
@@ -86,14 +104,6 @@ public class XRank {
 			*/
 		}
 		return perms.contains(s);
-	}
-	
-	public void addPerm(String s) {
-		perms.add(s);
-	}
-	
-	public void removePerm(String s) {
-		perms.remove(s);
 	}
 	
 	public boolean isIn(UUID uuid) {
@@ -122,9 +132,14 @@ public class XRank {
 		return String.valueOf(chars);
 	}
 	
+	public void removePerm(String s) {
+		perms.remove(s);
+	}
+	
 	public void save() {
 		setUsers();
 		setPerms();
+		config.set("ranks.rank." + name + ".prefix", prefix);
 	}
 	
 }

@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.fusesource.jansi.internal.Kernel32;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
 import pw.xwy.Factions.commands.factions.FactionTop;
@@ -26,12 +25,8 @@ import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 import pw.xwy.Factions.utility.tasks.PowerIncreaseTask;
 
-import java.io.File;
 import java.lang.reflect.Field;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Logger;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -61,59 +56,6 @@ public class XFactionsCore extends JavaPlugin {
 		return xFactionsCore;
 	}
 	
-	@Override
-	public void onEnable() {
-		DRM drm = new DRM(name);
-		
-		if (!drm.remove()) {
-			XFactionsCore.xFactionsCore = this;
-			System.out.println("Loading config 1/5...");
-			Config.loadConfig();
-			new Spawners();
-			System.out.println("Loading Factions 2/5...");
-			Config.loadFactions();
-			System.out.println("Loading Commands 3/5...");
-			loadCommands();
-			System.out.println("Loading Economy 4/5...");
-			if (!setupEconomy()) {
-				log.severe(String.format("[%s] - Disabled because of either no Vault or no economy plugin!", getDescription().getName()));
-				setEnabled(false);
-			}
-			System.out.println("Loading Glow 5/5");
-			registerGlow();
-			if (isEnabled()) {
-				getServer().getPluginManager().registerEvents(new JoinHandler(), this);
-				getServer().getPluginManager().registerEvents(new LeaveHandler(), this);
-				getServer().getPluginManager().registerEvents(new ChatManager(), this);
-				getServer().getPluginManager().registerEvents(new ClaimHandler(), this);
-				getServer().getPluginManager().registerEvents(new MoveHandler(), this);
-				//getServer().getPluginManager().registerEvents(new UnknownCommandHandler(),this);
-				//getServer().getPluginManager().registerEvents(new CitizensHandler(),this);
-				getServer().getPluginManager().registerEvents(new InventoryHandler(econ),this);
-				
-				for (Player p : Bukkit.getOnlinePlayers()) {
-					XPlayer xPlayer = new XPlayer(p.getUniqueId(), Config.getPlayer(String.valueOf(p.getUniqueId())));
-					PlayerManager.addXPlayer(xPlayer);
-					if (xPlayer.getFaction() != null) {
-						xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
-					}
-					
-					xPlayer.playerConfig.save();
-				}
-				
-				new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);
-				
-				System.out.println("factions v" + getDescription().getVersion() + " loaded.");
-				
-			}
-		}
-		else {
-			for (Plugin p: getServer().getPluginManager().getPlugins()) {
-				getPluginLoader().disablePlugin(p);
-			}
-		}
-	}
-	
 	private void loadCommands() {
 		faction = new Faction();
 		ftop = new FactionTop();
@@ -122,21 +64,6 @@ public class XFactionsCore extends JavaPlugin {
 		//new Shop();
 		//new Sell();
 		
-	}
-	
-	private boolean setupEconomy() {
-		if (getServer().getPluginManager().getPlugin("Vault") == null) {
-			System.out.println("Eco status: 1");
-			return false;
-		}
-		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-		if (rsp == null) {
-			System.out.println("Eco status: 2");
-			return false;
-		}
-		econ = rsp.getProvider();
-		System.out.println("Eco status: 3");
-		return econ != null;
 	}
 	
 	private void registerGlow() {
@@ -156,35 +83,19 @@ public class XFactionsCore extends JavaPlugin {
 		}
 	}
 	
-	@Override
-	public void onDisable() {
-		for (XFaction faction : FactionManager.getFactions()) {
-			faction.factionConfig.save(faction);
+	private boolean setupEconomy() {
+		if (getServer().getPluginManager().getPlugin("Vault") == null) {
+			System.out.println("Eco status: 1");
+			return false;
 		}
-	}
-	
-	@Override
-	public java.util.List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-		if (command.getLabel().equalsIgnoreCase("f")) {
-			ArrayList<SubCommand> subCommands = faction.subCommands;
-			if (args.length < 2) {
-				ArrayList<String> arrayList = new ArrayList<>();
-				for (SubCommand subCommand : subCommands) {
-					if (Config.usePermissions || subCommand.adminCommand) {
-						if (sender.hasPermission(subCommand.permission)) {
-							arrayList.add(subCommand.command);
-						}
-					} else {
-						arrayList.add(subCommand.command);
-					}
-				}
-				return arrayList;
-			} else {
-				return super.onTabComplete(sender, command, alias, args);
-			}
-		} else {
-			return super.onTabComplete(sender, command, alias, args);
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+		if (rsp == null) {
+			System.out.println("Eco status: 2");
+			return false;
 		}
+		econ = rsp.getProvider();
+		System.out.println("Eco status: 3");
+		return econ != null;
 	}
 	
 	@Override
@@ -220,7 +131,7 @@ public class XFactionsCore extends JavaPlugin {
 			}
 		} else if (command.getLabel().equalsIgnoreCase("ftop")) {
 			if (sender instanceof Player) {
-				ftop.run((Player) sender,args);
+				ftop.run((Player) sender, args);
 			}
 		}
 		
@@ -250,6 +161,90 @@ public class XFactionsCore extends JavaPlugin {
 			Sell.run(sender, econ);
 		}*/
 		return false;
+	}
+	
+	@Override
+	public void onDisable() {
+		for (XFaction faction : FactionManager.getFactions()) {
+			faction.factionConfig.save(faction);
+		}
+	}
+	
+	@Override
+	public void onEnable() {
+		DRM drm = new DRM(name);
+		
+		if (!drm.remove()) {
+			XFactionsCore.xFactionsCore = this;
+			System.out.println("Loading config 1/5...");
+			Config.loadConfig();
+			new Spawners();
+			System.out.println("Loading Factions 2/5...");
+			Config.loadFactions();
+			System.out.println("Loading Commands 3/5...");
+			loadCommands();
+			System.out.println("Loading Economy 4/5...");
+			if (!setupEconomy()) {
+				log.severe(String.format("[%s] - Disabled because of either no Vault or no economy plugin!", getDescription().getName()));
+				setEnabled(false);
+			}
+			System.out.println("Loading Glow 5/5");
+			registerGlow();
+			if (isEnabled()) {
+				getServer().getPluginManager().registerEvents(new JoinHandler(), this);
+				getServer().getPluginManager().registerEvents(new LeaveHandler(), this);
+				getServer().getPluginManager().registerEvents(new ChatManager(), this);
+				getServer().getPluginManager().registerEvents(new ClaimHandler(), this);
+				getServer().getPluginManager().registerEvents(new MoveHandler(), this);
+				getServer().getPluginManager().registerEvents(new DamageHandler(), this);
+				//getServer().getPluginManager().registerEvents(new UnknownCommandHandler(),this);
+				//getServer().getPluginManager().registerEvents(new CitizensHandler(),this);
+				getServer().getPluginManager().registerEvents(new InventoryHandler(econ), this);
+				
+				for (Player p : Bukkit.getOnlinePlayers()) {
+					XPlayer xPlayer = new XPlayer(p.getUniqueId(), Config.getPlayer(String.valueOf(p.getUniqueId())));
+					PlayerManager.addXPlayer(xPlayer);
+					if (xPlayer.getFaction() != null) {
+						xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
+					}
+					
+					xPlayer.playerConfig.save();
+				}
+				
+				new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);
+				
+				System.out.println("factions v" + getDescription().getVersion() + " loaded.");
+				
+			}
+		} else {
+			for (Plugin p : getServer().getPluginManager().getPlugins()) {
+				getPluginLoader().disablePlugin(p);
+			}
+		}
+	}
+	
+	@Override
+	public java.util.List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+		if (command.getLabel().equalsIgnoreCase("f")) {
+			ArrayList<SubCommand> subCommands = faction.subCommands;
+			if (args.length < 2) {
+				ArrayList<String> arrayList = new ArrayList<>();
+				for (SubCommand subCommand : subCommands) {
+					if (Config.usePermissions || subCommand.adminCommand) {
+						if (sender.hasPermission(subCommand.permission)) {
+							arrayList.add(subCommand.command);
+						}
+					} else {
+						arrayList.add(subCommand.command);
+					}
+				}
+				return arrayList;
+			} else {
+				return super.onTabComplete(sender, command, alias, args);
+			}
+		} else {
+			return super.onTabComplete(sender, command, alias, args);
+		}
 	}
 	
 	

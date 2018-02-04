@@ -29,6 +29,7 @@ public class XPlayer {
 	public int spawnCooldown = 0;
 	public int homeCooldown = 0;
 	public boolean canceled = false;
+	public boolean stopNextFallDamage = false;
 	private String name;
 	private Player player;
 	private double power = 0.0;
@@ -77,8 +78,21 @@ public class XPlayer {
 		return chatType;
 	}
 	
-	public void setChatType(ChatType chatType) {
+	public void getChatType(ChatType chatType) {
 		this.chatType = chatType;
+	}
+	
+	public ChatType getChatType(String s) {
+		if (s.equalsIgnoreCase("f")) {
+			return ChatType.FACTION;
+		}
+		else if (s.equalsIgnoreCase("a")) {
+			return ChatType.ALLY;
+		}
+		else if (s.equalsIgnoreCase("p")) {
+			return ChatType.PUBLIC;
+		}
+		return null;
 	}
 	
 	public XFaction getFaction() {

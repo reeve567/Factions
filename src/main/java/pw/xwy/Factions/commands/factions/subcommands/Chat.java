@@ -1,7 +1,7 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/4/18 9:23 AM                              /
+// File copyright last updated on: 2/4/18 11:19 AM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -11,30 +11,39 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.enums.ChatType;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
-public class Sethome extends SubCommand {
-	public Sethome() {
-		super("sethome", "", "Set your faction's home");
+public class Chat extends SubCommand {
+	public Chat() {
+		super("chat", "<type>", "Change chat mode to communicate with other factions, allies, or your own.");
 	}
 	
 	@Override
 	public void run(Player p, String[] args) {
 		XFaction faction = PlayerManager.getPlayerFaction(p);
 		if (faction != null) {
-			if (faction.hasPermission(p, "sethome")) {
-				if (faction.claim.isInClaim(p.getLocation().getChunk())) {
-					faction.setHome(p.getLocation());
-					p.sendMessage("home set");
-				} else {
-					p.sendMessage("not in claim");
+			
+			XPlayer player = PlayerManager.getXPlayer(p);
+			if (args.length != 2) {
+				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+			} else {
+				ChatType chatType = player.getChatType(args[1]);
+				if (chatType != null) {
+					player.getChatType(chatType);
+					p.sendMessage("chat type changed to " + chatType.toString());
+				}
+				else {
+					p.sendMessage("invalid chat type");
 				}
 			}
 		} else {
 			Messages.sendMessages(p, Messages.getWhoSender());
 		}
+		
 		
 	}
 }

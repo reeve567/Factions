@@ -26,7 +26,6 @@ import java.util.List;
 public class Create extends SubCommand {
 	public Create() {
 		super("create", "<name>", "Creates a faction with the name chosen.");
-		
 	}
 	
 	private void makeFaction(Player p, String args[]) {
@@ -88,7 +87,7 @@ public class Create extends SubCommand {
 	public void run(Player p, String[] args) {
 		if (p.hasPermission("factions.create.system")) {
 			if (args.length < 2) {
-				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+				sendHelpMessage(p);
 			} else if (args.length == 2) {
 				makeFaction(p, args);
 			} else if (args.length == 3) {

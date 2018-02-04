@@ -224,7 +224,7 @@ public class Messages {
 		s = s.replace("<faction-claimed-land>", String.valueOf(faction.claim.get().size()));
 		s = s.replace("<faction-max-land>", String.valueOf((int) faction.getMaxPower()));
 		s = s.replace("<faction-members-online>", String.valueOf(faction.getOnlinePlayers()));
-		s = s.replace("<faction-members-total>", String.valueOf(faction.players.size() + 1));
+		s = s.replace("<faction-members-total>", String.valueOf(faction.players.size()));
 		s = s.replace("<faction-leader>", PlayerManager.getOfflinePlayerName(faction.getLeader()));
 		s = s.replace("<faction-color>", "&" + faction.color);
 		return s;

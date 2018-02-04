@@ -58,16 +58,18 @@ public class Group extends SubCommand {
 					}
 				} else if (args.length == 3 && args[1].equalsIgnoreCase("delete")) {
 					if (faction.removeRank(args[2])) {
-					
+						//rank removed
 					}
-				} else if (args.length == 3 && args[1].equalsIgnoreCase("set")) {
-					Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
-				} else if (args.length == 3) {
-					Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
-				} else if (args.length == 4 && args[1].equalsIgnoreCase("set") && args[2].equalsIgnoreCase("prefix")) {
-				
+					//rank not removed
+				} else if (args.length == 5 && args[1].equalsIgnoreCase("set") && args[2].equalsIgnoreCase("prefix")) {
+					
+					if (faction.getRole(args[4]) != null) {
+						//rank exists
+						faction.getRole(args[4]).prefix = args[3];
+					}
+					
 				} else {
-					Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+					sendHelpMessage(p);
 				}
 			}
 		} else {

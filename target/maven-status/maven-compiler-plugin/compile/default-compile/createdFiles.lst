@@ -1,3 +1,4 @@
+pw\xwy\Factions\utility\handlers\DamageHandler.class
 pw\xwy\Factions\objects\XChunk.class
 pw\xwy\Factions\commands\factions\subcommands\Invite.class
 pw\xwy\Factions\enums\sell\Brewing.class
@@ -12,6 +13,7 @@ pw\xwy\Factions\enums\sell\Raiding.class
 pw\xwy\Factions\utility\inventories\PermissionsSubMenu.class
 pw\xwy\Factions\commands\factions\subcommands\Claim.class
 pw\xwy\Factions\commands\factions\subcommands\Who.class
+pw\xwy\Factions\commands\factions\subcommands\Chat.class
 pw\xwy\Factions\objects\XRank.class
 pw\xwy\Factions\commands\factions\subcommands\Update.class
 pw\xwy\Factions\utility\inventories\SpawnersMenu.class
@@ -42,6 +44,7 @@ pw\xwy\Factions\commands\factions\subcommands\Home.class
 pw\xwy\Factions\utility\inventories\BrewingMenu.class
 pw\xwy\Factions\objects\ItemBuilder.class
 pw\xwy\Factions\enums\sell\Farming.class
+pw\xwy\Factions\commands\factions\subcommands\Open.class
 pw\xwy\Factions\utility\DRM.class
 pw\xwy\Factions\commands\factions\subcommands\Update$1.class
 pw\xwy\Factions\enums\sell\Miscellaneous.class

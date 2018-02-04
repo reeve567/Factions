@@ -64,7 +64,7 @@ public class XFactionConfig {
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
 			set("info.name", name);
-			set("info.uuid", name);
+			set("info.uuid", id);
 			set("info.color", color);
 			set("info.systemFac", true);
 			fileConfiguration.createSection("others");
@@ -80,7 +80,7 @@ public class XFactionConfig {
 	XFactionConfig(XFaction faction) {
 		File factionData = Config.factiondata;
 		
-		file = new File(factionData, File.separator + faction.getName() + ".yml");
+		file = new File(factionData, File.separator + faction.getId() + ".yml");
 		fileConfiguration = YamlConfiguration.loadConfiguration(file);
 		
 		if (!file.exists()) {
@@ -98,9 +98,7 @@ public class XFactionConfig {
 			set("others.claim", new ArrayList<String>());
 			set("others.home", "null");
 			
-			
 			fileConfiguration.createSection("permissions");
-			
 			
 			try {
 				fileConfiguration.save(file);
@@ -108,6 +106,14 @@ public class XFactionConfig {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	private void saveRanks(XFaction faction) {
+		for (XRank rank : faction.ranks) {
+			rank.save();
+		}
+		faction.leaderRank.save();
+		faction.recruit.save();
 	}
 	
 	public double getBalance() {
@@ -209,12 +215,6 @@ public class XFactionConfig {
 			fileConfiguration.save(file);
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-	}
-	
-	private void saveRanks(XFaction faction) {
-		for (XRank rank : faction.ranks) {
-			rank.save();
 		}
 	}
 	
