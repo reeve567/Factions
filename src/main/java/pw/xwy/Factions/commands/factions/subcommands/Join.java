@@ -7,6 +7,7 @@ import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
+import sun.plugin2.message.Message;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -28,18 +29,22 @@ public class Join extends SubCommand {
 			Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
 		} else if (FactionManager.getFactionByName(args[1]) != null) {
 			XFaction faction = FactionManager.getFactionByName(args[1]);
-			if (PlayerManager.getXPlayer(p).hasInvite(faction)) {
+
+			if (faction == null){
+				Messages.sendMessage(p, "Faction doesn't exist");
+				return;
+			}
+
+			if (PlayerManager.getXPlayer(p).hasInvite(faction) && (faction.open)) {
 				if (PlayerManager.getXPlayer(p).getFaction() == null) {
 					PlayerManager.getXPlayer(p).revokeInvite(faction);
 					PlayerManager.getXPlayer(p).setFaction(faction);
-					if (faction != null) {
-						faction.addRecruit(p.getUniqueId());
-					}
+					faction.addRecruit(p.getUniqueId());
+					Messages.sendMessage(p, String.format("Welcome to the %s faction", faction.getName()));
 				} else {
-					p.sendMessage(StringUtility.conv("&cYou are already in a faction!"));
+					Messages.sendMessage(p, StringUtility.conv("&cYou are already in a faction!"));
 				}
 			}
-			
 		}
 	}
 }

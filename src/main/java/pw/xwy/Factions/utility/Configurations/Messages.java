@@ -242,4 +242,26 @@ public class Messages {
 			p.sendMessage(s);
 		}
 	}
+
+	public static void sendMessage(Player p, List<String> messages) {
+		for (String s : messages) {
+			p.sendMessage(s);
+		}
+	}
+
+	public static void sendMessage(String message) {
+		for(Player p : Bukkit.getOnlinePlayers()){
+			p.sendMessage(message);
+		}
+	}
+
+	public static void sendMessage(List<String> messages) {
+		for(Player p : Bukkit.getOnlinePlayers()){
+			sendMessage(p, messages);
+		}
+	}
+
+	public static void sendMessage(Player p, String message) {
+			p.sendMessage(message);
+	}
 }
