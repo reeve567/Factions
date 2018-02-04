@@ -78,12 +78,16 @@ Faction Group Rundown:
 So basically there is 4 lines in an inventory i want 1 line to be shown, images will be displayed below So if the leader is to do /f groups it will display the list of groups you have in a 1 by 9  display below if you click on the group it will bring up anoither gui this is the perms for that group, you can click to enable the perm, the stained glass will become enchanted, then you can click to disbale then it will be unenchanted. It should be disbaled on default. Once you have a group created using the command in the commands list above you can set a prefix the prefix will be displayed in faction chat and in your faction information. You should be able to make the prefixes color coded for example &c&lWould be bolded red then&c&lTest, it should hide the color coding tho. In the factions plugin there should be a default rank which is called recruit, it has no perms and if you were to delete a groups all members in that group will be made member rank again if you were to give up your ownership you will become a recruit. You should be able to set players group to recruit aswell using /f group (player) set Recruit. Although this group is not visible in the /f groups, list.
 
 Faction Chat Design
+
 Should be displayed Like
-[Faction] (group prefix) playername: Msg
+
+\[Faction\] (group prefix) playername: Msg
 
 Ally Chat Deisgn
+
 Should be displayed like
-[Faction] playername: Msg
+
+\[Faction\] playername: Msg
 
 There should be a large f map that shows 15 chunks north and south and 20 chunks east and west. This is displayed in f map, /f map.
 
@@ -101,38 +105,62 @@ There should be a large f map that shows 15 chunks north and south and 20 chunks
 
 
 CONFIG
+
 There should be a config where we can add what ever we like example it could default have 5 pages long with 8 commands each menu.
-----------------------FactionsHelp-- ---------------------
+
+----------------------FactionsHelp-----------------------
+
 /f map - displays f map
+
 /f create - creates a fac
+
 
 This will go until it hits 8 commands then it should go to page 2 automaticalls so /f help 2,3,4,5 
 
 Msgs
+
 All these msgs should be configurable and should be able to be changed in the config. The msgs are:
+
 Failed msg:
+
 No faction with that name
+
 A faction with that name is already created
+
 You cant claim this land
+
 You cant claim anymroe land
+
 Created a faction
+
 Left the faction
+
 Joined a faction
+
 Disbanded a faction
-Created factio groups
+
+Created faction group
+
 Removed faction group
+
 Set group prefix
+
 Enemied a faction
+
 Sent ally request
+
 Recieved allly request
+
 Neutral a faction
 
 FTOP
+
 Ftop should contain a configurable but easy yml file or what ever the file is, so in the config it should have the ftop display, and what it would show if you hover over a faction name
+
 It will also need adjustable config for all this including adjusting ftop prices.
 
-All spawners should be shown in the plugin, and belo that there should be one where i can add blocks for prices.
+All spawners should be shown in the plugin, and below that there should be one where i can add blocks for prices.
 
 Fly
+
 Faction fly is pretty simple the players will either be allowed with the permission to fly by there leader or not if they have permission they can do /fly to toggle there fly in faction territory, if an enemy is wihtin a 50 block radius you should be put out of fly and fall to the floor without taking falldamage from it. Factions fly should only work in your faction territory.
-IMAGES WILL BE SENT TO YOU
