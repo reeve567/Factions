@@ -41,12 +41,14 @@ public class Create extends SubCommand {
 			chars.add((char) i);
 		}
 		boolean found = false;
-		for (char c : chars) {
+		for (char c : args[1].toCharArray()) {
 			if (!chars.contains(c)) found = true;
 		}
+
 		for (XFaction faction : FactionManager.getFactions()) {
 			if (faction.getName().equalsIgnoreCase(args[1])) found = true;
 		}
+
 		if (!PlayerManager.isInFaction(p)) {
 			if (!found) {
 				if (args[1].length() > 3) {

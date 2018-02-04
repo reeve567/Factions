@@ -16,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -240,6 +241,47 @@ public class Messages {
 	public static void sendMessages(Player p, List<String> messages) {
 		for (String s : messages) {
 			p.sendMessage(s);
+		}
+	}
+
+	public static void sendMessage(Player p, List<String> messages) {
+		for (String s : messages) {
+			p.sendMessage(s);
+		}
+	}
+
+	public static void sendMessage(Player p, String message) {
+		p.sendMessage(message);
+	}
+
+	public static void sendMessage(XFaction f, List<String> messages) {
+
+		for(UUID i : f.players){
+			for (String s : messages) {
+				Bukkit.getPlayer(i).sendMessage(s);
+			}
+		}
+	}
+
+	public static void sendMessage(XFaction f, String message) {
+
+		for(UUID i : f.players){
+			Player p = Bukkit.getPlayer(i);
+			if (p.isOnline()){
+				p.sendMessage(message);
+			}
+		}
+	}
+
+	public static void sendMessage(String message) {
+		for(Player p : Bukkit.getOnlinePlayers()){
+			p.sendMessage(message);
+		}
+	}
+
+	public static void sendMessage(List<String> messages) {
+		for(Player p : Bukkit.getOnlinePlayers()){
+			sendMessage(p, messages);
 		}
 	}
 }
