@@ -89,19 +89,17 @@ public class XFaction {
 			if (factionConfig.hasHome()) {
 				facString = factionConfig.getHome();
 				
-				
-				
 				String world = facString.substring(0, facString.indexOf(" "));
-				facString = facString.replaceFirst(world + facString.indexOf(" "), "");
+				facString = facString.replaceFirst(world + " ", "");
 				double x = Double.parseDouble(facString.substring(0, facString.indexOf(" ")));
-				facString = facString.replaceFirst(String.valueOf(x) + facString.indexOf(" "), "");
+				facString = facString.replaceFirst(String.valueOf(x) + " ", "");
 				double y = Double.parseDouble(facString.substring(0, facString.indexOf(" ")));
-				facString = facString.replaceFirst(String.valueOf(y) + facString.indexOf(" "), "");
+				facString = facString.replaceFirst(String.valueOf(y) + " ", "");
 				double z = Double.parseDouble(facString.substring(0, facString.indexOf(" ")));
-				facString = facString.replaceFirst(String.valueOf(z) + facString.indexOf(" "), "");
+				facString = facString.replaceFirst(String.valueOf(z) + " ", "");
 				float pitch = Float.parseFloat(facString.substring(0, facString.indexOf(" ")));
-				facString = facString.replaceFirst(String.valueOf(pitch) + facString.indexOf(" "), "");
-				float yaw = Float.parseFloat(facString.substring(0, facString.indexOf(" ")));
+				facString = facString.replaceFirst(String.valueOf(pitch), "");
+				float yaw = Float.parseFloat(facString);
 				home = new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
 			}
 			

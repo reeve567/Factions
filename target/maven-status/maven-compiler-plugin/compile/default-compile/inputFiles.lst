@@ -22,6 +22,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\comman
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\sell\Combat.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Ally.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XPlayer.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Sethome.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\SubCommand.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\PermissionsSubMenu.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\Configurations\Config.java
@@ -53,6 +54,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\object
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\SpawnersMenu.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Power.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Top.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Home.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\ItemUtil.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XPlayerConfig.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Leave.java
@@ -63,6 +65,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\XFactionsCore.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\CitizensHandler.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Who.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\tasks\HomeWarmupTask.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Fly.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Help.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\PermissionsMainMenu.java

@@ -6,7 +6,9 @@ import pw.xwy.Factions.utility.Configurations.Config;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -41,7 +43,7 @@ public class XFactionConfig {
 			fileConfiguration.createSection("others");
 			set("others.allies", new ArrayList<>());
 			set("others.claim", new ArrayList<String>());
-			set("others.home", new HashMap<>());
+			set("others.home", "null");
 			fileConfiguration.createSection("ranks");
 			set("ranks.players", new ArrayList<String>());
 			set("ranks.list", new ArrayList<String>());
@@ -94,7 +96,7 @@ public class XFactionConfig {
 			fileConfiguration.createSection("others");
 			set("others.allies", new ArrayList<String>());
 			set("others.claim", new ArrayList<String>());
-			set("others.home", new HashMap<>());
+			set("others.home", "null");
 			
 			
 			fileConfiguration.createSection("permissions");
@@ -124,7 +126,7 @@ public class XFactionConfig {
 		return fileConfiguration.getDouble(path);
 	}
 	
-	public Map<String, Object> getHome() {
+	public String getHome() {
 		return getString("others.home");
 	}
 	
@@ -210,7 +212,7 @@ public class XFactionConfig {
 		}
 	}
 	
-	public void saveRanks(XFaction faction) {
+	private void saveRanks(XFaction faction) {
 		for (XRank rank : faction.ranks) {
 			rank.save();
 		}
