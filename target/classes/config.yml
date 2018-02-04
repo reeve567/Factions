@@ -13,9 +13,9 @@ max-power: 30
 #What should the minimum be?
 min-power: -30
 
-spawn-enabled: true
-spawn-location: nospawn
+#spawn-enabled: true
+#spawn-location: nospawn
 #How long should we wait before teleporting players to spawn?
-spawn-teleport-warmup-time: 5
+#spawn-teleport-warmup-time: 5
 
 commands-per-help-page: 8

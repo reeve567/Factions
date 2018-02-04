@@ -23,18 +23,19 @@ public class HomeWarmupTask extends BukkitRunnable {
 	
 	public HomeWarmupTask(Player p) {
 		this.player = PlayerManager.getXPlayer(p);
-		
+		player.canceled = false;
 	}
 	
 	@Override
 	public void run() {
+		player.getPlayer().sendMessage(String.valueOf(time));
 		if (player.canceled) {
 			time = 0;
 			player.getPlayer().sendMessage(StringUtility.conv("&cCancelled"));
 			cancel();
 		}
 		time--;
-		player.spawnCooldown = time;
+		player.homeCooldown = time;
 		if (time == 0) {
 			player.getPlayer().sendMessage(StringUtility.conv("&aTeleported"));
 			player.getPlayer().teleport(player.getFaction().getHome());
