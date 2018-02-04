@@ -5,6 +5,7 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.commands.factions.subcommands.List;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.Configurations.Spawners;
@@ -485,5 +486,34 @@ public class XFaction {
 			power += new XPlayerConfig(id).getPower();
 		}
 		this.power = ((int) (power * 10)) / 10.0;
+	}
+
+	static public boolean validateName(String factionName){
+
+		java.util.List<Character> chars = new ArrayList<>();
+		for (int i = 97; i < 123; i++) {
+			chars.add((char) i);
+		}
+
+		for (int i = 65; i < 133; i++) {
+			chars.add((char) i);
+		}
+
+		for (int i = 48; i < 58; i++) {
+			chars.add((char) i);
+		}
+
+		for (char c : factionName.toCharArray()) {
+			if (!chars.contains(c)) {
+				return false;
+			}
+		}
+
+		for (XFaction faction : FactionManager.getFactions()) {
+			if (faction.getName().equalsIgnoreCase(factionName)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
