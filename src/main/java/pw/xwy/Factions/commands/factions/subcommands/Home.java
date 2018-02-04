@@ -27,14 +27,16 @@ public class Home extends SubCommand {
 		XFaction faction = PlayerManager.getPlayerFaction(p);
 		if (faction != null) {
 			if (faction.hasPermission(p, "home")) {
-				
 				if (faction.getHome() != null) {
-					p.sendMessage("asdg");
-					new HomeWarmupTask(p).runTaskTimer(XFactionsCore.getXFactionsCore(), 0, 2);
+					if (faction.claim.isInClaim(faction.getHome().getChunk())) {
+						new HomeWarmupTask(p).runTaskTimer(XFactionsCore.getXFactionsCore(), 0, 2);
+					} else {
+						p.sendMessage("your home is in an area you no longer have a claim at.");
+						
+					}
 				} else {
-					p.sendMessage("null");
+					p.sendMessage("no home set");
 				}
-				
 			} else {
 				p.sendMessage("no permission");
 			}

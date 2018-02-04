@@ -29,6 +29,7 @@ public class XPlayer {
 	public int spawnCooldown = 0;
 	public int homeCooldown = 0;
 	public boolean canceled = false;
+	public boolean stopNextFallDamage = false;
 	private String name;
 	private Player player;
 	private double power = 0.0;

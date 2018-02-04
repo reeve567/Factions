@@ -475,6 +475,7 @@ public class XFaction {
 		} else {
 			flying.remove(p.getUniqueId());
 			p.setAllowFlight(false);
+			PlayerManager.getXPlayer(p).stopNextFallDamage = true;
 			p.sendMessage("flying disabled");
 		}
 	}

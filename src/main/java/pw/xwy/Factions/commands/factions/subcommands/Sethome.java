@@ -25,8 +25,12 @@ public class Sethome extends SubCommand {
 		XFaction faction = PlayerManager.getPlayerFaction(p);
 		if (faction != null) {
 			if (faction.hasPermission(p, "sethome")) {
-				faction.setHome(p.getLocation());
-				p.sendMessage("home set");
+				if (faction.claim.isInClaim(p.getLocation().getChunk())) {
+					faction.setHome(p.getLocation());
+					p.sendMessage("home set");
+				} else {
+					p.sendMessage("not in claim");
+				}
 			}
 		} else {
 			Messages.sendMessages(p, Messages.getWhoSender());
