@@ -37,7 +37,7 @@ public class ClaimManager {
 			} else {
 				name = StringUtility.conv("&f" + name);
 			}
-			return StringUtility.conv("&6You are now entering &" + faction.getColor() + name + " &6- &" + faction.getColor() + desc + " &6.");
+			return StringUtility.conv("&6You are now entering &" + faction.getColor() + name + " &6- &" + faction.getColor() + desc + "&6.");
 		} else {
 			return StringUtility.conv("&6You are now entering &2Wilderness&6.");
 		}

@@ -15,7 +15,7 @@ import pw.xwy.Factions.utility.tasks.ChunkValueTask;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class XChunk extends CraftChunk {
+public class XChunk {
 	
 	public XFaction xFaction;
 	public Chunk chunk;
@@ -23,7 +23,6 @@ public class XChunk extends CraftChunk {
 	private BukkitTask task;
 	
 	XChunk(XFaction xFaction, Chunk c) {
-		super((net.minecraft.server.v1_8_R3.Chunk) c);
 		this.xFaction = xFaction;
 		this.chunk = c;
 	}

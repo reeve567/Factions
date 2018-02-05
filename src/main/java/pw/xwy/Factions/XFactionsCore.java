@@ -107,7 +107,7 @@ public class XFactionsCore extends JavaPlugin {
 					
 					for (SubCommand subCommand : subCommands) {
 						if (subCommand.command.equalsIgnoreCase("help")) {
-							subCommand.run((XPlayer) p, newArgs);
+							subCommand.run((XPlayer) PlayerManager.getPlayer((Player) sender), newArgs);
 							return true;
 						}
 					}
@@ -116,7 +116,7 @@ public class XFactionsCore extends JavaPlugin {
 					for (SubCommand subCommand : subCommands) {
 						if (subCommand.command.equalsIgnoreCase(args[0])) {
 							if (p.hasPermission(subCommand.permission) || !Config.usePermissions) {
-								subCommand.run((XPlayer) p, args);
+								subCommand.run((XPlayer) PlayerManager.getPlayer((Player) sender), args);
 								return true;
 							}
 						}
@@ -127,7 +127,7 @@ public class XFactionsCore extends JavaPlugin {
 			}
 		} else if (command.getLabel().equalsIgnoreCase("ftop")) {
 			if (sender instanceof Player) {
-				ftop.run((XPlayer) sender, args);
+				ftop.run((XPlayer) PlayerManager.getPlayer((Player) sender), args);
 			}
 		}
 		/*else if (command.getLabel().equalsIgnoreCase("spawn") && Config.spawnEnabled) {

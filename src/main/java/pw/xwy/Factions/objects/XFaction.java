@@ -497,11 +497,9 @@ public class XFaction {
 		if (!flying.contains(p)) {
 			flying.add(p);
 			Bukkit.getPlayer(p).setAllowFlight(true);
-			Bukkit.getPlayer(p).sendMessage("flying enabled");
 		} else {
 			flying.remove(p);
 			Bukkit.getPlayer(p).setAllowFlight(false);
-			Bukkit.getPlayer(p).sendMessage("flying disabled");
 		}
 		
 	}
@@ -510,12 +508,10 @@ public class XFaction {
 		if (!flying.contains(p.getUniqueId())) {
 			flying.add(p.getUniqueId());
 			p.setAllowFlight(true);
-			p.sendMessage("flying enabled");
 		} else {
 			flying.remove(p.getUniqueId());
 			p.setAllowFlight(false);
 			PlayerManager.getPlayer(p).setNoFallDamage(true);
-			p.sendMessage("flying disabled");
 		}
 	}
 	

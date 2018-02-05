@@ -27,7 +27,7 @@ public class Faction extends MainCommand {
 		add(new Close());
 		add(new Create());
 		add(new Disband());
-		add(new Fly());
+		//add(new Fly());
 		add(new Group());
 		add(new Groups());
 		add(new Help(this));

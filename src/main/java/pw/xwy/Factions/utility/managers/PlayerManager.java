@@ -2,10 +2,7 @@ package pw.xwy.Factions.utility.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XFactionOnlinePlayer;
-import pw.xwy.Factions.objects.XOfflinePlayer;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.*;
 import pw.xwy.Factions.utility.StringUtility;
 
 import java.util.ArrayList;
@@ -29,8 +26,8 @@ public class PlayerManager {
 		onlinePlayers.add(player);
 	}
 	
-	public static XFactionOnlinePlayer getOfflinePlayer(UUID p) {
-		return (XFactionOnlinePlayer) new XOfflinePlayer(p);
+	public static XFactionPlayer getOfflinePlayer(UUID p) {
+		return new XOfflinePlayer(p);
 	}
 	
 	public static XFaction getOfflinePlayerFaction(UUID uuid) {

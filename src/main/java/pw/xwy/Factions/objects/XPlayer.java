@@ -39,7 +39,7 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	private ArrayList<XFaction> invites = new ArrayList<>();
 	
 	public XPlayer(Player player) {
-		super((CraftServer) Bukkit.getServer(), (EntityPlayer) player);
+		super((CraftServer) Bukkit.getServer(), ((CraftPlayer) player).getHandle());
 		config = new XPlayerConfig(this);
 		try {
 			faction = FactionManager.getFactionFromUUID(UUID.fromString(config.getFactionUUID()));
@@ -55,7 +55,7 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	}
 	
 	public XPlayer(UUID id, XPlayerConfig s) {
-		super((CraftServer) Bukkit.getServer(), (EntityPlayer) Bukkit.getPlayer(id));
+		super((CraftServer) Bukkit.getServer(), ((CraftPlayer) Bukkit.getPlayer(id)).getHandle());
 		config = s;
 		power = s.getPower();
 		String st = s.getFactionUUID();
