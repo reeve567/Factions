@@ -3,6 +3,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -26,7 +27,7 @@ public class Group extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		UUID id = p.getUniqueId();
 		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction != null) {
@@ -35,7 +36,7 @@ public class Group extends SubCommand {
 			
 			if (isLeader || hasPerm) {
 				if (args.length < 3) {
-					Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+					sendHelpMessage(p);
 				} else if (args.length == 3 && args[1].equalsIgnoreCase("create")) {
 					List<Character> chars = new ArrayList<>();
 					for (int i = 97; i < 123; i++) {

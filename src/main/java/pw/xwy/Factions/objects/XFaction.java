@@ -252,15 +252,16 @@ public class XFaction {
 		}
 	}
 	
-	public void disband(Player p, boolean b) {
+	public void disband(XPlayer p, boolean b) {
 		if (!isSystemFac()) {
 			if (getRole(p.getUniqueId()).hasPerm("disband", true) || b) {
+				leave(p, false);
+				for (UUID id : players) {
+					XFactionPlayer pl = PlayerManager.getOfflinePlayer(id);
+					leave(pl, false);
+				}
 				factionConfig.remove();
 				Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded by &e" + p.getName() + "&c."));
-				for (UUID id : players) {
-					XPlayer player = (XPlayer) PlayerManager.getOfflinePlayer(id);
-					player.setFaction(null);
-				}
 				FactionManager.removeFaction(this);
 				ClaimManager.removeChunks(this);
 			}
@@ -436,12 +437,12 @@ public class XFaction {
 		this.systemFac = systemFac;
 	}
 	
-	public void leave(XPlayer player, boolean announce) {
+	public void leave(XFactionPlayer player, boolean announce) {
 		if (!player.getUniqueId().equals(leader)) {
 			player.setFaction(null);
 			if (announce) {
 				for (UUID id : getEveryone()) {
-					Bukkit.getPlayer(id).sendMessage(StringUtility.conv("&c" + player.getPlayer().getName() + " has left the faction!"));
+					Bukkit.getPlayer(id).sendMessage(StringUtility.conv("&c" + player.getName() + " has left the faction!"));
 				}
 			}
 			onlinePlayers--;

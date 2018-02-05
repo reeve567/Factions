@@ -3,6 +3,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +25,7 @@ public class Unclaim extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		XFaction faction;
 		if ((faction = PlayerManager.getOnlinePlayerFaction(p)) != null) {
 			

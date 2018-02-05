@@ -9,12 +9,10 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.enums.ChatType;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XFactionOnlinePlayer;
-import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -25,7 +23,7 @@ public class Chat extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction != null) {
 			
@@ -42,7 +40,7 @@ public class Chat extends SubCommand {
 				}
 			}
 		} else {
-			((XPlayer) p).sendMessages(Messages.getWhoSender());
+			p.sendMessages(Messages.getWhoSender());
 		}
 		
 	}

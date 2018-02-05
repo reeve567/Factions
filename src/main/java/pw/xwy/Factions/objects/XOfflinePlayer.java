@@ -45,7 +45,8 @@ public class XOfflinePlayer implements XFactionPlayer {
 		return 0;
 	}
 	
-	public UUID getUuid() {
+	@Override
+	public UUID getUniqueId() {
 		return uuid;
 	}
 	

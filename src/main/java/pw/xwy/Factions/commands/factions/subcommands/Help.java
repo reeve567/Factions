@@ -3,6 +3,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Messages;
 
@@ -30,7 +31,7 @@ public class Help extends SubCommand {
 		this.faction = faction;
 	}
 	
-	private void map(Player p, int page) {
+	private void map(XPlayer p, int page) {
 		HashMap<Integer, ArrayList<SubCommand>> pages = new HashMap<>();
 		
 		ArrayList<SubCommand> subCommands = (ArrayList<SubCommand>) faction.subCommands.clone();
@@ -77,18 +78,18 @@ public class Help extends SubCommand {
 		
 	}
 	
-	private void send(Player p, HashMap<Integer, ArrayList<SubCommand>> pages, int page) {
-		Messages.sendMessages(p, Messages.getHeader());
-		Messages.sendMessages(p, Messages.getHelpMenuExtra(page, pages.size()));
+	private void send(XPlayer p, HashMap<Integer, ArrayList<SubCommand>> pages, int page) {
+		p.sendHeader();
+		p.sendMessages(Messages.getHelpMenuExtra(page, pages.size()));
 		for (SubCommand subCommand : pages.get(page)) {
-			Messages.sendMessages(p, Messages.getCommandHelpFormat(subCommand));
+			p.sendMessages(Messages.getCommandHelpFormat(subCommand));
 		}
-		Messages.sendMessages(p, Messages.getHelpMenuExtraBottom(page, pages.size()));
-		Messages.sendMessages(p, Messages.getFooter());
+		p.sendMessages(Messages.getHelpMenuExtraBottom(page, pages.size()));
+		p.sendFooter();
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		
 		if (args.length < 2) {
 			map(p, 1);

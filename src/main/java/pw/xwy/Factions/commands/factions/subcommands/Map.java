@@ -5,6 +5,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.ClaimManager;
@@ -26,7 +27,7 @@ public class Map extends SubCommand {
 		super("map", "", "Displays a map showing the claimed land in the area.");
 	}
 	
-	public static String getCardinalDirection(Player player) {
+	private static String getCardinalDirection(Player player) {
 		double rotation = (player.getLocation().getYaw() - 180) % 360;
 		if (rotation < 0) {
 			rotation += 360.0;
@@ -55,7 +56,7 @@ public class Map extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		String top = "&6\\N/";
 		String mid = "&6W+E";
 		String bot = "&6/S\\";

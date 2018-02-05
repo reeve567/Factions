@@ -9,9 +9,9 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -21,21 +21,21 @@ public class Open extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		
 		if (faction == null) {
-			Messages.sendMessages(p, Messages.getWhoSender());
+			p.sendMessages(Messages.getWhoSender());
 			return;
 		}
 		
 		if (!faction.hasPermission(p, "toggleOpen")) {
-			Messages.sendMessage(p, "no permission");
+			p.sendMessage("no permission");
 			return;
 		}
 		
 		faction.open = true;
 		
-		Messages.sendMessage(p, "Faction is now open");
+		p.sendMessage("Faction is now open");
 	}
 }

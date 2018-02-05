@@ -3,6 +3,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -22,11 +23,11 @@ public class Ally extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction.getRole(p.getUniqueId()).hasPerm("ally", true)) {
 			if (args.length < 2) {
-				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+				sendHelpMessage(p);
 			} else {
 				XFaction faction1 = FactionManager.getFactionByName(args[1]);
 				
@@ -38,7 +39,6 @@ public class Ally extends SubCommand {
 						} else {
 							//send ally request
 							faction.sendAllyRequest(faction1);
-							Messages.sendMessages(p, Messages.getAllyRequestRecieved(faction1));
 						}
 						
 					} else {

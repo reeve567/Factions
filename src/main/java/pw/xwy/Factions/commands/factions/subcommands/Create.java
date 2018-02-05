@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
@@ -85,7 +86,7 @@ public class Create extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		if (p.hasPermission("factions.create.system")) {
 			if (args.length < 2) {
 				sendHelpMessage(p);
@@ -97,7 +98,7 @@ public class Create extends SubCommand {
 			}
 		} else {
 			if (args.length != 2) {
-				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+				sendHelpMessage(p);
 				if (Config.isChargeToMakeFaction()) {
 					p.sendMessage(StringUtility.conv("&7In order to create a faction, you must pay &2$&a" + Config.getFactionCreationPrice() + "&7."));
 				}

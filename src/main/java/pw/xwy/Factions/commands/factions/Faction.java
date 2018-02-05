@@ -3,6 +3,7 @@ package pw.xwy.Factions.commands.factions;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.MainCommand;
 import pw.xwy.Factions.commands.factions.subcommands.*;
+import pw.xwy.Factions.objects.XPlayer;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -48,7 +49,7 @@ public class Faction extends MainCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 	
 	}
 }

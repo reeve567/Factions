@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
@@ -25,22 +26,22 @@ public class Who extends SubCommand {
 		super("who", "[player/faction]", "Displays info about either the selected player's faction, the selected faction, or your faction.");
 	}
 	
-	private void display(Player p, Player target) {
+	private void display(XPlayer p, Player target) {
 		XFaction faction = PlayerManager.getOnlinePlayerFaction(target);
 		display(p, faction, true);
 	}
 	
-	private void display(Player p, XFaction faction, boolean someoneElse) {
-		Messages.sendMessages(p, Messages.getHeader());
+	private void display(XPlayer p, XFaction faction, boolean someoneElse) {
+		p.sendHeader();
 		if (faction != null) {
 			if (!faction.isSystemFac()) {
 				for (String s : Messages.getWhoTop()) {
 					p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
 				}
 				for (XRank rank : faction.ranks) {
-					Messages.sendMessages(p, Messages.getWhoList(rank));
+					p.sendMessages(Messages.getWhoList(rank));
 				}
-				Messages.sendMessages(p, Messages.getWhoList(faction.recruit));
+				p.sendMessages(Messages.getWhoList(faction.recruit));
 			} else {
 				for (String s : Messages.getWhoSystem()) {
 					p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
@@ -48,16 +49,16 @@ public class Who extends SubCommand {
 			}
 		} else {
 			if (someoneElse) {
-				Messages.sendMessages(p, Messages.getWhoTarget());
+				p.sendMessages(Messages.getWhoTarget());
 			} else {
-				Messages.sendMessages(p, Messages.getWhoSender());
+				p.sendMessages(Messages.getWhoSender());
 			}
 		}
-		Messages.sendMessages(p, Messages.getFooter());
+		p.sendFooter();
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		
 		if (args.length < 2) {
 			display(p, PlayerManager.getOnlinePlayerFaction(p), false);

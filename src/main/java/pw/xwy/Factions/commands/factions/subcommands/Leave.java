@@ -20,10 +20,10 @@ public class Leave extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		if (PlayerManager.getOnlinePlayerFaction(p) != null) {
 			if (!PlayerManager.getOnlinePlayerFaction(p).getLeader().equals(p.getUniqueId())) {
-				PlayerManager.getOnlinePlayerFaction(p).leave((XPlayer) PlayerManager.getPlayer(p), true);
+				PlayerManager.getOnlinePlayerFaction(p).leave(PlayerManager.getPlayer(p), true);
 			}
 		}
 	}

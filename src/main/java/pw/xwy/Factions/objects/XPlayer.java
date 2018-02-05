@@ -8,6 +8,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.enums.ChatType;
 import pw.xwy.Factions.utility.Configurations.Config;
+import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -115,6 +116,14 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	@Override
 	public void sendMessage(String s) {
 		super.sendMessage(StringUtility.conv(s));
+	}
+	
+	public void sendHeader() {
+		sendMessages(Messages.getHeader());
+	}
+	
+	public void sendFooter() {
+		sendMessages(Messages.getFooter());
 	}
 	
 	@Override

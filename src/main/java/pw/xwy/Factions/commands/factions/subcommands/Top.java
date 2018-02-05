@@ -7,6 +7,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.StringUtility;
@@ -40,9 +41,9 @@ public class Top extends SubCommand {
 		return temp;
 	}
 	
-	private void display(Player player, int page) {
+	private void display(XPlayer player, int page) {
 		ArrayList<XFaction> factions = FactionManager.getMostValueble();
-		Messages.sendMessages(player, Messages.getHeader());
+		player.sendHeader();
 		for (XFaction f : factions) {
 			sendToPlayer(player, f);
 		}
@@ -50,8 +51,8 @@ public class Top extends SubCommand {
 		if (factions.size() % 5 != 0) {
 			maxpages++;
 		}
-		Messages.sendMessages(player, Messages.getHelpMenuExtraBottom(page, maxpages));
-		Messages.sendMessages(player, Messages.getFooter());
+		player.sendMessages(Messages.getHelpMenuExtraBottom(page, maxpages));
+		player.sendFooter();
 	}
 	
 	private void sendToPlayer(Player player, XFaction faction) {
@@ -71,7 +72,7 @@ public class Top extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		if (args.length == 2) {
 			display(p, Integer.parseInt(args[1]));
 		} else {

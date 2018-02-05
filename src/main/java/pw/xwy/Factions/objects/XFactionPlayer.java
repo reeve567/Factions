@@ -9,6 +9,8 @@ package pw.xwy.Factions.objects;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+import java.util.UUID;
+
 public interface XFactionPlayer {
 	
 	XPlayerConfig config = null;
@@ -18,6 +20,7 @@ public interface XFactionPlayer {
 	void setFaction(XFaction xFaction);
 	String getName();
 	double getPower();
+	UUID getUniqueId();
 	boolean isOnline();
 	void save();
 }

@@ -33,6 +33,11 @@ public class Rename extends SubCommand {
 			return;
 		}
 		
+		if (args.length != 2) {
+			sendHelpMessage(p);
+			return;
+		}
+		
 		if (!XFaction.validateName(args[1])) {
 			p.sendMessage("Invalid faction name");
 			return;

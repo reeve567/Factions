@@ -6,6 +6,7 @@ import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XFactionOnlinePlayer;
 import pw.xwy.Factions.objects.XFactionPlayer;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -26,7 +27,7 @@ public class Invite extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
+	public void run(XPlayer p, String[] args) {
 		if (args.length != 2) {
 			for (String s : Messages.getCommandHelpFormat(this)) {
 				p.sendMessage(s);

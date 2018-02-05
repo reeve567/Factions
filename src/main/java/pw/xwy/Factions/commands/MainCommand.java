@@ -1,6 +1,7 @@
 package pw.xwy.Factions.commands;
 
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.objects.XPlayer;
 
 import java.util.ArrayList;
 
@@ -37,5 +38,5 @@ public abstract class MainCommand {
 	
 	public abstract void init();
 	
-	public abstract void run(Player p, String[] args);
+	public abstract void run(XPlayer p, String[] args);
 }
