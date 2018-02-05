@@ -10,5 +10,16 @@ package pw.xwy.Factions.enums;
 ////////////////////////////////////////////////////////////////////////////////
 
 public enum ChatType {
-	PUBLIC, FACTION, OFFICER, ALLY, TRUCE
+	PUBLIC, FACTION, OFFICER, ALLY, TRUCE;
+	
+	public static ChatType getType(String s) {
+		if (s.equalsIgnoreCase("f")) {
+			return ChatType.FACTION;
+		} else if (s.equalsIgnoreCase("a")) {
+			return ChatType.ALLY;
+		} else if (s.equalsIgnoreCase("p")) {
+			return ChatType.PUBLIC;
+		}
+		return null;
+	}
 }

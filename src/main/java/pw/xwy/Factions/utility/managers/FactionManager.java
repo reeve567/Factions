@@ -103,11 +103,6 @@ public class FactionManager {
 		return nonSystem;
 	}
 	
-	public static XFaction getPlayerUUIDFaction(UUID id) {
-		String p = Config.getPlayer(id).getFactionUUID();
-		return getFactionFromUUID(p);
-	}
-	
 	public static ArrayList<XFaction> getSystemFactions() {
 		ArrayList<XFaction> system = new ArrayList<>();
 		for (XFaction f : factions) {

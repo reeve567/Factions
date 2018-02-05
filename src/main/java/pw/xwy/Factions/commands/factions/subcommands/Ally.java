@@ -5,6 +5,7 @@ import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.Factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -22,7 +23,7 @@ public class Ally extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
-		XFaction faction = FactionManager.getPlayerUUIDFaction(p.getUniqueId());
+		XFaction faction = PlayerManager.getPlayerFaction(p);
 		if (faction.getRole(p.getUniqueId()).hasPerm("ally", true)) {
 			if (args.length < 2) {
 				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));

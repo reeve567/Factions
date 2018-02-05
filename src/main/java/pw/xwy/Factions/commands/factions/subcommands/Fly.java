@@ -15,6 +15,11 @@ import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
+/**
+ * Changed to using fly whenever they're in the chunk
+ *
+ */
+@Deprecated
 public class Fly extends SubCommand {
 	public Fly() {
 		super("fly", "", "Allows you to fly inside faction claim.");
@@ -25,11 +30,10 @@ public class Fly extends SubCommand {
 		
 		XFaction faction = PlayerManager.getPlayerFaction(p);
 		if (faction != null) {
-			if (faction.hasPermission(p,"fly")) {
+			if (faction.hasPermission(p, "fly")) {
 				if (faction.claim.isInClaim(p.getLocation().getChunk())) {
 					faction.toggleFlying(p);
-				}
-				else {
+				} else {
 					p.sendMessage("you are not in your claim");
 				}
 			} else {

@@ -53,8 +53,7 @@ public class XRank {
 		if (!useConfig) {
 			name = isLeader ? "Leader" : "Recruit";
 			prefix = name;
-		}
-		else {
+		} else {
 			name = isLeader ? "Leader" : "Recruit";
 			prefix = config.getString("ranks.rank." + name + ".prefix");
 		}

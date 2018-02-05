@@ -19,14 +19,14 @@ import java.util.List;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class ItemUtil {
+public class ItemUtility {
 	
 	private static ItemStack next = new ItemStack(Material.ARROW);
 	private static ItemStack previous = new ItemStack(Material.BARRIER);
 	
 	static {
-		next = ItemUtil.changeName(next, "&aNext Page", true);
-		previous = ItemUtil.changeName(previous, "&cPrevious Page", true);
+		ItemUtility.changeName(next, "&aNext Page", true);
+		ItemUtility.changeName(previous, "&cPrevious Page", true);
 	}
 	
 	public static ItemStack addLore(ItemStack itemStack, String lore) {
@@ -43,12 +43,11 @@ public class ItemUtil {
 		return itemStack;
 	}
 	
-	public static ItemStack changeName(ItemStack is, String name, boolean trans) {
+	public static void changeName(ItemStack is, String name, boolean trans) {
 		ItemMeta meta = is.getItemMeta();
 		if (trans) meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
 		else meta.setDisplayName(name);
 		is.setItemMeta(meta);
-		return is;
 	}
 	
 	public static ItemStack next() {

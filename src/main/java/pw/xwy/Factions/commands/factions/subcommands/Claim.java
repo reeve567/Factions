@@ -6,6 +6,7 @@ import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.Factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -30,7 +31,7 @@ public class Claim extends SubCommand {
 		XFaction faction;
 		Chunk c = p.getLocation().getChunk();
 		//is in faction
-		if ((faction = FactionManager.getPlayerUUIDFaction(p.getUniqueId())) != null) {
+		if ((faction = PlayerManager.getPlayerFaction(p)) != null) {
 			
 			if (hasPerm(faction, p)) {
 				

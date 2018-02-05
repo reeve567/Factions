@@ -4,7 +4,7 @@ package pw.xwy.Factions.commands.shop;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.utility.StringUtil;
+import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.inventories.MainMenu;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ public class Shop {
 			if (player.hasPermission("factionsshop.shop")) {
 				player.openInventory(MainMenu.getInv());
 			} else {
-				player.sendMessage(StringUtil.chatColorConv("&cYou do not have permission to do this!"));
+				player.sendMessage(StringUtility.conv("&cYou do not have permission to do this!"));
 			}
 			
 		}

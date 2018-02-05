@@ -11,27 +11,25 @@ package pw.xwy.Factions.utility.tasks;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import pw.xwy.Factions.objects.TeleportWarmupTask;
+import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
-public class HomeWarmupTask extends BukkitRunnable {
-	
-	private XPlayer player;
-	private int time = (int) Config.homeWarmupTime*10;
+public class HomeWarmupTask extends TeleportWarmupTask {
 	
 	public HomeWarmupTask(Player p) {
-		this.player = PlayerManager.getXPlayer(p);
-		player.canceled = false;
-		p.sendMessage("teleporting...");
+		super(p, (int) (Config.homeWarmupTime*10));
 	}
 	
 	@Override
 	public void run() {
-		if (player.canceled) {
+		if (player.isCancelled()) {
 			time = 0;
 			player.getPlayer().sendMessage(StringUtility.conv("&cCancelled"));
+			player.setCurrentTeleportTask(null);
 			cancel();
 		}
 		time--;

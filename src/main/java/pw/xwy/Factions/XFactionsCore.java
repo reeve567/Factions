@@ -18,7 +18,7 @@ import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.DRM;
-import pw.xwy.Factions.utility.StringUtil;
+import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.handlers.*;
 import pw.xwy.Factions.utility.managers.ChatManager;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -124,7 +124,7 @@ public class XFactionsCore extends JavaPlugin {
 							}
 						}
 					}
-					p.sendMessage(StringUtil.chatColorConv("&cUnknown subcommand"));
+					p.sendMessage(StringUtility.conv("&cUnknown subcommand"));
 				}
 				
 				
@@ -208,7 +208,7 @@ public class XFactionsCore extends JavaPlugin {
 						xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
 					}
 					
-					xPlayer.playerConfig.save();
+					xPlayer.save();
 				}
 				
 				new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);

@@ -19,7 +19,6 @@ public class XChunk {
 	public XFaction xFaction;
 	public Chunk chunk;
 	public Integer value;
-	public String key;
 	private BukkitTask task;
 	
 	XChunk(XFaction xFaction, Chunk c) {

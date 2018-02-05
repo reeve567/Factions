@@ -6,6 +6,7 @@ import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.inventories.PermissionsMainMenu;
 import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.UUID;
 
@@ -26,7 +27,7 @@ public class Groups extends SubCommand {
 	@Override
 	public void run(Player p, String[] args) {
 		UUID id = p.getUniqueId();
-		XFaction faction = FactionManager.getPlayerUUIDFaction(id);
+		XFaction faction = PlayerManager.getPlayerFaction(p);
 		
 		if (faction != null) {
 			boolean isLeader = faction.getLeader().equals(id);
@@ -34,13 +35,11 @@ public class Groups extends SubCommand {
 			
 			if (isLeader || hasPerm) {
 				p.openInventory(PermissionsMainMenu.get(p, isLeader));
-			}
-			else {
+			} else {
 				p.sendMessage("no permission");
 			}
-		}
-		else {
-			Messages.sendMessages(p,Messages.getWhoSender());
+		} else {
+			Messages.sendMessages(p, Messages.getWhoSender());
 		}
 	}
 }

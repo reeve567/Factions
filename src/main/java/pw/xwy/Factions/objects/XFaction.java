@@ -5,7 +5,6 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.factions.subcommands.List;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.Configurations.Spawners;
@@ -126,6 +125,35 @@ public class XFaction {
 		System.out.println("Done loading " + fileName + ".");
 	}
 	
+	static public boolean validateName(String factionName) {
+		
+		java.util.List<Character> chars = new ArrayList<>();
+		for (int i = 97; i < 123; i++) {
+			chars.add((char) i);
+		}
+		
+		for (int i = 65; i < 133; i++) {
+			chars.add((char) i);
+		}
+		
+		for (int i = 48; i < 58; i++) {
+			chars.add((char) i);
+		}
+		
+		for (char c : factionName.toCharArray()) {
+			if (!chars.contains(c)) {
+				return false;
+			}
+		}
+		
+		for (XFaction faction : FactionManager.getFactions()) {
+			if (faction.getName().equalsIgnoreCase(factionName)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	List<String> getClaimStrings() {
 		List<String> strings = new ArrayList<>();
 		for (Chunk c : claim.get()) {
@@ -241,6 +269,10 @@ public class XFaction {
 			if (getRole(p.getUniqueId()).hasPerm("disband", true) || b) {
 				factionConfig.remove();
 				Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded by &e" + p.getName() + "&c."));
+				for (UUID id : players) {
+					XPlayer player = (XPlayer) PlayerManager.getOfflinePlayer(id);
+					player.setFaction(null);
+				}
 				FactionManager.removeFaction(this);
 				ClaimManager.removeChunks(this);
 			}
@@ -420,7 +452,7 @@ public class XFaction {
 		this.systemFac = systemFac;
 	}
 	
-	public void leave(XPlayer player, boolean announce) {
+	public void leave(XFactionPlayer player, boolean announce) {
 		if (!player.getPlayer().getUniqueId().equals(leader)) {
 			player.setFaction(null);
 			if (announce) {
@@ -484,7 +516,7 @@ public class XFaction {
 		} else {
 			flying.remove(p.getUniqueId());
 			p.setAllowFlight(false);
-			PlayerManager.getXPlayer(p).stopNextFallDamage = true;
+			PlayerManager.getPlayer(p).setNoFallDamage(true);
 			p.sendMessage("flying disabled");
 		}
 	}
@@ -495,34 +527,5 @@ public class XFaction {
 			power += new XPlayerConfig(id).getPower();
 		}
 		this.power = ((int) (power * 10)) / 10.0;
-	}
-
-	static public boolean validateName(String factionName){
-
-		java.util.List<Character> chars = new ArrayList<>();
-		for (int i = 97; i < 123; i++) {
-			chars.add((char) i);
-		}
-
-		for (int i = 65; i < 133; i++) {
-			chars.add((char) i);
-		}
-
-		for (int i = 48; i < 58; i++) {
-			chars.add((char) i);
-		}
-
-		for (char c : factionName.toCharArray()) {
-			if (!chars.contains(c)) {
-				return false;
-			}
-		}
-
-		for (XFaction faction : FactionManager.getFactions()) {
-			if (faction.getName().equalsIgnoreCase(factionName)) {
-				return false;
-			}
-		}
-		return true;
 	}
 }

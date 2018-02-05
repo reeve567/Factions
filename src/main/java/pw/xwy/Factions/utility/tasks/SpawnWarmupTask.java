@@ -1,6 +1,8 @@
 package pw.xwy.Factions.utility.tasks;
 
+import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import pw.xwy.Factions.objects.TeleportWarmupTask;
 import pw.xwy.Factions.objects.XPlayer;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -12,13 +14,13 @@ import pw.xwy.Factions.objects.XPlayer;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class SpawnWarmupTask extends BukkitRunnable {
+public class SpawnWarmupTask extends TeleportWarmupTask {
 	
-	private XPlayer xPlayer;
+	private XPlayer player;
 	//private int time = (int) (Config.spawnTeleportWarmupTime*10);
 	
-	public SpawnWarmupTask(XPlayer xPlayer) {
-		this.xPlayer = xPlayer;
+	public SpawnWarmupTask(Player player) {
+		super(player,0);
 	}
 	
 	@Override

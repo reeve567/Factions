@@ -6,7 +6,6 @@ import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Messages;
-import pw.xwy.Factions.utility.StringUtil;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -43,41 +42,44 @@ public class Create extends SubCommand {
 		for (char c : args[1].toCharArray()) {
 			if (!chars.contains(c)) found = true;
 		}
-
+		
 		for (XFaction faction : FactionManager.getFactions()) {
 			if (faction.getName().equalsIgnoreCase(args[1])) found = true;
 		}
-
+		if (!found) {
+			if (args.length == 2) {
+			
+			}
+			
+			
+		}
 		if (!PlayerManager.isInFaction(p)) {
-			if (!found) {
-				if (args[1].length() > 3) {
-					
-					if (Config.isChargeToMakeFaction()) {
-						if (XFactionsCore.getEcononomy().getBalance(p) >= Config.getFactionCreationPrice()) {
-							p.sendMessage("made faction for " + Config.getFactionCreationPrice());
-							XFactionsCore.getEcononomy().withdrawPlayer(p, Config.getFactionCreationPrice());
-							XFaction faction = new XFaction(args[1], p);
-							FactionManager.addFaction(faction);
-							PlayerManager.setFaction(PlayerManager.getXPlayer(p), faction);
-							Config.saveFactions();
-							PlayerManager.getXPlayer(p).playerConfig.save();
-						} else {
-							p.sendMessage("not enough money");
-						}
-					} else {
-						p.sendMessage("made faction");
+			if (args[1].length() > 3) {
+				
+				if (Config.isChargeToMakeFaction()) {
+					if (XFactionsCore.getEcononomy().getBalance(p) >= Config.getFactionCreationPrice()) {
+						p.sendMessage("made faction for " + Config.getFactionCreationPrice());
+						XFactionsCore.getEcononomy().withdrawPlayer(p, Config.getFactionCreationPrice());
 						XFaction faction = new XFaction(args[1], p);
 						FactionManager.addFaction(faction);
-						PlayerManager.setFaction(PlayerManager.getXPlayer(p), faction);
+						PlayerManager.getPlayer(p).setFaction(faction);
 						Config.saveFactions();
-						PlayerManager.getXPlayer(p).playerConfig.save();
+						PlayerManager.getPlayer(p).save();
+					} else {
+						p.sendMessage("not enough money");
 					}
 				} else {
-					p.sendMessage(StringUtil.chatColorConv("&cThis faction name is too short."));
+					p.sendMessage("made faction");
+					XFaction faction = new XFaction(args[1], p);
+					FactionManager.addFaction(faction);
+					PlayerManager.getPlayer(p).setFaction(faction);
+					Config.saveFactions();
+					PlayerManager.getPlayer(p).save();
 				}
 			} else {
-				p.sendMessage(StringUtility.conv("&cThis faction already exists, or you have invalid characters in the name."));
+				p.sendMessage(StringUtility.conv("&cThis faction name is too short."));
 			}
+			
 		} else {
 			p.sendMessage(StringUtility.conv("&cYou are already in a faction!"));
 		}
@@ -91,22 +93,7 @@ public class Create extends SubCommand {
 			} else if (args.length == 2) {
 				makeFaction(p, args);
 			} else if (args.length == 3) {
-				boolean isSystem = args[2].equalsIgnoreCase("system") || args[2].equalsIgnoreCase("sys");
-				String[] notAllowedCharacters = {";", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", ",", "\\", "/", ".", "|", ":", "\"", "\'", "`", "~"};
-				boolean found = false;
-				for (String s : notAllowedCharacters) {
-					if (args[1].contains(s)) {
-						found = true;
-					}
-				}
-				for (XFaction faction : FactionManager.getFactions()) {
-					if (faction.getName().equalsIgnoreCase(args[1])) found = true;
-				}
-				if (!found && isSystem) {
-					XFaction faction = new XFaction(args[1], "6");
-					FactionManager.addFaction(faction);
-					Config.saveFactions();
-				}
+				makeFaction(p, args);
 				
 			}
 		} else {

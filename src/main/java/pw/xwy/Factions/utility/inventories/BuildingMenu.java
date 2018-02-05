@@ -8,7 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.enums.sell.Building;
-import pw.xwy.Factions.utility.ItemUtil;
+import pw.xwy.Factions.utility.ItemUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -54,13 +54,13 @@ public class BuildingMenu {
 			c++;
 		}
 		
-		inv.setItem(53, ItemUtil.next());
-		inv.setItem(52, ItemUtil.previous());
+		inv.setItem(53, ItemUtility.next());
+		inv.setItem(52, ItemUtility.previous());
 		
-		inv2.setItem(53, ItemUtil.next());
-		inv2.setItem(52, ItemUtil.previous());
+		inv2.setItem(53, ItemUtility.next());
+		inv2.setItem(52, ItemUtility.previous());
 		
-		inv3.setItem(53, ItemUtil.previous());
+		inv3.setItem(53, ItemUtility.previous());
 		
 	}
 	

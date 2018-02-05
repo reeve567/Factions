@@ -7,7 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.Factions.utility.ItemUtil;
+import pw.xwy.Factions.utility.ItemUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -29,15 +29,15 @@ public class MainMenu {
 			inv.setItem(i, pGlass);
 		}
 		
-		inv.setItem(10, ItemUtil.changeName(new ItemStack(Material.TNT), ChatColor.RED + "" + ChatColor.BOLD + "Raiding Shop", false));
-		inv.setItem(12, ItemUtil.changeName(new ItemStack(Material.POTION, 1, (short) 8265), ChatColor.GREEN + "" + ChatColor.BOLD + "Brewing Shop", false));
-		inv.setItem(14, ItemUtil.changeName(new ItemStack(Material.MOB_SPAWNER), ChatColor.translateAlternateColorCodes('&', "&3&lSpawners Shop"), false));
-		inv.setItem(16, ItemUtil.changeName(new ItemStack(Material.DIAMOND_SWORD), ChatColor.AQUA + "" + ChatColor.BOLD + "Combat Shop", false));
-		inv.setItem(22, ItemUtil.changeName(new ItemStack(Material.SIGN), ChatColor.GOLD + "" + ChatColor.BOLD + "Sell Shop", false));
-		inv.setItem(28, ItemUtil.changeName(new ItemStack(Material.DIAMOND_HOE), ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Farming Shop", false));
-		inv.setItem(30, ItemUtil.changeName(new ItemStack(Material.DIAMOND_PICKAXE), ChatColor.translateAlternateColorCodes('&', "&9&lTools Shop"), false));
-		inv.setItem(32, ItemUtil.changeName(new ItemStack(Material.BRICK), ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "Building Shop", false));
-		inv.setItem(34, ItemUtil.changeName(new ItemStack(Material.EYE_OF_ENDER), ChatColor.WHITE + "" + ChatColor.BOLD + "Misc Shop", false));
+		inv.setItem(10, ItemUtility.changeName(new ItemStack(Material.TNT), ChatColor.RED + "" + ChatColor.BOLD + "Raiding Shop", false));
+		inv.setItem(12, ItemUtility.changeName(new ItemStack(Material.POTION, 1, (short) 8265), ChatColor.GREEN + "" + ChatColor.BOLD + "Brewing Shop", false));
+		inv.setItem(14, ItemUtility.changeName(new ItemStack(Material.MOB_SPAWNER), ChatColor.translateAlternateColorCodes('&', "&3&lSpawners Shop"), false));
+		inv.setItem(16, ItemUtility.changeName(new ItemStack(Material.DIAMOND_SWORD), ChatColor.AQUA + "" + ChatColor.BOLD + "Combat Shop", false));
+		inv.setItem(22, ItemUtility.changeName(new ItemStack(Material.SIGN), ChatColor.GOLD + "" + ChatColor.BOLD + "Sell Shop", false));
+		inv.setItem(28, ItemUtility.changeName(new ItemStack(Material.DIAMOND_HOE), ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Farming Shop", false));
+		inv.setItem(30, ItemUtility.changeName(new ItemStack(Material.DIAMOND_PICKAXE), ChatColor.translateAlternateColorCodes('&', "&9&lTools Shop"), false));
+		inv.setItem(32, ItemUtility.changeName(new ItemStack(Material.BRICK), ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "Building Shop", false));
+		inv.setItem(34, ItemUtility.changeName(new ItemStack(Material.EYE_OF_ENDER), ChatColor.WHITE + "" + ChatColor.BOLD + "Misc Shop", false));
 	}
 	
 	public static Inventory getInv() {

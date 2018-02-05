@@ -28,7 +28,7 @@ public class JoinHandler implements Listener {
 			xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
 		}
 		
-		xPlayer.playerConfig.save();
+		xPlayer.save();
 	}
 	
 }

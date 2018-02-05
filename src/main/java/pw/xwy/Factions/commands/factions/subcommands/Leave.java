@@ -22,7 +22,7 @@ public class Leave extends SubCommand {
 	public void run(Player p, String[] args) {
 		if (PlayerManager.getPlayerFaction(p) != null) {
 			if (!PlayerManager.getPlayerFaction(p).getLeader().equals(p.getUniqueId())) {
-				PlayerManager.getPlayerFaction(p).leave(PlayerManager.getXPlayer(p), true);
+				PlayerManager.getPlayerFaction(p).leave(PlayerManager.getPlayer(p), true);
 			}
 		}
 	}

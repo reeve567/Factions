@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -50,11 +51,11 @@ public class MoveHandler implements Listener {
 				lastChunk.put(e.getPlayer(), e.getTo().getChunk());
 			}
 		}
-		if (PlayerManager.getXPlayer(e.getPlayer()).spawnCooldown > 0) {
+		/*if (PlayerManager.getXPlayer(e.getPlayer()).spawnCooldown > 0) {
 			PlayerManager.getXPlayer(e.getPlayer()).canceled = true;
-		}
-		else if (PlayerManager.getXPlayer(e.getPlayer()).homeCooldown > 0) {
-			PlayerManager.getXPlayer(e.getPlayer()).canceled = true;
+		} else */
+		if (((XPlayer) PlayerManager.getPlayer(e.getPlayer())).homeCooldown > 0) {
+			PlayerManager.getPlayer(e.getPlayer()).setCancelled(true);
 		}
 	}
 }

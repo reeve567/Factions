@@ -12,6 +12,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\DRM.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\FactionTop.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\sell\Sell.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XFactionPlayer.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\ChatType.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XClaim.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\DamageHandler.java
@@ -28,8 +29,8 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\comman
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\PermissionsSubMenu.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\Configurations\Config.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\FancyText.java
-D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Update.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Claim.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Update.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\Configurations\Messages.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\BuyMenu.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Group.java
@@ -37,7 +38,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\BrewingMenu.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\sell\Raiding.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Map.java
-D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\StringUtil.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\ItemUtility.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XFactionConfig.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Create.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Unclaim.java
@@ -54,9 +55,8 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XFaction.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\SpawnersMenu.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Power.java
-D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Top.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Home.java
-D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\ItemUtil.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Top.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XPlayerConfig.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Leave.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\Faction.java
@@ -64,6 +64,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\tasks\PowerIncreaseTask.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\enums\sell\Spawner.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\XFactionsCore.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Close.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\CitizensHandler.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Who.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\tasks\HomeWarmupTask.java
@@ -76,6 +77,7 @@ D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utilit
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\ItemNames.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\JoinHandler.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\SellMenu.java
+D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Rename.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Open.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\ClaimHandler.java
 D:\Development\Projects\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\List.java

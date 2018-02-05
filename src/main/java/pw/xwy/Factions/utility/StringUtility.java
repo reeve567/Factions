@@ -3,6 +3,9 @@ package pw.xwy.Factions.utility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import pw.xwy.Factions.commands.factions.subcommands.Chat;
+
+import java.util.ArrayList;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -35,6 +38,31 @@ public class StringUtility {
 		loc = loc.replaceFirst(String.valueOf(pitch) + " ", "");
 		float yaw = Float.parseFloat(loc);
 		return new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
+	}
+	
+	public static ArrayList<String> getStringList(char seperator, String list) {
+		ArrayList<String> strings = new ArrayList<>();
+		do {
+			if (list.contains(String.valueOf(seperator))) {
+				strings.add(list.substring(0, list.indexOf(seperator)));
+				list = list.substring(list.indexOf(seperator) + 1);
+			} else {
+				if (list.length() > 0) {
+					strings.add(list);
+				}
+			}
+		}
+		while (list.contains(String.valueOf(seperator)));
+		
+		return strings;
+	}
+	
+	public static boolean hasNext(char seperator, String list) {
+		return list.contains(String.valueOf(seperator));
+	}
+	
+	public static boolean colorCompare(String one, String two) {
+		return conv(one).equalsIgnoreCase(conv(two));
 	}
 	
 	public static String properName(String name) {

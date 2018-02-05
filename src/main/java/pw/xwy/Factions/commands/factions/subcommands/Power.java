@@ -21,7 +21,7 @@ public class Power extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
-		p.sendMessage("power: " + PlayerManager.getXPlayer(p).getPower() + "/" + Config.maxPower);
+		p.sendMessage("power: " + PlayerManager.getPlayer(p).getPower() + "/" + Config.maxPower);
 		
 		
 	}

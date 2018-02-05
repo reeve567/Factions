@@ -24,8 +24,9 @@ public class DamageHandler implements Listener {
 		if (e.getEntity() instanceof Player) {
 			Player p = (Player) e.getEntity();
 			if (e.getCause() == EntityDamageEvent.DamageCause.FALL) {
-				if (PlayerManager.getXPlayer(p).stopNextFallDamage) {
+				if (PlayerManager.getPlayer(p).isNoFallDamage()) {
 					e.setCancelled(true);
+					PlayerManager.getPlayer(p).setNoFallDamage(false);
 				}
 			}
 		}

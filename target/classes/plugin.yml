@@ -1,8 +1,8 @@
 main: pw.xwy.Factions.XFactionsCore
 name: XFactionsCore
-version: 0.3
+version: BETA
 depend: [Vault]
-author: Xwy
+author: Xwy (gitout#5670)
 commands:
   f:
   ftop:

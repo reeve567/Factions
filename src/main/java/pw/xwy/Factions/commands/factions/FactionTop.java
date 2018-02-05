@@ -9,7 +9,7 @@ import pw.xwy.Factions.commands.MainCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.Configurations.Spawners;
-import pw.xwy.Factions.utility.StringUtil;
+import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class FactionTop extends MainCommand {
 		} else {
 			temp = temp.replace("content", "IronGolem");
 		}
-		temp = StringUtil.chatColorConv(temp);
+		temp = StringUtility.conv(temp);
 		return temp;
 	}
 	

@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
@@ -32,7 +33,7 @@ public class Invite extends SubCommand {
 			}
 		} else if (Bukkit.getPlayer(args[1]) != null) {
 			Player player = Bukkit.getPlayer(args[1]);
-			XPlayer xPlayer = PlayerManager.getXPlayer(player);
+			XFactionPlayer xPlayer = PlayerManager.getPlayer(player);
 			XFaction xFaction = PlayerManager.getPlayerFaction(p);
 			if (!xFaction.equals(xPlayer.getFaction())) {
 				if (xPlayer.invite(PlayerManager.getPlayerFaction(p))) {

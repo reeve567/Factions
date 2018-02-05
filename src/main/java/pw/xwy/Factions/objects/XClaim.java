@@ -1,9 +1,7 @@
 package pw.xwy.Factions.objects;
 
 import org.bukkit.Chunk;
-import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.utility.managers.ClaimManager;
-import pw.xwy.Factions.utility.tasks.ChunkValueTask;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,12 +17,12 @@ import java.util.HashSet;
 
 public class XClaim {
 	
-	private ArrayList<Chunk> claim = new ArrayList<>();
 	public HashSet<XChunk> chunks = new HashSet<>();
+	private ArrayList<Chunk> claim = new ArrayList<>();
 	
 	public void add(Chunk c, XFaction faction) {
 		claim.add(c);
-		XChunk chunk = new XChunk(faction,c);
+		XChunk chunk = new XChunk(faction, c);
 		chunks.add(chunk);
 		chunk.calculateValue();
 		ClaimManager.factionMap.put(faction, claim);
@@ -33,6 +31,15 @@ public class XClaim {
 	
 	public ArrayList<Chunk> get() {
 		return claim;
+	}
+	
+	public XChunk getChunk(Chunk c) {
+		for (XChunk ch : chunks) {
+			if (ch.chunk.equals(c)) {
+				return ch;
+			}
+		}
+		return null;
 	}
 	
 	public boolean isInClaim(Chunk c) {
@@ -52,15 +59,6 @@ public class XClaim {
 			}
 		}
 		return false;
-	}
-	
-	public XChunk getChunk(Chunk c) {
-		for (XChunk ch : chunks) {
-			if (ch.chunk.equals(c)) {
-				return ch;
-			}
-		}
-		return null;
 	}
 	
 	public void remove(Chunk c, XFaction faction) {

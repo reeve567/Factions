@@ -7,7 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.Factions.utility.StringUtil;
+import pw.xwy.Factions.utility.StringUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -49,7 +49,7 @@ public class Sell {
 					}
 				}
 			} else {
-				player.sendMessage(StringUtil.chatColorConv("&cYou do not have permission to do this!"));
+				player.sendMessage(StringUtility.conv("&cYou do not have permission to do this!"));
 			}
 			
 		}

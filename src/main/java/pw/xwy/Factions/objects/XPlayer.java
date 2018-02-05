@@ -22,31 +22,30 @@ import java.util.UUID;
  * For the most part this isn't used, however it is still updated to work with things
  */
 
-@Deprecated
-public class XPlayer {
+public class XPlayer implements XFactionPlayer {
 	
-	public XPlayerConfig playerConfig;
-	public int spawnCooldown = 0;
 	public int homeCooldown = 0;
-	public boolean canceled = false;
-	public boolean stopNextFallDamage = false;
+	private boolean cancelled = false;
+	private boolean stopNextFallDamage = false;
+	private XPlayerConfig config;
 	private String name;
 	private Player player;
 	private double power = 0.0;
 	private XFaction faction = null;
 	private ChatType chatType = ChatType.PUBLIC;
+	private TeleportWarmupTask teleportWarmupTask = null;
 	private ArrayList<XFaction> invites = new ArrayList<>();
 	
 	public XPlayer(Player player) {
 		this.player = player;
-		playerConfig = new XPlayerConfig(this);
+		config = new XPlayerConfig(this);
 	}
 	
 	public XPlayer(UUID id, XPlayerConfig s) {
 		try {
-			playerConfig = s;
+			config = s;
 			player = Bukkit.getPlayer(id);
-			this.name = playerConfig.getName();
+			this.name = config.getName();
 			power = s.getPower();
 			String st = s.getFactionUUID();
 			
@@ -63,6 +62,7 @@ public class XPlayer {
 		}
 	}
 	
+	@Override
 	public void addPower() {
 		int po = (int) (power * 10);
 		po += 1;
@@ -70,66 +70,72 @@ public class XPlayer {
 		if (po >= Config.maxPower) {
 			power = Config.maxPower;
 		}
-		playerConfig.save(this);
+		config.save(this);
 		
 	}
 	
+	@Override
 	public ChatType getChatType() {
 		return chatType;
 	}
 	
-	public void getChatType(ChatType chatType) {
+	@Override
+	public void setChatType(ChatType chatType) {
 		this.chatType = chatType;
 	}
 	
-	public ChatType getChatType(String s) {
-		if (s.equalsIgnoreCase("f")) {
-			return ChatType.FACTION;
-		}
-		else if (s.equalsIgnoreCase("a")) {
-			return ChatType.ALLY;
-		}
-		else if (s.equalsIgnoreCase("p")) {
-			return ChatType.PUBLIC;
-		}
-		return null;
+	@Override
+	public TeleportWarmupTask getCurrentTeleportTask() {
+		return teleportWarmupTask;
 	}
 	
+	@Override
+	public void setCurrentTeleportTask(TeleportWarmupTask task) {
+		teleportWarmupTask = task;
+	}
+	
+	@Override
 	public XFaction getFaction() {
 		return faction;
 	}
 	
+	@Override
 	public void setFaction(XFaction xFaction) {
 		faction = xFaction;
 		if (xFaction != null) {
-			playerConfig.set("info.faction", xFaction.id.toString());
+			config.set("info.faction", xFaction.id.toString());
 		} else {
-			playerConfig.set("info.faction", "no-faction");
+			config.set("info.faction", "no-faction");
 		}
 		
-		playerConfig.save();
+		config.save();
 	}
 	
 	public UUID getID() {
 		return player.getUniqueId();
 	}
 	
+	@Override
 	public String getName() {
 		return name;
 	}
 	
+	@Override
 	public Player getPlayer() {
 		return player;
 	}
 	
+	@Override
 	public double getPower() {
 		return power;
 	}
 	
+	@Override
 	public boolean hasInvite(XFaction faction) {
 		return invites.contains(faction);
 	}
 	
+	@Override
 	public boolean invite(XFaction faction) {
 		if (!invites.contains(faction)) {
 			invites.add(faction);
@@ -138,19 +144,52 @@ public class XPlayer {
 		return false;
 	}
 	
-	public void nextChatType() {
-		int num = chatType.ordinal();
-		if (++num > ChatType.TRUCE.ordinal()) {
-			num = 0;
-		}
-		chatType = ChatType.values()[num];
+	@Override
+	public boolean isCancelled() {
+		return cancelled;
 	}
 	
+	@Override
+	public void setCancelled(boolean cancelled) {
+		this.cancelled = cancelled;
+	}
+	
+	@Override
+	public boolean isNoFallDamage() {
+		return stopNextFallDamage;
+	}
+	
+	@Override
+	public void setNoFallDamage(boolean fallDamage) {
+		stopNextFallDamage = fallDamage;
+	}
+	
+	@Override
+	public boolean isTeleporting() {
+		return teleportWarmupTask != null;
+	}
+	
+	@Override
 	public boolean revokeInvite(XFaction faction) {
 		if (invites.contains(faction)) {
 			invites.remove(faction);
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public void save() {
+		config.save();
+	}
+	
+	@Override
+	public void stopTeleporting() {
+		teleportWarmupTask = null;
+	}
+	
+	@Override
+	public void toggleCancelled() {
+		cancelled = !cancelled;
 	}
 }

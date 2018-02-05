@@ -15,10 +15,9 @@ import pw.xwy.Factions.enums.sell.Sell;
 import pw.xwy.Factions.objects.Glow;
 import pw.xwy.Factions.objects.ItemBuilder;
 import pw.xwy.Factions.objects.XRank;
-import pw.xwy.Factions.utility.ItemUtil;
-import pw.xwy.Factions.utility.StringUtil;
+import pw.xwy.Factions.utility.ItemUtility;
+import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.inventories.*;
-import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -96,23 +95,23 @@ public class InventoryHandler implements Listener {
 			e.setCancelled(true);
 			if (e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName()) {
 				String name = e.getCurrentItem().getItemMeta().getDisplayName();
-				if (StringUtil.chatColorString(name, "&c&lRaiding Shop"))
+				if (StringUtility.colorCompare(name, "&c&lRaiding Shop"))
 					e.getWhoClicked().openInventory(RaidingMenu.getInv());
-				else if (StringUtil.chatColorString(name, "&a&lBrewing Shop"))
+				else if (StringUtility.colorCompare(name, "&a&lBrewing Shop"))
 					e.getWhoClicked().openInventory(BrewingMenu.getInv());
-				else if (StringUtil.chatColorString(name, "&3&lSpawners Shop"))
+				else if (StringUtility.colorCompare(name, "&3&lSpawners Shop"))
 					e.getWhoClicked().openInventory(SpawnersMenu.getInv());
-				else if (StringUtil.chatColorString(name, "&b&lCombat Shop")) {
+				else if (StringUtility.colorCompare(name, "&b&lCombat Shop")) {
 					e.getWhoClicked().openInventory(CombatMenu.getInv());
-				} else if (StringUtil.chatColorString(name, "&2&lFarming Shop"))
+				} else if (StringUtility.colorCompare(name, "&2&lFarming Shop"))
 					e.getWhoClicked().openInventory(FarmingMenu.getInv());
-				else if (StringUtil.chatColorString(name, "&9&lTools Shop"))
+				else if (StringUtility.colorCompare(name, "&9&lTools Shop"))
 					e.getWhoClicked().openInventory(ToolsMenu.getInv());
-				else if (StringUtil.chatColorString(name, "&5&lBuilding Shop"))
+				else if (StringUtility.colorCompare(name, "&5&lBuilding Shop"))
 					e.getWhoClicked().openInventory(BuildingMenu.getInv());
-				else if (StringUtil.chatColorString(name, "&f&lMisc Shop"))
+				else if (StringUtility.colorCompare(name, "&f&lMisc Shop"))
 					e.getWhoClicked().openInventory(MiscMenu.getInv());
-				else if (StringUtil.chatColorString(name, "&6&lSell Shop")) {
+				else if (StringUtility.colorCompare(name, "&6&lSell Shop")) {
 					e.getWhoClicked().openInventory(SellMenu.getInv((Player) e.getWhoClicked()));
 				}
 			}
@@ -207,12 +206,12 @@ public class InventoryHandler implements Listener {
 				} else {
 					if (e.getCurrentItem().getItemMeta().hasDisplayName()) {
 						String name = e.getCurrentItem().getItemMeta().getDisplayName();
-						if (StringUtil.chatColorString(name, "&aNext Page")) {
+						if (StringUtility.colorCompare(name, "&aNext Page")) {
 							if (e.getInventory().getItem(0).getType().equals(Material.STONE))
 								e.getWhoClicked().openInventory(BuildingMenu.getInv2());
 							if (e.getInventory().getItem(0).getType().equals(Material.DIAMOND_BLOCK))
 								e.getWhoClicked().openInventory(BuildingMenu.getInv3());
-						} else if (StringUtil.chatColorString(name, "&cPrevious Page")) {
+						} else if (StringUtility.colorCompare(name, "&cPrevious Page")) {
 							if (e.getInventory().getItem(0).getType().equals(Material.STONE))
 								e.setCancelled(true);
 							else if (e.getInventory().getItem(0).getType().equals(Material.DIAMOND_BLOCK))
@@ -238,11 +237,11 @@ public class InventoryHandler implements Listener {
 								
 								e.getWhoClicked().closeInventory();
 								eco.depositPlayer((OfflinePlayer) e.getWhoClicked(), total);
-								e.getWhoClicked().sendMessage(StringUtil.chatColorConv("&aSold " + amount + " items, for $" + total));
+								e.getWhoClicked().sendMessage(StringUtility.conv("&aSold " + amount + " items, for $" + total));
 								
 							} else if (e.getCurrentItem().getDurability() == 14) {
 								e.getWhoClicked().closeInventory();
-								e.getWhoClicked().sendMessage(StringUtil.chatColorConv("&cCancelled."));
+								e.getWhoClicked().sendMessage(StringUtility.conv("&cCancelled."));
 							}
 						} else {
 							e.getWhoClicked().sendMessage(ChatColor.RED + "This cannot be sold.");
@@ -262,7 +261,7 @@ public class InventoryHandler implements Listener {
 							}
 						}
 						if (!found) {
-							e.getWhoClicked().sendMessage(StringUtil.chatColorConv("&cThis cannot be sold."));
+							e.getWhoClicked().sendMessage(StringUtility.conv("&cThis cannot be sold."));
 							e.setCancelled(true);
 						} else {
 							if (!e.isCancelled() && e.getRawSlot() <= 44) {
@@ -285,8 +284,8 @@ public class InventoryHandler implements Listener {
 								int k = e.getInventory().first(Material.FIREWORK_CHARGE);
 								ItemStack i = e.getInventory().getItem(j);
 								ItemStack l = e.getInventory().getItem(k);
-								ItemUtil.setLore(i, StringUtil.chatColorConv("&6" + total));
-								ItemUtil.setLore(l, StringUtil.chatColorConv("&a" + amount));
+								ItemUtility.setLore(i, StringUtility.conv("&6" + total));
+								ItemUtility.setLore(l, StringUtility.conv("&a" + amount));
 								e.getInventory().remove(Material.GOLD_NUGGET);
 								e.getInventory().setItem(j, i);
 								e.getInventory().remove(Material.FIREWORK_CHARGE);
@@ -302,7 +301,7 @@ public class InventoryHandler implements Listener {
 						}
 					}
 					if (!found) {
-						e.getWhoClicked().sendMessage(StringUtil.chatColorConv("&cThis cannot be sold."));
+						e.getWhoClicked().sendMessage(StringUtility.conv("&cThis cannot be sold."));
 						e.setCancelled(true);
 					} else {
 						if (!e.isCancelled()) {
@@ -325,8 +324,8 @@ public class InventoryHandler implements Listener {
 							int k = e.getInventory().first(Material.FIREWORK_CHARGE);
 							ItemStack i = e.getInventory().getItem(j);
 							ItemStack l = e.getInventory().getItem(k);
-							ItemUtil.setLore(i, StringUtil.chatColorConv("&6" + total));
-							ItemUtil.setLore(l, StringUtil.chatColorConv("&a" + amount));
+							ItemUtility.setLore(i, StringUtility.conv("&6" + total));
+							ItemUtility.setLore(l, StringUtility.conv("&a" + amount));
 							e.getInventory().remove(Material.GOLD_NUGGET);
 							e.getInventory().setItem(j, i);
 							e.getInventory().remove(Material.FIREWORK_CHARGE);
@@ -338,7 +337,7 @@ public class InventoryHandler implements Listener {
 				}
 			}
 			
-		} else if (e.getInventory().getName().equalsIgnoreCase(StringUtil.chatColorConv("&a&lBuy Menu"))) {
+		} else if (e.getInventory().getName().equalsIgnoreCase(StringUtility.conv("&a&lBuy Menu"))) {
 			if (e.getCurrentItem().getType().equals(Material.STAINED_GLASS_PANE)) {
 				if (e.getCurrentItem().getDurability() == 14) {
 					if (e.getInventory().getContents()[13].getAmount() - e.getCurrentItem().getAmount() >= 1) {
@@ -362,7 +361,7 @@ public class InventoryHandler implements Listener {
 					if (balCheck((Player) e.getWhoClicked(), price)) {
 						balRem((Player) e.getWhoClicked(), price);
 						e.getWhoClicked().getInventory().addItem(new ItemStack(e.getInventory().getItem(13)));
-						e.getWhoClicked().sendMessage(StringUtil.chatColorConv("&2$&a" + price + " was charged from your account."));
+						e.getWhoClicked().sendMessage(StringUtility.conv("&2$&a" + price + " was charged from your account."));
 						e.getWhoClicked().closeInventory();
 					}
 				}
@@ -377,8 +376,8 @@ public class InventoryHandler implements Listener {
 					String rank = e.getInventory().getName().substring(14);
 					Player player = (Player) e.getWhoClicked();
 					player.sendMessage(rank);
-					if (FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRole(player.getUniqueId()).hasPerm("ManagePerms", true) || PlayerManager.getPlayerFaction(player).isLeader(player)) {
-						XRank rank1 = FactionManager.getPlayerUUIDFaction(player.getUniqueId()).getRole(rank);
+					if (PlayerManager.getPlayerFaction(player).getRole(player.getUniqueId()).hasPerm("ManagePerms", true) || PlayerManager.getPlayerFaction(player).isLeader(player)) {
+						XRank rank1 = PlayerManager.getPlayerFaction(player).getRole(rank);
 						if (rank1 != null) {
 							player.sendMessage(rank + " - " + toggled + " - ");
 							e.setCurrentItem(toggle(toggled, e.getCurrentItem(), rank1));

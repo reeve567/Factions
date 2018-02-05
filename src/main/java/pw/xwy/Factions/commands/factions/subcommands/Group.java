@@ -6,6 +6,7 @@ import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Group extends SubCommand {
 	@Override
 	public void run(Player p, String[] args) {
 		UUID id = p.getUniqueId();
-		XFaction faction = FactionManager.getPlayerUUIDFaction(id);
+		XFaction faction = PlayerManager.getPlayerFaction(p);
 		if (faction != null) {
 			boolean isLeader = faction.getLeader().equals(id);
 			boolean hasPerm = faction.getRole(id).hasPerm("ManagePerms", true);
@@ -58,14 +59,15 @@ public class Group extends SubCommand {
 					}
 				} else if (args.length == 3 && args[1].equalsIgnoreCase("delete")) {
 					if (faction.removeRank(args[2])) {
-						//rank removed
+						p.sendMessage("rank removed");
 					}
-					//rank not removed
+					p.sendMessage("rank not removed");
 				} else if (args.length == 5 && args[1].equalsIgnoreCase("set") && args[2].equalsIgnoreCase("prefix")) {
 					
 					if (faction.getRole(args[4]) != null) {
 						//rank exists
 						faction.getRole(args[4]).prefix = args[3];
+						p.sendMessage("prefix set for " + args[4] + " to " + args[3]);
 					}
 					
 				} else {

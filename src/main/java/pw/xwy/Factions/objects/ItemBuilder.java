@@ -42,11 +42,6 @@ public class ItemBuilder {
 		return this;
 	}
 	
-	public ItemBuilder removeGlow() {
-		meta.removeEnchant(new Glow(999));
-		return this;
-	}
-	
 	public ItemBuilder addLore(String s) {
 		List<String> lores = new ArrayList<>();
 		if (itemStack.hasItemMeta()) {
@@ -62,6 +57,11 @@ public class ItemBuilder {
 	public ItemStack get() {
 		setMeta();
 		return itemStack;
+	}
+	
+	public ItemBuilder removeGlow() {
+		meta.removeEnchant(new Glow(999));
+		return this;
 	}
 	
 	public ItemBuilder setAmount(int amount) {

@@ -60,7 +60,7 @@ public class Who extends SubCommand {
 	public void run(Player p, String[] args) {
 		
 		if (args.length < 2) {
-			display(p, FactionManager.getPlayerUUIDFaction(p.getUniqueId()), false);
+			display(p, PlayerManager.getPlayerFaction(p), false);
 		} else if (FactionManager.getFactionByName(args[1]) != null) {
 			XFaction faction = FactionManager.getFactionByName(args[1]);
 			assert faction != null;

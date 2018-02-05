@@ -19,13 +19,13 @@ public class LeaveHandler implements Listener {
 	
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
-		XPlayer xPlayer = PlayerManager.getXPlayer(e.getPlayer());
-		xPlayer.playerConfig.save();
+		XPlayer xPlayer = (XPlayer) PlayerManager.getPlayer(e.getPlayer());
+		xPlayer.save();
 		if (xPlayer.getFaction() != null) {
 			xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() - 1);
 		}
 		
-		PlayerManager.removeXPlayer(xPlayer);
+		PlayerManager.removePlayer(xPlayer);
 	}
 	
 }

@@ -16,26 +16,26 @@ import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Open extends SubCommand {
-    public Open() {
-        super("open", "", "Opens your faction for people to join");
-    }
-
-    @Override
-    public void run(Player p, String[] args) {
-        XFaction faction = PlayerManager.getPlayerFaction(p);
-
-        if (faction == null) {
-            Messages.sendMessage(p, Messages.getWhoSender());
-            return;
-        }
-
-        if (!faction.hasPermission(p,"toggleOpen")) {
-            Messages.sendMessage( p,"no permission");
-            return;
-        }
-
-        faction.open = true;
-
-        Messages.sendMessage(p, "Faction is now open");
-    }
+	public Open() {
+		super("open", "", "Opens your faction for people to join");
+	}
+	
+	@Override
+	public void run(Player p, String[] args) {
+		XFaction faction = PlayerManager.getPlayerFaction(p);
+		
+		if (faction == null) {
+			Messages.sendMessage(p, Messages.getWhoSender());
+			return;
+		}
+		
+		if (!faction.hasPermission(p, "toggleOpen")) {
+			Messages.sendMessage(p, "no permission");
+			return;
+		}
+		
+		faction.open = true;
+		
+		Messages.sendMessage(p, "Faction is now open");
+	}
 }

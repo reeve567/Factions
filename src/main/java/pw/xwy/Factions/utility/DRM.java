@@ -17,9 +17,9 @@ import java.net.Socket;
 
 public class DRM {
 	
+	private final boolean use = false;
 	private boolean okay = true;
 	private File file;
-	private final boolean use = false;
 	
 	public DRM(String name) {
 		if (use) {

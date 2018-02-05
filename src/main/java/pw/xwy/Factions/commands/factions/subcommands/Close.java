@@ -16,26 +16,26 @@ import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Close extends SubCommand {
-    public Close() {
-        super("close", "", "Closes your faction so people can't join");
-    }
-
-    @Override
-    public void run(Player p, String[] args) {
-        XFaction faction = PlayerManager.getPlayerFaction(p);
-
-        if (faction == null) {
-            Messages.sendMessage(p,Messages.getWhoSender());
-            return;
-        }
-
-        if (!faction.hasPermission(p,"toggleOpen")) {
-            Messages.sendMessage(p, "no permission");
-            return;
-        }
-
-        faction.open = false;
-
-        Messages.sendMessage(p, "Faction is now closed");
-    }
+	public Close() {
+		super("close", "", "Closes your faction so people can't join");
+	}
+	
+	@Override
+	public void run(Player p, String[] args) {
+		XFaction faction = PlayerManager.getPlayerFaction(p);
+		
+		if (faction == null) {
+			Messages.sendMessage(p, Messages.getWhoSender());
+			return;
+		}
+		
+		if (!faction.hasPermission(p, "toggleOpen")) {
+			Messages.sendMessage(p, "no permission");
+			return;
+		}
+		
+		faction.open = false;
+		
+		Messages.sendMessage(p, "Faction is now closed");
+	}
 }

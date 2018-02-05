@@ -28,14 +28,16 @@ public class ClaimManager {
 	}
 	
 	public static String getMessage(Chunk c, Player p) {
-		if (getChunk(c) != null) {
-			String name = getChunk(c).getName();
+		XFaction faction = getChunk(c);
+		if (faction != null) {
+			String name = faction.getName();
+			String desc = faction.desc;
 			if (getChunk(c).getEveryone().contains(p.getUniqueId())) {
 				name = StringUtility.conv("&a" + name);
 			} else {
 				name = StringUtility.conv("&f" + name);
 			}
-			return StringUtility.conv("&6You are now entering " + name + "&6.");
+			return StringUtility.conv("&6You are now entering &" + faction.getColor() + name + " &6- &" + faction.getColor() + desc + " &6.");
 		} else {
 			return StringUtility.conv("&6You are now entering &2Wilderness&6.");
 		}

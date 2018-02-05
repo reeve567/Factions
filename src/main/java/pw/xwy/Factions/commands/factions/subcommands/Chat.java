@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.enums.ChatType;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -27,16 +28,15 @@ public class Chat extends SubCommand {
 		XFaction faction = PlayerManager.getPlayerFaction(p);
 		if (faction != null) {
 			
-			XPlayer player = PlayerManager.getXPlayer(p);
+			XFactionPlayer player = PlayerManager.getPlayer(p);
 			if (args.length != 2) {
 				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
 			} else {
-				ChatType chatType = player.getChatType(args[1]);
+				ChatType chatType = ChatType.getType(args[1]);
 				if (chatType != null) {
-					player.getChatType(chatType);
+					player.setChatType(chatType);
 					p.sendMessage("chat type changed to " + chatType.toString());
-				}
-				else {
+				} else {
 					p.sendMessage("invalid chat type");
 				}
 			}

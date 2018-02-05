@@ -3,11 +3,11 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
-import sun.plugin2.message.Message;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -29,16 +29,16 @@ public class Join extends SubCommand {
 			Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
 		} else if (FactionManager.getFactionByName(args[1]) != null) {
 			XFaction faction = FactionManager.getFactionByName(args[1]);
-
-			if (faction == null){
+			
+			if (faction == null) {
 				Messages.sendMessage(p, "Faction doesn't exist");
 				return;
 			}
-
-			if (PlayerManager.getXPlayer(p).hasInvite(faction) && (faction.open)) {
-				if (PlayerManager.getXPlayer(p).getFaction() == null) {
-					PlayerManager.getXPlayer(p).revokeInvite(faction);
-					PlayerManager.getXPlayer(p).setFaction(faction);
+			XFactionPlayer player = PlayerManager.getPlayer(p);
+			if (player.hasInvite(faction) && (faction.open)) {
+				if (player.getFaction() == null) {
+					player.revokeInvite(faction);
+					player.setFaction(faction);
 					faction.addRecruit(p.getUniqueId());
 					Messages.sendMessage(p, String.format("Welcome to the %s faction", faction.getName()));
 				} else {

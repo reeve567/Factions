@@ -2,6 +2,7 @@ package pw.xwy.Factions.utility.managers;
 
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.objects.XPlayerConfig;
 
@@ -19,13 +20,13 @@ import java.util.UUID;
 
 public class PlayerManager {
 	
-	private static ArrayList<XPlayer> players = new ArrayList<>();
+	private static ArrayList<XFactionPlayer> onlinePlayers = new ArrayList<>();
 	
-	public static void addXPlayer(XPlayer xPlayer) {
-		players.add(xPlayer);
+	public static void addXPlayer(XFactionPlayer player) {
+		onlinePlayers.add(player);
 	}
 	
-	public static XPlayer getOfflinePlayer(UUID p) {
+	public static XFactionPlayer getOfflinePlayer(UUID p) {
 		return new XPlayer(p, new XPlayerConfig(p));
 	}
 	
@@ -33,39 +34,32 @@ public class PlayerManager {
 		return getOfflinePlayer(p).getName();
 	}
 	
-	public static XFaction getPlayerFaction(Player p) {
-		return getXPlayer(p).getFaction();
+	public static ArrayList<XFactionPlayer> getOnlinePlayers() {
+		return onlinePlayers;
 	}
 	
-	public static ArrayList<XPlayer> getPlayers() {
-		return players;
-	}
-	
-	public static XPlayer getXPlayer(Player p) {
-		for (XPlayer pl : players) {
+	public static XFactionPlayer getPlayer(Player p) {
+		for (XFactionPlayer pl : onlinePlayers) {
 			if (pl.getPlayer().equals(p)) {
 				return pl;
 			}
 		}
-		XPlayer xp = new XPlayer(p);
-		players.add(xp);
+		XFactionPlayer xp = new XPlayer(p);
+		onlinePlayers.add(xp);
 		return xp;
 	}
 	
+	public static XFaction getPlayerFaction(Player p) {
+		return getPlayer(p).getFaction();
+	}
+	
 	public static boolean isInFaction(Player p) {
-		if (getXPlayer(p).getFaction() != null) return true;
+		if (getPlayer(p).getFaction() != null) return true;
 		return false;
 	}
 	
-	public static void removeXPlayer(XPlayer xPlayer) {
-		players.remove(xPlayer);
+	public static void removePlayer(XFactionPlayer player) {
+		onlinePlayers.remove(player);
 	}
 	
-	public static void setFaction(XPlayer xPlayer, XFaction xFaction) {
-		for (XPlayer p : players) {
-			if (p.equals(xPlayer)) {
-				p.setFaction(xFaction);
-			}
-		}
-	}
 }
