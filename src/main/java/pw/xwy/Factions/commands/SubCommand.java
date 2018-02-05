@@ -1,6 +1,7 @@
 package pw.xwy.Factions.commands;
 
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 
@@ -36,10 +37,10 @@ public abstract class SubCommand {
 		this.permission = "f." + command.toLowerCase();
 	}
 	
-	public abstract void run(Player p, String[] args);
+	public abstract void run(XPlayer p, String[] args);
 	
-	public void sendHelpMessage(Player p) {
-		Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+	protected void sendHelpMessage(XPlayer p) {
+		p.sendMessages(Messages.getCommandHelpFormat(this));
 	}
 	
 }

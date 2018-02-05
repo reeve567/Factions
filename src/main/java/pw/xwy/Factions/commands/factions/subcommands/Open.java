@@ -22,10 +22,10 @@ public class Open extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
-		XFaction faction = PlayerManager.getPlayerFaction(p);
+		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		
 		if (faction == null) {
-			Messages.sendMessage(p, Messages.getWhoSender());
+			Messages.sendMessages(p, Messages.getWhoSender());
 			return;
 		}
 		

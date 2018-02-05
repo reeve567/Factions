@@ -3,7 +3,6 @@ package pw.xwy.Factions.utility;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import pw.xwy.Factions.commands.factions.subcommands.Chat;
 
 import java.util.ArrayList;
 
@@ -18,13 +17,16 @@ import java.util.ArrayList;
 
 public class StringUtility {
 	
+	public static boolean colorCompare(String one, String two) {
+		return conv(one).equalsIgnoreCase(conv(two));
+	}
+	
 	public static String conv(String s) {
 		return ChatColor.translateAlternateColorCodes('&', s);
 	}
 	
 	public static Location fromString(String temp) {
 		String loc = temp;
-		
 		
 		String world = loc.substring(0, loc.indexOf(" "));
 		loc = loc.replaceFirst(world + " ", "");
@@ -59,10 +61,6 @@ public class StringUtility {
 	
 	public static boolean hasNext(char seperator, String list) {
 		return list.contains(String.valueOf(seperator));
-	}
-	
-	public static boolean colorCompare(String one, String two) {
-		return conv(one).equalsIgnoreCase(conv(two));
 	}
 	
 	public static String properName(String name) {

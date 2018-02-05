@@ -22,14 +22,14 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 public class ClaimHandler implements Listener {
 	
 	private boolean noPerms(String s, Player p) {
-		return !PlayerManager.getPlayerFaction(p).getRole(p.getUniqueId()).hasPerm(s, true) && !PlayerManager.getPlayerFaction(p).getLeader().equals(p.getUniqueId());
+		return !PlayerManager.getOnlinePlayerFaction(p).getRole(p.getUniqueId()).hasPerm(s, true) && !PlayerManager.getOnlinePlayerFaction(p).getLeader().equals(p.getUniqueId());
 	}
 	
 	@EventHandler
 	public void onBreak(BlockBreakEvent e) {
 		Player pl = e.getPlayer();
 		if (ClaimManager.isClaimed(e.getBlock().getChunk())) {
-			if (!PlayerManager.getPlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
+			if (!PlayerManager.getOnlinePlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
 				e.setCancelled(true);
 			} else if (noPerms("break", e.getPlayer())) {
 				e.setCancelled(true);
@@ -49,7 +49,7 @@ public class ClaimHandler implements Listener {
 	public void onPlace(BlockPlaceEvent e) {
 		Player pl = e.getPlayer();
 		if (ClaimManager.isClaimed(e.getBlock().getChunk())) {
-			if (!PlayerManager.getPlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
+			if (!PlayerManager.getOnlinePlayerFaction(pl).equals(ClaimManager.getChunk(e.getBlock().getChunk()))) {
 				e.setCancelled(true);
 			} else if (noPerms("place", e.getPlayer())) {
 				e.setCancelled(true);

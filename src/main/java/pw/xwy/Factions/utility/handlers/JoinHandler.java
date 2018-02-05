@@ -21,8 +21,7 @@ public class JoinHandler implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		XPlayer xPlayer = new XPlayer(e.getPlayer().getUniqueId(), Config.getPlayer(e.getPlayer()));
-		PlayerManager.addXPlayer(xPlayer);
-		
+		PlayerManager.addOnlinePlayer(xPlayer);
 		
 		if (xPlayer.getFaction() != null) {
 			xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);

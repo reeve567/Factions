@@ -60,9 +60,11 @@ public class FactionManager {
 	}
 	
 	public static XFaction getFactionFromUUID(UUID id) {
-		for (XFaction f : factions) {
-			if (f.id.equals(id)) {
-				return f;
+		if (id != null) {
+			for (XFaction f : factions) {
+				if (f.id.equals(id)) {
+					return f;
+				}
 			}
 		}
 		return null;
@@ -88,7 +90,6 @@ public class FactionManager {
 			if (!found) {
 				factions.add(faction);
 			}
-			
 			
 		}
 		

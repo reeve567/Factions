@@ -2,7 +2,6 @@ package pw.xwy.Factions.commands.factions;
 
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.MainCommand;
-import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.commands.factions.subcommands.*;
 
 ////////////////////////////////////////////////////////////////////////////////

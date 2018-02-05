@@ -9,9 +9,9 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -21,8 +21,8 @@ public class Sethome extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
-		XFaction faction = PlayerManager.getPlayerFaction(p);
+	public void run(XPlayer p, String[] args) {
+		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction != null) {
 			if (faction.hasPermission(p, "sethome")) {
 				if (faction.claim.isInClaim(p.getLocation().getChunk())) {
@@ -33,7 +33,7 @@ public class Sethome extends SubCommand {
 				}
 			}
 		} else {
-			Messages.sendMessages(p, Messages.getWhoSender());
+			p.sendMessages(Messages.getWhoSender());
 		}
 		
 	}

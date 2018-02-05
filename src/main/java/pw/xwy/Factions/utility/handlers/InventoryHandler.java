@@ -31,25 +31,21 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class InventoryHandler implements Listener {
 	
-	private Economy eco = null;
+	private Economy eco;
 	
 	public InventoryHandler(Economy eco) {
-		
 		this.eco = eco;
 	}
 	
 	private boolean acCheck(InventoryAction a, InventoryClickEvent e) {
-		
 		return e.getAction().equals(a);
 	}
 	
 	private boolean balCheck(Player p, Double price) {
-		
 		return (eco.getBalance(p) - price) >= 0;
 	}
 	
 	private void balRem(Player p, Double price) {
-		
 		eco.withdrawPlayer(p, price);
 	}
 	
@@ -78,12 +74,10 @@ public class InventoryHandler implements Listener {
 			builder.removeGlow();
 			prefix = "&c&l";
 			rank.removePerm(PermissionsSubMenu.perms.get(s));
-			
 		} else {
 			builder.addGlow();
 			prefix = "&a&l";
 			rank.addPerm(PermissionsSubMenu.perms.get(s));
-			
 		}
 		it = builder.setName(prefix + s).get();
 		return it;
@@ -115,27 +109,19 @@ public class InventoryHandler implements Listener {
 					e.getWhoClicked().openInventory(SellMenu.getInv((Player) e.getWhoClicked()));
 				}
 			}
-			
-			
 		} else if (e.getInventory().getName().equals(ToolsMenu.getInv().getName())) {
 			e.setCancelled(true);
 			if (e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta()) {
 				if (e.getCurrentItem().getItemMeta().hasLore()) {
-					
-					
 					double price = Double.parseDouble(e.getCurrentItem().getItemMeta().getLore().get(0).substring(5, e.getCurrentItem().getItemMeta().getLore().get(0)
 							.length()));
 					if (balCheck((Player) e.getWhoClicked(), price)) {
 						if (e.getWhoClicked().getInventory().firstEmpty() != -1) {
-							
-							
 							if (e.getCurrentItem().getType() != Material.MONSTER_EGG) {
 								BuyMenu.open((Player) e.getWhoClicked(), new ItemStack(e.getCurrentItem().getType(), 1, e.getCurrentItem().getDurability()), e.getCurrentItem().getItemMeta(), price);
 							} else {
 								short dur = e.getCurrentItem().getDurability();
 								String type = "";
-								
-								
 								switch (dur) {
 									case 99:
 										type = "IronGolem";
@@ -198,7 +184,6 @@ public class InventoryHandler implements Listener {
 										type = "Creeper";
 										break;
 								}
-								
 								Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ss give " + e.getWhoClicked().getName() + " " + type);
 							}
 						}
@@ -231,14 +216,11 @@ public class InventoryHandler implements Listener {
 						if (e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName()) {
 							if (e.getCurrentItem().getDurability() == 5) {
 								int[] calc = calcTotal(e);
-								
 								int total = calc[0];
 								int amount = calc[1];
-								
 								e.getWhoClicked().closeInventory();
 								eco.depositPlayer((OfflinePlayer) e.getWhoClicked(), total);
 								e.getWhoClicked().sendMessage(StringUtility.conv("&aSold " + amount + " items, for $" + total));
-								
 							} else if (e.getCurrentItem().getDurability() == 14) {
 								e.getWhoClicked().closeInventory();
 								e.getWhoClicked().sendMessage(StringUtility.conv("&cCancelled."));
@@ -247,7 +229,6 @@ public class InventoryHandler implements Listener {
 							e.getWhoClicked().sendMessage(ChatColor.RED + "This cannot be sold.");
 							e.setCancelled(true);
 						}
-						
 						e.setCancelled(true);
 					} else if (e.getCurrentItem().getType() == Material.IRON_FENCE) {
 						e.setCancelled(true);
@@ -256,8 +237,6 @@ public class InventoryHandler implements Listener {
 						for (Sell s : Sell.values()) {
 							if (s.getMaterial().equals(e.getCurrentItem().getType())) {
 								found = true;
-								
-								
 							}
 						}
 						if (!found) {
@@ -268,10 +247,8 @@ public class InventoryHandler implements Listener {
 								ItemStack it = e.getCurrentItem();
 								int price;
 								int[] calc = calcTotal(e);
-								
 								int total = calc[0];
 								int amount = calc[1];
-								
 								for (Sell s : Sell.values()) {
 									if (s.getMaterial().equals(it.getType())) {
 										price = (int) s.getPrice() * it.getAmount();
@@ -279,7 +256,6 @@ public class InventoryHandler implements Listener {
 										total -= price;
 									}
 								}
-								
 								int j = e.getInventory().first(Material.GOLD_NUGGET);
 								int k = e.getInventory().first(Material.FIREWORK_CHARGE);
 								ItemStack i = e.getInventory().getItem(j);
@@ -307,12 +283,9 @@ public class InventoryHandler implements Listener {
 						if (!e.isCancelled()) {
 							ItemStack it = e.getCursor();
 							int price;
-							
 							int[] calc = calcTotal(e);
-							
 							int total = calc[0];
 							int amount = calc[1];
-							
 							for (Sell s : Sell.values()) {
 								if (s.getMaterial().equals(it.getType())) {
 									price = (int) (s.getPrice() * it.getAmount());
@@ -336,7 +309,6 @@ public class InventoryHandler implements Listener {
 					e.setCancelled(true);
 				}
 			}
-			
 		} else if (e.getInventory().getName().equalsIgnoreCase(StringUtility.conv("&a&lBuy Menu"))) {
 			if (e.getCurrentItem().getType().equals(Material.STAINED_GLASS_PANE)) {
 				if (e.getCurrentItem().getDurability() == 14) {
@@ -376,8 +348,8 @@ public class InventoryHandler implements Listener {
 					String rank = e.getInventory().getName().substring(14);
 					Player player = (Player) e.getWhoClicked();
 					player.sendMessage(rank);
-					if (PlayerManager.getPlayerFaction(player).getRole(player.getUniqueId()).hasPerm("ManagePerms", true) || PlayerManager.getPlayerFaction(player).isLeader(player)) {
-						XRank rank1 = PlayerManager.getPlayerFaction(player).getRole(rank);
+					if (PlayerManager.getOnlinePlayerFaction(player).getRole(player.getUniqueId()).hasPerm("ManagePerms", true) || PlayerManager.getOnlinePlayerFaction(player).isLeader(player)) {
+						XRank rank1 = PlayerManager.getOnlinePlayerFaction(player).getRole(rank);
 						if (rank1 != null) {
 							player.sendMessage(rank + " - " + toggled + " - ");
 							e.setCurrentItem(toggle(toggled, e.getCurrentItem(), rank1));
@@ -393,7 +365,7 @@ public class InventoryHandler implements Listener {
 					String group = e.getCurrentItem().getItemMeta().getDisplayName().substring(10);
 					p.sendMessage("yo you clicked " + group);
 					p.closeInventory();
-					p.openInventory(PermissionsSubMenu.get(p, PlayerManager.getPlayerFaction(p).getRole(group)));
+					p.openInventory(PermissionsSubMenu.get(p, PlayerManager.getOnlinePlayerFaction(p).getRole(group)));
 				}
 			}
 		}

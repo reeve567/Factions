@@ -126,12 +126,10 @@ public class XFaction {
 	}
 	
 	static public boolean validateName(String factionName) {
-		
-		java.util.List<Character> chars = new ArrayList<>();
+		List<Character> chars = new ArrayList<>();
 		for (int i = 97; i < 123; i++) {
 			chars.add((char) i);
 		}
-		
 		for (int i = 65; i < 133; i++) {
 			chars.add((char) i);
 		}
@@ -139,13 +137,11 @@ public class XFaction {
 		for (int i = 48; i < 58; i++) {
 			chars.add((char) i);
 		}
-		
 		for (char c : factionName.toCharArray()) {
 			if (!chars.contains(c)) {
 				return false;
 			}
 		}
-		
 		for (XFaction faction : FactionManager.getFactions()) {
 			if (faction.getName().equalsIgnoreCase(factionName)) {
 				return false;
@@ -194,7 +190,6 @@ public class XFaction {
 			Chunk c = Bukkit.getWorld(world).getChunkAt(x, z);
 			claim(c, 1, true);
 		}
-		
 	}
 	
 	private void spawnersInit() {
@@ -206,14 +201,7 @@ public class XFaction {
 	public void addAlly(XFaction faction) {
 		allyRequests.remove(faction);
 		allies.add(faction);
-		for (UUID ID : players) {
-			if (Bukkit.getPlayer(ID).isOnline()) {
-				Messages.sendMessages(Bukkit.getPlayer(ID).getPlayer(), Messages.getAllyRequestRecieved(faction));
-			}
-		}
-		if (Bukkit.getPlayer(leader).isOnline()) {
-			Messages.sendMessages(Bukkit.getPlayer(leader), Messages.getAllyRequestAccepted(faction));
-		}
+		sendMessages(Messages.getAllyRequestAccepted(faction));
 	}
 	
 	public void addBalance(double amount) {
@@ -300,15 +288,7 @@ public class XFaction {
 	
 	public void getAllyRequest(XFaction faction) {
 		allyRequests.add(faction);
-		for (UUID id : players) {
-			if (Bukkit.getPlayer(id).isOnline()) {
-				Player p = Bukkit.getPlayer(id);
-				Messages.sendMessages(p, Messages.getAllyRequest(faction));
-			}
-		}
-		if (Bukkit.getPlayer(leader).isOnline()) {
-			Messages.sendMessages(Bukkit.getPlayer(leader), Messages.getAllyRequest(faction));
-		}
+		sendMessages(Messages.getAllyRequest(faction));
 	}
 	
 	public double getBalance() {
@@ -432,8 +412,8 @@ public class XFaction {
 		return getRole(p.getUniqueId()).hasPerm(s, true) || isLeader(p);
 	}
 	
-	public boolean hasPermission(Player p ,String s, String st) {
-		return hasPermission(p,s) || p.hasPermission(st);
+	public boolean hasPermission(Player p, String s, String st) {
+		return hasPermission(p, s) || p.hasPermission(st);
 	}
 	
 	public boolean hasPermission(UUID p, String s) {
@@ -456,8 +436,8 @@ public class XFaction {
 		this.systemFac = systemFac;
 	}
 	
-	public void leave(XFactionPlayer player, boolean announce) {
-		if (!player.getPlayer().getUniqueId().equals(leader)) {
+	public void leave(XPlayer player, boolean announce) {
+		if (!player.getUniqueId().equals(leader)) {
 			player.setFaction(null);
 			if (announce) {
 				for (UUID id : getEveryone()) {
@@ -492,6 +472,20 @@ public class XFaction {
 		faction.getAllyRequest(this);
 	}
 	
+	public void sendMessage(String s) {
+		for (UUID id : players) {
+			if (PlayerManager.isOnline(id)) {
+				PlayerManager.getPlayer(Bukkit.getPlayer(id)).sendMessage(s);
+			}
+		}
+	}
+	
+	public void sendMessages(List<String> strings) {
+		for (String s : strings) {
+			sendMessage(s);
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "Name: " + name + "; Leader: " + PlayerManager.getOfflinePlayer(leader).getName() + "; Power: " + power + "; Land: " + claim.get().size();
@@ -508,7 +502,6 @@ public class XFaction {
 			Bukkit.getPlayer(p).setAllowFlight(false);
 			Bukkit.getPlayer(p).sendMessage("flying disabled");
 		}
-		
 		
 	}
 	

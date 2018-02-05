@@ -23,13 +23,11 @@ public class XPlayerConfig {
 	private File file;
 	private FileConfiguration fileConfiguration;
 	
-	public XPlayerConfig(XPlayer player) {
-		UUID p = player.getPlayer().getUniqueId();
+	XPlayerConfig(XPlayer player) {
+		UUID p = player.getUniqueId();
 		File userdata = Config.userdata;
-		
 		file = new File(userdata, File.separator + p + ".yml");
 		fileConfiguration = YamlConfiguration.loadConfiguration(file);
-		
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
 			set("info.name", Bukkit.getPlayer(p).getName());
@@ -40,15 +38,13 @@ public class XPlayerConfig {
 		}
 	}
 	
-	public XPlayerConfig(UUID p) {
+	public XPlayerConfig(UUID uuid) {
 		File userdata = Config.userdata;
-		
-		file = new File(userdata, File.separator + p + ".yml");
+		file = new File(userdata, File.separator + uuid + ".yml");
 		fileConfiguration = YamlConfiguration.loadConfiguration(file);
-		
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
-			set("info.name", Bukkit.getPlayer(p).getName());
+			set("info.name", Bukkit.getPlayer(uuid).getName());
 			set("info.faction", "");
 			set("info.power", 0.0);
 			save();
@@ -75,15 +71,13 @@ public class XPlayerConfig {
 		return fileConfiguration.getString(path);
 	}
 	
-	public void save(XPlayer xPlayer) {
+	public void save(XFactionPlayer xPlayer) {
 		set("info.power", xPlayer.getPower());
 		if (xPlayer.getFaction() != null) {
 			set("info.faction", xPlayer.getFaction().id.toString());
 		} else {
 			set("info.faction", "no-faction");
 		}
-		
-		
 		try {
 			fileConfiguration.save(file);
 		} catch (IOException e) {

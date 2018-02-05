@@ -59,7 +59,6 @@ public enum Spawner {
 		im.setLore(lores);
 		it.setItemMeta(im);
 		
-		
 		this.item = it;
 		this.durability = dur;
 	}

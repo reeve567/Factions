@@ -43,5 +43,4 @@ public class ToolsMenu {
 		return inv;
 	}
 	
-	
 }

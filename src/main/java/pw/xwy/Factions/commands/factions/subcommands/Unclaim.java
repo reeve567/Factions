@@ -26,7 +26,7 @@ public class Unclaim extends SubCommand {
 	@Override
 	public void run(Player p, String[] args) {
 		XFaction faction;
-		if ((faction = PlayerManager.getPlayerFaction(p)) != null) {
+		if ((faction = PlayerManager.getOnlinePlayerFaction(p)) != null) {
 			
 			if (hasPerm(faction, p)) {
 				faction.claim.remove(p.getLocation().getChunk(), faction);

@@ -1,12 +1,15 @@
 package pw.xwy.Factions.utility.managers;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XFactionPlayer;
+import pw.xwy.Factions.objects.XFactionOnlinePlayer;
+import pw.xwy.Factions.objects.XOfflinePlayer;
 import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.objects.XPlayerConfig;
+import pw.xwy.Factions.utility.StringUtility;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -20,46 +23,69 @@ import java.util.UUID;
 
 public class PlayerManager {
 	
-	private static ArrayList<XFactionPlayer> onlinePlayers = new ArrayList<>();
+	private static ArrayList<XFactionOnlinePlayer> onlinePlayers = new ArrayList<>();
 	
-	public static void addXPlayer(XFactionPlayer player) {
+	public static void addOnlinePlayer(XFactionOnlinePlayer player) {
 		onlinePlayers.add(player);
 	}
 	
-	public static XFactionPlayer getOfflinePlayer(UUID p) {
-		return new XPlayer(p, new XPlayerConfig(p));
+	public static XFactionOnlinePlayer getOfflinePlayer(UUID p) {
+		return (XFactionOnlinePlayer) new XOfflinePlayer(p);
+	}
+	
+	public static XFaction getOfflinePlayerFaction(UUID uuid) {
+		return getOfflinePlayer(uuid).getFaction();
 	}
 	
 	public static String getOfflinePlayerName(UUID p) {
 		return getOfflinePlayer(p).getName();
 	}
 	
-	public static ArrayList<XFactionPlayer> getOnlinePlayers() {
+	public static XFaction getOnlinePlayerFaction(Player p) {
+		return getPlayer(p).getFaction();
+	}
+	
+	public static ArrayList<XFactionOnlinePlayer> getOnlinePlayers() {
 		return onlinePlayers;
 	}
 	
-	public static XFactionPlayer getPlayer(Player p) {
-		for (XFactionPlayer pl : onlinePlayers) {
-			if (pl.getPlayer().equals(p)) {
+	public static XFactionOnlinePlayer getPlayer(Player p) {
+		for (XFactionOnlinePlayer pl : onlinePlayers) {
+			if (pl.equals(p)) {
 				return pl;
 			}
 		}
-		XFactionPlayer xp = new XPlayer(p);
+		XFactionOnlinePlayer xp = new XPlayer(p);
 		onlinePlayers.add(xp);
 		return xp;
 	}
 	
-	public static XFaction getPlayerFaction(Player p) {
-		return getPlayer(p).getFaction();
+	public static boolean isOnline(UUID id) {
+		for (XFactionOnlinePlayer player : onlinePlayers) {
+			if (((XPlayer) player).getUniqueId().equals(id)) {
+				return true;
+			}
+		}
+		return false;
+		
 	}
 	
 	public static boolean isInFaction(Player p) {
-		if (getPlayer(p).getFaction() != null) return true;
-		return false;
+		return getPlayer(p).getFaction() != null;
 	}
 	
-	public static void removePlayer(XFactionPlayer player) {
+	public static void removePlayer(XFactionOnlinePlayer player) {
 		onlinePlayers.remove(player);
+	}
+	
+	public static void sendMessages(String message) {
+		Bukkit.broadcastMessage(StringUtility.conv(message));
+	}
+	
+	public static void sendMessages(List<String> messages) {
+		for (String s : messages) {
+			sendMessages(s);
+		}
 	}
 	
 }

@@ -51,7 +51,6 @@ public class Create extends SubCommand {
 			
 			}
 			
-			
 		}
 		if (!PlayerManager.isInFaction(p)) {
 			if (args[1].length() > 3) {

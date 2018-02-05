@@ -33,7 +33,6 @@ public class Sell {
 							
 							found = true;
 							
-							
 							for (ItemStack i : player.getInventory()) {
 								if (i != null && i.getType().equals(s.getMaterial())) {
 									money += i.getAmount() * s.getPrice();

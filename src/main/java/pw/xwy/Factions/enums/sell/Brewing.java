@@ -54,7 +54,6 @@ public enum Brewing {
 		im.setLore(lores);
 		it.setItemMeta(im);
 		
-		
 		this.item = it;
 		this.durability = 0;
 	}
@@ -71,7 +70,6 @@ public enum Brewing {
 		lores.add(ChatColor.GREEN + "$" + ChatColor.DARK_GREEN + pr);
 		im.setLore(lores);
 		it.setItemMeta(im);
-		
 		
 		this.item = it;
 		this.durability = dur;

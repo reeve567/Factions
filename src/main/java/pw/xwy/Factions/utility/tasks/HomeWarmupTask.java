@@ -10,18 +10,14 @@ package pw.xwy.Factions.utility.tasks;
 ////////////////////////////////////////////////////////////////////////////////
 
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import pw.xwy.Factions.objects.TeleportWarmupTask;
-import pw.xwy.Factions.objects.XFactionPlayer;
-import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class HomeWarmupTask extends TeleportWarmupTask {
 	
 	public HomeWarmupTask(Player p) {
-		super(p, (int) (Config.homeWarmupTime*10));
+		super(p, (int) (Config.homeWarmupTime * 10));
 	}
 	
 	@Override

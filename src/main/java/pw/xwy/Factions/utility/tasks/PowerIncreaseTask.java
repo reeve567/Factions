@@ -2,6 +2,7 @@ package pw.xwy.Factions.utility.tasks;
 
 import org.bukkit.scheduler.BukkitRunnable;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionOnlinePlayer;
 import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -27,7 +28,7 @@ public class PowerIncreaseTask extends BukkitRunnable {
 	@Override
 	public void run() {
 		//increase .1 every 1 min
-		for (XFactionPlayer p : PlayerManager.getOnlinePlayers()) {
+		for (XFactionOnlinePlayer p : PlayerManager.getOnlinePlayers()) {
 			p.addPower();
 			if (!factions.contains(p.getFaction())) {
 				factions.add(p.getFaction());

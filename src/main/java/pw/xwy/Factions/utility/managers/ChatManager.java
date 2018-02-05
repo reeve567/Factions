@@ -7,9 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pw.xwy.Factions.enums.ChatType;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionOnlinePlayer;
 import pw.xwy.Factions.objects.XFactionPlayer;
-import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.StringUtility;
 
 import java.util.ArrayList;
@@ -29,7 +28,7 @@ public class ChatManager implements Listener {
 	@EventHandler
 	public void onChat(AsyncPlayerChatEvent e) {
 		Player player = e.getPlayer();
-		XFactionPlayer xPlayer = PlayerManager.getPlayer(player);
+		XFactionOnlinePlayer xPlayer = PlayerManager.getPlayer(player);
 		ChatType chatType = xPlayer.getChatType();
 		XFaction xFaction = xPlayer.getFaction();
 		

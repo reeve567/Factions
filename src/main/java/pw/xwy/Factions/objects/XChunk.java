@@ -1,6 +1,7 @@
 package pw.xwy.Factions.objects;
 
 import org.bukkit.Chunk;
+import org.bukkit.craftbukkit.v1_8_R3.CraftChunk;
 import org.bukkit.scheduler.BukkitTask;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.utility.tasks.ChunkValueTask;
@@ -14,7 +15,7 @@ import pw.xwy.Factions.utility.tasks.ChunkValueTask;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class XChunk {
+public class XChunk extends CraftChunk {
 	
 	public XFaction xFaction;
 	public Chunk chunk;
@@ -22,6 +23,7 @@ public class XChunk {
 	private BukkitTask task;
 	
 	XChunk(XFaction xFaction, Chunk c) {
+		super((net.minecraft.server.v1_8_R3.Chunk) c);
 		this.xFaction = xFaction;
 		this.chunk = c;
 	}

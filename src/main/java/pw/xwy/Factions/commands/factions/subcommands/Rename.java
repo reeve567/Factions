@@ -9,11 +9,10 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
-import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Rename extends SubCommand {
 	public Rename() {
@@ -21,28 +20,27 @@ public class Rename extends SubCommand {
 	}
 	
 	@Override
-	public void run(Player p, String[] args) {
-		XFaction faction = PlayerManager.getPlayerFaction(p);
+	public void run(XPlayer p, String[] args) {
+		XFaction faction = p.getFaction();
 		
 		if (faction == null) {
-			Messages.sendMessage(p, Messages.getWhoSender());
+			p.sendMessages(Messages.getWhoSender());
 			return;
 		}
 		
 		if (!faction.hasPermission(p, "rename")) {
-			Messages.sendMessage(p, "no permission");
+			p.sendMessage("no permission");
 			return;
 		}
 		
 		if (!XFaction.validateName(args[1])) {
-			Messages.sendMessage(p, "Invalid faction name");
+			p.sendMessage("Invalid faction name");
 			return;
 		}
 		
 		// TODO: faction file names need to be renamed to the UUID instead of the faction name
 		faction.setName(args[1]);
-		
-		Messages.sendMessage(faction, String.format("Faction name changed to %s", args[1]));
+		faction.sendMessage(String.format("Faction name changed to %s", args[1]));
 	}
 }
 

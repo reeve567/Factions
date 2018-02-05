@@ -24,27 +24,27 @@ import java.util.HashMap;
 public class PermissionsSubMenu {
 	
 	public static HashMap<String, String> perms = new HashMap<>();
-	static  {
-		perms.put("Change faction tag","rename");
-		perms.put("Change description","desc");
-		perms.put("Invite players","invite");
-		perms.put("Kick members","kick");
-		perms.put("Claim faction land","claim");
-		perms.put("Unclaim faction land","unclaim");
-		perms.put("Faction ally","ally");
-		perms.put("Faction enemy","enemy");
-		perms.put("Faction neutral","neutral");
-		perms.put("Set faction home","sethome");
-		perms.put("Set faction warps","setwarps");
-		perms.put("Delete faction warps","delwarps");
-		perms.put("Use faction home","home");
-		perms.put("Use faction warps","warps");
-		perms.put("Faction fly","fly");
-		perms.put("Place blocks","place");
-		perms.put("Destroy blocks","break");
-		perms.put("Toggle faction openness","toggleOpen");
+
+	static {
+		perms.put("Change faction tag", "rename");
+		perms.put("Change description", "desc");
+		perms.put("Invite players", "invite");
+		perms.put("Kick members", "kick");
+		perms.put("Claim faction land", "claim");
+		perms.put("Unclaim faction land", "unclaim");
+		perms.put("Faction ally", "ally");
+		perms.put("Faction enemy", "enemy");
+		perms.put("Faction neutral", "neutral");
+		perms.put("Set faction home", "sethome");
+		perms.put("Set faction warps", "setwarps");
+		perms.put("Delete faction warps", "delwarps");
+		perms.put("Use faction home", "home");
+		perms.put("Use faction warps", "warps");
+		perms.put("Faction fly", "fly");
+		perms.put("Place blocks", "place");
+		perms.put("Destroy blocks", "break");
+		perms.put("Toggle faction openness", "toggleOpen");
 	}
-	
 	
 	public static Inventory get(Player p, XRank rank) {
 		Inventory inventory = Bukkit.createInventory(p, 18, "Permissions - " + rank.name);
@@ -67,17 +67,16 @@ public class PermissionsSubMenu {
 				get("Faction fly", "Allows fling in your claims", rank, "fly"),
 				get("Place blocks", "Gives the ability to place blocks", rank, "place"),
 				get("Destroy blocks", "Gives the ability to break blocks", rank, "break"),
-				get("Toggle faction openness","Can toggle whether or not the faction is open to players",rank,"toggleOpen")
+				get("Toggle faction openness", "Can toggle whether or not the faction is open to players", rank, "toggleOpen")
 		));
 		
 		int slot = 0;
-		for (ItemStack i: itemStacks) {
-			inventory.setItem(slot++,i);
+		for (ItemStack i : itemStacks) {
+			inventory.setItem(slot++, i);
 		}
 		
 		return inventory;
 	}
-	
 	
 	private static ItemStack get(String s, String st, XRank rank, String perm) {
 		String prefix = "&c&l";

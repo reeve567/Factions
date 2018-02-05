@@ -66,7 +66,6 @@ public enum Tools {
 		im.setLore(lores);
 		it.setItemMeta(im);
 		
-		
 		this.item = it;
 		this.durability = 0;
 	}
@@ -83,7 +82,6 @@ public enum Tools {
 		lores.add(ChatColor.GREEN + "$" + ChatColor.DARK_GREEN + pr);
 		im.setLore(lores);
 		it.setItemMeta(im);
-		
 		
 		this.item = it;
 		this.durability = dur;

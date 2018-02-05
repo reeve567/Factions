@@ -23,7 +23,7 @@ public class Ally extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
-		XFaction faction = PlayerManager.getPlayerFaction(p);
+		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction.getRole(p.getUniqueId()).hasPerm("ally", true)) {
 			if (args.length < 2) {
 				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
@@ -42,12 +42,13 @@ public class Ally extends SubCommand {
 						}
 						
 					} else {
-						//already ally
+						p.sendMessage("already ally");
 						
 					}
 				} else {
 					//not a faction
 					
+					p.sendMessage("faction not found");
 				}
 			}
 		}

@@ -37,7 +37,6 @@ public class BuyMenu {
 		
 		inv.setItem(40, ItemUtility.changeName(new ItemStack(Material.FIREWORK_CHARGE), StringUtility.conv("&a$&2" + String.valueOf(price)), false));
 		
-		
 		inv.setItem(39, ItemUtility.changeName(new ItemStack(Material.STAINED_CLAY, 1, (short) 14), "&cCancel", true));
 		inv.setItem(41, ItemUtility.changeName(new ItemStack(Material.STAINED_CLAY, 1, (short) 5), "&aBuy", true));
 		player.openInventory(inv);

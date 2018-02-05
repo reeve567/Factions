@@ -26,7 +26,7 @@ public class Who extends SubCommand {
 	}
 	
 	private void display(Player p, Player target) {
-		XFaction faction = PlayerManager.getPlayerFaction(target);
+		XFaction faction = PlayerManager.getOnlinePlayerFaction(target);
 		display(p, faction, true);
 	}
 	
@@ -60,7 +60,7 @@ public class Who extends SubCommand {
 	public void run(Player p, String[] args) {
 		
 		if (args.length < 2) {
-			display(p, PlayerManager.getPlayerFaction(p), false);
+			display(p, PlayerManager.getOnlinePlayerFaction(p), false);
 		} else if (FactionManager.getFactionByName(args[1]) != null) {
 			XFaction faction = FactionManager.getFactionByName(args[1]);
 			assert faction != null;
@@ -71,8 +71,6 @@ public class Who extends SubCommand {
 			p.sendMessage(StringUtility.conv("&7This faction/player does not exist."));
 		}
 		
-		
 	}
-	
 	
 }

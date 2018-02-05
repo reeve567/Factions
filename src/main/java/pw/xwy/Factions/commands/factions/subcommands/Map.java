@@ -128,7 +128,7 @@ public class Map extends SubCommand {
 			}
 			p.sendMessage(StringUtility.conv(row));
 		}
-		XFaction xFaction = PlayerManager.getPlayerFaction(p);
+		XFaction xFaction = PlayerManager.getOnlinePlayerFaction(p);
 		if (key.keySet().size() > 0) {
 			p.sendMessage(Messages.getMapMidFooter());
 			if (key.keySet().contains(xFaction)) {

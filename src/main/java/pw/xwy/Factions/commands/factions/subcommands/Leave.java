@@ -2,6 +2,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -20,9 +21,9 @@ public class Leave extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
-		if (PlayerManager.getPlayerFaction(p) != null) {
-			if (!PlayerManager.getPlayerFaction(p).getLeader().equals(p.getUniqueId())) {
-				PlayerManager.getPlayerFaction(p).leave(PlayerManager.getPlayer(p), true);
+		if (PlayerManager.getOnlinePlayerFaction(p) != null) {
+			if (!PlayerManager.getOnlinePlayerFaction(p).getLeader().equals(p.getUniqueId())) {
+				PlayerManager.getOnlinePlayerFaction(p).leave((XPlayer) PlayerManager.getPlayer(p), true);
 			}
 		}
 	}

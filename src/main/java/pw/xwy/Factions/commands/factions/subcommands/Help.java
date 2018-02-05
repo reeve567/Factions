@@ -18,7 +18,6 @@ import java.util.HashMap;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-@SuppressWarnings("ALL")
 public class Help extends SubCommand {
 	
 	private int perPage;
@@ -31,66 +30,76 @@ public class Help extends SubCommand {
 		this.faction = faction;
 	}
 	
+	private void map(Player p, int page) {
+		HashMap<Integer, ArrayList<SubCommand>> pages = new HashMap<>();
+		
+		ArrayList<SubCommand> subCommands = (ArrayList<SubCommand>) faction.subCommands.clone();
+		ArrayList<SubCommand> remove = new ArrayList<>();
+		ArrayList<SubCommand> used = new ArrayList<>();
+		
+		int cu = 0;
+		while (subCommands.size() > 0) {
+			cu++;
+			for (int i = 0; i < perPage; i++) {
+				boolean contin = true;
+				for (SubCommand subCommand : subCommands) {
+					if (contin) {
+						if (!used.contains(subCommand)) {
+							if (Config.usePermissions || subCommand.adminCommand) {
+								if (p.hasPermission(subCommand.permission)) {
+									used.add(subCommand);
+									remove.add(subCommand);
+									contin = false;
+								} else {
+									remove.add(subCommand);
+									contin = true;
+								}
+							} else {
+								used.add(subCommand);
+								remove.add(subCommand);
+								contin = false;
+							}
+						}
+					}
+				}
+			}
+			subCommands.removeAll(remove);
+			remove = new ArrayList<>();
+			pages.put(cu, used);
+			used = new ArrayList<>();
+		}
+		
+		if (page < pages.size()) {
+			send(p, pages, page);
+		} else {
+			send(p, pages, cu);
+		}
+		
+	}
+	
+	private void send(Player p, HashMap<Integer, ArrayList<SubCommand>> pages, int page) {
+		Messages.sendMessages(p, Messages.getHeader());
+		Messages.sendMessages(p, Messages.getHelpMenuExtra(page, pages.size()));
+		for (SubCommand subCommand : pages.get(page)) {
+			Messages.sendMessages(p, Messages.getCommandHelpFormat(subCommand));
+		}
+		Messages.sendMessages(p, Messages.getHelpMenuExtraBottom(page, pages.size()));
+		Messages.sendMessages(p, Messages.getFooter());
+	}
+	
 	@Override
 	public void run(Player p, String[] args) {
 		
 		if (args.length < 2) {
-		
+			map(p, 1);
 		} else {
 			try {
-				HashMap<Integer, ArrayList<SubCommand>> pages = new HashMap<>();
-				
 				int page = Integer.parseInt(args[1]);
-				ArrayList<SubCommand> subCommands = (ArrayList<SubCommand>) faction.subCommands.clone();
-				ArrayList<SubCommand> remove = new ArrayList<>();
-				ArrayList<SubCommand> used = new ArrayList<>();
-				
-				int cu = 0;
-				while (subCommands.size() > 0) {
-					cu++;
-					for (int i = 0; i < perPage; i++) {
-						boolean contin = true;
-						for (SubCommand subCommand : subCommands) {
-							if (contin) {
-								if (!used.contains(subCommand)) {
-									if (Config.usePermissions || subCommand.adminCommand) {
-										if (p.hasPermission(subCommand.permission)) {
-											used.add(subCommand);
-											remove.add(subCommand);
-											contin = false;
-										} else {
-											remove.add(subCommand);
-											contin = false;
-										}
-									} else {
-										used.add(subCommand);
-										remove.add(subCommand);
-										contin = false;
-									}
-								}
-							}
-						}
-					}
-					subCommands.removeAll(remove);
-					remove = new ArrayList<>();
-					pages.put(cu, used);
-					used = new ArrayList<>();
-				}
-				
-				Messages.sendMessages(p, Messages.getHeader());
-				Messages.sendMessages(p, Messages.getHelpMenuExtra(page, pages.size()));
-				for (SubCommand subCommand : pages.get(page)) {
-					Messages.sendMessages(p, Messages.getCommandHelpFormat(subCommand));
-				}
-				Messages.sendMessages(p, Messages.getHelpMenuExtraBottom(page, pages.size()));
-				Messages.sendMessages(p, Messages.getFooter());
-				
-			} catch (NumberFormatException ignored) {
-			
+				map(p, page);
+			} catch (NumberFormatException e) {
+				p.sendMessage("invalid page");
 			}
-			
-			
 		}
-		
 	}
+	
 }

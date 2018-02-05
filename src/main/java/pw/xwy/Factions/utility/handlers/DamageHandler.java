@@ -39,8 +39,8 @@ public class DamageHandler implements Listener {
 				Player p = (Player) e.getEntity();
 				Player damager = (Player) e.getDamager();
 				
-				XFaction faction = PlayerManager.getPlayerFaction(p);
-				XFaction faction1 = PlayerManager.getPlayerFaction(damager);
+				XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
+				XFaction faction1 = PlayerManager.getOnlinePlayerFaction(damager);
 				if (faction == faction1) {
 					e.setCancelled(true);
 					damager.sendMessage("You cannot hurt faction members!");

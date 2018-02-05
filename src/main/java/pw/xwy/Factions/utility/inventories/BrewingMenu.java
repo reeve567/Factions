@@ -22,7 +22,6 @@ public class BrewingMenu {
 	
 	private static Inventory inv = Bukkit.createInventory(null, 18, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
 	
-	
 	static {
 		ItemStack pGlass = new ItemStack(Material.STAINED_GLASS_PANE, 1);
 		pGlass.setDurability((short) 7);

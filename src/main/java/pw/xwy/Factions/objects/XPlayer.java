@@ -1,12 +1,19 @@
 package pw.xwy.Factions.objects;
 
+import net.minecraft.server.v1_8_R3.EntityPlayer;
 import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.enums.ChatType;
 import pw.xwy.Factions.utility.Configurations.Config;
+import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,48 +25,96 @@ import java.util.UUID;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-/**
- * For the most part this isn't used, however it is still updated to work with things
- */
-
-public class XPlayer implements XFactionPlayer {
+public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	
 	public int homeCooldown = 0;
 	private boolean cancelled = false;
 	private boolean stopNextFallDamage = false;
 	private XPlayerConfig config;
-	private String name;
-	private Player player;
-	private double power = 0.0;
-	private XFaction faction = null;
+	private double power;
+	private XFaction faction;
 	private ChatType chatType = ChatType.PUBLIC;
 	private TeleportWarmupTask teleportWarmupTask = null;
 	private ArrayList<XFaction> invites = new ArrayList<>();
 	
 	public XPlayer(Player player) {
-		this.player = player;
+		super((CraftServer) Bukkit.getServer(), (EntityPlayer) player);
 		config = new XPlayerConfig(this);
+		try {
+			faction = FactionManager.getFactionFromUUID(UUID.fromString(config.getFactionUUID()));
+		} catch (IllegalArgumentException e) {
+			faction = null;
+		}
+		power = config.getPower();
+		
+	}
+	
+	public static XPlayer getXPlayer(Player p) {
+		return (XPlayer) PlayerManager.getPlayer(p);
 	}
 	
 	public XPlayer(UUID id, XPlayerConfig s) {
+		super((CraftServer) Bukkit.getServer(), (EntityPlayer) Bukkit.getPlayer(id));
+		config = s;
+		power = s.getPower();
+		String st = s.getFactionUUID();
 		try {
-			config = s;
-			player = Bukkit.getPlayer(id);
-			this.name = config.getName();
-			power = s.getPower();
-			String st = s.getFactionUUID();
-			
-			if (!st.equalsIgnoreCase("") && !st.equalsIgnoreCase("no-faction")) {
-				faction = FactionManager.getFactionFromUUID(UUID.fromString(st));
-			} else {
-				faction = null;
-			}
-		} catch (NullPointerException ignored) {
-			System.out.println("Player not found in config, creating file now...");
-			player = Bukkit.getPlayer(id);
-			power = 0;
+			faction = FactionManager.getFactionFromUUID(UUID.fromString(st));
+		} catch (IllegalArgumentException e) {
 			faction = null;
 		}
+	}
+	
+	@Override
+	public void _INVALID_damage(int i) {
+	
+	}
+	
+	@Override
+	public void _INVALID_damage(int i, Entity entity) {
+	
+	}
+	
+	@Override
+	public int _INVALID_getHealth() {
+		return 0;
+	}
+	
+	@Override
+	public int _INVALID_getLastDamage() {
+		return 0;
+	}
+	
+	@Override
+	public int _INVALID_getMaxHealth() {
+		return 0;
+	}
+	
+	@Override
+	public void _INVALID_setHealth(int i) {
+	
+	}
+	
+	@Override
+	public void _INVALID_setLastDamage(int i) {
+	
+	}
+	
+	@Override
+	public void _INVALID_setMaxHealth(int i) {
+	
+	}
+	
+	@Override
+	public void sendMessages(List<String> strings) {
+		for (String s: strings) {
+			sendMessage(s);
+		}
+	}
+	
+	@Override
+	public void sendMessage(String s) {
+		super.sendMessage(StringUtility.conv(s));
 	}
 	
 	@Override
@@ -109,20 +164,6 @@ public class XPlayer implements XFactionPlayer {
 		}
 		
 		config.save();
-	}
-	
-	public UUID getID() {
-		return player.getUniqueId();
-	}
-	
-	@Override
-	public String getName() {
-		return name;
-	}
-	
-	@Override
-	public Player getPlayer() {
-		return player;
 	}
 	
 	@Override

@@ -23,7 +23,7 @@ public class Claim extends SubCommand {
 	}
 	
 	private boolean hasPerm(XFaction faction, Player p) {
-		return faction.hasPermission(p,"claim","factions.claim.others");
+		return faction.hasPermission(p, "claim", "factions.claim.others");
 	}
 	
 	@Override
@@ -31,7 +31,7 @@ public class Claim extends SubCommand {
 		XFaction faction;
 		Chunk c = p.getLocation().getChunk();
 		//is in faction
-		if ((faction = PlayerManager.getPlayerFaction(p)) != null) {
+		if ((faction = PlayerManager.getOnlinePlayerFaction(p)) != null) {
 			
 			if (hasPerm(faction, p)) {
 				
@@ -50,7 +50,6 @@ public class Claim extends SubCommand {
 								p.sendMessage(StringUtility.conv("&cThat faction does not seem to exist."));
 							}
 							
-							
 						} else {
 							p.sendMessage(StringUtility.conv("&cYou cannot claim for other factions!"));
 						}
@@ -67,7 +66,6 @@ public class Claim extends SubCommand {
 					
 				} else if (args.length == 3) {
 					//claim radius for another faction
-					
 					
 				}
 			} else {

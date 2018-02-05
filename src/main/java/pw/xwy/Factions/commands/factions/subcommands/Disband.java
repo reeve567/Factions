@@ -24,7 +24,7 @@ public class Disband extends SubCommand {
 	public void run(Player p, String[] args) {
 		if (p.hasPermission("factions.disband.others")) {
 			if (args.length < 2) {
-				PlayerManager.getPlayerFaction(p).disband(p, true);
+				PlayerManager.getOnlinePlayerFaction(p).disband(p, true);
 			} else {
 				XFaction xFaction = FactionManager.getFactionByName(args[1]);
 				if (xFaction != null) {
@@ -36,8 +36,8 @@ public class Disband extends SubCommand {
 				}
 			}
 		} else {
-			if (PlayerManager.getPlayerFaction(p) != null) {
-				PlayerManager.getPlayerFaction(p).disband(p, false);
+			if (PlayerManager.getOnlinePlayerFaction(p) != null) {
+				PlayerManager.getOnlinePlayerFaction(p).disband(p, false);
 			}
 		}
 	}

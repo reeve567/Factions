@@ -24,7 +24,7 @@ public class Home extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
-		XFaction faction = PlayerManager.getPlayerFaction(p);
+		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction != null) {
 			if (faction.hasPermission(p, "home")) {
 				if (faction.getHome() != null) {

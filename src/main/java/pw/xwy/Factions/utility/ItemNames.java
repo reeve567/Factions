@@ -31,7 +31,6 @@ public class ItemNames {
 		} catch (MalformedURLException ignored) {
 		}
 		
-		
 		if (url != null) {
 			try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), StandardCharsets.UTF_8))) {
 				

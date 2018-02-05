@@ -17,7 +17,6 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 /**
  * Changed to using fly whenever they're in the chunk
- *
  */
 @Deprecated
 public class Fly extends SubCommand {
@@ -28,7 +27,7 @@ public class Fly extends SubCommand {
 	@Override
 	public void run(Player p, String[] args) {
 		
-		XFaction faction = PlayerManager.getPlayerFaction(p);
+		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction != null) {
 			if (faction.hasPermission(p, "fly")) {
 				if (faction.claim.isInClaim(p.getLocation().getChunk())) {

@@ -40,7 +40,6 @@ public class BuildingMenu {
 			inv3.setItem(i, pGlass);
 		}
 		
-		
 		int c = 0;
 		
 		for (Building b : Building.values()) {

@@ -172,7 +172,6 @@ public enum Building {
 	REDSANDSTONESTAIRS(3, Material.RED_SANDSTONE_STAIRS),
 	REDSANDSTONESLAB(3, Material.STONE_SLAB2);
 	
-	
 	private final double price;
 	private final Material material;
 	private final ItemStack item;
@@ -191,7 +190,6 @@ public enum Building {
 		im.setLore(lores);
 		it.setItemMeta(im);
 		
-		
 		this.item = it;
 		this.durability = 0;
 	}
@@ -208,7 +206,6 @@ public enum Building {
 		lores.add(ChatColor.GREEN + "$" + ChatColor.DARK_GREEN + pr);
 		im.setLore(lores);
 		it.setItemMeta(im);
-		
 		
 		this.item = it;
 		this.durability = dur;

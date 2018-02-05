@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.enums.ChatType;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionOnlinePlayer;
 import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
@@ -25,12 +26,12 @@ public class Chat extends SubCommand {
 	
 	@Override
 	public void run(Player p, String[] args) {
-		XFaction faction = PlayerManager.getPlayerFaction(p);
+		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction != null) {
 			
-			XFactionPlayer player = PlayerManager.getPlayer(p);
+			XFactionOnlinePlayer player = PlayerManager.getPlayer(p);
 			if (args.length != 2) {
-				Messages.sendMessages(p, Messages.getCommandHelpFormat(this));
+				sendHelpMessage(p);
 			} else {
 				ChatType chatType = ChatType.getType(args[1]);
 				if (chatType != null) {
@@ -41,9 +42,8 @@ public class Chat extends SubCommand {
 				}
 			}
 		} else {
-			Messages.sendMessages(p, Messages.getWhoSender());
+			((XPlayer) p).sendMessages(Messages.getWhoSender());
 		}
-		
 		
 	}
 }

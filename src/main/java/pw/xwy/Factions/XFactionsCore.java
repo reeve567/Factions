@@ -43,7 +43,7 @@ public class XFactionsCore extends JavaPlugin {
 	private static final Logger log = Logger.getLogger("Minecraft");
 	private static XFactionsCore xFactionsCore;
 	private static Economy econ = null;
-	private String name = "Factions-BETA";
+	private static final String name = "Factions-BETA";
 	
 	private Faction faction;
 	private FactionTop ftop;
@@ -59,11 +59,8 @@ public class XFactionsCore extends JavaPlugin {
 	private void loadCommands() {
 		faction = new Faction();
 		ftop = new FactionTop();
-		
-		
 		//new Shop();
 		//new Sell();
-		
 	}
 	
 	private void registerGlow() {
@@ -118,7 +115,7 @@ public class XFactionsCore extends JavaPlugin {
 				} else {
 					for (SubCommand subCommand : subCommands) {
 						if (subCommand.command.equalsIgnoreCase(args[0])) {
-							if (p.hasPermission(subCommand.permission)) {
+							if (p.hasPermission(subCommand.permission) || !Config.usePermissions) {
 								subCommand.run(p, args);
 								return true;
 							}
@@ -127,15 +124,12 @@ public class XFactionsCore extends JavaPlugin {
 					p.sendMessage(StringUtility.conv("&cUnknown subcommand"));
 				}
 				
-				
 			}
 		} else if (command.getLabel().equalsIgnoreCase("ftop")) {
 			if (sender instanceof Player) {
 				ftop.run((Player) sender, args);
 			}
 		}
-		
-		
 		/*else if (command.getLabel().equalsIgnoreCase("spawn") && Config.spawnEnabled) {
 			if (sender instanceof Player) {
 				Player p = (Player) sender;
@@ -200,21 +194,17 @@ public class XFactionsCore extends JavaPlugin {
 				//getServer().getPluginManager().registerEvents(new UnknownCommandHandler(),this);
 				//getServer().getPluginManager().registerEvents(new CitizensHandler(),this);
 				getServer().getPluginManager().registerEvents(new InventoryHandler(econ), this);
-				
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					XPlayer xPlayer = new XPlayer(p.getUniqueId(), Config.getPlayer(String.valueOf(p.getUniqueId())));
-					PlayerManager.addXPlayer(xPlayer);
+					PlayerManager.addOnlinePlayer(xPlayer);
 					if (xPlayer.getFaction() != null) {
 						xPlayer.getFaction().setOnlinePlayers(xPlayer.getFaction().getOnlinePlayers() + 1);
 					}
 					
 					xPlayer.save();
 				}
-				
 				new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);
-				
 				System.out.println("factions v" + getDescription().getVersion() + " loaded.");
-				
 			}
 		} else {
 			for (Plugin p : getServer().getPluginManager().getPlugins()) {
@@ -246,6 +236,5 @@ public class XFactionsCore extends JavaPlugin {
 			return super.onTabComplete(sender, command, alias, args);
 		}
 	}
-	
 	
 }

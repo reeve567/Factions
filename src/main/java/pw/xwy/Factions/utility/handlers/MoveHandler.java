@@ -28,6 +28,7 @@ public class MoveHandler implements Listener {
 	
 	@EventHandler
 	public void onMove(PlayerMoveEvent e) {
+		
 		if (!lastFaction.containsKey(e.getPlayer())) {
 			lastFaction.put(e.getPlayer(), ClaimManager.getChunk(e.getTo().getChunk()));
 		}
@@ -38,13 +39,14 @@ public class MoveHandler implements Listener {
 				if (lastFaction.get(e.getPlayer()) != ClaimManager.getChunk(e.getTo().getChunk()) || ClaimManager.getChunk(e.getFrom().getChunk()) != ClaimManager.getChunk(e.getTo().getChunk())) {
 					lastFaction.put(e.getPlayer(), ClaimManager.getChunk(e.getTo().getChunk()));
 					XFaction faction = lastFaction.get(e.getPlayer());
-					if (faction != PlayerManager.getPlayerFaction(e.getPlayer())) {
-						XFaction faction1 = PlayerManager.getPlayerFaction(e.getPlayer());
-						
+					if (faction != PlayerManager.getOnlinePlayerFaction(e.getPlayer())) {
+						XFaction faction1 = PlayerManager.getOnlinePlayerFaction(e.getPlayer());
 						if (faction1.flying.contains(e.getPlayer().getUniqueId())) {
 							faction1.toggleFlying(e.getPlayer());
 						}
-						
+					} else {
+						XFaction faction1 = PlayerManager.getOnlinePlayerFaction(e.getPlayer());
+						faction1.toggleFlying(e.getPlayer());
 					}
 					e.getPlayer().sendMessage(ClaimManager.getMessage(e.getTo().getChunk(), e.getPlayer()));
 				}

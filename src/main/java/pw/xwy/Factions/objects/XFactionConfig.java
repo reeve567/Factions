@@ -197,7 +197,6 @@ public class XFactionConfig {
 			}
 			set("others.allies", allies);
 			
-			
 			set("info.balance", xFaction.getBalance());
 			set("info.power", xFaction.getPower());
 			set("info.leader", xFaction.getLeader().toString());
@@ -209,7 +208,6 @@ public class XFactionConfig {
 		set("info.name", xFaction.getName());
 		set("info.color", xFaction.getColor());
 		set("others.claim", xFaction.getClaimStrings());
-		
 		
 		try {
 			fileConfiguration.save(file);
