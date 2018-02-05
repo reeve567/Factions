@@ -23,7 +23,7 @@ public class Claim extends SubCommand {
 	}
 	
 	private boolean hasPerm(XFaction faction, Player p) {
-		return p.hasPermission("factions.claim.others") || faction != null && faction.getRole(p.getUniqueId()).hasPerm("claim", true);
+		return faction.hasPermission(p,"claim","factions.claim.others");
 	}
 	
 	@Override

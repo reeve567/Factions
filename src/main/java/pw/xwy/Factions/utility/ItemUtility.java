@@ -43,11 +43,12 @@ public class ItemUtility {
 		return itemStack;
 	}
 	
-	public static void changeName(ItemStack is, String name, boolean trans) {
+	public static ItemStack changeName(ItemStack is, String name, boolean trans) {
 		ItemMeta meta = is.getItemMeta();
 		if (trans) meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
 		else meta.setDisplayName(name);
 		is.setItemMeta(meta);
+		return is;
 	}
 	
 	public static ItemStack next() {

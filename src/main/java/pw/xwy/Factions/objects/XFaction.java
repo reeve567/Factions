@@ -432,6 +432,10 @@ public class XFaction {
 		return getRole(p.getUniqueId()).hasPerm(s, true) || isLeader(p);
 	}
 	
+	public boolean hasPermission(Player p ,String s, String st) {
+		return hasPermission(p,s) || p.hasPermission(st);
+	}
+	
 	public boolean hasPermission(UUID p, String s) {
 		return getRole(p).hasPerm(s, true) || isLeader(p);
 	}

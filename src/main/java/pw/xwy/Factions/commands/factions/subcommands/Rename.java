@@ -17,7 +17,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Rename extends SubCommand {
 	public Rename() {
-		super("rename", "", "Renames your faction");
+		super("rename", "<name>", "Renames your faction");
 	}
 	
 	@Override
@@ -29,7 +29,7 @@ public class Rename extends SubCommand {
 			return;
 		}
 		
-		if (!faction.hasPermission(p, "renameFaction")) {
+		if (!faction.hasPermission(p, "rename")) {
 			Messages.sendMessage(p, "no permission");
 			return;
 		}

@@ -5,7 +5,7 @@ charge-for-faction-creation: false
 creation-price: 100
 
 #Should we use permissions to allow access to player commands?
-use-permissions: true
+use-permissions: false
 
 home-warmup-time: 10.0
 
