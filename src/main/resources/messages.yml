@@ -19,6 +19,8 @@ general:
   - '&aAlly request sent to &e<ally>'
   ally-request-accepted:
   - '&aYour faction is not allies with &e<ally>'
+  faction-created:
+  - "&e<player> &ahas made a faction named '&e<faction-name>&a'."
 map:
   header: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
   mid-footer: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'

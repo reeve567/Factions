@@ -61,6 +61,7 @@ public class XFaction {
 		recruit = new XRank(this, false, false);
 		leaderRank = new XRank(this, true, false);
 		players.add(leader);
+		PlayerManager.sendMessages(Messages.getFactionCreated(XPlayer.getXPlayer(creator),this));
 	}
 	
 	//SYSTEM FACTION INITIALIZATION
@@ -254,16 +255,19 @@ public class XFaction {
 	
 	public void disband(XPlayer p, boolean b) {
 		if (!isSystemFac()) {
-			if (getRole(p.getUniqueId()).hasPerm("disband", true) || b) {
-				leave(p, false);
+			if (hasPermission(p,"disband") || b) {
+				XFactionPlayer leader = PlayerManager.getOfflinePlayer(this.leader);
+				leader.setFaction(null);
+				leader.save();
 				for (UUID id : players) {
 					XFactionPlayer pl = PlayerManager.getOfflinePlayer(id);
 					leave(pl, false);
+					pl.save();
 				}
 				factionConfig.remove();
 				Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded by &e" + p.getName() + "&c."));
-				FactionManager.removeFaction(this);
 				ClaimManager.removeChunks(this);
+				FactionManager.removeFaction(this);
 			}
 		} else {
 			System.out.println(p.getName() + " has tried to disband a system faction though the normal method!");

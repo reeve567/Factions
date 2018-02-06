@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -47,6 +48,7 @@ public class Messages {
 	private static List<String> allyRequest;
 	private static List<String> allyRequestRecieved;
 	private static List<String> allyRequestAccepted;
+	private static List<String> factionCreated;
 	
 	private static List<String> colorConv(List<String> s) {
 		ArrayList<String> temp = new ArrayList<>();
@@ -54,6 +56,15 @@ public class Messages {
 			temp.add(StringUtility.conv(st));
 		}
 		return convGeneralPlaceHolders(temp);
+	}
+	
+	public static List<String> convFactionPlaceHolders(List<String> strings, XFaction faction) {
+		List<String> st = new ArrayList<>();
+		for (String s : strings) {
+			s = replaceFactionValues(s, faction);
+			st.add(s);
+		}
+		return st;
 	}
 	
 	public static List<String> convGeneralPlaceHolders(List<String> strings) {
@@ -124,6 +135,19 @@ public class Messages {
 			temp.add(s);
 		}
 		return colorConv(temp);
+	}
+	
+	public static List<String> getFactionCreated(XPlayer player,XFaction faction) {
+		return replacePlayer(convFactionPlaceHolders(colorConv(factionCreated),faction),player);
+	}
+	
+	private static List<String> replacePlayer(List<String> strings,XPlayer player) {
+		List<String> st = new ArrayList<>();
+		for (String s : strings) {
+			s = s.replaceAll("<player>", player.getName());
+			st.add(s);
+		}
+		return st;
 	}
 	
 	public static List<String> getFooter() {
@@ -212,7 +236,7 @@ public class Messages {
 		allyRequest = config.getStringList("general.ally-request-sent");
 		allyRequestRecieved = config.getStringList("general.ally-request-recieved");
 		allyRequestAccepted = config.getStringList("general.ally-request-accepted");
-		
+		factionCreated = config.getStringList("general.faction-created");
 	}
 	
 	public static String replaceFactionValues(String s, XFaction faction) {

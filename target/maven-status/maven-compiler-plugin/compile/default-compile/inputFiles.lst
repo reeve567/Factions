@@ -47,6 +47,7 @@ D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\ta
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Map.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\RaidingMenu.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Who.java
+D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XOfflinePlayer.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\UnknownCommandHandler.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Sethome.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\LeaveHandler.java
@@ -73,13 +74,14 @@ D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\ha
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\FactionTop.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\DamageHandler.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Disband.java
+D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XFactionOnlinePlayer.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\Chat.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\handlers\JoinHandler.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\BuildingMenu.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XFactionPlayer.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\objects\XPlayerConfig.java
-D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\ToolsMenu.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\MiscMenu.java
+D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\ToolsMenu.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\commands\factions\subcommands\List.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\inventories\BuyMenu.java
 D:\Development\Code\Java\other\Factions\src\main\java\pw\xwy\Factions\utility\tasks\ChunkValueTask.java

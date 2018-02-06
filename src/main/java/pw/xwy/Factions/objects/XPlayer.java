@@ -54,6 +54,10 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		return (XPlayer) PlayerManager.getPlayer(p);
 	}
 	
+	public static XPlayer getXPlayer(UUID uuid) {
+		return (XPlayer) PlayerManager.getPlayer(Bukkit.getPlayer(uuid));
+	}
+	
 	public XPlayer(UUID id, XPlayerConfig s) {
 		super((CraftServer) Bukkit.getServer(), ((CraftPlayer) Bukkit.getPlayer(id)).getHandle());
 		config = s;

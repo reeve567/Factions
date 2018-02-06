@@ -116,6 +116,7 @@ public class FactionManager {
 		if (factions.contains(faction)) {
 			factions.remove(faction);
 		}
+		System.gc();
 		Config.saveFactions();
 	}
 }

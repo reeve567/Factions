@@ -10,11 +10,13 @@ package pw.xwy.Factions.utility.handlers;
 ////////////////////////////////////////////////////////////////////////////////
 
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class DamageHandler implements Listener {
@@ -35,20 +37,40 @@ public class DamageHandler implements Listener {
 	@EventHandler
 	public void onHit(EntityDamageByEntityEvent e) {
 		if (!e.isCancelled()) {
-			if (e.getEntity() instanceof Player && e.getDamager() instanceof Player) {
+			if (e.getEntity() instanceof Player) {
 				Player p = (Player) e.getEntity();
-				Player damager = (Player) e.getDamager();
-				
 				XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
-				XFaction faction1 = PlayerManager.getOnlinePlayerFaction(damager);
-				if (faction == faction1) {
-					e.setCancelled(true);
-					damager.sendMessage("You cannot hurt faction members!");
-				} else if (faction.getAllies().contains(faction1)) {
-					e.setCancelled(true);
-					damager.sendMessage("You cannot hurt allies!");
+				if (e.getDamager() instanceof Player) {
+					Player damager = (Player) e.getDamager();
+					
+					XFaction faction1 = PlayerManager.getOnlinePlayerFaction(damager);
+					if (faction != null) {
+						if (faction == faction1) {
+							e.setCancelled(true);
+							damager.sendMessage("You cannot hurt faction members!");
+						} else if (faction.getAllies().contains(faction1)) {
+							e.setCancelled(true);
+							damager.sendMessage("You cannot hurt allies!");
+						}
+					}
+				} else if (e.getDamager() instanceof Projectile) {
+					Projectile damager = (Projectile) e.getDamager();
+					if (damager.getShooter() instanceof Player) {
+						XPlayer shooter = XPlayer.getXPlayer((Player) damager.getShooter());
+						
+						XFaction faction1 = shooter.getFaction();
+						if (faction != null) {
+							if (faction == faction1) {
+								e.setCancelled(true);
+								damager.sendMessage("You cannot hurt faction members!");
+							} else if (faction.getAllies().contains(faction1)) {
+								e.setCancelled(true);
+								damager.sendMessage("You cannot hurt allies!");
+							}
+						}
+					}
+					
 				}
-				
 			}
 		}
 		

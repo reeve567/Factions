@@ -24,7 +24,7 @@ import java.util.HashMap;
 public class PermissionsSubMenu {
 	
 	public static HashMap<String, String> perms = new HashMap<>();
-
+	
 	static {
 		perms.put("Change faction tag", "rename");
 		perms.put("Change description", "desc");

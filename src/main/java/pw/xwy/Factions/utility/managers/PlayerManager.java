@@ -27,6 +27,9 @@ public class PlayerManager {
 	}
 	
 	public static XFactionPlayer getOfflinePlayer(UUID p) {
+		if (isOnline(p)) {
+			return getPlayer(Bukkit.getPlayer(p));
+		}
 		return new XOfflinePlayer(p);
 	}
 	
