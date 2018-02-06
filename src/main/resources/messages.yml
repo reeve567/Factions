@@ -19,8 +19,27 @@ general:
   - '&aAlly request sent to &e<ally>'
   ally-request-accepted:
   - '&aYour faction is not allies with &e<ally>'
+
+faction:
+  already-claimed:
+  - 'This land is already claimed.'
+  unclaimed:
+  - 'You have unclaimed some land.'
+  claimed:
+  - 'You have claimed some land.'
+  no-permission:
+  - 'You do not have the proper permission group to do this.'
+  not-enough-power:
+  - 'Your faction does not have enough power to do this.'
   faction-created:
   - "&e<player> &ahas made a faction named '&e<faction-name>&a'."
+  faction-disbanded:
+  - '&e<faction-name> &ahas been disbanded by &e<player>&a.'
+  member-left:
+  - '&e<player> &ahas left the faction!'
+  not-in-a-faction:
+  - '&7You are not in a faction.'
+
 map:
   header: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'
   mid-footer: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'

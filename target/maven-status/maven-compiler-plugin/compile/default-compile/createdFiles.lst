@@ -2,8 +2,8 @@ pw\xwy\Factions\objects\XOfflinePlayer.class
 pw\xwy\Factions\utility\handlers\DamageHandler.class
 pw\xwy\Factions\objects\XChunk.class
 pw\xwy\Factions\commands\factions\subcommands\Invite.class
-pw\xwy\Factions\enums\sell\Brewing.class
 pw\xwy\Factions\objects\TeleportWarmupTask.class
+pw\xwy\Factions\enums\sell\Brewing.class
 pw\xwy\Factions\commands\factions\subcommands\Ally.class
 pw\xwy\Factions\commands\factions\subcommands\Help.class
 pw\xwy\Factions\utility\managers\ChatManager$1.class
@@ -21,12 +21,12 @@ pw\xwy\Factions\commands\factions\subcommands\Update.class
 pw\xwy\Factions\utility\inventories\SpawnersMenu.class
 pw\xwy\Factions\utility\managers\PlayerManager.class
 pw\xwy\Factions\commands\factions\subcommands\Close.class
-pw\xwy\Factions\utility\Configurations\Spawners.class
 pw\xwy\Factions\utility\inventories\MiscMenu.class
+pw\xwy\Factions\utility\Configurations\Spawners.class
 pw\xwy\Factions\utility\inventories\RaidingMenu.class
 pw\xwy\Factions\utility\managers\ChatManager.class
-pw\xwy\Factions\utility\Configurations\Config.class
 pw\xwy\Factions\utility\inventories\CombatMenu.class
+pw\xwy\Factions\utility\Configurations\Config.class
 pw\xwy\Factions\XFactionsCore.class
 pw\xwy\Factions\utility\handlers\InventoryHandler.class
 pw\xwy\Factions\utility\ItemNames.class
@@ -37,8 +37,8 @@ pw\xwy\Factions\objects\XClaim.class
 pw\xwy\Factions\enums\sell\Sell.class
 pw\xwy\Factions\utility\inventories\SellMenu.class
 pw\xwy\Factions\utility\managers\FactionManager.class
-pw\xwy\Factions\utility\Configurations\Messages.class
 pw\xwy\Factions\utility\tasks\HomeWarmupTask.class
+pw\xwy\Factions\utility\Configurations\Messages.class
 pw\xwy\Factions\enums\sell\Building.class
 pw\xwy\Factions\utility\tasks\SpawnWarmupTask.class
 pw\xwy\Factions\commands\factions\subcommands\Fly.class
@@ -78,8 +78,8 @@ pw\xwy\Factions\commands\factions\subcommands\Groups.class
 pw\xwy\Factions\utility\inventories\MainMenu.class
 pw\xwy\Factions\commands\factions\subcommands\Top.class
 pw\xwy\Factions\commands\factions\subcommands\Join.class
-pw\xwy\Factions\utility\inventories\ToolsMenu.class
 pw\xwy\Factions\utility\tasks\ChunkValueTask.class
+pw\xwy\Factions\utility\inventories\ToolsMenu.class
 pw\xwy\Factions\commands\factions\subcommands\Disband.class
 pw\xwy\Factions\commands\factions\subcommands\List.class
 pw\xwy\Factions\utility\inventories\FarmingMenu.class

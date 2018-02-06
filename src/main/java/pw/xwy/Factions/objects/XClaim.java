@@ -61,12 +61,22 @@ public class XClaim {
 		return false;
 	}
 	
-	public void remove(Chunk c, XFaction faction) {
-		XChunk xChunk = getChunk(c);
-		claim.remove(c);
-		ClaimManager.factionMap.put(faction, claim);
-		ClaimManager.chunkMap.remove(c);
-		chunks.remove(xChunk);
+	public void removeAll(XFaction faction) {
+		while (claim.size() > 0) {
+			remove(claim.get(0),faction);
+		}
+	}
+	
+	public boolean remove(Chunk c, XFaction faction) {
+		if (claim.contains(c)) {
+			XChunk xChunk = getChunk(c);
+			claim.remove(c);
+			ClaimManager.factionMap.put(faction, claim);
+			ClaimManager.chunkMap.remove(c);
+			chunks.remove(xChunk);
+			return true;
+		}
+		return false;
 	}
 	
 }

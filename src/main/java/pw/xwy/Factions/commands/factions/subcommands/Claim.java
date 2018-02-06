@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -70,10 +71,10 @@ public class Claim extends SubCommand {
 					
 				}
 			} else {
-				p.sendMessage("no perm");
+				p.sendMessages(Messages.getNoPermission());
 			}
 		} else {
-			p.sendMessage("not in faction");
+			p.sendMessages(Messages.getWhoSender());
 		}
 	}
 }

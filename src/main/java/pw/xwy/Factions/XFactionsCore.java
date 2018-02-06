@@ -204,7 +204,13 @@ public class XFactionsCore extends JavaPlugin {
 					xPlayer.save();
 				}
 				new PowerIncreaseTask().runTaskTimerAsynchronously(this, 0, 1200);
-				System.out.println("factions v" + getDescription().getVersion() + " loaded.");
+				System.out.println("Factions is done loading.");
+				
+				for (Player p : Bukkit.getOnlinePlayers()) {
+					if (p.getName().equalsIgnoreCase("Xwy")) {
+						p.sendMessage("Factions was reloaded successfully (I think)");
+					}
+				}
 			}
 		} else {
 			for (Plugin p : getServer().getPluginManager().getPlugins()) {

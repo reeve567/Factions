@@ -30,7 +30,7 @@ public class Open extends SubCommand {
 		}
 		
 		if (!faction.hasPermission(p, "toggleOpen")) {
-			p.sendMessage("no permission");
+			p.sendMessages(Messages.getNoPermission());
 			return;
 		}
 		

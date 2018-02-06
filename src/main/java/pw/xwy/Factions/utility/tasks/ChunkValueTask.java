@@ -61,7 +61,6 @@ public class ChunkValueTask extends BukkitRunnable {
 			}
 		} else {
 			chunk.value = value;
-			System.out.println("Claim chunk at " + c.getX() + " " + c.getZ() + " has been added to value for " + faction.getName());
 			cancel();
 		}
 		i++;

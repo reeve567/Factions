@@ -36,7 +36,8 @@ public class Groups extends SubCommand {
 			if (isLeader || hasPerm) {
 				p.openInventory(PermissionsMainMenu.get(p, isLeader));
 			} else {
-				p.sendMessage("no permission");
+				p.sendMessages(Messages.getNoPermission());
+				
 			}
 		} else {
 			p.sendMessages(Messages.getWhoSender());

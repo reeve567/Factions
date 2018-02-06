@@ -38,7 +38,7 @@ public class Home extends SubCommand {
 					p.sendMessage("no home set");
 				}
 			} else {
-				p.sendMessage("no permission");
+				p.sendMessages(Messages.getNoPermission());
 			}
 		} else {
 			p.sendMessages(Messages.getWhoSender());

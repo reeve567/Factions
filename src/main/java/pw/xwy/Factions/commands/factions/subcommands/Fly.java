@@ -36,7 +36,7 @@ public class Fly extends SubCommand {
 					p.sendMessage("you are not in your claim");
 				}
 			} else {
-				p.sendMessage("no permission");
+				p.sendMessages(Messages.getNoPermission());
 			}
 		} else {
 			p.sendMessages(Messages.getWhoSender());

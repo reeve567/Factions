@@ -7,6 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.StringUtility;
@@ -40,15 +41,8 @@ public class Messages {
 	private static String mapHeader;
 	private static String mapMidFooter;
 	private static String mapFinalFooter;
-	private static List<String> whoTop;
-	private static List<String> whoList;
-	private static List<String> whoSystem;
-	private static List<String> whoTarget;
-	private static List<String> whoSender;
-	private static List<String> allyRequest;
-	private static List<String> allyRequestRecieved;
-	private static List<String> allyRequestAccepted;
-	private static List<String> factionCreated;
+	private static List<String> whoTop, whoList, whoSystem, whoSender, whoTarget, factionCreated, allyRequest, allyRequestAccepted, allyRequestRecieved;
+	private static List<String> claimed, unclaimed, alreadyClaimed, noPermission, factionDisbanded, notEnoughPower, memberLeft, notInFaction;
 	
 	private static List<String> colorConv(List<String> s) {
 		ArrayList<String> temp = new ArrayList<>();
@@ -125,6 +119,14 @@ public class Messages {
 		return colorConv(temp);
 	}
 	
+	public static List<String> getAlreadyClaimed() {
+		return colorConv(alreadyClaimed);
+	}
+	
+	public static List<String> getClaimed() {
+		return colorConv(claimed);
+	}
+	
 	public static List<String> getCommandHelpFormat(SubCommand command) {
 		List<String> st = commandHelpFormat;
 		List<String> temp = new ArrayList<>();
@@ -137,17 +139,12 @@ public class Messages {
 		return colorConv(temp);
 	}
 	
-	public static List<String> getFactionCreated(XPlayer player,XFaction faction) {
-		return replacePlayer(convFactionPlaceHolders(colorConv(factionCreated),faction),player);
+	public static List<String> getFactionCreated(XPlayer player, XFaction faction) {
+		return replacePlayer(convFactionPlaceHolders(colorConv(factionCreated), faction), player);
 	}
 	
-	private static List<String> replacePlayer(List<String> strings,XPlayer player) {
-		List<String> st = new ArrayList<>();
-		for (String s : strings) {
-			s = s.replaceAll("<player>", player.getName());
-			st.add(s);
-		}
-		return st;
+	public static List<String> getFactionDisbanded(XPlayer player, XFaction faction) {
+		return replacePlayer(convFactionPlaceHolders(colorConv(factionDisbanded), faction), player);
 	}
 	
 	public static List<String> getFooter() {
@@ -188,6 +185,26 @@ public class Messages {
 	
 	public static String getMapMidFooter() {
 		return StringUtility.conv(mapMidFooter);
+	}
+	
+	public static List<String> getMemberLeft(XFactionPlayer player) {
+		return replacePlayer(colorConv(memberLeft), player);
+	}
+	
+	public static List<String> getNoPermission() {
+		return colorConv(noPermission);
+	}
+	
+	public static List<String> getNotEnoughPower() {
+		return colorConv(notEnoughPower);
+	}
+	
+	public static List<String> getNotInFaction() {
+		return colorConv(notInFaction);
+	}
+	
+	public static List<String> getUnclaimed() {
+		return colorConv(unclaimed);
 	}
 	
 	public static List<String> getWhoList(XRank rank) {
@@ -236,7 +253,16 @@ public class Messages {
 		allyRequest = config.getStringList("general.ally-request-sent");
 		allyRequestRecieved = config.getStringList("general.ally-request-recieved");
 		allyRequestAccepted = config.getStringList("general.ally-request-accepted");
-		factionCreated = config.getStringList("general.faction-created");
+		factionCreated = config.getStringList("faction.faction-created");
+		factionDisbanded = config.getStringList("faction.faction-disbanded");
+		alreadyClaimed = config.getStringList("faction.already-claimed");
+		noPermission = config.getStringList("faction.no-permission");
+		claimed = config.getStringList("faction.claimed");
+		unclaimed = config.getStringList("faction.unclaimed");
+		notEnoughPower = config.getStringList("faction.not-enough-power");
+		memberLeft = config.getStringList("faction.member-left");
+		notInFaction = config.getStringList("faction.not-in-faction");
+		
 	}
 	
 	public static String replaceFactionValues(String s, XFaction faction) {
@@ -249,6 +275,15 @@ public class Messages {
 		s = s.replace("<faction-leader>", PlayerManager.getOfflinePlayerName(faction.getLeader()));
 		s = s.replace("<faction-color>", "&" + faction.color);
 		return s;
+	}
+	
+	private static List<String> replacePlayer(List<String> strings, XFactionPlayer player) {
+		List<String> st = new ArrayList<>();
+		for (String s : strings) {
+			s = s.replaceAll("<player>", player.getName());
+			st.add(s);
+		}
+		return st;
 	}
 	
 	private static void saveConfig() {

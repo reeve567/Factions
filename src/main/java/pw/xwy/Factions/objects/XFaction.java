@@ -61,7 +61,7 @@ public class XFaction {
 		recruit = new XRank(this, false, false);
 		leaderRank = new XRank(this, true, false);
 		players.add(leader);
-		PlayerManager.sendMessages(Messages.getFactionCreated(XPlayer.getXPlayer(creator),this));
+		PlayerManager.sendMessages(Messages.getFactionCreated(XPlayer.getXPlayer(creator), this));
 	}
 	
 	//SYSTEM FACTION INITIALIZATION
@@ -164,13 +164,13 @@ public class XFaction {
 	}
 	
 	private boolean hasEnoughPower(Chunk c, int radius) {
-		int total = 0;
+		int total = 1;
 		if (systemFac) return true;
 		for (int i = -radius; i <= radius; i++)
 			for (int j = -radius; j <= radius; j++) {
-				Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
-				if (ClaimManager.getChunk(ch) != null)
-					if (claim.get().size() <= getMaxPower() + total + 1 || systemFac) {
+				Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + j);
+				if (ClaimManager.getChunk(ch) == null)
+					if (claim.get().size() + total <= getMaxPower()) {
 						total++;
 					} else {
 						//not enough power
@@ -228,34 +228,35 @@ public class XFaction {
 						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
 						if (ClaimManager.isClaimed(ch) && claim.get().size() <= getMaxPower() + 1 || systemFac || force)
 							claim.add(c, this);
+						
 					}
 		}
 	}
 	
-	public void claim(Chunk c, int radius, Player p) {
+	public void claim(Chunk c, int radius, XPlayer p) {
 		if (!ClaimManager.isClaimed(c)) {
 			if (hasEnoughPower(c, radius)) {
+				System.out.println(radius);
 				for (int i = -radius; i <= radius; i++)
 					for (int j = -radius; j <= radius; j++) {
-						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
+						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + j);
 						if (ClaimManager.getChunk(ch) == null) {
-							
-							claim.add(c, this);
+							claim.add(ch, this);
 						}
 					}
 				factionConfig.save(this);
 			} else {
-				p.sendMessage("Not enough power!");
+				p.sendMessages(Messages.getNotEnoughPower());
 			}
 		} else {
 			//already claimed
-			p.sendMessage("&cAlready claimed.");
+			p.sendMessages(Messages.getAlreadyClaimed());
 		}
 	}
 	
 	public void disband(XPlayer p, boolean b) {
 		if (!isSystemFac()) {
-			if (hasPermission(p,"disband") || b) {
+			if (hasPermission(p, "disband") || b) {
 				XFactionPlayer leader = PlayerManager.getOfflinePlayer(this.leader);
 				leader.setFaction(null);
 				leader.save();
@@ -265,7 +266,7 @@ public class XFaction {
 					pl.save();
 				}
 				factionConfig.remove();
-				Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded by &e" + p.getName() + "&c."));
+				PlayerManager.sendMessages(Messages.getFactionDisbanded(p,this));
 				ClaimManager.removeChunks(this);
 				FactionManager.removeFaction(this);
 			}
@@ -445,9 +446,7 @@ public class XFaction {
 		if (!player.getUniqueId().equals(leader)) {
 			player.setFaction(null);
 			if (announce) {
-				for (UUID id : getEveryone()) {
-					Bukkit.getPlayer(id).sendMessage(StringUtility.conv("&c" + player.getName() + " has left the faction!"));
-				}
+				sendMessages(Messages.getMemberLeft(player));
 			}
 			onlinePlayers--;
 			factionConfig.save(this);

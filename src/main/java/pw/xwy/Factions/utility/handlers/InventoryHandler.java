@@ -363,7 +363,6 @@ public class InventoryHandler implements Listener {
 				if (e.getCurrentItem() != null && e.getCurrentItem().hasItemMeta() && e.getCurrentItem().getItemMeta().hasDisplayName() && e.getCurrentItem().getDurability() == 1) {
 					Player p = (Player) e.getWhoClicked();
 					String group = e.getCurrentItem().getItemMeta().getDisplayName().substring(10);
-					p.sendMessage("yo you clicked " + group);
 					p.closeInventory();
 					p.openInventory(PermissionsSubMenu.get(p, PlayerManager.getOnlinePlayerFaction(p).getRole(group)));
 				}

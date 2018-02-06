@@ -29,7 +29,7 @@ public class Rename extends SubCommand {
 		}
 		
 		if (!faction.hasPermission(p, "rename")) {
-			p.sendMessage("no permission");
+			p.sendMessages(Messages.getNoPermission());
 			return;
 		}
 		
