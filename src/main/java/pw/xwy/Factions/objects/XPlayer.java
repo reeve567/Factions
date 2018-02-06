@@ -50,6 +50,30 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		
 	}
 	
+	public boolean facCheck() {
+		if (faction != null) {
+			return true;
+		}
+		sendMessages(Messages.getNotInFaction());
+		return false;
+	}
+	
+	public boolean permCheck(String s,String perm) {
+		if (facCheck()) {
+			return faction.hasPermission(this,s,perm);
+		}
+		sendMessages(Messages.getNoPermission());
+		return false;
+	}
+	
+	public boolean permCheck(String s) {
+		if (facCheck()) {
+			return faction.hasPermission(this,s);
+		}
+		sendMessages(Messages.getNoPermission());
+		return false;
+	}
+	
 	public static XPlayer getXPlayer(Player p) {
 		return (XPlayer) PlayerManager.getPlayer(p);
 	}
