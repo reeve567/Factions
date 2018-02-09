@@ -1,6 +1,5 @@
 package pw.xwy.Factions.utility.handlers;
 
-import net.citizensnpcs.api.event.NPCRightClickEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,7 +17,7 @@ import pw.xwy.Factions.utility.inventories.*;
 ////////////////////////////////////////////////////////////////////////////////
 
 public class CitizensHandler implements Listener {
-	
+	/*
 	@EventHandler
 	public void onCitizenClick(NPCRightClickEvent e) {
 		Player player = e.getClicker().getPlayer();
@@ -44,5 +43,5 @@ public class CitizensHandler implements Listener {
 			player.openInventory(MainMenu.getInv());
 		}
 	}
-	
+	*/
 }

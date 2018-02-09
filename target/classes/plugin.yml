@@ -1,5 +1,5 @@
 main: pw.xwy.Factions.XFactionsCore
-name: XFactionsCore
+name: XFactions-Core
 version: BETA
 depend: [Vault]
 author: Xwy (gitout#5670)

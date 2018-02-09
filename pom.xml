@@ -17,14 +17,30 @@
     <artifactId>Factions</artifactId>
     <version>BETA</version>
     <build>
+        <finalName>XFaction-Core-UNSHADED</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <artifactSet>
+                        <includes>
+                            <include>pw.xwy.utility</include>
+                        </includes>
+                    </artifactSet>
+                    <minimizeJar>true</minimizeJar>
+                    <finalName>XFaction-Core</finalName>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -71,11 +87,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>net.citizensnpcs</groupId>
-            <artifactId>citizens</artifactId>
-            <version>2.0.21-SNAPSHOT</version>
-            <type>jar</type>
-            <scope>compile</scope>
+            <groupId>pw.xwy</groupId>
+            <artifactId>utility</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>D:\repo\pw\xwy\utility\XwyUtility-RELEASE.jar</systemPath>
+            <optional>false</optional>
         </dependency>
     </dependencies>
 

@@ -50,7 +50,6 @@ pw\xwy\Factions\objects\ItemBuilder.class
 pw\xwy\Factions\enums\sell\Farming.class
 pw\xwy\Factions\commands\factions\subcommands\Open.class
 pw\xwy\Factions\utility\DRM.class
-pw\xwy\Factions\commands\factions\subcommands\Update$1.class
 pw\xwy\Factions\enums\sell\Miscellaneous.class
 pw\xwy\Factions\objects\XFaction.class
 pw\xwy\Factions\commands\factions\subcommands\Power.class

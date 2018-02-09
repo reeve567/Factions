@@ -24,31 +24,33 @@ public class Ally extends SubCommand {
 	
 	@Override
 	public void run(XPlayer p, String[] args) {
-		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
-		if (faction.getRole(p.getUniqueId()).hasPerm("ally", true)) {
-			if (args.length < 2) {
-				sendHelpMessage(p);
-			} else {
-				XFaction faction1 = FactionManager.getFactionByName(args[1]);
-				
-				if (faction1 != null) {
-					if (!faction.getAllies().contains(faction1)) {
-						if (faction.allyRequests.contains(faction1)) {
-							//accept ally request from faction1
-							faction.addAlly(faction1);
-						} else {
-							//send ally request
-							faction.sendAllyRequest(faction1);
-						}
-						
-					} else {
-						p.sendMessage("already ally");
-						
-					}
+		if (p.facCheck()) {
+			if (p.permCheck("ally")) {
+				if (args.length < 2) {
+					sendHelpMessage(p);
 				} else {
-					//not a faction
+					XFaction faction = p.getFaction();
+					XFaction faction1 = FactionManager.getFactionByName(args[1]);
 					
-					p.sendMessage("faction not found");
+					if (faction1 != null) {
+						if (!faction.getAllies().contains(faction1)) {
+							if (faction.allyRequests.contains(faction1)) {
+								//accept ally request from faction1
+								faction.addAlly(faction1);
+							} else {
+								//send ally request
+								faction.sendAllyRequest(faction1);
+							}
+							
+						} else {
+							p.sendMessage("already ally");
+							
+						}
+					} else {
+						//not a faction
+						
+						p.sendMessage("faction not found");
+					}
 				}
 			}
 		}

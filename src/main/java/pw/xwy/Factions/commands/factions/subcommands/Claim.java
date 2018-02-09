@@ -1,14 +1,11 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.Chunk;
-import org.bukkit.entity.Player;
 import pw.xwy.Factions.commands.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -24,19 +21,15 @@ public class Claim extends SubCommand {
 		super("claim", "[radius]", "Claim area for your faction");
 	}
 	
-	private boolean hasPerm(XFaction faction, Player p) {
-		return faction.hasPermission(p, "claim", "factions.claim.others");
-	}
-	
 	@Override
 	public void run(XPlayer p, String[] args) {
 		XFaction faction;
 		Chunk c = p.getLocation().getChunk();
 		//is in faction
-		if ((faction = PlayerManager.getOnlinePlayerFaction(p)) != null) {
+		if (p.facCheck()) {
 			
-			if (hasPerm(faction, p)) {
-				
+			if (p.permCheck("claim", "factions.claim.others")) {
+				faction = p.getFaction();
 				if (args.length == 1) {
 					//claim current chunk
 					faction.claim(c, 0, p);
@@ -70,11 +63,7 @@ public class Claim extends SubCommand {
 					//claim radius for another faction
 					
 				}
-			} else {
-				p.sendMessages(Messages.getNoPermission());
 			}
-		} else {
-			p.sendMessages(Messages.getWhoSender());
 		}
 	}
 }

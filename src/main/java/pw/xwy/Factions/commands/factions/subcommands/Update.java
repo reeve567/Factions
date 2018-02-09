@@ -62,24 +62,22 @@ public class Update extends SubCommand {
 	
 	@Override
 	public void run(final XPlayer p, String[] args) {
-		Thread download = new Thread() {
-			public void run() {
-				
-				URL url = null;
-				try {
-					url = new URL("https://drive.google.com/uc?export=download&id=142E7FitZxBAJ0oVupUaXRVzwWiN0Lm_j");
-				} catch (MalformedURLException e) {
-					p.sendMessage("&cCould not get file");
-				}
-				String localFilename = System.getProperty("user.dir") + "/plugins/Factions-BETA.jar"; //needs to be replaced with local file path
-				try {
-					assert url != null;
-					downloadFromUrl(url, localFilename, p);
-				} catch (IOException e) {
-					p.sendMessage("&cCould not get file");
-				}
+		Thread download = new Thread(() -> {
+			
+			URL url = null;
+			try {
+				url = new URL("https://drive.google.com/uc?export=download&id=142E7FitZxBAJ0oVupUaXRVzwWiN0Lm_j");
+			} catch (MalformedURLException e) {
+				p.sendMessage("&cCould not get file");
 			}
-		};
+			String localFilename = System.getProperty("user.dir") + "/plugins/XFactions-Core"; //needs to be replaced with local file path
+			try {
+				assert url != null;
+				downloadFromUrl(url, localFilename, p);
+			} catch (IOException e) {
+				p.sendMessage("&cCould not get file");
+			}
+		});
 		download.start();
 	}
 }
