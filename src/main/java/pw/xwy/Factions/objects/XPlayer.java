@@ -1,6 +1,5 @@
 package pw.xwy.Factions.objects;
 
-import net.minecraft.server.v1_8_R3.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
@@ -50,38 +49,6 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		
 	}
 	
-	public boolean facCheck() {
-		if (faction != null) {
-			return true;
-		}
-		sendMessages(Messages.getNotInFaction());
-		return false;
-	}
-	
-	public boolean permCheck(String s,String perm) {
-		if (facCheck()) {
-			return faction.hasPermission(this,s,perm);
-		}
-		sendMessages(Messages.getNoPermission());
-		return false;
-	}
-	
-	public boolean permCheck(String s) {
-		if (facCheck()) {
-			return faction.hasPermission(this,s);
-		}
-		sendMessages(Messages.getNoPermission());
-		return false;
-	}
-	
-	public static XPlayer getXPlayer(Player p) {
-		return (XPlayer) PlayerManager.getPlayer(p);
-	}
-	
-	public static XPlayer getXPlayer(UUID uuid) {
-		return (XPlayer) PlayerManager.getPlayer(Bukkit.getPlayer(uuid));
-	}
-	
 	public XPlayer(UUID id, XPlayerConfig s) {
 		super((CraftServer) Bukkit.getServer(), ((CraftPlayer) Bukkit.getPlayer(id)).getHandle());
 		config = s;
@@ -92,6 +59,14 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		} catch (IllegalArgumentException e) {
 			faction = null;
 		}
+	}
+	
+	public static XPlayer getXPlayer(Player p) {
+		return (XPlayer) PlayerManager.getPlayer(p);
+	}
+	
+	public static XPlayer getXPlayer(UUID uuid) {
+		return (XPlayer) PlayerManager.getPlayer(Bukkit.getPlayer(uuid));
 	}
 	
 	@Override
@@ -135,26 +110,6 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	}
 	
 	@Override
-	public void sendMessages(List<String> strings) {
-		for (String s: strings) {
-			sendMessage(s);
-		}
-	}
-	
-	@Override
-	public void sendMessage(String s) {
-		super.sendMessage(StringUtility.conv(s));
-	}
-	
-	public void sendHeader() {
-		sendMessages(Messages.getHeader());
-	}
-	
-	public void sendFooter() {
-		sendMessages(Messages.getFooter());
-	}
-	
-	@Override
 	public void addPower() {
 		int po = (int) (power * 10);
 		po += 1;
@@ -164,6 +119,14 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		}
 		config.save(this);
 		
+	}
+	
+	public boolean facCheck() {
+		if (faction != null) {
+			return true;
+		}
+		sendMessages(Messages.getNotInFaction());
+		return false;
 	}
 	
 	@Override
@@ -247,6 +210,22 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		return teleportWarmupTask != null;
 	}
 	
+	public boolean permCheck(String s, String perm) {
+		if (facCheck()) {
+			return faction.hasPermission(this, s, perm);
+		}
+		sendMessages(Messages.getNoPermission());
+		return false;
+	}
+	
+	public boolean permCheck(String s) {
+		if (facCheck()) {
+			return faction.hasPermission(this, s);
+		}
+		sendMessages(Messages.getNoPermission());
+		return false;
+	}
+	
 	@Override
 	public boolean revokeInvite(XFaction faction) {
 		if (invites.contains(faction)) {
@@ -259,6 +238,26 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	@Override
 	public void save() {
 		config.save();
+	}
+	
+	public void sendFooter() {
+		sendMessages(Messages.getFooter());
+	}
+	
+	public void sendHeader() {
+		sendMessages(Messages.getHeader());
+	}
+	
+	@Override
+	public void sendMessage(String s) {
+		super.sendMessage(StringUtility.conv(s));
+	}
+	
+	@Override
+	public void sendMessages(List<String> strings) {
+		for (String s : strings) {
+			sendMessage(s);
+		}
 	}
 	
 	@Override

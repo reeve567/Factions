@@ -234,6 +234,7 @@ public class XFaction {
 	}
 	
 	public void claim(Chunk c, int radius, XPlayer p) {
+		boolean success = false;
 		if (!ClaimManager.isClaimed(c)) {
 			if (hasEnoughPower(c, radius)) {
 				System.out.println(radius);
@@ -241,10 +242,14 @@ public class XFaction {
 					for (int j = -radius; j <= radius; j++) {
 						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + j);
 						if (ClaimManager.getChunk(ch) == null) {
+							success = true;
 							claim.add(ch, this);
 						}
 					}
 				factionConfig.save(this);
+				if (success) {
+					p.sendMessages(Messages.getClaimed());
+				}
 			} else {
 				p.sendMessages(Messages.getNotEnoughPower());
 			}

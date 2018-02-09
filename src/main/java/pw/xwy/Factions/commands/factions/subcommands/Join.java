@@ -34,7 +34,7 @@ public class Join extends SubCommand {
 				return;
 			}
 			XFactionOnlinePlayer player = PlayerManager.getPlayer(p);
-			if (player.hasInvite(faction) && (faction.open)) {
+			if (player.hasInvite(faction) || (faction.open)) {
 				if (player.getFaction() == null) {
 					player.revokeInvite(faction);
 					player.setFaction(faction);
