@@ -9,10 +9,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
 import pw.xwy.Factions.commands.factions.FactionTop;
 import pw.xwy.Factions.objects.Glow;
+import pw.xwy.Factions.objects.Menu;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
@@ -20,9 +21,8 @@ import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.DRM;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.handlers.*;
-import pw.xwy.Factions.utility.managers.ChatManager;
-import pw.xwy.Factions.utility.managers.FactionManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.Factions.utility.inventories.*;
+import pw.xwy.Factions.utility.managers.*;
 import pw.xwy.Factions.utility.tasks.PowerIncreaseTask;
 
 import java.lang.reflect.Field;
@@ -41,11 +41,12 @@ import java.util.logging.Logger;
 public class XFactionsCore extends JavaPlugin {
 	
 	private static final Logger log = Logger.getLogger("Minecraft");
+	private static final String name = "XFactions-Core";
 	private static XFactionsCore xFactionsCore;
 	private static Economy econ = null;
-	private static final String name = "Factions-BETA";
-	
+	private Menu[] menus;
 	private Faction faction;
+	private Manager[] managers;
 	private FactionTop ftop;
 	
 	public static Economy getEcononomy() {
@@ -54,45 +55,6 @@ public class XFactionsCore extends JavaPlugin {
 	
 	public static XFactionsCore getXFactionsCore() {
 		return xFactionsCore;
-	}
-	
-	private void loadCommands() {
-		faction = new Faction();
-		ftop = new FactionTop();
-		//new Shop();
-		//new Sell();
-	}
-	
-	private void registerGlow() {
-		try {
-			Field f = Enchantment.class.getDeclaredField("acceptingNew");
-			f.setAccessible(true);
-			f.set(null, true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			Glow glow = new Glow(70);
-			Enchantment.registerEnchantment(glow);
-		} catch (IllegalArgumentException ignored) {
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private boolean setupEconomy() {
-		if (getServer().getPluginManager().getPlugin("Vault") == null) {
-			System.out.println("Eco status: 1");
-			return false;
-		}
-		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-		if (rsp == null) {
-			System.out.println("Eco status: 2");
-			return false;
-		}
-		econ = rsp.getProvider();
-		System.out.println("Eco status: 3");
-		return econ != null;
 	}
 	
 	@Override
@@ -162,27 +124,51 @@ public class XFactionsCore extends JavaPlugin {
 		for (XFaction faction : FactionManager.getFactions()) {
 			faction.factionConfig.save(faction);
 		}
+		for (Manager manager : managers) {
+			manager.unload();
+		}
+		for (Menu menu : menus) {
+			menu.unload();
+		}
+		
+		managers = null;
+		menus = null;
 	}
 	
 	@Override
 	public void onEnable() {
+		XFactionsCore.xFactionsCore = this;
 		DRM drm = new DRM(name);
 		
 		if (!drm.remove()) {
-			XFactionsCore.xFactionsCore = this;
-			System.out.println("Loading config 1/5...");
+			managers = new Manager[]{new PlayerManager(), new ClaimManager(), new FactionManager()};
+			menus = new Menu[]{new BrewingMenu(), new BuildingMenu(), new BuyMenu(), new CombatMenu(), new FarmingMenu(), new MainMenu()};
+			
+			for (Manager manager : managers) {
+				manager.load();
+			}
+			for (Menu menu : menus) {
+				menu.load();
+			}
+			
+			int total = 6;
+			int current = 0;
+			System.out.println("Loading config " + ++current + "/" + total + "...");
+			
 			Config.loadConfig();
 			new Spawners();
-			System.out.println("Loading Factions 2/5...");
+			System.out.println("Loading Factions " + ++current + "/" + total + "...");
 			Config.loadFactions();
-			System.out.println("Loading Commands 3/5...");
+			System.out.println("Loading users " + ++current + "/" + total + "...");
+			PlayerManager.loadOfflinePlayers();
+			System.out.println("Loading Commands " + ++current + "/" + total + "...");
 			loadCommands();
-			System.out.println("Loading Economy 4/5...");
+			System.out.println("Loading Economy " + ++current + "/" + total + "...");
 			if (!setupEconomy()) {
 				log.severe(String.format("[%s] - Disabled because of either no Vault or no economy plugin!", getDescription().getName()));
 				setEnabled(false);
 			}
-			System.out.println("Loading Glow 5/5");
+			System.out.println("Loading Glow " + ++current + "/" + total + "...");
 			registerGlow();
 			if (isEnabled()) {
 				getServer().getPluginManager().registerEvents(new JoinHandler(), this);
@@ -208,7 +194,7 @@ public class XFactionsCore extends JavaPlugin {
 				
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					if (p.getName().equalsIgnoreCase("Xwy")) {
-						p.sendMessage("Factions was reloaded successfully (I think)");
+						p.sendMessage("Factions was reloaded successfully (I think). Current version: " + getDescription().getVersion());
 					}
 				}
 			}
@@ -216,6 +202,45 @@ public class XFactionsCore extends JavaPlugin {
 			for (Plugin p : getServer().getPluginManager().getPlugins()) {
 				getPluginLoader().disablePlugin(p);
 			}
+		}
+	}
+	
+	private void loadCommands() {
+		faction = new Faction();
+		ftop = new FactionTop();
+		//new Shop();
+		//new Sell();
+	}
+	
+	private boolean setupEconomy() {
+		if (getServer().getPluginManager().getPlugin("Vault") == null) {
+			System.out.println("Eco status: 1");
+			return false;
+		}
+		RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+		if (rsp == null) {
+			System.out.println("Eco status: 2");
+			return false;
+		}
+		econ = rsp.getProvider();
+		System.out.println("Eco status: 3");
+		return econ != null;
+	}
+	
+	private void registerGlow() {
+		try {
+			Field f = Enchantment.class.getDeclaredField("acceptingNew");
+			f.setAccessible(true);
+			f.set(null, true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		try {
+			Glow glow = new Glow(70);
+			Enchantment.registerEnchantment(glow);
+		} catch (IllegalArgumentException ignored) {
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

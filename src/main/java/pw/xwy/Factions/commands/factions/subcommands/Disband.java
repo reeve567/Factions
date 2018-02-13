@@ -1,7 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -23,9 +22,11 @@ public class Disband extends SubCommand {
 	
 	@Override
 	public void run(XPlayer p, String[] args) {
-		if (p.hasPermission("factions.disband.others")) {
+		if (p.hasPermission("f.disband.others")) {
 			if (args.length < 2) {
-				PlayerManager.getOnlinePlayerFaction(p).disband(p, true);
+				if (p.facCheck()) {
+					PlayerManager.getOnlinePlayerFaction(p).disband(p, true);
+				}
 			} else {
 				XFaction xFaction = FactionManager.getFactionByName(args[1]);
 				if (xFaction != null) {
@@ -37,8 +38,8 @@ public class Disband extends SubCommand {
 				}
 			}
 		} else {
-			if (PlayerManager.getOnlinePlayerFaction(p) != null) {
-				PlayerManager.getOnlinePlayerFaction(p).disband(p, false);
+			if (p.facCheck()) {
+				p.getFaction().disband(p, false);
 			}
 		}
 	}

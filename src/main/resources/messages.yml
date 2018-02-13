@@ -15,10 +15,14 @@ general:
   - '&7Page: &6<page>&7/&6<total-pages>'
   ally-request-sent:
   - '&aRecieved ally request from &e<ally>'
-  ally-request-recieved:
+  ally-request-received:
   - '&aAlly request sent to &e<ally>'
   ally-request-accepted:
   - '&aYour faction is not allies with &e<ally>'
+  admin-bypass-enabled:
+  - '&aBypass has been enabled.'
+  admin-bypass-disabled:
+  - '&aBypass has been disabled.'
 
 faction:
   already-claimed:

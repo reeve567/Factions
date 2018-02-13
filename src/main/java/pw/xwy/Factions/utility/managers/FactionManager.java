@@ -16,9 +16,9 @@ import java.util.UUID;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class FactionManager {
+public class FactionManager implements Manager {
 	
-	private static ArrayList<XFaction> factions = new ArrayList<>();
+	private static ArrayList<XFaction> factions;
 	
 	public static void addFaction(XFaction f) {
 		factions.add(f);
@@ -42,6 +42,17 @@ public class FactionManager {
 		return id;
 	}
 	
+	public static XFaction getFactionFromUUID(UUID id) {
+		if (id != null) {
+			for (XFaction f : factions) {
+				if (f.id.equals(id)) {
+					return f;
+				}
+			}
+		}
+		return null;
+	}
+	
 	public static XFaction getFactionByName(String s) {
 		for (XFaction f : factions) {
 			if (f.getName().equalsIgnoreCase(s)) {
@@ -57,21 +68,6 @@ public class FactionManager {
 		} catch (IllegalArgumentException e) {
 			return null;
 		}
-	}
-	
-	public static XFaction getFactionFromUUID(UUID id) {
-		if (id != null) {
-			for (XFaction f : factions) {
-				if (f.id.equals(id)) {
-					return f;
-				}
-			}
-		}
-		return null;
-	}
-	
-	public static ArrayList<XFaction> getFactions() {
-		return factions;
 	}
 	
 	public static ArrayList<XFaction> getMostValueble() {
@@ -93,6 +89,10 @@ public class FactionManager {
 			
 		}
 		
+		return factions;
+	}
+	
+	public static ArrayList<XFaction> getFactions() {
 		return factions;
 	}
 	
@@ -118,5 +118,16 @@ public class FactionManager {
 		}
 		System.gc();
 		Config.saveFactions();
+	}
+	
+	@Override
+	public void unload() {
+		factions = null;
+		
+	}
+	
+	@Override
+	public void load() {
+		factions = new ArrayList<>();
 	}
 }

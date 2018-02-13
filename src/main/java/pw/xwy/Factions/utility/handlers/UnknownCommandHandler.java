@@ -24,7 +24,7 @@ public class UnknownCommandHandler implements Listener {
 	public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
 		if (!event.isCancelled()) {
 			Player player = event.getPlayer();
-			boolean canUseAdmin = player.hasPermission("Factions.commandbypass");
+			boolean canUseAdmin = player.hasPermission("f.commandbypass");
 			
 			String cmd = event.getMessage().split(" ")[0];
 			HelpTopic topic = Bukkit.getServer().getHelpMap().getHelpTopic(cmd);

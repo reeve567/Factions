@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import pw.xwy.Factions.objects.Menu;
 import pw.xwy.Factions.utility.ItemUtility;
 import pw.xwy.Factions.utility.StringUtility;
 
@@ -18,7 +19,7 @@ import pw.xwy.Factions.utility.StringUtility;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class BuyMenu {
+public class BuyMenu extends Menu {
 	
 	public static void open(Player player, ItemStack it, ItemMeta im, double price) {
 		Inventory inv = Bukkit.createInventory(player, 45, StringUtility.conv("&a&lBuy Menu"));
@@ -42,4 +43,18 @@ public class BuyMenu {
 		player.openInventory(inv);
 	}
 	
+	@Override
+	public void load() {
+	
+	}
+	
+	@Override
+	public void unload() {
+	
+	}
+	
+	@Override
+	public void setup() {
+	
+	}
 }

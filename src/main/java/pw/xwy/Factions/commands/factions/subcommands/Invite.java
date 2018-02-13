@@ -2,12 +2,10 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XFactionOnlinePlayer;
-import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -29,25 +27,30 @@ public class Invite extends SubCommand {
 	@Override
 	public void run(XPlayer p, String[] args) {
 		if (args.length != 2) {
-			for (String s : Messages.getCommandHelpFormat(this)) {
-				p.sendMessage(s);
-			}
+			sendHelpMessage(p);
 		} else if (Bukkit.getPlayer(args[1]) != null) {
 			Player player = Bukkit.getPlayer(args[1]);
 			XFactionOnlinePlayer xPlayer = PlayerManager.getPlayer(player);
-			XFaction xFaction = PlayerManager.getOnlinePlayerFaction(p);
-			if (!xFaction.equals(xPlayer.getFaction())) {
-				if (xPlayer.invite(PlayerManager.getOnlinePlayerFaction(p))) {
-					p.sendMessage(StringUtility.conv("&aInvite sent!"));
-					player.sendMessage(StringUtility.conv("&aYou have been invited to " + xFaction.getName()));
+			if (xPlayer != null) {
+				XFaction senderFaction = p.getFaction();
+				if (senderFaction != null) {
+					if (xPlayer.getFaction() == null || !senderFaction.equals(xPlayer.getFaction())) {
+						if (xPlayer.invite(PlayerManager.getOnlinePlayerFaction(p))) {
+							p.sendMessage(StringUtility.conv("&aInvite sent!"));
+							player.sendMessage(StringUtility.conv("&aYou have been invited to " + senderFaction.getName()));
+						} else {
+							p.sendMessage(StringUtility.conv("&cYou have already invited this player!"));
+						}
+					} else {
+						p.sendMessage(StringUtility.conv("&cThis player is already in your faction!"));
+					}
 				} else {
-					p.sendMessage(StringUtility.conv("&cYou have already invited this player!"));
+					p.sendMessage("you are not in a faction");
 				}
 			} else {
-				p.sendMessage(StringUtility.conv("&cThis player is already in your faction!"));
+				p.sendMessage("player not found");
 			}
 			
 		}
-		
 	}
 }

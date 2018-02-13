@@ -1,7 +1,6 @@
 package pw.xwy.Factions.commands.factions;
 
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.MainCommand;
+import pw.xwy.Factions.objects.MainCommand;
 import pw.xwy.Factions.commands.factions.subcommands.*;
 import pw.xwy.Factions.objects.XPlayer;
 
@@ -16,13 +15,15 @@ import pw.xwy.Factions.objects.XPlayer;
 
 public class Faction extends MainCommand {
 	public Faction() {
-		super("f", "Factions.use");
+		super("f", "f.use");
 	}
 	
 	@Override
 	public void init() {
 		add(new Ally());
+		add(new Bypass());
 		add(new Chat());
+		add(new Chatspy());
 		add(new Claim());
 		add(new Close());
 		add(new Create());
@@ -39,6 +40,7 @@ public class Faction extends MainCommand {
 		add(new Map());
 		add(new Open());
 		add(new Power());
+		add(new Reload());
 		add(new Rename());
 		add(new Sethome());
 		add(new Top());

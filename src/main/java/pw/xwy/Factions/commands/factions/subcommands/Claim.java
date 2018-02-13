@@ -1,7 +1,7 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.Chunk;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.StringUtility;
@@ -28,7 +28,7 @@ public class Claim extends SubCommand {
 		//is in faction
 		if (p.facCheck()) {
 			
-			if (p.permCheck("claim", "factions.claim.others")) {
+			if (p.permCheck("claim", "f.claim.others")) {
 				faction = p.getFaction();
 				if (args.length == 1) {
 					//claim current chunk
@@ -37,7 +37,7 @@ public class Claim extends SubCommand {
 				} else if (args.length == 2) {
 					//claim radius || claim for another faction
 					if (args[1].length() > 3) {
-						if (p.hasPermission("factions.claim.others")) {
+						if (p.hasPermission("f.claim.others")) {
 							XFaction fac = FactionManager.getFactionByName(args[1]);
 							if (fac != null) {
 								faction.claim(c, 0, true);

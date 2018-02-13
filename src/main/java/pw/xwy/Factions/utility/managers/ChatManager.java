@@ -6,9 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pw.xwy.Factions.enums.ChatType;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XFactionOnlinePlayer;
-import pw.xwy.Factions.objects.XFactionPlayer;
+import pw.xwy.Factions.objects.*;
 import pw.xwy.Factions.utility.StringUtility;
 
 import java.util.ArrayList;
@@ -48,9 +46,16 @@ public class ChatManager implements Listener {
 				ArrayList<UUID> recipients = new ArrayList<>(xFaction.players);
 				String pre = xFaction.isLeader(player) ? xFaction.leaderRank.prefix : xFaction.getRole(player.getUniqueId()).prefix;
 				System.out.println(pre);
+				ArrayList<XPlayer> rec = new ArrayList<>();
 				for (UUID p : recipients) {
-					Bukkit.getPlayer(p).sendMessage(StringUtility.conv("&a[Faction] " + pre + " &a" + e.getPlayer().getName() + ": " + e.getMessage()));
+					if (!(PlayerManager.getOfflinePlayer(p) instanceof XOfflinePlayer)) {
+						rec.add((XPlayer) PlayerManager.getOfflinePlayer(p));
+						Bukkit.getPlayer(p).sendMessage(StringUtility.conv("&a[Faction] " + pre + " &a" + e.getPlayer().getName() + ": " + e.getMessage()));
+					}
 				}
+				
+				PlayerManager.sendToSpies(StringUtility.conv("&a[Faction] " + pre + " &a" + e.getPlayer().getName() + ": " + e.getMessage()), rec);
+				
 				break;
 			case ALLY:
 				e.setCancelled(true);

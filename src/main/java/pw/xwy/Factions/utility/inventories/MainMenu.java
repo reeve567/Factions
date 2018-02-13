@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.Factions.objects.Menu;
 import pw.xwy.Factions.utility.ItemUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,11 +19,27 @@ import pw.xwy.Factions.utility.ItemUtility;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class MainMenu {
+public class MainMenu extends Menu {
 	
-	private static Inventory inv = Bukkit.createInventory(null, 45, ChatColor.GOLD + "Shops");
+	private static Inventory inv;
 	
-	static {
+	public static Inventory getInv() {
+		
+		return inv;
+	}
+	
+	@Override
+	public void load() {
+		inv = Bukkit.createInventory(null, 45, ChatColor.GOLD + "Shops");
+	}
+	
+	@Override
+	public void unload() {
+		inv = null;
+	}
+	
+	@Override
+	public void setup() {
 		ItemStack pGlass = new ItemStack(Material.STAINED_GLASS_PANE, 1);
 		pGlass.setDurability((short) 7);
 		for (int i = 0; i < 45; i++) {
@@ -38,10 +55,5 @@ public class MainMenu {
 		inv.setItem(30, ItemUtility.changeName(new ItemStack(Material.DIAMOND_PICKAXE), ChatColor.translateAlternateColorCodes('&', "&9&lTools Shop"), false));
 		inv.setItem(32, ItemUtility.changeName(new ItemStack(Material.BRICK), ChatColor.DARK_PURPLE + "" + ChatColor.BOLD + "Building Shop", false));
 		inv.setItem(34, ItemUtility.changeName(new ItemStack(Material.EYE_OF_ENDER), ChatColor.WHITE + "" + ChatColor.BOLD + "Misc Shop", false));
-	}
-	
-	public static Inventory getInv() {
-		
-		return inv;
 	}
 }

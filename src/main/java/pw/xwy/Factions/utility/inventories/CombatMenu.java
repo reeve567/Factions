@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.enums.sell.Combat;
+import pw.xwy.Factions.objects.Menu;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -18,11 +19,27 @@ import pw.xwy.Factions.enums.sell.Combat;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class CombatMenu {
+public class CombatMenu extends Menu {
 	
-	private static Inventory inv = Bukkit.createInventory(null, 27, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
+	private static Inventory inv;
 	
-	static {
+	public static Inventory getInv() {
+		
+		return inv;
+	}
+	
+	@Override
+	public void load() {
+		inv = Bukkit.createInventory(null, 27, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
+	}
+	
+	@Override
+	public void unload() {
+		inv = null;
+	}
+	
+	@Override
+	public void setup() {
 		ItemStack pGlass = new ItemStack(Material.STAINED_GLASS_PANE, 1);
 		pGlass.setDurability((short) 7);
 		for (int i = 0; i < 27; i++) {
@@ -38,10 +55,4 @@ public class CombatMenu {
 			j++;
 		}
 	}
-	
-	public static Inventory getInv() {
-		
-		return inv;
-	}
-	
 }

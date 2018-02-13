@@ -1,12 +1,9 @@
-package pw.xwy.Factions.commands;
-
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.objects.XPlayer;
+package pw.xwy.Factions.objects;
 
 import java.util.ArrayList;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/13/18 6:09 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /

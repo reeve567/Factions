@@ -1,7 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
@@ -29,6 +28,21 @@ public class Help extends SubCommand {
 		
 		perPage = Config.commandsPerPage;
 		this.faction = faction;
+	}
+	
+	@Override
+	public void run(XPlayer p, String[] args) {
+		
+		if (args.length < 2) {
+			map(p, 1);
+		} else {
+			try {
+				int page = Integer.parseInt(args[1]);
+				map(p, page);
+			} catch (NumberFormatException e) {
+				p.sendMessage("invalid page");
+			}
+		}
 	}
 	
 	private void map(XPlayer p, int page) {
@@ -86,21 +100,6 @@ public class Help extends SubCommand {
 		}
 		p.sendMessages(Messages.getHelpMenuExtraBottom(page, pages.size()));
 		p.sendFooter();
-	}
-	
-	@Override
-	public void run(XPlayer p, String[] args) {
-		
-		if (args.length < 2) {
-			map(p, 1);
-		} else {
-			try {
-				int page = Integer.parseInt(args[1]);
-				map(p, page);
-			} catch (NumberFormatException e) {
-				p.sendMessage("invalid page");
-			}
-		}
 	}
 	
 }

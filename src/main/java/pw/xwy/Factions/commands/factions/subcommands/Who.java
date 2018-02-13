@@ -1,9 +1,8 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.XFactionPlayer;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.objects.XRank;
 import pw.xwy.Factions.utility.Configurations.Messages;
@@ -26,9 +25,21 @@ public class Who extends SubCommand {
 		super("who", "[player/faction]", "Displays info about either the selected player's faction, the selected faction, or your faction.");
 	}
 	
-	private void display(XPlayer p, Player target) {
-		XFaction faction = PlayerManager.getOnlinePlayerFaction(target);
-		display(p, faction, true);
+	@Override
+	public void run(XPlayer p, String[] args) {
+		
+		if (args.length < 2) {
+			display(p, XPlayer.getXPlayer(p).getFaction(), false);
+		} else if (FactionManager.getFactionByName(args[1]) != null) {
+			XFaction faction = FactionManager.getFactionByName(args[1]);
+			assert faction != null;
+			display(p, faction, true);
+		} else if (PlayerManager.getOfflinePlayerFaction(args[1]) != null) {
+			display(p, PlayerManager.getOfflinePlayer(PlayerManager.getOfflinePlayerUUID(args[1])));
+		} else {
+			p.sendMessage(StringUtility.conv("&7This faction/player does not exist."));
+		}
+		
 	}
 	
 	private void display(XPlayer p, XFaction faction, boolean someoneElse) {
@@ -57,21 +68,9 @@ public class Who extends SubCommand {
 		p.sendFooter();
 	}
 	
-	@Override
-	public void run(XPlayer p, String[] args) {
-		
-		if (args.length < 2) {
-			display(p, XPlayer.getXPlayer(p).getFaction(), false);
-		} else if (FactionManager.getFactionByName(args[1]) != null) {
-			XFaction faction = FactionManager.getFactionByName(args[1]);
-			assert faction != null;
-			display(p, faction, true);
-		} else if (Bukkit.getPlayerExact(args[1]) != null) {
-			display(p, Bukkit.getPlayerExact(args[1]).getPlayer());
-		} else {
-			p.sendMessage(StringUtility.conv("&7This faction/player does not exist."));
-		}
-		
+	private void display(XPlayer p, XFactionPlayer target) {
+		XFaction faction = target.getFaction();
+		display(p, faction, true);
 	}
 	
 }

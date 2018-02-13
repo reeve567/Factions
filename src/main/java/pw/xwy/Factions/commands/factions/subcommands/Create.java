@@ -2,7 +2,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
@@ -63,7 +63,6 @@ public class Create extends SubCommand {
 								p.sendMessage("not enough money");
 							}
 						} else {
-							p.sendMessage("made faction");
 							XFaction faction = new XFaction(args[1], p);
 							FactionManager.addFaction(faction);
 							PlayerManager.getPlayer(p).setFaction(faction);
@@ -83,7 +82,7 @@ public class Create extends SubCommand {
 	
 	@Override
 	public void run(XPlayer p, String[] args) {
-		if (p.hasPermission("factions.create.system")) {
+		if (p.hasPermission("f.create.system")) {
 			if (args.length < 2) {
 				sendHelpMessage(p);
 			} else if (args.length == 2) {

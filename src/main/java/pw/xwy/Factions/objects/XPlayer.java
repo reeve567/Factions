@@ -30,6 +30,7 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	public int homeCooldown = 0;
 	private boolean cancelled = false;
 	private boolean stopNextFallDamage = false;
+	private boolean adminMode = false;
 	private XPlayerConfig config;
 	private double power;
 	private XFaction faction;
@@ -46,7 +47,7 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 			faction = null;
 		}
 		power = config.getPower();
-		
+		initChatspy();
 	}
 	
 	public XPlayer(UUID id, XPlayerConfig s) {
@@ -59,6 +60,7 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		} catch (IllegalArgumentException e) {
 			faction = null;
 		}
+		initChatspy();
 	}
 	
 	public static XPlayer getXPlayer(Player p) {
@@ -109,6 +111,10 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	
 	}
 	
+	private void initChatspy() {
+		PlayerManager.chatspies.add(this);
+	}
+	
 	@Override
 	public void addPower() {
 		int po = (int) (power * 10);
@@ -127,6 +133,21 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		}
 		sendMessages(Messages.getNotInFaction());
 		return false;
+	}
+	
+	public boolean isAdminMode() {
+		return adminMode;
+	}
+	
+	public void toggleAdminMode() {
+		adminMode = !adminMode;
+		//send message for toggle
+		
+	}
+	
+	@Override
+	public boolean hasPermission(String s) {
+		return adminMode || faction != null && faction.hasPermission(this, s) || super.hasPermission(s);
 	}
 	
 	@Override
@@ -244,8 +265,11 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		sendMessages(Messages.getFooter());
 	}
 	
-	public void sendHeader() {
-		sendMessages(Messages.getHeader());
+	@Override
+	public void sendMessages(List<String> strings) {
+		for (String s : strings) {
+			sendMessage(s);
+		}
 	}
 	
 	@Override
@@ -253,11 +277,8 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		super.sendMessage(StringUtility.conv(s));
 	}
 	
-	@Override
-	public void sendMessages(List<String> strings) {
-		for (String s : strings) {
-			sendMessage(s);
-		}
+	public void sendHeader() {
+		sendMessages(Messages.getHeader());
 	}
 	
 	@Override

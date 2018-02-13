@@ -1,11 +1,7 @@
-package pw.xwy.Factions.commands.factions.subcommands;
-
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.utility.managers.FactionManager;
+package pw.xwy.Factions.utility.managers;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/10/18 12:49 AM                            /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -13,13 +9,9 @@ import pw.xwy.Factions.utility.managers.FactionManager;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class List extends SubCommand {
-	public List() {
-		super("list", "", "List all factions in order of online members");
-	}
+public interface Manager {
 	
-	@Override
-	public void run(XPlayer p, String[] args) {
-		p.sendMessage(String.valueOf(FactionManager.getFactions()));
-	}
+	void unload();
+	void load();
+	
 }

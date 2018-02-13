@@ -2,8 +2,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XPlayer;
 
 import java.io.FileOutputStream;
@@ -33,6 +32,7 @@ public class Update extends SubCommand {
 		
 		try {
 			//connect
+			sender.sendMessage(ChatColor.GOLD + "Plugin starting to download...");
 			URLConnection urlConn = url.openConnection();
 			//get connection inputstream
 			is = urlConn.getInputStream();
@@ -63,19 +63,18 @@ public class Update extends SubCommand {
 	@Override
 	public void run(final XPlayer p, String[] args) {
 		Thread download = new Thread(() -> {
-			
 			URL url = null;
 			try {
-				url = new URL("https://drive.google.com/uc?export=download&id=142E7FitZxBAJ0oVupUaXRVzwWiN0Lm_j");
+				url = new URL("https://drive.google.com/uc?export=download&id=1aEd1qRWK49Sd_MV6cAcAStItZ-zGcgUj");
 			} catch (MalformedURLException e) {
-				p.sendMessage("&cCould not get file");
+				p.sendMessage("&cCould not get file -- error 1");
 			}
 			String localFilename = System.getProperty("user.dir") + "/plugins/XFactions-Core"; //needs to be replaced with local file path
 			try {
 				assert url != null;
 				downloadFromUrl(url, localFilename, p);
 			} catch (IOException e) {
-				p.sendMessage("&cCould not get file");
+				p.sendMessage("&cCould not get file -- error 2");
 			}
 		});
 		download.start();

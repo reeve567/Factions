@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.enums.sell.Building;
+import pw.xwy.Factions.objects.Menu;
 import pw.xwy.Factions.utility.ItemUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -19,13 +20,41 @@ import pw.xwy.Factions.utility.ItemUtility;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class BuildingMenu {
+public class BuildingMenu extends Menu {
 	
-	private static Inventory inv = Bukkit.createInventory(null, 54, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
-	private static Inventory inv2 = Bukkit.createInventory(null, 54, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
-	private static Inventory inv3 = Bukkit.createInventory(null, 54, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
+	private static Inventory inv;
+	private static Inventory inv2;
+	private static Inventory inv3;
 	
-	static {
+	public static Inventory getInv() {
+		
+		return inv;
+	}
+	
+	public static Inventory getInv2() {
+		
+		return inv2;
+	}
+	
+	public static Inventory getInv3() {
+		
+		return inv3;
+	}
+	
+	@Override
+	public void load() {
+		inv = Bukkit.createInventory(null, 54, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
+		inv2 = Bukkit.createInventory(null, 54, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
+		inv3 = Bukkit.createInventory(null, 54, ChatColor.RED + "" + ChatColor.BOLD + "Buy Menu");
+	}
+	
+	@Override
+	public void unload() {
+	
+	}
+	
+	@Override
+	public void setup() {
 		ItemStack pGlass = new ItemStack(Material.STAINED_GLASS_PANE, 1);
 		pGlass.setDurability((short) 7);
 		for (int i = 0; i < 54; i++) {
@@ -60,21 +89,5 @@ public class BuildingMenu {
 		inv2.setItem(52, ItemUtility.previous());
 		
 		inv3.setItem(53, ItemUtility.previous());
-		
-	}
-	
-	public static Inventory getInv() {
-		
-		return inv;
-	}
-	
-	public static Inventory getInv2() {
-		
-		return inv2;
-	}
-	
-	public static Inventory getInv3() {
-		
-		return inv3;
 	}
 }

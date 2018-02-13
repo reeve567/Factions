@@ -5,7 +5,7 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.MainCommand;
+import pw.xwy.Factions.objects.MainCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 public class FactionTop extends MainCommand {
 	public FactionTop() {
-		super("ftop", "factions.top");
+		super("ftop", "f.top");
 	}
 	
 	private String JSONTempSpawners(EntityType e, XFaction faction) {

@@ -17,15 +17,11 @@ import java.util.HashMap;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public class ClaimManager {
+public class ClaimManager implements Manager {
 	
-	public static HashMap<Chunk, XFaction> chunkMap = new HashMap<>();
+	public static HashMap<Chunk, XFaction> chunkMap;
 	
-	public static HashMap<XFaction, ArrayList<Chunk>> factionMap = new HashMap<>();
-	
-	public static XFaction getChunk(Chunk c) {
-		return chunkMap.get(c);
-	}
+	public static HashMap<XFaction, ArrayList<Chunk>> factionMap;
 	
 	public static String getMessage(Chunk c, Player p) {
 		XFaction faction = getChunk(c);
@@ -44,6 +40,10 @@ public class ClaimManager {
 		
 	}
 	
+	public static XFaction getChunk(Chunk c) {
+		return chunkMap.get(c);
+	}
+	
 	public static boolean isClaimed(Chunk c) {
 		return chunkMap.get(c) != null;
 	}
@@ -56,4 +56,15 @@ public class ClaimManager {
 		}
 	}
 	
+	@Override
+	public void unload() {
+		chunkMap = null;
+		factionMap = null;
+	}
+	
+	@Override
+	public void load() {
+		chunkMap = new HashMap<>();
+		factionMap = new HashMap<>();
+	}
 }

@@ -1,12 +1,9 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.FactionManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

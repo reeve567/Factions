@@ -9,7 +9,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import pw.xwy.Factions.commands.SubCommand;
+import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
@@ -31,6 +31,9 @@ public class Sethome extends SubCommand {
 				} else {
 					p.sendMessage("not in claim");
 				}
+			}
+			else {
+				p.sendMessages(Messages.getNoPermission());
 			}
 		} else {
 			p.sendMessages(Messages.getWhoSender());

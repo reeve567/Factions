@@ -17,7 +17,7 @@
     <artifactId>Factions</artifactId>
     <version>BETA</version>
     <build>
-        <finalName>XFaction-Core-UNSHADED</finalName>
+        <finalName>XFactions-Core-UNSHADED</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -31,7 +31,7 @@
                         </includes>
                     </artifactSet>
                     <minimizeJar>true</minimizeJar>
-                    <finalName>XFaction-Core</finalName>
+                    <finalName>XFactions-Core</finalName>
                 </configuration>
                 <executions>
                     <execution>
@@ -99,7 +99,7 @@
             <artifactId>utility</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>D:\repo\pw\xwy\utility\XwyUtility-RELEASE.jar</systemPath>
+            <systemPath>F:\repo\pw\xwy\utility\XwyUtility-RELEASE.jar</systemPath>
             <optional>false</optional>
         </dependency>
     </dependencies>
