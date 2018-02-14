@@ -3,7 +3,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -26,40 +26,6 @@ public class Update extends SubCommand {
 		super("update", "", "gets the version saved in the cloud", true);
 	}
 	
-	private void downloadFromUrl(URL url, String localFilename, CommandSender sender) throws IOException {
-		InputStream is = null;
-		FileOutputStream fos = null;
-		
-		try {
-			//connect
-			sender.sendMessage(ChatColor.GOLD + "Plugin starting to download...");
-			URLConnection urlConn = url.openConnection();
-			//get connection inputstream
-			is = urlConn.getInputStream();
-			//open outputstream to local file
-			fos = new FileOutputStream(localFilename);
-			//declare 4KB buffer
-			byte[] buffer = new byte[4096];
-			int len;
-			
-			//while we have availble data, continue downloading and storing to local file
-			while ((len = is.read(buffer)) > 0) {
-				fos.write(buffer, 0, len);
-			}
-			sender.sendMessage(ChatColor.GOLD + "Plugin has been downloaded.");
-		} finally {
-			try {
-				if (is != null) {
-					is.close();
-				}
-			} finally {
-				if (fos != null) {
-					fos.close();
-				}
-			}
-		}
-	}
-	
 	@Override
 	public void run(final XPlayer p, String[] args) {
 		Thread download = new Thread(() -> {
@@ -75,8 +41,33 @@ public class Update extends SubCommand {
 				downloadFromUrl(url, localFilename, p);
 			} catch (IOException e) {
 				p.sendMessage("&cCould not get file -- error 2");
+				e.printStackTrace();
 			}
 		});
 		download.start();
+	}
+	
+	private void downloadFromUrl(URL url, String localFilename, CommandSender sender) throws IOException {
+		InputStream is = null;
+		FileOutputStream fos = null;
+		
+		//connect
+		sender.sendMessage(ChatColor.GOLD + "Plugin starting to download...");
+		URLConnection urlConn = url.openConnection();
+		//get connection inputstream
+		is = urlConn.getInputStream();
+		//open outputstream to local file
+		fos = new FileOutputStream(localFilename);
+		//declare 4KB buffer
+		byte[] buffer = new byte[4096];
+		int len;
+		
+		//while we have availble data, continue downloading and storing to local file
+		while ((len = is.read(buffer)) > 0) {
+			fos.write(buffer, 0, len);
+		}
+		sender.sendMessage(ChatColor.GOLD + "Plugin has been downloaded.");
+		is.close();
+		fos.close();
 	}
 }

@@ -3,7 +3,7 @@ package pw.xwy.Factions.utility.handlers;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 

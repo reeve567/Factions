@@ -2,7 +2,8 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.managers.FactionManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -28,12 +29,12 @@ public class Disband extends SubCommand {
 					PlayerManager.getOnlinePlayerFaction(p).disband(p, true);
 				}
 			} else {
-				XFaction xFaction = FactionManager.getFactionByName(args[1]);
-				if (xFaction != null) {
-					if (!xFaction.isSystemFac()) {
-						xFaction.disband(p, true);
+				XFaction xPlayerFaction = FactionManager.getFactionByName(args[1]);
+				if (xPlayerFaction != null) {
+					if (xPlayerFaction instanceof XPlayerFaction) {
+						((XPlayerFaction) xPlayerFaction).disband(p, true);
 					} else {
-						xFaction.disband();
+						xPlayerFaction.disband();
 					}
 				}
 			}

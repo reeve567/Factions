@@ -1,25 +1,7 @@
 package pw.xwy.Factions.objects;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.utility.Configurations.Config;
-import pw.xwy.Factions.utility.Configurations.Messages;
-import pw.xwy.Factions.utility.Configurations.Spawners;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.ClaimManager;
-import pw.xwy.Factions.utility.managers.FactionManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
-
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/13/18 6:24 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -27,161 +9,36 @@ import java.util.UUID;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import pw.xwy.Factions.objects.faction.XClaim;
+import pw.xwy.Factions.objects.faction.XFactionConfig;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.Factions.utility.managers.ClaimManager;
+import pw.xwy.Factions.utility.managers.FactionManager;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class XFaction {
-	
-	public String color = "f";
-	public XFactionConfig factionConfig;
 	public XClaim claim = new XClaim();
-	public List<XRank> ranks = new ArrayList<>();
-	public ArrayList<UUID> players = new ArrayList<>();
-	public XRank recruit;
-	public XRank leaderRank;
-	public boolean open = false;
-	public String desc = "Default faction description D:";
-	public ArrayList<XFaction> allyRequests = new ArrayList<>();
-	public UUID id;
-	public HashMap<EntityType, Integer> spawners = new HashMap<>();
-	public ArrayList<UUID> flying = new ArrayList<>();
-	private int onlinePlayers = 0;
-	private String name;
-	private boolean systemFac = false;
-	private double power = 0.0;
-	private double balance = 0.0;
-	private UUID leader;
-	private Location home = null;
-	private ArrayList<XFaction> allies = new ArrayList<>();
+	protected String name;
+	protected String desc = "Default faction description D:";
+	protected String color = "f";
+	protected XFactionConfig factionConfig;
+	protected UUID id;
 	
-	public XFaction(String name, Player creator) {
-		spawnersInit();
-		leader = creator.getUniqueId();
-		id = FactionManager.getAvailableUUID();
-		this.name = name;
-		onlinePlayers++;
-		factionConfig = new XFactionConfig(this);
-		recruit = new XRank(this, false, false);
-		leaderRank = new XRank(this, true, false);
-		players.add(leader);
-		PlayerManager.sendMessages(Messages.getFactionCreated(XPlayer.getXPlayer(creator), this));
+	public XFaction(XFactionConfig config) {
+		loadClaim(config.getClaim());
+		name = config.getName();
+		id = config.getUUID();
+		factionConfig = config;
 	}
 	
-	//SYSTEM FACTION INITIALIZATION
-	public XFaction(String name, String color) {
-		spawnersInit();
-		this.name = name;
-		id = FactionManager.getAvailableUUID();
-		systemFac = true;
-		this.color = color;
-		factionConfig = new XFactionConfig(id.toString(), color, name);
-	}
-	
-	//load from config
-	public XFaction(String fileName) {
-		spawnersInit();
-		System.out.println("Started loading " + fileName + "...");
-		factionConfig = new XFactionConfig(fileName);
-		name = factionConfig.getName();
-		id = factionConfig.getUUID();
-		
-		if (factionConfig.isSystem()) {
-			systemFac = true;
-			color = factionConfig.getColor();
-			if (factionConfig.hasLand()) {
-				loadClaim(factionConfig.getClaim());
-			}
-		} else {
-			recruit = new XRank(this, false, true);
-			leaderRank = new XRank(this, true, true);
-			if (factionConfig.hasHome()) {
-				String homeString = factionConfig.getHome();
-				
-				String world = homeString.substring(0, homeString.indexOf(" "));
-				homeString = homeString.replaceFirst(world + " ", "");
-				double x = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
-				homeString = homeString.replaceFirst(String.valueOf(x) + " ", "");
-				double y = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
-				homeString = homeString.replaceFirst(String.valueOf(y) + " ", "");
-				double z = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
-				homeString = homeString.replaceFirst(String.valueOf(z) + " ", "");
-				float pitch = Float.parseFloat(homeString.substring(0, homeString.indexOf(" ")));
-				homeString = homeString.replaceFirst(String.valueOf(pitch), "");
-				float yaw = Float.parseFloat(homeString);
-				home = new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
-			}
-			
-			power = factionConfig.getPower();
-			balance = factionConfig.getBalance();
-			
-			List<String> rankList = factionConfig.getRankList();
-			for (int i = 0; i < rankList.size(); i++) {
-				ranks.add(new XRank(rankList.get(i), i, this, true));
-			}
-			
-			String leader = factionConfig.getLeader();
-			this.leader = UUID.fromString(leader);
-			players.add(this.leader);
-			if (factionConfig.hasLand()) {
-				loadClaim(factionConfig.getClaim());
-			}
-		}
-		System.out.println("Done loading " + fileName + ".");
-	}
-	
-	static public boolean validateName(String factionName) {
-		List<Character> chars = new ArrayList<>();
-		for (int i = 97; i < 123; i++) {
-			chars.add((char) i);
-		}
-		for (int i = 65; i < 133; i++) {
-			chars.add((char) i);
-		}
-		
-		for (int i = 48; i < 58; i++) {
-			chars.add((char) i);
-		}
-		for (char c : factionName.toCharArray()) {
-			if (!chars.contains(c)) {
-				return false;
-			}
-		}
-		for (XFaction faction : FactionManager.getFactions()) {
-			if (faction.getName().equalsIgnoreCase(factionName)) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	List<String> getClaimStrings() {
-		List<String> strings = new ArrayList<>();
-		for (Chunk c : claim.get()) {
-			strings.add(c.getWorld().getName() + " " + c.getX() + " " + c.getZ());
-		}
-		return strings;
-	}
-	
-	String getHomeString() {
-		return StringUtility.toString(home);
-	}
-	
-	private boolean hasEnoughPower(Chunk c, int radius) {
-		int total = 1;
-		if (systemFac) return true;
-		for (int i = -radius; i <= radius; i++)
-			for (int j = -radius; j <= radius; j++) {
-				Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + j);
-				if (ClaimManager.getChunk(ch) == null)
-					if (claim.get().size() + total <= getMaxPower()) {
-						total++;
-					} else {
-						//not enough power
-						return false;
-					}
-			}
-		return true;
-	}
-	
-	private void loadClaim(List<String> s) {
-		for (String st : s) {
+	protected void loadClaim(List<String> claim) {
+		for (String st : claim) {
 			String temp = st;
 			String world = temp.substring(0, temp.indexOf(' '));
 			temp = temp.replaceFirst(world + " ", "");
@@ -189,163 +46,40 @@ public class XFaction {
 			temp = temp.replaceFirst(String.valueOf(x) + ' ', "");
 			int z = Integer.parseInt(temp);
 			Chunk c = Bukkit.getWorld(world).getChunkAt(x, z);
-			claim(c, 1, true);
+			claim(c);
 		}
 	}
 	
-	private void spawnersInit() {
-		for (EntityType et : Spawners.getInstance().spawnerTypes) {
-			spawners.put(et, 0);
-		}
-	}
-	
-	public void addAlly(XFaction faction) {
-		allyRequests.remove(faction);
-		allies.add(faction);
-		sendMessages(Messages.getAllyRequestAccepted(faction));
-	}
-	
-	public void addBalance(double amount) {
-		balance += amount;
-	}
-	
-	public void addRank(XRank xRank) {
-		ranks.add(xRank);
-	}
-	
-	public void addRecruit(UUID p) {
-		onlinePlayers++;
-		recruit.add(p);
-		factionConfig.save(this);
-	}
-	
-	public void claim(Chunk c, int radius, boolean force) {
-		if (!ClaimManager.isClaimed(c)) if (claim.get().size() <= getMaxPower() + 1 || systemFac || force) {
+	public void claim(Chunk c) {
+		if (!ClaimManager.isClaimed(c) || powerCheck()) {
 			claim.add(c, this);
-			if (radius != 1) for (int i = -radius / 2; i <= radius / 2; i++)
-				for (int j = -radius / 2; j <= radius / 2; j++)
-					if (i != 0 && j != 0) {
-						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + i);
-						if (ClaimManager.isClaimed(ch) && claim.get().size() <= getMaxPower() + 1 || systemFac || force)
-							claim.add(c, this);
-						
-					}
 		}
 	}
 	
-	public void claim(Chunk c, int radius, XPlayer p) {
-		boolean success = false;
-		if (!ClaimManager.isClaimed(c)) {
-			if (hasEnoughPower(c, radius)) {
-				System.out.println(radius);
-				for (int i = -radius; i <= radius; i++)
-					for (int j = -radius; j <= radius; j++) {
-						Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + j);
-						if (ClaimManager.getChunk(ch) == null) {
-							success = true;
-							claim.add(ch, this);
-						}
-					}
-				factionConfig.save(this);
-				if (success) {
-					p.sendMessages(Messages.getClaimed());
-				}
-			} else {
-				p.sendMessages(Messages.getNotEnoughPower());
-			}
-		} else {
-			//already claimed
-			p.sendMessages(Messages.getAlreadyClaimed());
-		}
+	public boolean powerCheck() {
+		return true;
 	}
 	
-	public void disband(XPlayer p, boolean b) {
-		if (!isSystemFac()) {
-			if (hasPermission(p, "disband") || b) {
-				XFactionPlayer leader = PlayerManager.getOfflinePlayer(this.leader);
-				leader.setFaction(null);
-				leader.save();
-				for (UUID id : players) {
-					XFactionPlayer pl = PlayerManager.getOfflinePlayer(id);
-					leave(pl, false);
-					pl.save();
-				}
-				factionConfig.remove();
-				PlayerManager.sendMessages(Messages.getFactionDisbanded(p,this));
-				ClaimManager.removeChunks(this);
-				FactionManager.removeFaction(this);
-			}
+	public XFaction(String name, String c) {
+		this.name = name;
+		this.color = c;
+		factionConfig = new XFactionConfig(this);
+	}
+	
+	public static XFaction loadFaction(String s) {
+		XFactionConfig config = new XFactionConfig(s);
+		if (config.isSystem()) {
+			return new XFaction(config);
 		} else {
-			System.out.println(p.getName() + " has tried to disband a system faction though the normal method!");
+			return new XPlayerFaction(config);
 		}
 	}
 	
 	public void disband() {
-		if (isSystemFac()) {
-			Bukkit.broadcastMessage(StringUtility.conv("&c" + name + " has been disbanded."));
-			FactionManager.removeFaction(this);
-			ClaimManager.removeChunks(this);
-			factionConfig.remove();
-		}
-	}
-	
-	public ArrayList<XFaction> getAllies() {
-		return allies;
-	}
-	
-	public void setAllies(ArrayList<XFaction> allies) {
-		this.allies = allies;
-	}
-	
-	public void getAllyRequest(XFaction faction) {
-		allyRequests.add(faction);
-		sendMessages(Messages.getAllyRequest(faction));
-	}
-	
-	public double getBalance() {
-		return balance;
-	}
-	
-	public void setBalance(double balance) {
-		this.balance = balance;
-	}
-	
-	public String getColor() {
-		return color;
-	}
-	
-	public void setColor(String color) {
-		this.color = color;
-	}
-	
-	public ArrayList<UUID> getEveryone() {
-		ArrayList<UUID> everyone = new ArrayList<>();
-		everyone.add(leader);
-		return everyone;
-	}
-	
-	public Location getHome() {
-		return home;
-	}
-	
-	public void setHome(Location home) {
-		this.home = home;
-	}
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public UUID getLeader() {
-		return leader;
-	}
-	
-	public void setLeader(UUID leader) {
-		this.leader = leader;
-	}
-	
-	public double getMaxPower() {
-		return players.size() * Config.maxPower;
+		Bukkit.broadcastMessage(StringUtility.conv("&c" + getName() + " has been disbanded."));
+		FactionManager.removeFaction(this);
+		ClaimManager.removeChunks(this);
+		factionConfig.remove();
 	}
 	
 	public String getName() {
@@ -356,178 +90,36 @@ public class XFaction {
 		this.name = name;
 	}
 	
-	public int getOnlinePlayers() {
-		return onlinePlayers;
+	public XFactionConfig getFactionConfig() {
+		return factionConfig;
 	}
 	
-	public void setOnlinePlayers(int onlinePlayers) {
-		this.onlinePlayers = onlinePlayers;
+	public UUID getId() {
+		return id;
 	}
 	
-	public List<String> getPlayersList() {
-		List<String> players = new ArrayList<>();
-		
-		for (UUID uuid : this.players) {
-			players.add(uuid.toString());
-		}
-		
-		return players;
+	public String getColor() {
+		return color;
 	}
 	
-	public double getPower() {
-		return power;
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
-	public void setPower(double power) {
-		this.power = power;
-	}
-	
-	public List<String> getRanksStringList() {
-		List<String> stings = new ArrayList<>();
-		
-		for (XRank rank : ranks) {
-			stings.add(rank.name);
-		}
-		
-		return stings;
-	}
-	
-	public XRank getRole(String s) {
-		for (XRank rank : ranks) {
-			if (rank.name.equalsIgnoreCase(s)) {
-				return rank;
-			}
-		}
-		return null;
-	}
-	
-	public XRank getRole(UUID p) {
-		for (XRank rank : ranks) {
-			if (rank.isIn(p)) {
-				return rank;
-			}
-		}
-		return recruit;
-	}
-	
-	public int getValue() {
-		int total = 0;
-		for (XChunk chunk : claim.chunks) {
-			total += chunk.value;
-		}
-		return total;
-		
-	}
-	
-	public boolean hasPermission(Player p, String s) {
-		return getRole(p.getUniqueId()).hasPerm(s, true) || isLeader(p);
-	}
-	
-	public boolean hasPermission(Player p, String s, String st) {
-		return hasPermission(p, s) || p.hasPermission(st);
-	}
-	
-	public boolean hasPermission(UUID p, String s) {
-		return getRole(p).hasPerm(s, true) || isLeader(p);
-	}
-	
-	public boolean isLeader(UUID uuid) {
-		return leader.equals(uuid);
-	}
-	
-	public boolean isLeader(Player p) {
-		return leader.equals(p.getUniqueId());
-	}
-	
-	public boolean isSystemFac() {
-		return systemFac;
-	}
-	
-	public void setSystemFac(boolean systemFac) {
-		this.systemFac = systemFac;
-	}
-	
-	public void leave(XFactionPlayer player, boolean announce) {
-		if (!player.getUniqueId().equals(leader)) {
-			player.setFaction(null);
-			if (announce) {
-				sendMessages(Messages.getMemberLeft(player));
-			}
-			onlinePlayers--;
-			factionConfig.save(this);
-		}
-	}
-	
-	public void removeBalance(double amount) {
-		if (amount < 0) {
-			if (balance - amount >= 0) {
-				balance -= amount;
-			}
-		}
-		
-	}
-	
-	public boolean removeRank(String arg) {
-		for (XRank rank : ranks) {
-			if (rank.name.equalsIgnoreCase(arg)) {
-				ranks.remove(rank);
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public void sendAllyRequest(XFaction faction) {
-		faction.getAllyRequest(this);
-	}
-	
-	public void sendMessage(String s) {
-		for (UUID id : players) {
-			if (PlayerManager.isOnline(id)) {
-				PlayerManager.getPlayer(Bukkit.getPlayer(id)).sendMessage(s);
-			}
-		}
-	}
-	
-	public void sendMessages(List<String> strings) {
-		for (String s : strings) {
-			sendMessage(s);
-		}
+	public String getDesc() {
+		return desc;
 	}
 	
 	@Override
 	public String toString() {
-		return "Name: " + name + "; Leader: " + PlayerManager.getOfflinePlayer(leader).getName() + "; Power: " + power + "; Land: " + claim.get().size();
-		
+		return "Name: " + name;
 	}
 	
-	public void toggleFlying(UUID p) {
-		if (!flying.contains(p)) {
-			flying.add(p);
-			Bukkit.getPlayer(p).setAllowFlight(true);
-		} else {
-			flying.remove(p);
-			Bukkit.getPlayer(p).setAllowFlight(false);
+	public List<String> getClaimStrings() {
+		List<String> strings = new ArrayList<>();
+		for (Chunk c : claim.get()) {
+			strings.add(c.getWorld().getName() + " " + c.getX() + " " + c.getZ());
 		}
-		
-	}
-	
-	public void toggleFlying(Player p) {
-		if (!flying.contains(p.getUniqueId())) {
-			flying.add(p.getUniqueId());
-			p.setAllowFlight(true);
-		} else {
-			flying.remove(p.getUniqueId());
-			p.setAllowFlight(false);
-			PlayerManager.getPlayer(p).setNoFallDamage(true);
-		}
-	}
-	
-	public void updatePower() {
-		double power = 0;
-		for (UUID id : getEveryone()) {
-			power += new XPlayerConfig(id).getPower();
-		}
-		this.power = ((int) (power * 10)) / 10.0;
+		return strings;
 	}
 }

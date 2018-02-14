@@ -6,7 +6,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pw.xwy.Factions.enums.ChatType;
-import pw.xwy.Factions.objects.*;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XFactionOnlinePlayer;
+import pw.xwy.Factions.objects.faction.XOfflinePlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.StringUtility;
 
 import java.util.ArrayList;
@@ -28,23 +31,23 @@ public class ChatManager implements Listener {
 		Player player = e.getPlayer();
 		XFactionOnlinePlayer xPlayer = PlayerManager.getPlayer(player);
 		ChatType chatType = xPlayer.getChatType();
-		XFaction xFaction = xPlayer.getFaction();
+		XPlayerFaction xPlayerFaction = xPlayer.getFaction();
 		
 		boolean staffchat;
 		
 		switch (chatType) {
 			case PUBLIC:
-				if (xFaction != null) {
-					e.setFormat(e.getFormat().replace("<faction>", StringUtility.conv("&8[&7" + xFaction.getName() + "&8]&r ")));
+				if (xPlayerFaction != null) {
+					e.setFormat(e.getFormat().replace("<faction>", StringUtility.conv("&8[&7" + xPlayerFaction.getName() + "&8]&r ")));
 				} else {
 					e.setFormat(e.getFormat().replace("<faction>", ""));
 				}
 				break;
 			case FACTION:
-				assert xFaction != null;
+				assert xPlayerFaction != null;
 				e.setCancelled(true);
-				ArrayList<UUID> recipients = new ArrayList<>(xFaction.players);
-				String pre = xFaction.isLeader(player) ? xFaction.leaderRank.prefix : xFaction.getRole(player.getUniqueId()).prefix;
+				ArrayList<UUID> recipients = new ArrayList<>(xPlayerFaction.players);
+				String pre = xPlayerFaction.isLeader(player) ? xPlayerFaction.leaderRank.prefix : xPlayerFaction.getRole(player.getUniqueId()).prefix;
 				System.out.println(pre);
 				ArrayList<XPlayer> rec = new ArrayList<>();
 				for (UUID p : recipients) {

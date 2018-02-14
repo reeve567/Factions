@@ -5,8 +5,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import pw.xwy.Factions.objects.ItemBuilder;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XRank;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XRank;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ public class PermissionsMainMenu {
 	
 	public static Inventory get(Player p, boolean leader) {
 		Inventory inv = Bukkit.createInventory(null, 9, "Groups");
-		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
+		XPlayerFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		int slot = 0;
 		if (!leader) {
 			for (XRank rank : faction.getRole(p.getUniqueId()).lower) {

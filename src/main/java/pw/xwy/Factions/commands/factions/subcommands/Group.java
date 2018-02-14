@@ -1,9 +1,9 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.objects.XRank;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.Factions.objects.faction.XRank;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class Group extends SubCommand {
 	@Override
 	public void run(XPlayer p, String[] args) {
 		UUID id = p.getUniqueId();
-		XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
+		XPlayerFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 		if (faction != null) {
 			boolean isLeader = faction.getLeader().equals(id);
 			boolean hasPerm = faction.getRole(id).hasPerm("ManagePerms", true);

@@ -2,7 +2,7 @@ package pw.xwy.Factions.commands.factions;
 
 import pw.xwy.Factions.objects.MainCommand;
 import pw.xwy.Factions.commands.factions.subcommands.*;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

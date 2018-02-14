@@ -14,7 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.enums.sell.Sell;
 import pw.xwy.Factions.objects.Glow;
 import pw.xwy.Factions.objects.ItemBuilder;
-import pw.xwy.Factions.objects.XRank;
+import pw.xwy.Factions.objects.faction.XRank;
 import pw.xwy.Factions.utility.ItemUtility;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.inventories.*;

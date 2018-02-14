@@ -2,6 +2,7 @@ package pw.xwy.Factions.utility.managers;
 
 import org.bukkit.Chunk;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.Configurations.Config;
 
 import java.util.ArrayList;
@@ -42,11 +43,11 @@ public class FactionManager implements Manager {
 		return id;
 	}
 	
-	public static XFaction getFactionFromUUID(UUID id) {
+	public static XPlayerFaction getFactionFromUUID(UUID id) {
 		if (id != null) {
 			for (XFaction f : factions) {
-				if (f.id.equals(id)) {
-					return f;
+				if (f.getId().equals(id)) {
+					return (XPlayerFaction) f;
 				}
 			}
 		}
@@ -62,21 +63,12 @@ public class FactionManager implements Manager {
 		return null;
 	}
 	
-	private static XFaction getFactionFromUUID(String p) {
-		try {
-			return getFactionFromUUID(UUID.fromString(p));
-		} catch (IllegalArgumentException e) {
-			return null;
-		}
-	}
-	
-	public static ArrayList<XFaction> getMostValueble() {
-		ArrayList<XFaction> factions = new ArrayList<>();
-		ArrayList<XFaction> temp = getFactions();
-		for (XFaction faction : temp) {
-			
+	public static ArrayList<XPlayerFaction> getMostValueble() {
+		ArrayList<XPlayerFaction> factions = new ArrayList<>();
+		ArrayList<XPlayerFaction> temp = getNonSystemFactions();
+		for (XPlayerFaction faction : temp) {
 			boolean found = false;
-			for (XFaction faction1 : factions) {
+			for (XPlayerFaction faction1 : factions) {
 				if (faction.getValue() > faction1.getValue()) {
 					found = true;
 					factions.add(factions.indexOf(faction1), faction);
@@ -92,22 +84,24 @@ public class FactionManager implements Manager {
 		return factions;
 	}
 	
-	public static ArrayList<XFaction> getFactions() {
-		return factions;
-	}
-	
-	public static ArrayList<XFaction> getNonSystemFactions() {
-		ArrayList<XFaction> nonSystem = new ArrayList<>();
+	public static ArrayList<XPlayerFaction> getNonSystemFactions() {
+		ArrayList<XPlayerFaction> nonSystem = new ArrayList<>();
 		for (XFaction f : factions) {
-			if (!f.isSystemFac()) nonSystem.add(f);
+			if (f instanceof XPlayerFaction) {
+				nonSystem.add((XPlayerFaction) f);
+			}
 		}
 		return nonSystem;
+	}
+	
+	public static ArrayList<XFaction> getFactions() {
+		return factions;
 	}
 	
 	public static ArrayList<XFaction> getSystemFactions() {
 		ArrayList<XFaction> system = new ArrayList<>();
 		for (XFaction f : factions) {
-			if (f.isSystemFac()) system.add(f);
+			if (!(f instanceof XPlayerFaction)) system.add(f);
 		}
 		return system;
 	}

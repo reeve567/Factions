@@ -11,6 +11,7 @@ package pw.xwy.Factions.objects;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public abstract class TeleportWarmupTask extends BukkitRunnable {

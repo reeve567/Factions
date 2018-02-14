@@ -3,9 +3,9 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XFactionOnlinePlayer;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XFactionOnlinePlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -32,7 +32,7 @@ public class Invite extends SubCommand {
 			Player player = Bukkit.getPlayer(args[1]);
 			XFactionOnlinePlayer xPlayer = PlayerManager.getPlayer(player);
 			if (xPlayer != null) {
-				XFaction senderFaction = p.getFaction();
+				XPlayerFaction senderFaction = p.getFaction();
 				if (senderFaction != null) {
 					if (xPlayer.getFaction() == null || !senderFaction.equals(xPlayer.getFaction())) {
 						if (xPlayer.invite(PlayerManager.getOnlinePlayerFaction(p))) {

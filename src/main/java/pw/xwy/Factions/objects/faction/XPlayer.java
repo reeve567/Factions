@@ -1,4 +1,4 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.objects.faction;
 
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
@@ -6,6 +6,7 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.enums.ChatType;
+import pw.xwy.Factions.objects.TeleportWarmupTask;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/13/18 6:24 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -33,10 +34,10 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	private boolean adminMode = false;
 	private XPlayerConfig config;
 	private double power;
-	private XFaction faction;
+	private XPlayerFaction faction;
 	private ChatType chatType = ChatType.PUBLIC;
 	private TeleportWarmupTask teleportWarmupTask = null;
-	private ArrayList<XFaction> invites = new ArrayList<>();
+	private ArrayList<XPlayerFaction> invites = new ArrayList<>();
 	
 	public XPlayer(Player player) {
 		super((CraftServer) Bukkit.getServer(), ((CraftPlayer) player).getHandle());
@@ -171,15 +172,15 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	}
 	
 	@Override
-	public XFaction getFaction() {
+	public XPlayerFaction getFaction() {
 		return faction;
 	}
 	
 	@Override
-	public void setFaction(XFaction xFaction) {
-		faction = xFaction;
-		if (xFaction != null) {
-			config.set("info.faction", xFaction.id.toString());
+	public void setFaction(XPlayerFaction xPlayerFaction) {
+		faction = xPlayerFaction;
+		if (xPlayerFaction != null) {
+			config.set("info.faction", xPlayerFaction.getId().toString());
 		} else {
 			config.set("info.faction", "no-faction");
 		}
@@ -193,12 +194,12 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	}
 	
 	@Override
-	public boolean hasInvite(XFaction faction) {
+	public boolean hasInvite(XPlayerFaction faction) {
 		return invites.contains(faction);
 	}
 	
 	@Override
-	public boolean invite(XFaction faction) {
+	public boolean invite(XPlayerFaction faction) {
 		if (!invites.contains(faction)) {
 			invites.add(faction);
 			return true;
@@ -248,7 +249,7 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	}
 	
 	@Override
-	public boolean revokeInvite(XFaction faction) {
+	public boolean revokeInvite(XPlayerFaction faction) {
 		if (invites.contains(faction)) {
 			invites.remove(faction);
 			return true;

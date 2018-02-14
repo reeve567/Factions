@@ -15,8 +15,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class DamageHandler implements Listener {
@@ -39,11 +39,11 @@ public class DamageHandler implements Listener {
 		if (!e.isCancelled()) {
 			if (e.getEntity() instanceof Player) {
 				Player p = (Player) e.getEntity();
-				XFaction faction = PlayerManager.getOnlinePlayerFaction(p);
+				XPlayerFaction faction = PlayerManager.getOnlinePlayerFaction(p);
 				if (e.getDamager() instanceof Player) {
 					Player damager = (Player) e.getDamager();
 					
-					XFaction faction1 = PlayerManager.getOnlinePlayerFaction(damager);
+					XPlayerFaction faction1 = PlayerManager.getOnlinePlayerFaction(damager);
 					if (faction != null) {
 						if (faction == faction1) {
 							e.setCancelled(true);
@@ -58,7 +58,7 @@ public class DamageHandler implements Listener {
 					if (damager.getShooter() instanceof Player) {
 						XPlayer shooter = XPlayer.getXPlayer((Player) damager.getShooter());
 						
-						XFaction faction1 = shooter.getFaction();
+						XPlayerFaction faction1 = shooter.getFaction();
 						if (faction != null) {
 							if (faction == faction1) {
 								e.setCancelled(true);

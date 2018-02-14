@@ -10,8 +10,8 @@ package pw.xwy.Factions.commands.factions.subcommands;
 ////////////////////////////////////////////////////////////////////////////////
 
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 
 public class Rename extends SubCommand {
@@ -21,7 +21,7 @@ public class Rename extends SubCommand {
 	
 	@Override
 	public void run(XPlayer p, String[] args) {
-		XFaction faction = p.getFaction();
+		XPlayerFaction faction = p.getFaction();
 		
 		if (faction == null) {
 			p.sendMessages(Messages.getWhoSender());
@@ -38,7 +38,7 @@ public class Rename extends SubCommand {
 			return;
 		}
 		
-		if (!XFaction.validateName(args[1])) {
+		if (!XPlayerFaction.validateName(args[1])) {
 			p.sendMessage("Invalid faction name");
 			return;
 		}

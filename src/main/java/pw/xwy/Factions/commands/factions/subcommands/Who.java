@@ -2,9 +2,10 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XFactionPlayer;
-import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.objects.XRank;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XFactionPlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.Factions.objects.faction.XRank;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -45,14 +46,15 @@ public class Who extends SubCommand {
 	private void display(XPlayer p, XFaction faction, boolean someoneElse) {
 		p.sendHeader();
 		if (faction != null) {
-			if (!faction.isSystemFac()) {
+			if (faction instanceof XPlayerFaction) {
+				XPlayerFaction pFaction = (XPlayerFaction) faction;
 				for (String s : Messages.getWhoTop()) {
-					p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
+					p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, pFaction)));
 				}
-				for (XRank rank : faction.ranks) {
+				for (XRank rank : pFaction.ranks) {
 					p.sendMessages(Messages.getWhoList(rank));
 				}
-				p.sendMessages(Messages.getWhoList(faction.recruit));
+				p.sendMessages(Messages.getWhoList(pFaction.recruit));
 			} else {
 				for (String s : Messages.getWhoSystem()) {
 					p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
@@ -69,7 +71,7 @@ public class Who extends SubCommand {
 	}
 	
 	private void display(XPlayer p, XFactionPlayer target) {
-		XFaction faction = target.getFaction();
+		XPlayerFaction faction = target.getFaction();
 		display(p, faction, true);
 	}
 	

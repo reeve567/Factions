@@ -1,9 +1,8 @@
 package pw.xwy.Factions.utility.tasks;
 
 import org.bukkit.scheduler.BukkitRunnable;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XFactionOnlinePlayer;
-import pw.xwy.Factions.objects.XFactionPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XFactionOnlinePlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class PowerIncreaseTask extends BukkitRunnable {
 	
-	private ArrayList<XFaction> factions = new ArrayList<>();
+	private ArrayList<XPlayerFaction> factions = new ArrayList<>();
 	
 	public PowerIncreaseTask() {
 		System.out.println(getClass().getSimpleName() + " has been started!");
@@ -34,7 +33,7 @@ public class PowerIncreaseTask extends BukkitRunnable {
 				factions.add(p.getFaction());
 			}
 		}
-		for (XFaction faction : factions) {
+		for (XPlayerFaction faction : factions) {
 			if (faction != null) {
 				faction.updatePower();
 			}

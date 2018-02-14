@@ -10,7 +10,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 ////////////////////////////////////////////////////////////////////////////////
 
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class Chatspy extends SubCommand {

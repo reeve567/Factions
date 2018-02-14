@@ -12,7 +12,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.Bukkit;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
 
 public class Reload extends SubCommand {
 	public Reload() {

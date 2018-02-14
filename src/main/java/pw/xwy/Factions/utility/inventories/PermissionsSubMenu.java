@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pw.xwy.Factions.objects.ItemBuilder;
-import pw.xwy.Factions.objects.XRank;
+import pw.xwy.Factions.objects.faction.XRank;
 
 import java.util.ArrayList;
 import java.util.Arrays;

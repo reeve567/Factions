@@ -2,7 +2,8 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.managers.FactionManager;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -26,17 +27,17 @@ public class Ally extends SubCommand {
 				if (args.length < 2) {
 					sendHelpMessage(p);
 				} else {
-					XFaction faction = p.getFaction();
+					XPlayerFaction faction = p.getFaction();
 					XFaction faction1 = FactionManager.getFactionByName(args[1]);
 					
-					if (faction1 != null) {
+					if (faction1 != null && faction1 instanceof XPlayerFaction) {
 						if (!faction.getAllies().contains(faction1)) {
 							if (faction.allyRequests.contains(faction1)) {
 								//accept ally request from faction1
-								faction.addAlly(faction1);
+								faction.addAlly((XPlayerFaction) faction1);
 							} else {
 								//send ally request
-								faction.sendAllyRequest(faction1);
+								faction.sendAllyRequest((XPlayerFaction) faction1);
 							}
 							
 						} else {

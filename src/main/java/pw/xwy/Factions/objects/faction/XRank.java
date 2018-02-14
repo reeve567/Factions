@@ -1,4 +1,4 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.objects.faction;
 
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/13/18 6:24 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -25,17 +25,17 @@ public class XRank {
 	private ArrayList<UUID> users = new ArrayList<>();
 	private ArrayList<String> perms = new ArrayList<>();
 	private XFactionConfig config;
-	private XFaction faction;
+	private XPlayerFaction faction;
 	
-	public XRank(String name, int order, XFaction faction, boolean useConfig) {
+	public XRank(String name, int order, XPlayerFaction faction, boolean useConfig) {
 		this.faction = faction;
 		this.name = name;
 		this.order = order;
-		this.config = faction.factionConfig;
+		this.config = faction.getFactionConfig();
 		this.prefix = name;
 		if (useConfig) {
 			this.faction = faction;
-			this.config = faction.factionConfig;
+			this.config = faction.getFactionConfig();
 			List<String> uuids = config.getStringList("ranks.rank." + name + ".members");
 			for (String s : uuids) {
 				users.add(UUID.fromString(s));
@@ -47,9 +47,9 @@ public class XRank {
 		
 	}
 	
-	public XRank(XFaction faction, boolean isLeader, boolean useConfig) {
+	public XRank(XPlayerFaction faction, boolean isLeader, boolean useConfig) {
 		this.faction = faction;
-		this.config = faction.factionConfig;
+		this.config = faction.getFactionConfig();
 		if (!useConfig) {
 			name = isLeader ? "Leader" : "Recruit";
 			prefix = name;

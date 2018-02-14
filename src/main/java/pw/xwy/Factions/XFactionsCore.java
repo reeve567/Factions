@@ -15,7 +15,8 @@ import pw.xwy.Factions.commands.factions.FactionTop;
 import pw.xwy.Factions.objects.Glow;
 import pw.xwy.Factions.objects.Menu;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.DRM;
@@ -122,7 +123,7 @@ public class XFactionsCore extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		for (XFaction faction : FactionManager.getFactions()) {
-			faction.factionConfig.save(faction);
+			faction.getFactionConfig().save(faction);
 		}
 		for (Manager manager : managers) {
 			manager.unload();

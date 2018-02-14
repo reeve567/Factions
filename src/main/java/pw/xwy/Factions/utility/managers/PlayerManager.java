@@ -3,7 +3,7 @@ package pw.xwy.Factions.utility.managers;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.objects.*;
+import pw.xwy.Factions.objects.faction.*;
 import pw.xwy.Factions.utility.StringUtility;
 
 import java.io.File;
@@ -29,11 +29,11 @@ public class PlayerManager implements Manager {
 		onlinePlayers.add(player);
 	}
 	
-	public static XFaction getOfflinePlayerFaction(String s) {
+	public static XPlayerFaction getOfflinePlayerFaction(String s) {
 		return getOfflinePlayerFaction(nameAndIDs.get(s));
 	}
 	
-	public static XFaction getOfflinePlayerFaction(UUID uuid) {
+	public static XPlayerFaction getOfflinePlayerFaction(UUID uuid) {
 		return getOfflinePlayer(uuid).getFaction();
 	}
 	
@@ -73,7 +73,7 @@ public class PlayerManager implements Manager {
 		return getOfflinePlayer(p).getName();
 	}
 	
-	public static XFaction getOnlinePlayerFaction(Player p) {
+	public static XPlayerFaction getOnlinePlayerFaction(Player p) {
 		return getPlayer(p).getFaction();
 	}
 	

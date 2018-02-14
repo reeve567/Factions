@@ -6,8 +6,8 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.objects.MainCommand;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.StringUtility;
@@ -29,7 +29,7 @@ public class FactionTop extends MainCommand {
 		super("ftop", "f.top");
 	}
 	
-	private String JSONTempSpawners(EntityType e, XFaction faction) {
+	private String JSONTempSpawners(EntityType e, XPlayerFaction faction) {
 		String temp = ",{\"text\":\"\n&6&lcontent &8&l» &7&lnumber\"}";
 		temp = temp.replace("number", String.valueOf(faction.spawners.get(e)));
 		if (!e.getName().equalsIgnoreCase("VillagerGolem")) {
@@ -42,9 +42,9 @@ public class FactionTop extends MainCommand {
 	}
 	
 	private void display(XPlayer player, int page) {
-		ArrayList<XFaction> factions = FactionManager.getMostValueble();
+		ArrayList<XPlayerFaction> factions = FactionManager.getMostValueble();
 		player.sendHeader();
-		for (XFaction f : factions) {
+		for (XPlayerFaction f : factions) {
 			sendToPlayer(player, f);
 		}
 		int maxpages = factions.size() / 5;
@@ -55,7 +55,7 @@ public class FactionTop extends MainCommand {
 		player.sendFooter();
 	}
 	
-	private void sendToPlayer(Player player, XFaction faction) {
+	private void sendToPlayer(Player player, XPlayerFaction faction) {
 		IChatBaseComponent chat = IChatBaseComponent.ChatSerializer.a(" [\"\",{\"text\":\"" + faction.getName() + " \",\"color\":\"gold\"},{\"text\":\"» \",\"color\":\"gray\"},{\"text\":\"" + faction.getValue() + "\",\"color\":\"gold\",\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"\",\"extra\":[{\"text\":\"Spawners:\",\"color\":\"red\",\"bold\":true}" + spawnersString(faction) + "]}}}]");
 		CraftPlayer p = (CraftPlayer) player;
 		PacketPlayOutChat packet = new PacketPlayOutChat(chat);
@@ -63,7 +63,7 @@ public class FactionTop extends MainCommand {
 		
 	}
 	
-	private String spawnersString(XFaction faction) {
+	private String spawnersString(XPlayerFaction faction) {
 		String s = "";
 		for (EntityType e : Spawners.getInstance().arrayList) {
 			s += JSONTempSpawners(e, faction);

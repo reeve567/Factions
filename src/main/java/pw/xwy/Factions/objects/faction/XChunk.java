@@ -1,13 +1,13 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.objects.faction;
 
 import org.bukkit.Chunk;
-import org.bukkit.craftbukkit.v1_8_R3.CraftChunk;
 import org.bukkit.scheduler.BukkitTask;
 import pw.xwy.Factions.XFactionsCore;
+import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.tasks.ChunkValueTask;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/13/18 6:24 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /

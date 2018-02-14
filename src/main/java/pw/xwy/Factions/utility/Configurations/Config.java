@@ -7,7 +7,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayerConfig;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayerConfig;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 
@@ -100,7 +101,7 @@ public class Config {
 				for (File f : files) {
 					index++;
 					System.out.println("Loading faction " + f.getName().substring(0, f.getName().indexOf(".")) + " (" + index + "/" + total + ")");
-					FactionManager.addFaction(new XFaction(f.getName().substring(0, f.getName().indexOf("."))));
+					FactionManager.addFaction(XFaction.loadFaction(f.getName().substring(0,f.getName().indexOf("."))));
 				}
 			}
 		}
@@ -115,8 +116,8 @@ public class Config {
 	}
 	
 	public static void saveFactions() {
-		for (XFaction xFaction : FactionManager.getFactions()) {
-			xFaction.factionConfig.save(xFaction);
+		for (XFaction xPlayerFaction : FactionManager.getFactions()) {
+			xPlayerFaction.getFactionConfig().save(xPlayerFaction);
 		}
 	}
 	

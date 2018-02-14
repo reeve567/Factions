@@ -7,9 +7,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XFactionPlayer;
-import pw.xwy.Factions.objects.XPlayer;
-import pw.xwy.Factions.objects.XRank;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XFactionPlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.Factions.objects.faction.XRank;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -45,7 +46,7 @@ public class Messages {
 	private static List<String> claimed, unclaimed, alreadyClaimed, noPermission, factionDisbanded, notEnoughPower, memberLeft, notInFaction;
 	private static List<String> bypassEnabled, bypassDisabled;
 	
-	public static List<String> getAllyRequest(XFaction faction) {
+	public static List<String> getAllyRequest(XPlayerFaction faction) {
 		ArrayList<String> temp = new ArrayList<>();
 		for (String s : allyRequest) {
 			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
@@ -54,15 +55,26 @@ public class Messages {
 		return colorConv(temp);
 	}
 	
-	public static String replaceFactionValues(String s, XFaction faction) {
+	public static String replaceFactionValues(String s, XPlayerFaction faction) {
 		s = s.replace("<faction-name>", faction.getName());
-		s = s.replace("<faction-desc>", faction.desc);
+		s = s.replace("<faction-desc>", faction.getDesc());
 		s = s.replace("<faction-claimed-land>", String.valueOf(faction.claim.get().size()));
 		s = s.replace("<faction-max-land>", String.valueOf((int) faction.getMaxPower()));
 		s = s.replace("<faction-members-online>", String.valueOf(faction.getOnlinePlayers()));
 		s = s.replace("<faction-members-total>", String.valueOf(faction.players.size()));
 		s = s.replace("<faction-leader>", PlayerManager.getOfflinePlayerName(faction.getLeader()));
-		s = s.replace("<faction-color>", "&" + faction.color);
+		s = s.replace("<faction-color>", "&" + faction.getColor());
+		return s;
+	}
+	
+	public static String replaceFactionValues(String s, XFaction faction) {
+		if (faction instanceof XPlayerFaction) {
+			return replaceFactionValues(s,(XPlayerFaction) faction);
+		}
+		s = s.replace("<faction-name>", faction.getName());
+		s = s.replace("<faction-desc>", faction.getDesc());
+		s = s.replace("<faction-claimed-land>", String.valueOf(faction.claim.get().size()));
+		s = s.replace("<faction-color>", "&" + faction.getColor());
 		return s;
 	}
 	
@@ -86,7 +98,7 @@ public class Messages {
 		return st;
 	}
 	
-	public static List<String> getAllyRequestAccepted(XFaction faction) {
+	public static List<String> getAllyRequestAccepted(XPlayerFaction faction) {
 		ArrayList<String> temp = new ArrayList<>();
 		for (String s : allyRequestAccepted) {
 			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
@@ -95,7 +107,7 @@ public class Messages {
 		return colorConv(temp);
 	}
 	
-	public static List<String> getAllyRequestRecieved(XFaction faction) {
+	public static List<String> getAllyRequestRecieved(XPlayerFaction faction) {
 		ArrayList<String> temp = new ArrayList<>();
 		for (String s : allyRequestRecieved) {
 			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
@@ -124,7 +136,7 @@ public class Messages {
 		return colorConv(temp);
 	}
 	
-	public static List<String> getFactionCreated(XPlayer player, XFaction faction) {
+	public static List<String> getFactionCreated(XPlayer player, XPlayerFaction faction) {
 		return replacePlayer(convFactionPlaceHolders(colorConv(factionCreated), faction), player);
 	}
 	
@@ -137,7 +149,7 @@ public class Messages {
 		return st;
 	}
 	
-	private static List<String> convFactionPlaceHolders(List<String> strings, XFaction faction) {
+	private static List<String> convFactionPlaceHolders(List<String> strings, XPlayerFaction faction) {
 		List<String> st = new ArrayList<>();
 		for (String s : strings) {
 			s = replaceFactionValues(s, faction);
@@ -146,7 +158,7 @@ public class Messages {
 		return st;
 	}
 	
-	public static List<String> getFactionDisbanded(XPlayer player, XFaction faction) {
+	public static List<String> getFactionDisbanded(XPlayer player, XPlayerFaction faction) {
 		return replacePlayer(convFactionPlaceHolders(colorConv(factionDisbanded), faction), player);
 	}
 	

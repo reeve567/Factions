@@ -5,8 +5,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.scheduler.BukkitRunnable;
-import pw.xwy.Factions.objects.XChunk;
-import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.faction.XChunk;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.Configurations.Spawners;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ import pw.xwy.Factions.utility.Configurations.Spawners;
 
 public class ChunkValueTask extends BukkitRunnable {
 	
-	private XFaction faction;
+	private XPlayerFaction faction;
 	private boolean b;
 	private Chunk c;
 	private int value;
@@ -29,7 +29,7 @@ public class ChunkValueTask extends BukkitRunnable {
 	private Spawners spawners;
 	
 	public ChunkValueTask(XChunk c, boolean b) {
-		this.faction = c.xFaction;
+		this.faction = (XPlayerFaction) c.xFaction;
 		this.c = c.chunk;
 		this.b = b;
 		chunk = c;

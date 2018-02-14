@@ -1,7 +1,11 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.objects.faction;
+
+import pw.xwy.Factions.utility.managers.FactionManager;
+
+import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/5/18 3:50 PM                              /
+// File copyright last updated on: 2/13/18 6:24 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -9,15 +13,11 @@ package pw.xwy.Factions.objects;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import pw.xwy.Factions.utility.managers.FactionManager;
-
-import java.util.UUID;
-
 public class XOfflinePlayer implements XFactionPlayer {
 	
 	private XPlayerConfig config;
 	private UUID uuid;
-	private XFaction faction;
+	private XPlayerFaction faction;
 	
 	public XOfflinePlayer(UUID uuid) {
 		this.uuid = uuid;
@@ -26,13 +26,13 @@ public class XOfflinePlayer implements XFactionPlayer {
 	}
 	
 	@Override
-	public XFaction getFaction() {
+	public XPlayerFaction getFaction() {
 		return faction;
 	}
 	
 	@Override
-	public void setFaction(XFaction xFaction) {
-		faction = xFaction;
+	public void setFaction(XPlayerFaction xPlayerFaction) {
+		faction = xPlayerFaction;
 	}
 	
 	@Override

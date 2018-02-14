@@ -1,5 +1,7 @@
 package pw.xwy.Factions.objects;
 
+import pw.xwy.Factions.objects.faction.XPlayer;
+
 import java.util.ArrayList;
 
 ////////////////////////////////////////////////////////////////////////////////

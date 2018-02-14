@@ -4,7 +4,8 @@ import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -25,6 +26,27 @@ import java.util.List;
 public class Create extends SubCommand {
 	public Create() {
 		super("create", "<name>", "Creates a faction with the name chosen.");
+	}
+	
+	@Override
+	public void run(XPlayer p, String[] args) {
+		if (p.hasPermission("f.create.system")) {
+			if (args.length < 2) {
+				sendHelpMessage(p);
+			} else if (args.length == 2) {
+				makeFaction(p, args);
+			} else if (args.length == 3) {
+				makeFaction(p, args);
+				
+			}
+		} else {
+			if (args.length != 2) {
+				sendHelpMessage(p);
+				if (Config.isChargeToMakeFaction()) {
+					p.sendMessage(StringUtility.conv("&7In order to create a faction, you must pay &2$&a" + Config.getFactionCreationPrice() + "&7."));
+				}
+			} else makeFaction(p, args);
+		}
 	}
 	
 	private void makeFaction(Player p, String args[]) {
@@ -54,7 +76,7 @@ public class Create extends SubCommand {
 						if (Config.isChargeToMakeFaction()) {
 							if (XFactionsCore.getEcononomy().getBalance(p) >= Config.getFactionCreationPrice()) {
 								XFactionsCore.getEcononomy().withdrawPlayer(p, Config.getFactionCreationPrice());
-								XFaction faction = new XFaction(args[1], p);
+								XPlayerFaction faction = new XPlayerFaction(args[1], p);
 								FactionManager.addFaction(faction);
 								PlayerManager.getPlayer(p).setFaction(faction);
 								Config.saveFactions();
@@ -63,7 +85,7 @@ public class Create extends SubCommand {
 								p.sendMessage("not enough money");
 							}
 						} else {
-							XFaction faction = new XFaction(args[1], p);
+							XPlayerFaction faction = new XPlayerFaction(args[1], p);
 							FactionManager.addFaction(faction);
 							PlayerManager.getPlayer(p).setFaction(faction);
 							Config.saveFactions();
@@ -72,32 +94,27 @@ public class Create extends SubCommand {
 					} else {
 						p.sendMessage(StringUtility.conv("&cThis faction name is too short."));
 					}
+				} else if (args.length == 3) {
+					if (args[2].equalsIgnoreCase("sys") || args[2].equalsIgnoreCase("system")) {
+						if (args[1].equalsIgnoreCase("warzone")) {
+							XFaction faction = new XFaction("Warzone","c");
+							FactionManager.addFaction(faction);
+							Config.saveFactions();
+						}
+						
+						
+						
+					}
+					else {
+						p.sendMessage("wrong args");
+					}
 				}
 				
+			} else {
+				p.sendMessage("invalid name");
 			}
 		} else {
 			p.sendMessage(StringUtility.conv("&cYou are already in a faction!"));
-		}
-	}
-	
-	@Override
-	public void run(XPlayer p, String[] args) {
-		if (p.hasPermission("f.create.system")) {
-			if (args.length < 2) {
-				sendHelpMessage(p);
-			} else if (args.length == 2) {
-				makeFaction(p, args);
-			} else if (args.length == 3) {
-				makeFaction(p, args);
-				
-			}
-		} else {
-			if (args.length != 2) {
-				sendHelpMessage(p);
-				if (Config.isChargeToMakeFaction()) {
-					p.sendMessage(StringUtility.conv("&7In order to create a faction, you must pay &2$&a" + Config.getFactionCreationPrice() + "&7."));
-				}
-			} else makeFaction(p, args);
 		}
 	}
 	

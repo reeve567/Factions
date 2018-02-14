@@ -5,7 +5,8 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.ClaimManager;
@@ -98,7 +99,7 @@ public class Map extends SubCommand {
 			String row = "";
 			for (int j = width; j >= -width; j--) {
 				Chunk c = world.getChunkAt(x - j, z + i);
-				XFaction xFaction = ClaimManager.getChunk(c);
+				XFaction faction = ClaimManager.getChunk(c);
 				if (i == 0 && j == 0) {
 					row += "&b+";
 				} else {
@@ -107,19 +108,19 @@ public class Map extends SubCommand {
 						else if (i == -height + 1) row += mid;
 						else row += top;
 					} else if ((j < width - 2 || i > -height + 2)) {
-						if (xFaction != null) {
-							if (!key.keySet().contains(xFaction)) {
-								if (!xFaction.getEveryone().contains(p.getUniqueId())) {
-									String ke = "&" + xFaction.color + keys[num++];
-									key.put(xFaction, ke);
+						if (faction != null) {
+							if (!key.keySet().contains(faction)) {
+								if (faction instanceof XPlayerFaction && !((XPlayerFaction) faction).getEveryone().contains(p.getUniqueId())) {
+									String ke = "&" + faction.getColor() + keys[num++];
+									key.put(faction, ke);
 									row += ke;
 								} else {
-									key.put(xFaction, "&a$");
+									key.put(faction, "&a$");
 									row += "&a$";
 								}
 								
 							} else {
-								row += key.get(xFaction);
+								row += key.get(faction);
 							}
 						} else {
 							row += "&7-";
@@ -129,14 +130,14 @@ public class Map extends SubCommand {
 			}
 			p.sendMessage(StringUtility.conv(row));
 		}
-		XFaction xFaction = PlayerManager.getOnlinePlayerFaction(p);
+		XPlayerFaction xPlayerFaction = PlayerManager.getOnlinePlayerFaction(p);
 		if (key.keySet().size() > 0) {
 			p.sendMessage(Messages.getMapMidFooter());
-			if (key.keySet().contains(xFaction)) {
+			if (key.keySet().contains(xPlayerFaction)) {
 				p.sendMessage(StringUtility.conv("&aYour faction: $"));
 			}
 			for (XFaction faction : key.keySet()) {
-				if (!faction.equals(xFaction)) {
+				if (!faction.equals(xPlayerFaction)) {
 					p.sendMessage(StringUtility.conv("&" + faction.getColor() + faction.getName() + ": " + key.get(faction)));
 				}
 			}

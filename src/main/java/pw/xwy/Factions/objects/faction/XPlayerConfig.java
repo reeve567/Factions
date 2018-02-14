@@ -1,4 +1,4 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.objects.faction;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/13/18 6:24 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -74,7 +74,7 @@ public class XPlayerConfig {
 	public void save(XFactionPlayer xPlayer) {
 		set("info.power", xPlayer.getPower());
 		if (xPlayer.getFaction() != null) {
-			set("info.faction", xPlayer.getFaction().id.toString());
+			set("info.faction", xPlayer.getFaction().getId().toString());
 		} else {
 			set("info.faction", "no-faction");
 		}

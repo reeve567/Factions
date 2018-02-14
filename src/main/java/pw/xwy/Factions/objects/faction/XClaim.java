@@ -1,13 +1,14 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.objects.faction;
 
 import org.bukkit.Chunk;
+import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/13/18 6:24 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /

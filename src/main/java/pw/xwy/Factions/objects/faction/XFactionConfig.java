@@ -1,8 +1,10 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.objects.faction;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Config;
+import pw.xwy.Factions.utility.managers.FactionManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/3/18 9:22 AM                              /
+// File copyright last updated on: 2/13/18 6:24 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -24,7 +26,7 @@ public class XFactionConfig {
 	private FileConfiguration fileConfiguration;
 	private File file;
 	
-	XFactionConfig(String uuid) {
+	public XFactionConfig(String uuid) {
 		File factionData = Config.factiondata;
 		
 		file = new File(factionData, File.separator + uuid + ".yml");
@@ -56,16 +58,16 @@ public class XFactionConfig {
 		}
 	}
 	
-	XFactionConfig(String id, String color, String name) {
+	public XFactionConfig(XFaction faction) {
 		File factionData = Config.factiondata;
 		
-		file = new File(factionData, File.separator + id + ".yml");
+		file = new File(factionData, File.separator + faction.getId().toString() + ".yml");
 		fileConfiguration = YamlConfiguration.loadConfiguration(file);
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
-			set("info.name", name);
-			set("info.uuid", id);
-			set("info.color", color);
+			set("info.name", faction.getName());
+			set("info.uuid", faction.getId().toString());
+			set("info.color", faction.getColor());
 			set("info.systemFac", true);
 			fileConfiguration.createSection("others");
 			set("others.claim", new ArrayList<String>());
@@ -77,7 +79,7 @@ public class XFactionConfig {
 		}
 	}
 	
-	XFactionConfig(XFaction faction) {
+	XFactionConfig(XPlayerFaction faction) {
 		File factionData = Config.factiondata;
 		
 		file = new File(factionData, File.separator + faction.getId() + ".yml");
@@ -86,12 +88,12 @@ public class XFactionConfig {
 		if (!file.exists()) {
 			fileConfiguration.createSection("info");
 			set("info.name", faction.getName());
-			set("info.uuid", faction.id.toString());
+			set("info.uuid", faction.getId().toString());
 			set("info.balance", 0.0);
 			set("info.power", 0.0);
 			set("info.leader", faction.getLeader().toString());
 			set("info.home", "");
-			set("info.systemFac", faction.isSystemFac());
+			set("info.systemFac", false);
 			set("info.color", 'f');
 			fileConfiguration.createSection("others");
 			set("others.allies", new ArrayList<String>());
@@ -108,7 +110,7 @@ public class XFactionConfig {
 		}
 	}
 	
-	private void saveRanks(XFaction faction) {
+	private void saveRanks(XPlayerFaction faction) {
 		for (XRank rank : faction.ranks) {
 			rank.save();
 		}
@@ -189,22 +191,6 @@ public class XFactionConfig {
 	}
 	
 	public void save(XFaction xFaction) {
-		if (!isSystem()) {
-			saveRanks(xFaction);
-			List<String> allies = new ArrayList<>();
-			for (XFaction faction : xFaction.getAllies()) {
-				allies.add(faction.id.toString());
-			}
-			set("others.allies", allies);
-			
-			set("info.balance", xFaction.getBalance());
-			set("info.power", xFaction.getPower());
-			set("info.leader", xFaction.getLeader().toString());
-			set("others.home", xFaction.getHomeString());
-			
-			set("ranks.players", xFaction.getPlayersList());
-			set("ranks.list", xFaction.getRanksStringList());
-		}
 		set("info.name", xFaction.getName());
 		set("info.color", xFaction.getColor());
 		set("others.claim", xFaction.getClaimStrings());
@@ -214,6 +200,24 @@ public class XFactionConfig {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void save(XPlayerFaction xPlayerFaction) {
+		saveRanks(xPlayerFaction);
+		List<String> allies = new ArrayList<>();
+		for (XPlayerFaction faction : xPlayerFaction.getAllies()) {
+			allies.add(faction.getId().toString());
+		}
+		set("others.allies", allies);
+		
+		set("info.balance", xPlayerFaction.getBalance());
+		set("info.power", xPlayerFaction.getPower());
+		set("info.leader", xPlayerFaction.getLeader().toString());
+		set("others.home", xPlayerFaction.getHomeString());
+		
+		set("ranks.players", xPlayerFaction.getPlayersList());
+		set("ranks.list", xPlayerFaction.getRanksStringList());
+		save(xPlayerFaction);
 	}
 	
 	public void set(String path, Object value) {

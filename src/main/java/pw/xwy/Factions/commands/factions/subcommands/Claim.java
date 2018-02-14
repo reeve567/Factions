@@ -3,7 +3,8 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.Chunk;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.FactionManager;
 
@@ -23,7 +24,7 @@ public class Claim extends SubCommand {
 	
 	@Override
 	public void run(XPlayer p, String[] args) {
-		XFaction faction;
+		XPlayerFaction faction;
 		Chunk c = p.getLocation().getChunk();
 		//is in faction
 		if (p.facCheck()) {
@@ -40,7 +41,7 @@ public class Claim extends SubCommand {
 						if (p.hasPermission("f.claim.others")) {
 							XFaction fac = FactionManager.getFactionByName(args[1]);
 							if (fac != null) {
-								faction.claim(c, 0, true);
+								faction.claim(c);
 							} else {
 								p.sendMessage(StringUtility.conv("&cThat faction does not seem to exist."));
 							}

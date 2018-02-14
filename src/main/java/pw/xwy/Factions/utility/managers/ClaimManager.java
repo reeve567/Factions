@@ -3,6 +3,9 @@ package pw.xwy.Factions.utility.managers;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.faction.XFactionOnlinePlayer;
+import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.StringUtility;
 
 import java.util.ArrayList;
@@ -23,12 +26,12 @@ public class ClaimManager implements Manager {
 	
 	public static HashMap<XFaction, ArrayList<Chunk>> factionMap;
 	
-	public static String getMessage(Chunk c, Player p) {
+	public static String getMessage(Chunk c, XPlayer p) {
 		XFaction faction = getChunk(c);
 		if (faction != null) {
 			String name = faction.getName();
-			String desc = faction.desc;
-			if (getChunk(c).getEveryone().contains(p.getUniqueId())) {
+			String desc = faction.getDesc();
+			if (getChunk(c).equals(p.getFaction())) {
 				name = StringUtility.conv("&a" + name);
 			} else {
 				name = StringUtility.conv("&f" + name);
