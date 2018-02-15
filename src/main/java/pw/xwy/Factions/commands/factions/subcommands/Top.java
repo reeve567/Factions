@@ -5,6 +5,7 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Top extends SubCommand {
 	public Top() {
 		super("top", "[page]", "Displays the top factions based on their value.");

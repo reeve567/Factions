@@ -9,6 +9,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.enums.ChatType;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
@@ -17,6 +18,7 @@ import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
+@CommandHandler
 public class Chat extends SubCommand {
 	public Chat() {
 		super("c", "<type>", "Change chat mode to communicate with other factions, allies, or your own.");

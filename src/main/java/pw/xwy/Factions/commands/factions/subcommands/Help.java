@@ -1,5 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.commands.factions.Faction;
 import pw.xwy.Factions.objects.faction.XPlayer;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Help extends SubCommand {
 	
 	private int perPage;

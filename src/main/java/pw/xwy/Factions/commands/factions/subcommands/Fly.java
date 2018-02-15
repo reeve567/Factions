@@ -9,6 +9,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
@@ -19,6 +20,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
  * Changed to using fly whenever they're in the chunk
  */
 @Deprecated
+@CommandHandler
 public class Fly extends SubCommand {
 	public Fly() {
 		super("fly", "", "Allows you to fly inside faction claim.");

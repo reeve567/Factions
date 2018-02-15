@@ -2,6 +2,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.XFactionsCore;
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
@@ -23,6 +24,7 @@ import java.util.List;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Create extends SubCommand {
 	public Create() {
 		super("create", "<name>", "Creates a faction with the name chosen.");

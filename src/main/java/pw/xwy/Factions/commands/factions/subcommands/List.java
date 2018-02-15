@@ -1,5 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.managers.FactionManager;
@@ -13,6 +14,7 @@ import pw.xwy.Factions.utility.managers.FactionManager;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class List extends SubCommand {
 	public List() {
 		super("list", "", "List all factions in order of online members");

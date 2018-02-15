@@ -99,7 +99,7 @@
             <artifactId>utility</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>F:\repo\pw\xwy\utility\XwyUtility-RELEASE.jar</systemPath>
+            <systemPath>D:/repo/pw/xwy/utility/XwyUtility-RELEASE.jar</systemPath>
             <optional>false</optional>
         </dependency>
     </dependencies>

@@ -4,6 +4,7 @@ package pw.xwy.Factions.commands.shop;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.inventories.MainMenu;
 
@@ -16,6 +17,7 @@ import pw.xwy.Factions.utility.inventories.MainMenu;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Shop {
 	
 	public static void run(CommandSender sender) {

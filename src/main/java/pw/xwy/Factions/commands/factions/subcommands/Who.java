@@ -1,5 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
@@ -20,6 +21,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Who extends SubCommand {
 	
 	public Who() {

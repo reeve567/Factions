@@ -1,5 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
@@ -15,6 +16,7 @@ import pw.xwy.Factions.utility.managers.FactionManager;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Ally extends SubCommand {
 	public Ally() {
 		super("ally", "<faction>", "Allows you to send another faction an ally request.");

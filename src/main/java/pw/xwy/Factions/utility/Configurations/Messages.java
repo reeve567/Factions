@@ -45,6 +45,7 @@ public class Messages {
 	private static List<String> whoTop, whoList, whoSystem, whoSender, whoTarget, factionCreated, allyRequest, allyRequestAccepted, allyRequestRecieved;
 	private static List<String> claimed, unclaimed, alreadyClaimed, noPermission, factionDisbanded, notEnoughPower, memberLeft, notInFaction;
 	private static List<String> bypassEnabled, bypassDisabled;
+	private static List<String> factionChatFormat;
 	
 	public static List<String> getAllyRequest(XPlayerFaction faction) {
 		ArrayList<String> temp = new ArrayList<>();
@@ -248,6 +249,10 @@ public class Messages {
 		return colorConv(whoTop);
 	}
 	
+	public static List<String> getFactionChatFormat(XPlayer player) {
+		return convFactionPlaceHolders(factionChatFormat,player.getFaction());
+	}
+	
 	static void loadConfig() {
 		createConfig();
 		saveConfig();
@@ -279,6 +284,7 @@ public class Messages {
 		notInFaction = config.getStringList("faction.not-in-faction");
 		bypassEnabled = config.getStringList("admin-bypass-enabled");
 		bypassDisabled = config.getStringList("admin-bypass-disabled");
+		factionChatFormat = config.getStringList("faction-chat-format");
 	}
 	
 	private static void createConfig() {

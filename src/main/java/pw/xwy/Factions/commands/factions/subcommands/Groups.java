@@ -1,5 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
@@ -18,6 +19,7 @@ import java.util.UUID;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Groups extends SubCommand {
 	public Groups() {
 		super("groups", "", "Displays groups menu.");

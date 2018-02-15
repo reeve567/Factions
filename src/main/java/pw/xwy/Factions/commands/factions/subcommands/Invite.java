@@ -2,6 +2,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.objects.faction.XFactionOnlinePlayer;
@@ -18,6 +19,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Invite extends SubCommand {
 	
 	public Invite() {

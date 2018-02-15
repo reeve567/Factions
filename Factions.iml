@@ -28,7 +28,7 @@
     <orderEntry type="module-library">
       <library name="Maven: pw.xwy:utility:1.0">
         <CLASSES>
-          <root url="jar://F:/repo/pw/xwy/utility/XwyUtility-RELEASE.jar!/" />
+          <root url="jar://D:/repo/pw/xwy/utility/XwyUtility-RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

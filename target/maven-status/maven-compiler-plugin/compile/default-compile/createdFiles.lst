@@ -5,6 +5,7 @@ pw\xwy\Factions\utility\managers\ChatManager$1.class
 pw\xwy\Factions\enums\sell\Raiding.class
 pw\xwy\Factions\utility\ItemUtility.class
 pw\xwy\Factions\commands\factions\subcommands\Who.class
+pw\xwy\Factions\objects\CommandHandler.class
 pw\xwy\Factions\objects\faction\XChunk.class
 pw\xwy\Factions\commands\factions\subcommands\Close.class
 pw\xwy\Factions\utility\inventories\MiscMenu.class

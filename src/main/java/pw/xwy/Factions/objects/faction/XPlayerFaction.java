@@ -44,9 +44,10 @@ public class XPlayerFaction extends XFaction {
 	private UUID leader;
 	private Location home = null;
 	private ArrayList<XPlayerFaction> allies = new ArrayList<>();
+	private ArrayList<XPlayerFaction> enemies = new ArrayList<>();
 	
 	public XPlayerFaction(String name, Player creator) {
-		super(name,"f");
+		super(name, "f");
 		spawnersInit();
 		leader = creator.getUniqueId();
 		id = FactionManager.getAvailableUUID();
@@ -57,12 +58,6 @@ public class XPlayerFaction extends XFaction {
 		leaderRank = new XRank(this, true, false);
 		players.add(leader);
 		PlayerManager.sendMessages(Messages.getFactionCreated(XPlayer.getXPlayer(creator), this));
-	}
-	
-	private void spawnersInit() {
-		for (EntityType et : Spawners.getInstance().spawnerTypes) {
-			spawners.put(et, 0);
-		}
 	}
 	
 	//load from config
@@ -136,28 +131,48 @@ public class XPlayerFaction extends XFaction {
 		return StringUtility.toString(home);
 	}
 	
+	private boolean hasEnoughPower(Chunk c, int radius) {
+		int total = 1;
+		for (int i = -radius; i <= radius; i++)
+			for (int j = -radius; j <= radius; j++) {
+				Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + j);
+				if (ClaimManager.getChunk(ch) == null)
+					if (claim.get().size() + total <= getMaxPower()) {
+						total++;
+					} else {
+						//not enough power
+						return false;
+					}
+			}
+		return true;
+	}
+	
+	private void spawnersInit() {
+		for (EntityType et : Spawners.getInstance().spawnerTypes) {
+			spawners.put(et, 0);
+		}
+	}
+	
 	public void addAlly(XPlayerFaction faction) {
 		allyRequests.remove(faction);
 		allies.add(faction);
 		sendMessages(Messages.getAllyRequestAccepted(faction));
 	}
 	
-	public void sendMessages(List<String> strings) {
-		for (String s : strings) {
-			sendMessage(s);
-		}
-	}
-	
-	public void sendMessage(String s) {
-		for (UUID id : players) {
-			if (PlayerManager.isOnline(id)) {
-				PlayerManager.getPlayer(Bukkit.getPlayer(id)).sendMessage(s);
-			}
-		}
-	}
-	
 	public void addBalance(double amount) {
 		balance += amount;
+	}
+	
+	public void addEnemy(XPlayerFaction faction) {
+		if (!enemies.contains(faction)) {
+			enemies.add(faction);
+		}
+	}
+	
+	public void removeEnemy(XPlayerFaction faction) {
+		if (!enemies.contains(faction)) {
+			enemies.add(faction);
+		}
 	}
 	
 	public void addRank(XRank xRank) {
@@ -196,26 +211,6 @@ public class XPlayerFaction extends XFaction {
 		}
 	}
 	
-	private boolean hasEnoughPower(Chunk c, int radius) {
-		int total = 1;
-		for (int i = -radius; i <= radius; i++)
-			for (int j = -radius; j <= radius; j++) {
-				Chunk ch = c.getWorld().getChunkAt(c.getX() + i, c.getZ() + j);
-				if (ClaimManager.getChunk(ch) == null)
-					if (claim.get().size() + total <= getMaxPower()) {
-						total++;
-					} else {
-						//not enough power
-						return false;
-					}
-			}
-		return true;
-	}
-	
-	public double getMaxPower() {
-		return players.size() * Config.maxPower;
-	}
-	
 	public void disband(XPlayer p, boolean b) {
 		if (hasPermission(p, "disband") || b) {
 			XFactionPlayer leader = PlayerManager.getOfflinePlayer(this.leader);
@@ -233,34 +228,6 @@ public class XPlayerFaction extends XFaction {
 		}
 	}
 	
-	public boolean hasPermission(Player p, String s) {
-		return getRole(p.getUniqueId()).hasPerm(s, true) || isLeader(p);
-	}
-	
-	public void leave(XFactionPlayer player, boolean announce) {
-		if (!player.getUniqueId().equals(leader)) {
-			player.setFaction(null);
-			if (announce) {
-				sendMessages(Messages.getMemberLeft(player));
-			}
-			onlinePlayers--;
-			factionConfig.save(this);
-		}
-	}
-	
-	public XRank getRole(UUID p) {
-		for (XRank rank : ranks) {
-			if (rank.isIn(p)) {
-				return rank;
-			}
-		}
-		return recruit;
-	}
-	
-	public boolean isLeader(Player p) {
-		return leader.equals(p.getUniqueId());
-	}
-	
 	public ArrayList<XPlayerFaction> getAllies() {
 		return allies;
 	}
@@ -269,12 +236,27 @@ public class XPlayerFaction extends XFaction {
 		this.allies = allies;
 	}
 	
+	public void getAllyRequest(XPlayerFaction faction) {
+		allyRequests.add(faction);
+		sendMessages(Messages.getAllyRequest(faction));
+	}
+	
 	public double getBalance() {
 		return balance;
 	}
 	
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+	
+	public ArrayList<XPlayerFaction> getEnemies() {
+		return enemies;
+	}
+	
+	public ArrayList<UUID> getEveryone() {
+		ArrayList<UUID> everyone = new ArrayList<>();
+		everyone.add(leader);
+		return everyone;
 	}
 	
 	public Location getHome() {
@@ -291,6 +273,10 @@ public class XPlayerFaction extends XFaction {
 	
 	public void setLeader(UUID leader) {
 		this.leader = leader;
+	}
+	
+	public double getMaxPower() {
+		return players.size() * Config.maxPower;
 	}
 	
 	public int getOnlinePlayers() {
@@ -329,6 +315,15 @@ public class XPlayerFaction extends XFaction {
 		return stings;
 	}
 	
+	public XRank getRole(UUID p) {
+		for (XRank rank : ranks) {
+			if (rank.isIn(p)) {
+				return rank;
+			}
+		}
+		return recruit;
+	}
+	
 	public XRank getRole(String s) {
 		for (XRank rank : ranks) {
 			if (rank.name.equalsIgnoreCase(s)) {
@@ -347,6 +342,10 @@ public class XPlayerFaction extends XFaction {
 		
 	}
 	
+	public boolean hasPermission(Player p, String s) {
+		return getRole(p.getUniqueId()).hasPerm(s, true) || isLeader(p);
+	}
+	
 	public boolean hasPermission(Player p, String s, String st) {
 		return hasPermission(p, s) || p.hasPermission(st);
 	}
@@ -355,8 +354,28 @@ public class XPlayerFaction extends XFaction {
 		return getRole(p).hasPerm(s, true) || isLeader(p);
 	}
 	
+	public boolean isLeader(Player p) {
+		return leader.equals(p.getUniqueId());
+	}
+	
 	public boolean isLeader(UUID uuid) {
 		return leader.equals(uuid);
+	}
+	
+	public void leave(XFactionPlayer player, boolean announce) {
+		if (!player.getUniqueId().equals(leader)) {
+			player.setFaction(null);
+			if (announce) {
+				sendMessages(Messages.getMemberLeft(player));
+			}
+			onlinePlayers--;
+			factionConfig.save(this);
+		}
+	}
+	
+	@Override
+	public boolean powerCheck() {
+		return claim.chunks.size() + 1 < power;
 	}
 	
 	public void removeBalance(double amount) {
@@ -382,9 +401,18 @@ public class XPlayerFaction extends XFaction {
 		faction.getAllyRequest(this);
 	}
 	
-	public void getAllyRequest(XPlayerFaction faction) {
-		allyRequests.add(faction);
-		sendMessages(Messages.getAllyRequest(faction));
+	public void sendMessage(String s) {
+		for (UUID id : players) {
+			if (PlayerManager.isOnline(id)) {
+				PlayerManager.getPlayer(Bukkit.getPlayer(id)).sendMessage(s);
+			}
+		}
+	}
+	
+	public void sendMessages(List<String> strings) {
+		for (String s : strings) {
+			sendMessage(s);
+		}
 	}
 	
 	@Override
@@ -420,16 +448,5 @@ public class XPlayerFaction extends XFaction {
 			power += new XPlayerConfig(id).getPower();
 		}
 		this.power = ((int) (power * 10)) / 10.0;
-	}
-	
-	public ArrayList<UUID> getEveryone() {
-		ArrayList<UUID> everyone = new ArrayList<>();
-		everyone.add(leader);
-		return everyone;
-	}
-	
-	@Override
-	public boolean powerCheck() {
-		return claim.chunks.size() + 1 < power;
 	}
 }

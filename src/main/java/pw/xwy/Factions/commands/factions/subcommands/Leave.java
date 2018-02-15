@@ -1,5 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.managers.PlayerManager;
@@ -13,6 +14,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Leave extends SubCommand {
 	public Leave() {
 		super("leave", "", "Leaves your current faction.");

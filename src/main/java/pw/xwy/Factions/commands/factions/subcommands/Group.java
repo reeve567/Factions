@@ -1,5 +1,6 @@
 package pw.xwy.Factions.commands.factions.subcommands;
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
@@ -19,6 +20,7 @@ import java.util.UUID;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Group extends SubCommand {
 	public Group() {
 		super("group", "<create/delete/set> <name value/prefix> [prefix value] [group-name]", "Allows you to create/delete permissions groups for your faction, or set their prefix.");

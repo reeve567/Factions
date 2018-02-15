@@ -1,5 +1,6 @@
 package pw.xwy.Factions.commands.factions;
 
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.MainCommand;
 import pw.xwy.Factions.commands.factions.subcommands.*;
 import pw.xwy.Factions.objects.faction.XPlayer;
@@ -13,6 +14,7 @@ import pw.xwy.Factions.objects.faction.XPlayer;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Faction extends MainCommand {
 	public Faction() {
 		super("f", "f.use");

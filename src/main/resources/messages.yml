@@ -43,6 +43,8 @@ faction:
   - '&e<player> &ahas left the faction!'
   not-in-a-faction:
   - '&7You are not in a faction.'
+  faction-chat-format:
+  - '&a[Faction] <role-prefix> <player>: <message>'
 
 map:
   header: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'

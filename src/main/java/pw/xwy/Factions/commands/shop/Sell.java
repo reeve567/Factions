@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.utility.StringUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,6 +19,7 @@ import pw.xwy.Factions.utility.StringUtility;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Sell {
 	
 	public static void run(CommandSender sender, Economy economy) {

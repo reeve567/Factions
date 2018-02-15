@@ -3,6 +3,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
@@ -23,6 +24,7 @@ import java.util.HashMap;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Map extends SubCommand {
 	public Map() {
 		super("map", "", "Displays a map showing the claimed land in the area.");

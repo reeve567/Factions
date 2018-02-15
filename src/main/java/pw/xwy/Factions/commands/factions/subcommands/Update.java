@@ -2,6 +2,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
+import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayer;
 
@@ -21,6 +22,7 @@ import java.net.URLConnection;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
+@CommandHandler
 public class Update extends SubCommand {
 	public Update() {
 		super("update", "", "gets the version saved in the cloud", true);

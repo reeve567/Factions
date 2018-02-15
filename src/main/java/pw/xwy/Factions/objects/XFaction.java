@@ -63,6 +63,7 @@ public class XFaction {
 	public XFaction(String name, String c) {
 		this.name = name;
 		this.color = c;
+		this.id = FactionManager.getAvailableUUID();
 		factionConfig = new XFactionConfig(this);
 	}
 	
