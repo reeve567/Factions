@@ -41,7 +41,7 @@ public class Join extends SubCommand {
 				return;
 			}
 			XFactionOnlinePlayer player = PlayerManager.getPlayer(p);
-			if (player.hasInvite((XPlayerFaction) faction) || (((XPlayerFaction) faction).open)) {
+			if (player.hasInvite((XPlayerFaction) faction) || (((XPlayerFaction) faction).open) || p.isAdminMode()) {
 				if (player.getFaction() == null) {
 					player.revokeInvite((XPlayerFaction) faction);
 					player.setFaction((XPlayerFaction) faction);

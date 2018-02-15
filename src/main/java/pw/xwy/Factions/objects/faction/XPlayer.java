@@ -72,6 +72,10 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		return (XPlayer) PlayerManager.getPlayer(Bukkit.getPlayer(uuid));
 	}
 	
+	private void initChatspy() {
+		PlayerManager.chatspies.add(this);
+	}
+	
 	@Override
 	public void _INVALID_damage(int i) {
 	
@@ -112,10 +116,6 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	
 	}
 	
-	private void initChatspy() {
-		PlayerManager.chatspies.add(this);
-	}
-	
 	@Override
 	public void addPower() {
 		int po = (int) (power * 10);
@@ -134,21 +134,6 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		}
 		sendMessages(Messages.getNotInFaction());
 		return false;
-	}
-	
-	public boolean isAdminMode() {
-		return adminMode;
-	}
-	
-	public void toggleAdminMode() {
-		adminMode = !adminMode;
-		//send message for toggle
-		
-	}
-	
-	@Override
-	public boolean hasPermission(String s) {
-		return adminMode || faction != null && faction.hasPermission(this, s) || super.hasPermission(s);
 	}
 	
 	@Override
@@ -199,12 +184,21 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	}
 	
 	@Override
+	public boolean hasPermission(String s) {
+		return adminMode || faction != null && faction.hasPermission(this, s) || super.hasPermission(s);
+	}
+	
+	@Override
 	public boolean invite(XPlayerFaction faction) {
 		if (!invites.contains(faction)) {
 			invites.add(faction);
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean isAdminMode() {
+		return adminMode;
 	}
 	
 	@Override
@@ -266,6 +260,15 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 		sendMessages(Messages.getFooter());
 	}
 	
+	public void sendHeader() {
+		sendMessages(Messages.getHeader());
+	}
+	
+	@Override
+	public void sendMessage(String s) {
+		super.sendMessage(StringUtility.conv(s));
+	}
+	
 	@Override
 	public void sendMessages(List<String> strings) {
 		for (String s : strings) {
@@ -274,17 +277,14 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	}
 	
 	@Override
-	public void sendMessage(String s) {
-		super.sendMessage(StringUtility.conv(s));
-	}
-	
-	public void sendHeader() {
-		sendMessages(Messages.getHeader());
-	}
-	
-	@Override
 	public void stopTeleporting() {
 		teleportWarmupTask = null;
+	}
+	
+	public void toggleAdminMode() {
+		adminMode = !adminMode;
+		//send message for toggle
+		
 	}
 	
 	@Override

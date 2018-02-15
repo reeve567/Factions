@@ -12,6 +12,7 @@ pw\xwy\Factions\utility\inventories\MiscMenu.class
 pw\xwy\Factions\objects\SubCommand.class
 pw\xwy\Factions\utility\Configurations\Config.class
 pw\xwy\Factions\XFactionsCore.class
+pw\xwy\Factions\commands\factions\subcommands\Enemy.class
 pw\xwy\Factions\utility\handlers\InventoryHandler.class
 pw\xwy\Factions\objects\faction\XOfflinePlayer.class
 pw\xwy\Factions\commands\factions\subcommands\Sethome.class
@@ -28,8 +29,10 @@ pw\xwy\Factions\enums\sell\Spawner.class
 pw\xwy\Factions\commands\factions\FactionTop.class
 pw\xwy\Factions\utility\inventories\BuyMenu.class
 pw\xwy\Factions\utility\inventories\BuildingMenu.class
+pw\xwy\Factions\commands\factions\subcommands\Setwarp.class
 pw\xwy\Factions\commands\factions\subcommands\Group.class
 pw\xwy\Factions\utility\handlers\UnknownCommandHandler.class
+pw\xwy\Factions\objects\faction\XWarp.class
 pw\xwy\Factions\utility\StringUtility.class
 pw\xwy\Factions\commands\factions\subcommands\Map.class
 pw\xwy\Factions\objects\MainCommand.class

@@ -28,27 +28,6 @@ public class Update extends SubCommand {
 		super("update", "", "gets the version saved in the cloud", true);
 	}
 	
-	@Override
-	public void run(final XPlayer p, String[] args) {
-		Thread download = new Thread(() -> {
-			URL url = null;
-			try {
-				url = new URL("https://drive.google.com/uc?export=download&id=1aEd1qRWK49Sd_MV6cAcAStItZ-zGcgUj");
-			} catch (MalformedURLException e) {
-				p.sendMessage("&cCould not get file -- error 1");
-			}
-			String localFilename = System.getProperty("user.dir") + "/plugins/XFactions-Core"; //needs to be replaced with local file path
-			try {
-				assert url != null;
-				downloadFromUrl(url, localFilename, p);
-			} catch (IOException e) {
-				p.sendMessage("&cCould not get file -- error 2");
-				e.printStackTrace();
-			}
-		});
-		download.start();
-	}
-	
 	private void downloadFromUrl(URL url, String localFilename, CommandSender sender) throws IOException {
 		InputStream is = null;
 		FileOutputStream fos = null;
@@ -71,5 +50,26 @@ public class Update extends SubCommand {
 		sender.sendMessage(ChatColor.GOLD + "Plugin has been downloaded.");
 		is.close();
 		fos.close();
+	}
+	
+	@Override
+	public void run(final XPlayer p, String[] args) {
+		Thread download = new Thread(() -> {
+			URL url = null;
+			try {
+				url = new URL("https://drive.google.com/uc?export=download&id=1aEd1qRWK49Sd_MV6cAcAStItZ-zGcgUj");
+			} catch (MalformedURLException e) {
+				p.sendMessage("&cCould not get file -- error 1");
+			}
+			String localFilename = System.getProperty("user.dir") + "/plugins/XFactions-Core"; //needs to be replaced with local file path
+			try {
+				assert url != null;
+				downloadFromUrl(url, localFilename, p);
+			} catch (IOException e) {
+				p.sendMessage("&cCould not get file -- error 2");
+				e.printStackTrace();
+			}
+		});
+		download.start();
 	}
 }

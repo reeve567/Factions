@@ -12,6 +12,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.Factions.objects.faction.XWarp;
 import pw.xwy.Factions.utility.Configurations.Messages;
 
 @CommandHandler
@@ -24,10 +25,17 @@ public class Setwarp extends SubCommand {
 	public void run(XPlayer p, String[] args) {
 		if (p.facCheck()) {
 			if (p.hasPermission("setwarps")) {
-			
-			
-			
-			
+				if (args.length == 2) {
+					XWarp warp = new XWarp(args[1], p.getLocation());
+					p.getFaction().getWarps().add(warp);
+					p.sendMessage("warp set");
+				} else if (args.length == 3) {
+					XWarp warp = new XWarp(args[1], p.getLocation(), args[2]);
+					p.getFaction().getWarps().add(warp);
+					p.sendMessage("warp set");
+				} else {
+					sendHelpMessage(p);
+				}
 			} else {
 				p.sendMessages(Messages.getNoPermission());
 			}

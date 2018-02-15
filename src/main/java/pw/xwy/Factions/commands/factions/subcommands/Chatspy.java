@@ -26,8 +26,7 @@ public class Chatspy extends SubCommand {
 		if (PlayerManager.chatspies.contains(p)) {
 			PlayerManager.chatspies.remove(p);
 			p.sendMessage("disabled");
-		}
-		else {
+		} else {
 			PlayerManager.chatspies.add(p);
 			p.sendMessage("enabled");
 		}

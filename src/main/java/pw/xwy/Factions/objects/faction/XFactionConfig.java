@@ -4,7 +4,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Config;
-import pw.xwy.Factions.utility.managers.FactionManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +45,7 @@ public class XFactionConfig {
 			set("others.allies", new ArrayList<>());
 			set("others.claim", new ArrayList<String>());
 			set("others.home", "null");
+			set("others.warps", new ArrayList<String>());
 			fileConfiguration.createSection("ranks");
 			set("ranks.players", new ArrayList<String>());
 			set("ranks.list", new ArrayList<String>());
@@ -99,7 +99,7 @@ public class XFactionConfig {
 			set("others.allies", new ArrayList<String>());
 			set("others.claim", new ArrayList<String>());
 			set("others.home", "null");
-			
+			set("others.warps", new ArrayList<String>());
 			fileConfiguration.createSection("permissions");
 			
 			try {
@@ -158,6 +158,10 @@ public class XFactionConfig {
 		return getStringList("ranks.list");
 	}
 	
+	public List<String> getWarpList() {
+		return getStringList("others.warps");
+	}
+	
 	public List<String> getRankPermissions() {
 		return getStringList("ranks.permissions");
 	}
@@ -214,6 +218,7 @@ public class XFactionConfig {
 		set("info.power", xPlayerFaction.getPower());
 		set("info.leader", xPlayerFaction.getLeader().toString());
 		set("others.home", xPlayerFaction.getHomeString());
+		set("others.warps",xPlayerFaction.getWarpsStrings());
 		
 		set("ranks.players", xPlayerFaction.getPlayersList());
 		set("ranks.list", xPlayerFaction.getRanksStringList());

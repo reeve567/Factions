@@ -29,7 +29,9 @@ public class Faction extends MainCommand {
 		add(new Claim());
 		add(new Close());
 		add(new Create());
+		add(new Delwarp());
 		add(new Disband());
+		add(new Enemy());
 		//add(new Fly());
 		add(new Group());
 		add(new Groups());
@@ -45,6 +47,7 @@ public class Faction extends MainCommand {
 		add(new Reload());
 		add(new Rename());
 		add(new Sethome());
+		add(new Setwarp());
 		add(new Top());
 		add(new Unclaim());
 		add(new Update());
