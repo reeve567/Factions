@@ -3,7 +3,6 @@ package pw.xwy.Factions.objects.faction;
 import org.bukkit.Chunk;
 import org.bukkit.scheduler.BukkitTask;
 import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.tasks.ChunkValueTask;
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -22,7 +22,6 @@ pw\xwy\Factions\utility\tasks\SpawnWarmupTask.class
 pw\xwy\Factions\commands\factions\subcommands\Fly.class
 pw\xwy\Factions\utility\inventories\BrewingMenu.class
 pw\xwy\Factions\enums\sell\Miscellaneous.class
-pw\xwy\Factions\objects\XFaction.class
 pw\xwy\Factions\commands\factions\subcommands\Power.class
 pw\xwy\Factions\objects\faction\XPlayerFaction.class
 pw\xwy\Factions\enums\sell\Spawner.class
@@ -67,6 +66,7 @@ pw\xwy\Factions\utility\inventories\CombatMenu.class
 pw\xwy\Factions\objects\faction\XClaim.class
 pw\xwy\Factions\utility\ItemNames.class
 pw\xwy\Factions\objects\faction\XFactionPlayer.class
+pw\xwy\Factions\commands\factions\subcommands\Delwarp.class
 pw\xwy\Factions\objects\faction\XFactionConfig.class
 pw\xwy\Factions\utility\tasks\PowerIncreaseTask.class
 pw\xwy\Factions\enums\sell\Sell.class
@@ -81,6 +81,7 @@ pw\xwy\Factions\objects\faction\XPlayerConfig.class
 pw\xwy\Factions\objects\ItemBuilder.class
 pw\xwy\Factions\enums\sell\Farming.class
 pw\xwy\Factions\commands\factions\subcommands\Open.class
+pw\xwy\Factions\objects\faction\XFaction.class
 pw\xwy\Factions\utility\DRM.class
 pw\xwy\Factions\objects\faction\XFactionOnlinePlayer.class
 pw\xwy\Factions\enums\sell\Tools.class
@@ -99,3 +100,4 @@ pw\xwy\Factions\commands\factions\subcommands\List.class
 pw\xwy\Factions\utility\inventories\FarmingMenu.class
 pw\xwy\Factions\commands\shop\Shop.class
 pw\xwy\Factions\utility\handlers\ClaimHandler.class
+pw\xwy\Factions\commands\factions\subcommands\Warp.class

@@ -228,7 +228,7 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	
 	public boolean permCheck(String s, String perm) {
 		if (facCheck()) {
-			return faction.hasPermission(this, s, perm);
+			return faction.hasPermission(this, s) || this.hasPermission(perm);
 		}
 		sendMessages(Messages.getNoPermission());
 		return false;
@@ -283,8 +283,8 @@ public class XPlayer extends CraftPlayer implements XFactionOnlinePlayer {
 	
 	public void toggleAdminMode() {
 		adminMode = !adminMode;
-		//send message for toggle
-		
+		if (adminMode) sendMessages(Messages.getBypassEnabled());
+		else sendMessages(Messages.getBypassDisabled());
 	}
 	
 	@Override

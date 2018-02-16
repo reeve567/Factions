@@ -1,11 +1,8 @@
 package pw.xwy.Factions.utility.managers;
 
 import org.bukkit.Chunk;
-import org.bukkit.entity.Player;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.faction.XFactionOnlinePlayer;
+import pw.xwy.Factions.objects.faction.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.StringUtility;
 
 import java.util.ArrayList;
@@ -33,8 +30,6 @@ public class ClaimManager implements Manager {
 			String desc = faction.getDesc();
 			if (getChunk(c).equals(p.getFaction())) {
 				name = StringUtility.conv("&a" + name);
-			} else {
-				name = StringUtility.conv("&f" + name);
 			}
 			return StringUtility.conv("&6You are now entering &" + faction.getColor() + name + " &6- &" + faction.getColor() + desc + "&6.");
 		} else {

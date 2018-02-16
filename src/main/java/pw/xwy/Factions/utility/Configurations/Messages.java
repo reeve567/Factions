@@ -6,11 +6,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import pw.xwy.Factions.XFactionsCore;
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XFaction;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.objects.faction.XFactionPlayer;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XRank;
+import pw.xwy.Factions.objects.faction.*;
 import pw.xwy.Factions.utility.StringUtility;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -47,44 +43,21 @@ public class Messages {
 	private static List<String> bypassEnabled, bypassDisabled;
 	private static List<String> factionChatFormat;
 	
-	public static List<String> getAllyRequest(XPlayerFaction faction) {
-		ArrayList<String> temp = new ArrayList<>();
-		for (String s : allyRequest) {
-			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
-			temp.add(s);
-		}
-		return colorConv(temp);
-	}
-	
-	public static String replaceFactionValues(String s, XPlayerFaction faction) {
-		s = s.replace("<faction-name>", faction.getName());
-		s = s.replace("<faction-desc>", faction.getDesc());
-		s = s.replace("<faction-claimed-land>", String.valueOf(faction.claim.get().size()));
-		s = s.replace("<faction-max-land>", String.valueOf((int) faction.getMaxPower()));
-		s = s.replace("<faction-members-online>", String.valueOf(faction.getOnlinePlayers()));
-		s = s.replace("<faction-members-total>", String.valueOf(faction.players.size()));
-		s = s.replace("<faction-leader>", PlayerManager.getOfflinePlayerName(faction.getLeader()));
-		s = s.replace("<faction-color>", "&" + faction.getColor());
-		return s;
-	}
-	
-	public static String replaceFactionValues(String s, XFaction faction) {
-		if (faction instanceof XPlayerFaction) {
-			return replaceFactionValues(s,(XPlayerFaction) faction);
-		}
-		s = s.replace("<faction-name>", faction.getName());
-		s = s.replace("<faction-desc>", faction.getDesc());
-		s = s.replace("<faction-claimed-land>", String.valueOf(faction.claim.get().size()));
-		s = s.replace("<faction-color>", "&" + faction.getColor());
-		return s;
-	}
-	
 	private static List<String> colorConv(List<String> s) {
 		ArrayList<String> temp = new ArrayList<>();
 		for (String st : s) {
 			temp.add(StringUtility.conv(st));
 		}
 		return convGeneralPlaceHolders(temp);
+	}
+	
+	private static List<String> convFactionPlaceHolders(List<String> strings, XPlayerFaction faction) {
+		List<String> st = new ArrayList<>();
+		for (String s : strings) {
+			s = replaceFactionValues(s, faction);
+			st.add(s);
+		}
+		return st;
 	}
 	
 	public static List<String> convGeneralPlaceHolders(List<String> strings) {
@@ -97,6 +70,34 @@ public class Messages {
 			st.add(s);
 		}
 		return st;
+	}
+	
+	private static void createConfig() {
+		
+		configF = new File(xFactionsCore.getDataFolder(), "messages.yml");
+		
+		config = new YamlConfiguration();
+		
+		if (!configF.exists()) {
+			configF.getParentFile().mkdirs();
+			xFactionsCore.saveResource("messages.yml", false);
+		}
+		
+		try {
+			config.load(configF);
+		} catch (InvalidConfigurationException | IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static List<String> getAllyRequest(XPlayerFaction faction) {
+		ArrayList<String> temp = new ArrayList<>();
+		for (String s : allyRequest) {
+			s = replaceFactionValues(s.replace("<ally>", faction.getName()), faction);
+			temp.add(s);
+		}
+		return colorConv(temp);
 	}
 	
 	public static List<String> getAllyRequestAccepted(XPlayerFaction faction) {
@@ -121,6 +122,14 @@ public class Messages {
 		return colorConv(alreadyClaimed);
 	}
 	
+	public static List<String> getBypassDisabled() {
+		return colorConv(bypassDisabled);
+	}
+	
+	public static List<String> getBypassEnabled() {
+		return colorConv(bypassEnabled);
+	}
+	
 	public static List<String> getClaimed() {
 		return colorConv(claimed);
 	}
@@ -137,26 +146,12 @@ public class Messages {
 		return colorConv(temp);
 	}
 	
+	public static List<String> getFactionChatFormat(XPlayer player) {
+		return convFactionPlaceHolders(factionChatFormat, player.getFaction());
+	}
+	
 	public static List<String> getFactionCreated(XPlayer player, XPlayerFaction faction) {
 		return replacePlayer(convFactionPlaceHolders(colorConv(factionCreated), faction), player);
-	}
-	
-	private static List<String> replacePlayer(List<String> strings, XFactionPlayer player) {
-		List<String> st = new ArrayList<>();
-		for (String s : strings) {
-			s = s.replaceAll("<player>", player.getName());
-			st.add(s);
-		}
-		return st;
-	}
-	
-	private static List<String> convFactionPlaceHolders(List<String> strings, XPlayerFaction faction) {
-		List<String> st = new ArrayList<>();
-		for (String s : strings) {
-			s = replaceFactionValues(s, faction);
-			st.add(s);
-		}
-		return st;
 	}
 	
 	public static List<String> getFactionDisbanded(XPlayer player, XPlayerFaction faction) {
@@ -249,10 +244,6 @@ public class Messages {
 		return colorConv(whoTop);
 	}
 	
-	public static List<String> getFactionChatFormat(XPlayer player) {
-		return convFactionPlaceHolders(factionChatFormat,player.getFaction());
-	}
-	
 	static void loadConfig() {
 		createConfig();
 		saveConfig();
@@ -287,23 +278,36 @@ public class Messages {
 		factionChatFormat = config.getStringList("faction-chat-format");
 	}
 	
-	private static void createConfig() {
-		
-		configF = new File(xFactionsCore.getDataFolder(), "messages.yml");
-		
-		config = new YamlConfiguration();
-		
-		if (!configF.exists()) {
-			configF.getParentFile().mkdirs();
-			xFactionsCore.saveResource("messages.yml", false);
+	public static String replaceFactionValues(String s, XPlayerFaction faction) {
+		s = s.replace("<faction-name>", faction.getName());
+		s = s.replace("<faction-desc>", faction.getDesc());
+		s = s.replace("<faction-claimed-land>", String.valueOf(faction.claim.get().size()));
+		s = s.replace("<faction-max-land>", String.valueOf((int) faction.getMaxPower()));
+		s = s.replace("<faction-members-online>", String.valueOf(faction.getOnlinePlayers()));
+		s = s.replace("<faction-members-total>", String.valueOf(faction.players.size()));
+		s = s.replace("<faction-leader>", PlayerManager.getOfflinePlayerName(faction.getLeader()));
+		s = s.replace("<faction-color>", "&" + faction.getColor());
+		return s;
+	}
+	
+	public static String replaceFactionValues(String s, XFaction faction) {
+		if (faction instanceof XPlayerFaction) {
+			return replaceFactionValues(s, (XPlayerFaction) faction);
 		}
-		
-		try {
-			config.load(configF);
-		} catch (InvalidConfigurationException | IOException e) {
-			e.printStackTrace();
+		s = s.replace("<faction-name>", faction.getName());
+		s = s.replace("<faction-desc>", faction.getDesc());
+		s = s.replace("<faction-claimed-land>", String.valueOf(faction.claim.get().size()));
+		s = s.replace("<faction-color>", StringUtility.conv("&" + faction.getColor()));
+		return s;
+	}
+	
+	private static List<String> replacePlayer(List<String> strings, XFactionPlayer player) {
+		List<String> st = new ArrayList<>();
+		for (String s : strings) {
+			s = s.replaceAll("<player>", player.getName());
+			st.add(s);
 		}
-		
+		return st;
 	}
 	
 	private static void saveConfig() {
@@ -312,13 +316,5 @@ public class Messages {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static List<String> getBypassDisabled() {
-		return colorConv(bypassDisabled);
-	}
-	
-	public static List<String> getBypassEnabled() {
-		return colorConv(bypassEnabled);
 	}
 }

@@ -5,7 +5,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.faction.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.Configurations.Messages;
@@ -116,9 +116,13 @@ public class Map extends SubCommand {
 									String ke = "&" + faction.getColor() + keys[num++];
 									key.put(faction, ke);
 									row += ke;
-								} else {
+								} else if (faction instanceof XPlayerFaction) {
 									key.put(faction, "&a$");
 									row += "&a$";
+								} else {
+									String ke = "&" + faction.getColor() + keys[num++];
+									key.put(faction, ke);
+									row += ke;
 								}
 								
 							} else {

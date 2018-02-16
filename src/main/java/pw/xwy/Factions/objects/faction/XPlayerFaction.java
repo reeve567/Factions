@@ -5,7 +5,6 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Config;
 import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.Configurations.Spawners;
@@ -215,10 +214,10 @@ public class XPlayerFaction extends XFaction {
 				leave(pl, false);
 				pl.save();
 			}
-			factionConfig.remove();
 			PlayerManager.sendMessages(Messages.getFactionDisbanded(p, this));
 			ClaimManager.removeChunks(this);
 			FactionManager.removeFaction(this);
+			factionConfig.remove();
 		}
 	}
 	

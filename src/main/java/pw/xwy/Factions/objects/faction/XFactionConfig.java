@@ -2,7 +2,6 @@ package pw.xwy.Factions.objects.faction;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.Configurations.Config;
 
 import java.io.File;
@@ -36,7 +35,7 @@ public class XFactionConfig {
 			set("info.name", "");
 			set("info.uuid", uuid);
 			set("info.balance", 0.0);
-			set("info.power", 0.0);
+			set("info.power", Config.maxPower);
 			set("info.leader", "noleader");
 			set("info.home", "");
 			set("info.systemFac", false);
@@ -90,7 +89,7 @@ public class XFactionConfig {
 			set("info.name", faction.getName());
 			set("info.uuid", faction.getId().toString());
 			set("info.balance", 0.0);
-			set("info.power", 0.0);
+			set("info.power", Config.maxPower);
 			set("info.leader", faction.getLeader().toString());
 			set("info.home", "");
 			set("info.systemFac", false);
@@ -222,7 +221,7 @@ public class XFactionConfig {
 		
 		set("ranks.players", xPlayerFaction.getPlayersList());
 		set("ranks.list", xPlayerFaction.getRanksStringList());
-		save(xPlayerFaction);
+		save((XFaction) xPlayerFaction);
 	}
 	
 	public void set(String path, Object value) {

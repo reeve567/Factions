@@ -1,7 +1,6 @@
 package pw.xwy.Factions.objects.faction;
 
 import org.bukkit.Chunk;
-import pw.xwy.Factions.objects.XFaction;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 
 import java.util.ArrayList;
@@ -25,7 +24,9 @@ public class XClaim {
 		claim.add(c);
 		XChunk chunk = new XChunk(faction, c);
 		chunks.add(chunk);
-		chunk.calculateValue();
+		if (faction instanceof XPlayerFaction) {
+			chunk.calculateValue();
+		}
 		ClaimManager.factionMap.put(faction, claim);
 		ClaimManager.chunkMap.put(c, faction);
 	}

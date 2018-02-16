@@ -1,7 +1,7 @@
 package pw.xwy.Factions.utility.managers;
 
 import org.bukkit.Chunk;
-import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.faction.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.Configurations.Config;
 

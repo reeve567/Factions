@@ -2,7 +2,7 @@ package pw.xwy.Factions.commands.factions.subcommands;
 
 import pw.xwy.Factions.objects.CommandHandler;
 import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.faction.XFaction;
 import pw.xwy.Factions.objects.faction.XFactionPlayer;
 import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
@@ -42,7 +42,7 @@ public class Who extends SubCommand {
 				p.sendMessages(Messages.getWhoList(pFaction.recruit));
 			} else {
 				for (String s : Messages.getWhoSystem()) {
-					p.sendMessage(StringUtility.conv(Messages.replaceFactionValues(s, faction)));
+					p.sendMessage(Messages.replaceFactionValues(s, faction));
 				}
 			}
 		} else {

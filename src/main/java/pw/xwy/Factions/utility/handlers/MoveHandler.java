@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import pw.xwy.Factions.objects.XFaction;
+import pw.xwy.Factions.objects.faction.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.managers.ClaimManager;
@@ -29,7 +29,6 @@ public class MoveHandler implements Listener {
 	
 	@EventHandler
 	public void onMove(PlayerMoveEvent e) {
-		
 		if (!lastFaction.containsKey(e.getPlayer())) {
 			lastFaction.put(e.getPlayer(), ClaimManager.getChunk(e.getTo().getChunk()));
 		}
@@ -40,14 +39,16 @@ public class MoveHandler implements Listener {
 				if (lastFaction.get(e.getPlayer()) != ClaimManager.getChunk(e.getTo().getChunk()) || ClaimManager.getChunk(e.getFrom().getChunk()) != ClaimManager.getChunk(e.getTo().getChunk())) {
 					lastFaction.put(e.getPlayer(), ClaimManager.getChunk(e.getTo().getChunk()));
 					XFaction faction = lastFaction.get(e.getPlayer());
-					if (faction != PlayerManager.getOnlinePlayerFaction(e.getPlayer())) {
-						XPlayerFaction faction1 = PlayerManager.getOnlinePlayerFaction(e.getPlayer());
-						if (faction1.flying.contains(e.getPlayer().getUniqueId())) {
+					if (!XPlayer.getXPlayer(e.getPlayer()).isAdminMode()) {
+						if (faction != PlayerManager.getOnlinePlayerFaction(e.getPlayer())) {
+							XPlayerFaction faction1 = PlayerManager.getOnlinePlayerFaction(e.getPlayer());
+							if (faction1.flying.contains(e.getPlayer().getUniqueId())) {
+								faction1.toggleFlying(e.getPlayer());
+							}
+						} else {
+							XPlayerFaction faction1 = PlayerManager.getOnlinePlayerFaction(e.getPlayer());
 							faction1.toggleFlying(e.getPlayer());
 						}
-					} else {
-						XPlayerFaction faction1 = PlayerManager.getOnlinePlayerFaction(e.getPlayer());
-						faction1.toggleFlying(e.getPlayer());
 					}
 					e.getPlayer().sendMessage(ClaimManager.getMessage(e.getTo().getChunk(), XPlayer.getXPlayer(e.getPlayer())));
 				}
