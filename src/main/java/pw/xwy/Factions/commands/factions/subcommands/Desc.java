@@ -1,7 +1,7 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/13/18 6:09 PM                             /
+// File copyright last updated on: 2/16/18 3:00 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -9,17 +9,5 @@ package pw.xwy.Factions.objects;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public abstract class Menu {
-	
-	public Menu() {
-		load();
-		setup();
-	}
-	
-	public abstract void load();
-
-	public abstract void setup();
-
-	public abstract void unload();
-	
+public class Desc {
 }

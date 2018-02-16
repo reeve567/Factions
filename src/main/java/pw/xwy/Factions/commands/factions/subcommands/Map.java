@@ -95,11 +95,12 @@ public class Map extends SubCommand {
 		int num = 0;
 		
 		int height = 6;
-		int width = 22;
+		int width = 10;
 		p.sendMessage(Messages.getMapHeader());
 		for (int i = -height; i <= height; i++) {
 			String row = "";
 			for (int j = width; j >= -width; j--) {
+				world.loadChunk(x-j,z+i);
 				Chunk c = world.getChunkAt(x - j, z + i);
 				XFaction faction = ClaimManager.getChunk(c);
 				if (i == 0 && j == 0) {

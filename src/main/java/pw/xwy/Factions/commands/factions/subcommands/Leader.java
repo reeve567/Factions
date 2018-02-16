@@ -1,7 +1,7 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.Factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
-// File copyright last updated on: 2/13/18 6:09 PM                             /
+// File copyright last updated on: 2/16/18 5:18 PM                             /
 //                                                                             /
 // Copyright (c) 2018.                                                         /
 // All code here is made by Xwy (gitout#5670) unless otherwise noted.          /
@@ -9,17 +9,16 @@ package pw.xwy.Factions.objects;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-public abstract class Menu {
-	
-	public Menu() {
-		load();
-		setup();
+import pw.xwy.Factions.objects.SubCommand;
+import pw.xwy.Factions.objects.faction.XPlayer;
+
+public class Leader extends SubCommand {
+	public Leader() {
+		super("leader", "Make another faction member leader of the faction", "");
 	}
 	
-	public abstract void load();
-
-	public abstract void setup();
-
-	public abstract void unload();
+	@Override
+	public void run(XPlayer p, String[] args) {
 	
+	}
 }

@@ -43,17 +43,6 @@ public class FactionManager implements Manager {
 		return id;
 	}
 	
-	public static XPlayerFaction getFactionFromUUID(UUID id) {
-		if (id != null) {
-			for (XFaction f : factions) {
-				if (f.getId().equals(id)) {
-					return (XPlayerFaction) f;
-				}
-			}
-		}
-		return null;
-	}
-	
 	public static XFaction getFactionByName(String s) {
 		for (XFaction f : factions) {
 			if (f.getName().equalsIgnoreCase(s)) {
@@ -63,10 +52,48 @@ public class FactionManager implements Manager {
 		return null;
 	}
 	
+	public static XPlayerFaction getFactionFromUUID(UUID id) {
+		if (id != null) {
+			for (XFaction f : factions) {
+				if (f.getId().equals(id)) {
+					if (f instanceof XPlayerFaction) {
+						return (XPlayerFaction) f;
+					} else {
+						return null;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	public static ArrayList<XFaction> getFactions() {
+		return factions;
+	}
+	
+	public static ArrayList<XPlayerFaction> getMostOnline() {
+		ArrayList<XPlayerFaction> factions = new ArrayList<>();
+		for (XPlayerFaction faction : getNonSystemFactions()) {
+			boolean found = false;
+			for (XPlayerFaction faction1 : factions) {
+				if (faction.getOnlinePlayers() > faction1.getOnlinePlayers()) {
+					found = true;
+					factions.add(factions.indexOf(faction1), faction);
+					break;
+				}
+			}
+			if (!found) {
+				factions.add(faction);
+			}
+			
+		}
+		
+		return factions;
+	}
+	
 	public static ArrayList<XPlayerFaction> getMostValueble() {
 		ArrayList<XPlayerFaction> factions = new ArrayList<>();
-		ArrayList<XPlayerFaction> temp = getNonSystemFactions();
-		for (XPlayerFaction faction : temp) {
+		for (XPlayerFaction faction : getNonSystemFactions()) {
 			boolean found = false;
 			for (XPlayerFaction faction1 : factions) {
 				if (faction.getValue() > faction1.getValue()) {
@@ -94,10 +121,6 @@ public class FactionManager implements Manager {
 		return nonSystem;
 	}
 	
-	public static ArrayList<XFaction> getFactions() {
-		return factions;
-	}
-	
 	public static ArrayList<XFaction> getSystemFactions() {
 		ArrayList<XFaction> system = new ArrayList<>();
 		for (XFaction f : factions) {
@@ -115,13 +138,13 @@ public class FactionManager implements Manager {
 	}
 	
 	@Override
-	public void unload() {
-		factions = null;
-		
+	public void load() {
+		factions = new ArrayList<>();
 	}
 	
 	@Override
-	public void load() {
-		factions = new ArrayList<>();
+	public void unload() {
+		factions = null;
+		
 	}
 }

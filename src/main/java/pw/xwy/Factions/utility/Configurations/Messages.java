@@ -42,6 +42,7 @@ public class Messages {
 	private static List<String> claimed, unclaimed, alreadyClaimed, noPermission, factionDisbanded, notEnoughPower, memberLeft, notInFaction;
 	private static List<String> bypassEnabled, bypassDisabled;
 	private static List<String> factionChatFormat;
+	private static String factionListFormat;
 	
 	private static List<String> colorConv(List<String> s) {
 		ArrayList<String> temp = new ArrayList<>();
@@ -156,6 +157,10 @@ public class Messages {
 	
 	public static List<String> getFactionDisbanded(XPlayer player, XPlayerFaction faction) {
 		return replacePlayer(convFactionPlaceHolders(colorConv(factionDisbanded), faction), player);
+	}
+	
+	public static String getFactionListFormat(XPlayerFaction faction) {
+		return StringUtility.conv(replaceFactionValues(factionListFormat,faction));
 	}
 	
 	public static List<String> getFooter() {
@@ -273,9 +278,10 @@ public class Messages {
 		notEnoughPower = config.getStringList("faction.not-enough-power");
 		memberLeft = config.getStringList("faction.member-left");
 		notInFaction = config.getStringList("faction.not-in-faction");
-		bypassEnabled = config.getStringList("admin-bypass-enabled");
-		bypassDisabled = config.getStringList("admin-bypass-disabled");
-		factionChatFormat = config.getStringList("faction-chat-format");
+		bypassEnabled = config.getStringList("general.admin-bypass-enabled");
+		bypassDisabled = config.getStringList("general.admin-bypass-disabled");
+		factionChatFormat = config.getStringList("faction.faction-chat-format");
+		factionListFormat = config.getString("faction.faction-list-format");
 	}
 	
 	public static String replaceFactionValues(String s, XPlayerFaction faction) {

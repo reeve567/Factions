@@ -1,11 +1,6 @@
 package pw.xwy.Factions.utility.handlers;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.inventories.*;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

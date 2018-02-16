@@ -44,13 +44,11 @@ public class XPlayerFaction extends XFaction {
 	private HashSet<XWarp> warps = new HashSet<>();
 	
 	public XPlayerFaction(String name, Player creator) {
-		super(name, "f");
+		super(name, "f", false);
 		spawnersInit();
 		leader = creator.getUniqueId();
-		id = FactionManager.getAvailableUUID();
-		this.name = name;
+		setupConfig();
 		onlinePlayers++;
-		factionConfig = new XFactionConfig(this);
 		recruit = new XRank(this, false, false);
 		leaderRank = new XRank(this, true, false);
 		players.add(leader);
@@ -61,44 +59,8 @@ public class XPlayerFaction extends XFaction {
 	public XPlayerFaction(XFactionConfig config) {
 		super(config);
 		spawnersInit();
-		recruit = new XRank(this, false, true);
-		leaderRank = new XRank(this, true, true);
-		if (factionConfig.hasHome()) {
-			String homeString = factionConfig.getHome();
-			
-			String world = homeString.substring(0, homeString.indexOf(" "));
-			homeString = homeString.replaceFirst(world + " ", "");
-			double x = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
-			homeString = homeString.replaceFirst(String.valueOf(x) + " ", "");
-			double y = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
-			homeString = homeString.replaceFirst(String.valueOf(y) + " ", "");
-			double z = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
-			homeString = homeString.replaceFirst(String.valueOf(z) + " ", "");
-			float pitch = Float.parseFloat(homeString.substring(0, homeString.indexOf(" ")));
-			homeString = homeString.replaceFirst(String.valueOf(pitch), "");
-			float yaw = Float.parseFloat(homeString);
-			home = new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
-			
-		}
-		power = factionConfig.getPower();
-		balance = factionConfig.getBalance();
-		
-		List<String> rankList = factionConfig.getRankList();
-		for (int i = 0; i < rankList.size(); i++) {
-			ranks.add(new XRank(rankList.get(i), i, this, true));
-		}
-		
-		String leader = factionConfig.getLeader();
-		this.leader = UUID.fromString(leader);
-		players.add(this.leader);
-		if (factionConfig.hasLand()) {
-			loadClaim(factionConfig.getClaim());
-		}
-		
-		for (String s : factionConfig.getWarpList()) {
-			warps.add(XWarp.getXWarp(s));
-		}
-		
+		setupExtras();
+		setupConfig();
 	}
 	
 	static public boolean validateName(String factionName) {
@@ -199,7 +161,6 @@ public class XPlayerFaction extends XFaction {
 				p.sendMessages(Messages.getNotEnoughPower());
 			}
 		} else {
-			//already claimed
 			p.sendMessages(Messages.getAlreadyClaimed());
 		}
 	}
@@ -423,6 +384,51 @@ public class XPlayerFaction extends XFaction {
 	public void sendMessages(List<String> strings) {
 		for (String s : strings) {
 			sendMessage(s);
+		}
+	}
+	
+	@Override
+	public void setupConfig() {
+		factionConfig = new XFactionConfig(this);
+	}
+	
+	public void setupExtras() {
+		recruit = new XRank(this, false, true);
+		leaderRank = new XRank(this, true, true);
+		if (factionConfig.hasHome()) {
+			String homeString = factionConfig.getHome();
+			
+			String world = homeString.substring(0, homeString.indexOf(" "));
+			homeString = homeString.replaceFirst(world + " ", "");
+			double x = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
+			homeString = homeString.replaceFirst(String.valueOf(x) + " ", "");
+			double y = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
+			homeString = homeString.replaceFirst(String.valueOf(y) + " ", "");
+			double z = Double.parseDouble(homeString.substring(0, homeString.indexOf(" ")));
+			homeString = homeString.replaceFirst(String.valueOf(z) + " ", "");
+			float pitch = Float.parseFloat(homeString.substring(0, homeString.indexOf(" ")));
+			homeString = homeString.replaceFirst(String.valueOf(pitch), "");
+			float yaw = Float.parseFloat(homeString);
+			home = new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
+			
+		}
+		power = factionConfig.getPower();
+		balance = factionConfig.getBalance();
+		
+		List<String> rankList = factionConfig.getRankList();
+		for (int i = 0; i < rankList.size(); i++) {
+			ranks.add(new XRank(rankList.get(i), i, this, true));
+		}
+		
+		String leader = factionConfig.getLeader();
+		this.leader = UUID.fromString(leader);
+		players.add(this.leader);
+		if (factionConfig.hasLand()) {
+			loadClaim(factionConfig.getClaim());
+		}
+		
+		for (String s : factionConfig.getWarpList()) {
+			warps.add(XWarp.getXWarp(s));
 		}
 	}
 	

@@ -65,12 +65,12 @@ public class Create extends SubCommand {
 				if (args[2].equalsIgnoreCase("sys") || args[2].equalsIgnoreCase("system")) {
 					if (args[1].equalsIgnoreCase("warzone")) {
 						p.sendMessage("warzone faction : " + args[1] + " created");
-						XFaction faction = new XFaction("Warzone", "c");
+						XFaction faction = new XFaction("Warzone", "c",true);
 						FactionManager.addFaction(faction);
 						Config.saveFactions();
 					} else {
 						p.sendMessage("system faction : " + args[1] + " created");
-						XFaction faction = new XFaction(args[1], "f");
+						XFaction faction = new XFaction(args[1], "f",true);
 						FactionManager.addFaction(faction);
 						Config.saveFactions();
 					}

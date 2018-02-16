@@ -45,6 +45,8 @@ faction:
   - '&7You are not in a faction.'
   faction-chat-format:
   - '&a[Faction] <role-prefix> <player>: <message>'
+  faction-list-format:
+  - '&6<faction-name> &7» &6<faction-members-online>&7/&6<faction-members-total>'
 
 map:
   header: '&7&m    &8&m    &7&m    &8&m    &7&m     &8&m    &7&m    &8&m    &7&m'

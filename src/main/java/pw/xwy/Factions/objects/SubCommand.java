@@ -36,10 +36,10 @@ public abstract class SubCommand {
 		this.permission = "f." + command.toLowerCase();
 	}
 	
-	public abstract void run(XPlayer p, String[] args);
-	
 	protected void sendHelpMessage(XPlayer p) {
 		p.sendMessages(Messages.getCommandHelpFormat(this));
 	}
+	
+	public abstract void run(XPlayer p, String[] args);
 	
 }

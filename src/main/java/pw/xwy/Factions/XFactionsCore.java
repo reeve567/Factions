@@ -17,6 +17,7 @@ import pw.xwy.Factions.objects.Menu;
 import pw.xwy.Factions.objects.faction.XFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.utility.Configurations.Config;
+import pw.xwy.Factions.utility.Configurations.Messages;
 import pw.xwy.Factions.utility.Configurations.Spawners;
 import pw.xwy.Factions.utility.DRM;
 import pw.xwy.Factions.utility.StringUtility;
@@ -77,9 +78,18 @@ public class XFactionsCore extends JavaPlugin {
 				} else {
 					for (SubCommand subCommand : subCommands) {
 						if (subCommand.command.equalsIgnoreCase(args[0])) {
-							if (p.hasPermission(subCommand.permission) || !Config.usePermissions) {
-								subCommand.run((XPlayer) PlayerManager.getPlayer((Player) sender), args);
-								return true;
+							if (subCommand.adminCommand) {
+								if (p.hasPermission(subCommand.permission)) {
+									subCommand.run((XPlayer) PlayerManager.getPlayer((Player) sender),args);
+								}
+								else {
+									XPlayer.getXPlayer(p).sendMessages(Messages.getNoPermission());
+								}
+							} else {
+								if (p.hasPermission(subCommand.permission) || !Config.usePermissions) {
+									subCommand.run((XPlayer) PlayerManager.getPlayer((Player) sender), args);
+									return true;
+								}
 							}
 						}
 					}

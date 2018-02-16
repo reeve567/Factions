@@ -29,31 +29,10 @@ public class XFactionConfig {
 		
 		file = new File(factionData, File.separator + uuid + ".yml");
 		fileConfiguration = YamlConfiguration.loadConfiguration(file);
-		
-		if (!file.exists()) {
-			fileConfiguration.createSection("info");
-			set("info.name", "");
-			set("info.uuid", uuid);
-			set("info.balance", 0.0);
-			set("info.power", Config.maxPower);
-			set("info.leader", "noleader");
-			set("info.home", "");
-			set("info.systemFac", false);
-			set("info.color", 'f');
-			fileConfiguration.createSection("others");
-			set("others.allies", new ArrayList<>());
-			set("others.claim", new ArrayList<String>());
-			set("others.home", "null");
-			set("others.warps", new ArrayList<String>());
-			fileConfiguration.createSection("ranks");
-			set("ranks.players", new ArrayList<String>());
-			set("ranks.list", new ArrayList<String>());
-			set("ranks.permissions", new ArrayList<String>());
-			try {
-				fileConfiguration.save(file);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		try {
+			fileConfiguration.save(file);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -157,10 +136,6 @@ public class XFactionConfig {
 		return getStringList("ranks.list");
 	}
 	
-	public List<String> getWarpList() {
-		return getStringList("others.warps");
-	}
-	
 	public List<String> getRankPermissions() {
 		return getStringList("ranks.permissions");
 	}
@@ -175,6 +150,10 @@ public class XFactionConfig {
 	
 	public UUID getUUID() {
 		return UUID.fromString(getString("info.uuid"));
+	}
+	
+	public List<String> getWarpList() {
+		return getStringList("others.warps");
 	}
 	
 	public boolean hasHome() {
@@ -217,7 +196,7 @@ public class XFactionConfig {
 		set("info.power", xPlayerFaction.getPower());
 		set("info.leader", xPlayerFaction.getLeader().toString());
 		set("others.home", xPlayerFaction.getHomeString());
-		set("others.warps",xPlayerFaction.getWarpsStrings());
+		set("others.warps", xPlayerFaction.getWarpsStrings());
 		
 		set("ranks.players", xPlayerFaction.getPlayersList());
 		set("ranks.list", xPlayerFaction.getRanksStringList());

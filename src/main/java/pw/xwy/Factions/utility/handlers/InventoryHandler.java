@@ -347,12 +347,11 @@ public class InventoryHandler implements Listener {
 					boolean toggled = item.containsEnchantment(new Glow(999));
 					String rank = e.getInventory().getName().substring(14);
 					Player player = (Player) e.getWhoClicked();
-					player.sendMessage(rank);
 					if (PlayerManager.getOnlinePlayerFaction(player).getRole(player.getUniqueId()).hasPerm("ManagePerms", true) || PlayerManager.getOnlinePlayerFaction(player).isLeader(player)) {
 						XRank rank1 = PlayerManager.getOnlinePlayerFaction(player).getRole(rank);
 						if (rank1 != null) {
-							player.sendMessage(rank + " - " + toggled + " - ");
 							e.setCurrentItem(toggle(toggled, e.getCurrentItem(), rank1));
+							rank1.addPerm(PermissionsSubMenu.perms.get(ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName())));
 						}
 					}
 				}

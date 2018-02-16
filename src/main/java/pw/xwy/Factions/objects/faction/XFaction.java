@@ -35,11 +35,13 @@ public class XFaction {
 		factionConfig = config;
 	}
 	
-	public XFaction(String name, String c) {
+	public XFaction(String name, String c, boolean makeConfig) {
 		this.name = name;
 		this.color = c;
 		this.id = FactionManager.getAvailableUUID();
-		factionConfig = new XFactionConfig(this);
+		if (makeConfig) {
+			setupConfig();
+		}
 	}
 	
 	public static XFaction loadFaction(String s) {
@@ -128,8 +130,12 @@ public class XFaction {
 		return true;
 	}
 	
+	public void setupConfig() {
+		factionConfig = new XFactionConfig(this);
+	}
+	
 	@Override
 	public String toString() {
-		return "{Name: " + name + "; Color: " + color +"}";
+		return "{Name: " + name + "; Color: " + color + "}";
 	}
 }

@@ -67,7 +67,8 @@ public class PermissionsSubMenu {
 				get("Faction fly", "Allows fling in your claims", rank, "fly"),
 				get("Place blocks", "Gives the ability to place blocks", rank, "place"),
 				get("Destroy blocks", "Gives the ability to break blocks", rank, "break"),
-				get("Toggle faction openness", "Can toggle whether or not the faction is open to players", rank, "toggleOpen")
+				get("Toggle faction openness", "Can toggle whether or not the faction is open to players", rank, "toggleOpen"),
+				
 		));
 		
 		int slot = 0;

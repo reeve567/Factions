@@ -16,8 +16,6 @@ import java.util.List;
 
 public interface XFactionOnlinePlayer extends XFactionPlayer {
 	
-	void sendMessages(List<String> strings);
-	void sendMessage(String s);
 	void addPower();
 	ChatType getChatType();
 	void setChatType(ChatType type);
@@ -31,6 +29,8 @@ public interface XFactionOnlinePlayer extends XFactionPlayer {
 	void setNoFallDamage(boolean fallDamage);
 	boolean isTeleporting();
 	boolean revokeInvite(XPlayerFaction faction);
+	void sendMessage(String s);
+	void sendMessages(List<String> strings);
 	void stopTeleporting();
 	void toggleCancelled();
 }

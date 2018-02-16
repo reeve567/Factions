@@ -1,3 +1,4 @@
+pw\xwy\Factions\commands\factions\subcommands\Desc.class
 pw\xwy\Factions\objects\TeleportWarmupTask.class
 pw\xwy\Factions\enums\sell\Brewing.class
 pw\xwy\Factions\commands\factions\subcommands\Help.class
@@ -74,6 +75,7 @@ pw\xwy\Factions\utility\inventories\SellMenu.class
 pw\xwy\Factions\utility\tasks\HomeWarmupTask.class
 pw\xwy\Factions\utility\Configurations\Messages.class
 pw\xwy\Factions\enums\sell\Building.class
+pw\xwy\Factions\commands\factions\subcommands\Leader.class
 pw\xwy\Factions\commands\shop\Sell.class
 pw\xwy\Factions\commands\factions\subcommands\Home.class
 pw\xwy\Factions\objects\faction\XRank.class

@@ -15,8 +15,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class DamageHandler implements Listener {

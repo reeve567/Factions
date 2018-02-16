@@ -6,8 +6,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import pw.xwy.Factions.objects.faction.XFaction;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.Factions.objects.faction.XPlayerFaction;
 import pw.xwy.Factions.utility.managers.ClaimManager;
 import pw.xwy.Factions.utility.managers.PlayerManager;
 
@@ -42,12 +42,16 @@ public class MoveHandler implements Listener {
 					if (!XPlayer.getXPlayer(e.getPlayer()).isAdminMode()) {
 						if (faction != PlayerManager.getOnlinePlayerFaction(e.getPlayer())) {
 							XPlayerFaction faction1 = PlayerManager.getOnlinePlayerFaction(e.getPlayer());
-							if (faction1.flying.contains(e.getPlayer().getUniqueId())) {
-								faction1.toggleFlying(e.getPlayer());
+							if (faction1 != null) {
+								if (faction1.flying.contains(e.getPlayer().getUniqueId())) {
+									faction1.toggleFlying(e.getPlayer());
+								}
 							}
 						} else {
 							XPlayerFaction faction1 = PlayerManager.getOnlinePlayerFaction(e.getPlayer());
-							faction1.toggleFlying(e.getPlayer());
+							if (faction1 != null) {
+								faction1.toggleFlying(e.getPlayer());
+							}
 						}
 					}
 					e.getPlayer().sendMessage(ClaimManager.getMessage(e.getTo().getChunk(), XPlayer.getXPlayer(e.getPlayer())));

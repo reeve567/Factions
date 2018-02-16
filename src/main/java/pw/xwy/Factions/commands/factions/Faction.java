@@ -39,6 +39,7 @@ public class Faction extends MainCommand {
 		add(new Home());
 		add(new Invite());
 		add(new Join());
+		add(new Leader());
 		add(new Leave());
 		add(new List());
 		add(new Map());
@@ -46,6 +47,7 @@ public class Faction extends MainCommand {
 		add(new Power());
 		add(new Reload());
 		add(new Rename());
+		add(new Setgroup());
 		add(new Sethome());
 		add(new Setwarp());
 		add(new Top());

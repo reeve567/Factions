@@ -25,16 +25,20 @@ public class Setwarp extends SubCommand {
 	public void run(XPlayer p, String[] args) {
 		if (p.facCheck()) {
 			if (p.hasPermission("setwarps")) {
-				if (args.length == 2) {
-					XWarp warp = new XWarp(args[1], p.getLocation());
-					p.getFaction().getWarps().add(warp);
-					p.sendMessage("warp set");
-				} else if (args.length == 3) {
-					XWarp warp = new XWarp(args[1], p.getLocation(), args[2]);
-					p.getFaction().getWarps().add(warp);
-					p.sendMessage("warp set");
+				if (p.getFaction().claim.isInClaim(p.getLocation().getChunk())) {
+					if (args.length == 2) {
+						XWarp warp = new XWarp(args[1], p.getLocation());
+						p.getFaction().getWarps().add(warp);
+						p.sendMessage("warp set");
+					} else if (args.length == 3) {
+						XWarp warp = new XWarp(args[1], p.getLocation(), args[2]);
+						p.getFaction().getWarps().add(warp);
+						p.sendMessage("warp set");
+					} else {
+						sendHelpMessage(p);
+					}
 				} else {
-					sendHelpMessage(p);
+					p.sendMessage("you are not in your claim");
 				}
 			} else {
 				p.sendMessages(Messages.getNoPermission());

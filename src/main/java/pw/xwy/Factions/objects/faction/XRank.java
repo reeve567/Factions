@@ -17,7 +17,6 @@ import java.util.UUID;
 ////////////////////////////////////////////////////////////////////////////////
 
 public class XRank {
-	
 	public String name;
 	public ArrayList<XRank> lower = new ArrayList<>();
 	public String prefix;
@@ -89,6 +88,10 @@ public class XRank {
 	
 	public void addPerm(String s) {
 		perms.add(s);
+	}
+	
+	public ArrayList<UUID> getUsers() {
+		return users;
 	}
 	
 	public boolean hasPerm(String s, boolean deep) {
