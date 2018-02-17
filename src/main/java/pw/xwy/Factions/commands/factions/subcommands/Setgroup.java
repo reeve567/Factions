@@ -13,6 +13,8 @@ import org.bukkit.Bukkit;
 import pw.xwy.Factions.objects.SubCommand;
 import pw.xwy.Factions.objects.faction.XPlayer;
 import pw.xwy.Factions.objects.faction.XPlayerFaction;
+import pw.xwy.Factions.objects.faction.XRank;
+import pw.xwy.Factions.utility.managers.PlayerManager;
 
 import java.util.UUID;
 
@@ -31,19 +33,25 @@ public class Setgroup extends SubCommand {
 						faction.getRole(args[2]).prefix = args[3];
 						p.sendMessage("prefix set for " + args[2] + " to " + args[3]);
 					}
-				}
-				else if (args.length == 3 && Bukkit.getPlayer(args[1]) != null) {
+				} else if (args.length == 3 && Bukkit.getPlayer(args[1]) != null) {
 					if (faction.getRole(args[2]) != null) {
-						UUID id = Bukkit.getPlayer(args[1]).getUniqueId();
-						if (faction.recruit.getUsers().contains())
-						
-						
-						faction.getRole(args[2]).getUsers().add(Bukkit.getPlayer(args[1]).getUniqueId());
-						
+						UUID idl = PlayerManager.getOfflinePlayerUUID(args[1]);
+						if (faction.getEveryone().contains(idl)) {
+							if (faction.recruit.getUsers().contains(idl)) {
+								faction.recruit.getUsers().remove(idl);
+								faction.getRole(args[2]).add(idl);
+							} else if (idl.equals(faction.getLeader())) {
+								p.sendMessage("You cannot change the leader's rank, in order to change the leader, you must use /f leader <player-name>");
+							} else {
+								for (XRank rank : faction.ranks) {
+									if (rank.isIn(idl)) {
+										rank.getUsers().remove(idl);
+									}
+								}
+								faction.getRole(args[2]).add(idl);
+							}
+						}
 					}
-				
-				
-				
 				}
 			}
 		}

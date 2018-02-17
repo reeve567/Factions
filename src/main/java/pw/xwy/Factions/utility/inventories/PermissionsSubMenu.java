@@ -48,8 +48,7 @@ public class PermissionsSubMenu {
 	
 	public static Inventory get(Player p, XRank rank) {
 		Inventory inventory = Bukkit.createInventory(p, 18, "Permissions - " + rank.name);
-		ArrayList<ItemStack> itemStacks = new ArrayList<>();
-		itemStacks.addAll(Arrays.asList(
+		ArrayList<ItemStack> itemStacks = new ArrayList<>(Arrays.asList(
 				get("Change faction tag", "Ability to change the faction name", rank, "rename"),
 				get("Change description", "Sets the description for your faction", rank, "desc"),
 				get("Invite players", "Can invite players to your faction", rank, "invite"),
@@ -67,10 +66,8 @@ public class PermissionsSubMenu {
 				get("Faction fly", "Allows fling in your claims", rank, "fly"),
 				get("Place blocks", "Gives the ability to place blocks", rank, "place"),
 				get("Destroy blocks", "Gives the ability to break blocks", rank, "break"),
-				get("Toggle faction openness", "Can toggle whether or not the faction is open to players", rank, "toggleOpen"),
-				
+				get("Toggle faction openness", "Can toggle whether or not the faction is open to players", rank, "toggleOpen")
 		));
-		
 		int slot = 0;
 		for (ItemStack i : itemStacks) {
 			inventory.setItem(slot++, i);

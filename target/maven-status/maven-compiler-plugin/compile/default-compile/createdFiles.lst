@@ -44,6 +44,7 @@ pw\xwy\Factions\commands\factions\subcommands\Disband.class
 pw\xwy\Factions\enums\sell\Combat.class
 pw\xwy\Factions\commands\factions\subcommands\Bypass.class
 pw\xwy\Factions\utility\inventories\PermissionsMainMenu.class
+pw\xwy\Factions\commands\factions\subcommands\Setgroup.class
 pw\xwy\Factions\commands\factions\subcommands\Unclaim.class
 pw\xwy\Factions\objects\Glow.class
 pw\xwy\Factions\objects\Menu.class
