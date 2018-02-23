@@ -51,6 +51,8 @@
                 </configuration>
             </plugin>
         </plugins>
+        <outputDirectory>${basedir}/target</outputDirectory>
+        <directory>R:\repo\pw\xwy\factions</directory>
     </build>
 
     <repositories>
@@ -61,10 +63,6 @@
         <repository>
             <id>vault-repo</id>
             <url>http://nexus.hc.to/content/repositories/pub_releases</url>
-        </repository>
-        <repository>
-            <id>citizens-repo</id>
-            <url>http://repo.citizensnpcs.co/</url>
         </repository>
     </repositories>
 
@@ -95,12 +93,17 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>pw.xwy</groupId>
-            <artifactId>utility</artifactId>
+            <groupId>pw.xwy.utility</groupId>
+            <artifactId>XwyUtility</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>D:/repo/pw/xwy/utility/XwyUtility-RELEASE.jar</systemPath>
+            <systemPath>R:/repo/pw/xwy/utility/XwyUtility-RELEASE.jar</systemPath>
             <optional>false</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

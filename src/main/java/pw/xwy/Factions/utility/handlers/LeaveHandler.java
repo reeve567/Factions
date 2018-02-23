@@ -1,6 +1,7 @@
 package pw.xwy.Factions.utility.handlers;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pw.xwy.Factions.objects.faction.XPlayer;
@@ -17,7 +18,7 @@ import pw.xwy.Factions.utility.managers.PlayerManager;
 
 public class LeaveHandler implements Listener {
 	
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onQuit(PlayerQuitEvent e) {
 		XPlayer xPlayer = (XPlayer) PlayerManager.getPlayer(e.getPlayer());
 		xPlayer.save();
