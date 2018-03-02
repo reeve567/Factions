@@ -97,8 +97,7 @@
             <artifactId>XwyUtility</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>R:/repo/pw/xwy/utility/XwyUtility-RELEASE.jar</systemPath>
-            <optional>false</optional>
+            <systemPath>${project.basedir}/lib/XwyUtility-RELEASE.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.bukkit</groupId>
