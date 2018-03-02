@@ -92,6 +92,7 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+             <!--
         <dependency>
             <groupId>pw.xwy.utility</groupId>
             <artifactId>XwyUtility</artifactId>
@@ -100,6 +101,7 @@
             <systemPath>R:/repo/pw/xwy/utility/XwyUtility-RELEASE.jar</systemPath>
             <optional>false</optional>
         </dependency>
+             -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
