@@ -51,8 +51,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <outputDirectory>${basedir}/target</outputDirectory>
-        <directory>R:\repo\pw\xwy\factions</directory>
     </build>
 
     <repositories>
@@ -85,15 +83,20 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-             <!--
         <dependency>
-            <groupId>pw.xwy.utility</groupId>
-            <artifactId>XwyUtility</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/XwyUtility-RELEASE.jar</systemPath>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
-             -->
+        <!--
+   <dependency>
+       <groupId>pw.xwy.utility</groupId>
+       <artifactId>XwyUtility</artifactId>
+       <version>1.0</version>
+       <scope>system</scope>
+       <systemPath>${project.basedir}/lib/XwyUtility-RELEASE.jar</systemPath>
+   </dependency>
+        -->
     </dependencies>
 
 </project>

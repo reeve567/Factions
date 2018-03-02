@@ -2,9 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
-      <profile name="Annotation profile for Factions" enabled="true">
-        <sourceOutputDir name="../../../../../repo/pw/xwy/factions/generated-sources/annotations" />
-        <sourceTestOutputDir name="../../../../../repo/pw/xwy/factions/generated-test-sources/test-annotations" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Factions" />
       </profile>
