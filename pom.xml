@@ -63,8 +63,8 @@
             <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
         <repository>
-            <id>craftbukkit-repo</id>
-            <url>https://github.com/reeve567/craftbukkit-repo</url>
+            <id>xwy-maven-repo</id>
+            <url>https://github.com/reeve567/xwy-maven-repo</url>
         </repository>
     </repositories>
 
