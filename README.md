@@ -1,4 +1,13 @@
 # Factions
+
+<strong>Jenkins:</strong>
+
+Link: [here](http://xwy.pw)
+
+Username: factions
+
+Password: XtucnCYHwb20
+
 <strong>How it works</strong>:
 
 When the plugin is loaded, if there are any factions saved in the factions folder, it loads them into memory along with their claims.
