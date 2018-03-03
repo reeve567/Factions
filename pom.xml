@@ -62,10 +62,6 @@
             <id>vault-repo</id>
             <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
-        <repository>
-            <id>xwy-maven-repo</id>
-            <url>https://github.com/reeve567/xwy-maven-repo</url>
-        </repository>
     </repositories>
 
     <dependencies>
@@ -92,6 +88,13 @@
             <artifactId>craftbukkit</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.0</version>
+            <systemPath>${pom.basedir}/libs/craftbukkit.jar</systemPath>
+            <scope>system</scope>
+		</dependency>
         <!--
    <dependency>
        <groupId>pw.xwy.utility</groupId>
