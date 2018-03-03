@@ -87,7 +87,7 @@
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.0</version>
-            <systemPath>${pom.basedir}/libs/craftbukkit.jar</systemPath>
+            <systemPath>${pom.basedir}/lib/craftbukkit.jar</systemPath>
             <scope>system</scope>
 	</dependency>
         <!--
