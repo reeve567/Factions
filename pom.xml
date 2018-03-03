@@ -84,17 +84,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>pw.xwy</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.0</version>
             <systemPath>${pom.basedir}/libs/craftbukkit.jar</systemPath>
             <scope>system</scope>
-		</dependency>
+	</dependency>
         <!--
    <dependency>
        <groupId>pw.xwy.utility</groupId>
