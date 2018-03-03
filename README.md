@@ -2,6 +2,8 @@
 
 <strong>Jenkins:</strong>
 
+Use Jenkins to get the latest build of the plugin
+
 Link: [here](http://xwy.pw)
 
 Username: factions
