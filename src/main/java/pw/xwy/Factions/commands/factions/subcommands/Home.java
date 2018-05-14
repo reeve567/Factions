@@ -1,4 +1,4 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/4/18 9:34 AM                              /
@@ -9,14 +9,14 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.objects.CommandHandler;
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.utility.Configurations.Messages;
-import pw.xwy.Factions.utility.managers.PlayerManager;
-import pw.xwy.Factions.utility.tasks.HomeWarmupTask;
+import pw.xwy.factions.XFactionsCore;
+import pw.xwy.factions.objects.CommandHandler;
+import pw.xwy.factions.objects.SubCommand;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.utility.Configurations.Messages;
+import pw.xwy.factions.utility.managers.PlayerManager;
+import pw.xwy.factions.utility.tasks.HomeWarmupTask;
 
 @CommandHandler
 public class Home extends SubCommand {

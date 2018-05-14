@@ -1,8 +1,8 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.factions.objects;
 
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.utility.Configurations.Messages;
-import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.utility.Configurations.Messages;
+import pw.xwy.factions.utility.StringUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/13/18 6:09 PM                             /

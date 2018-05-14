@@ -1,4 +1,4 @@
-package pw.xwy.Factions.enums;
+package pw.xwy.factions.enums;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

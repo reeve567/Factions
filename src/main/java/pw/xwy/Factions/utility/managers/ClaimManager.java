@@ -1,10 +1,10 @@
-package pw.xwy.Factions.utility.managers;
+package pw.xwy.factions.utility.managers;
 
 import org.bukkit.Chunk;
-import pw.xwy.Factions.objects.faction.XFaction;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.factions.objects.faction.XFaction;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.utility.StringUtility;
 
 import java.util.ArrayList;
 import java.util.HashMap;

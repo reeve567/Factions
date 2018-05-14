@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility.inventories;
+package pw.xwy.factions.utility.inventories;
 // made by reeve
 // on 7:15 PM
 
@@ -8,7 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.Factions.utility.ItemUtility;
+import pw.xwy.factions.utility.ItemUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

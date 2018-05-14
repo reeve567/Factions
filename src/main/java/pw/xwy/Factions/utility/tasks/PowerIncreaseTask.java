@@ -1,9 +1,9 @@
-package pw.xwy.Factions.utility.tasks;
+package pw.xwy.factions.utility.tasks;
 
 import org.bukkit.scheduler.BukkitRunnable;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.objects.faction.XFactionOnlinePlayer;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.objects.faction.XFactionOnlinePlayer;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
 

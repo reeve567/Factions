@@ -1,18 +1,18 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.objects.CommandHandler;
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.utility.Configurations.Messages;
-import pw.xwy.Factions.utility.Configurations.Spawners;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.factions.objects.CommandHandler;
+import pw.xwy.factions.objects.SubCommand;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.utility.Configurations.Messages;
+import pw.xwy.factions.utility.Configurations.Spawners;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.managers.FactionManager;
 
 import java.util.ArrayList;
 

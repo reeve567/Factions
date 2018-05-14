@@ -1,10 +1,10 @@
-package pw.xwy.Factions.utility.Configurations;
+package pw.xwy.factions.utility.Configurations;
 
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
-import pw.xwy.Factions.XFactionsCore;
+import pw.xwy.factions.XFactionsCore;
 
 import java.io.File;
 import java.io.IOException;

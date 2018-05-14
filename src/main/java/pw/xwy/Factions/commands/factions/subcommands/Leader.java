@@ -1,4 +1,4 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/16/18 5:18 PM                             /
@@ -9,8 +9,8 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.SubCommand;
+import pw.xwy.factions.objects.faction.XPlayer;
 
 public class Leader extends SubCommand {
 	public Leader() {

@@ -1,15 +1,15 @@
-package pw.xwy.Factions.utility.Configurations;
+package pw.xwy.factions.utility.Configurations;
 
 import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.objects.faction.XFaction;
-import pw.xwy.Factions.objects.faction.XPlayerConfig;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.factions.XFactionsCore;
+import pw.xwy.factions.objects.faction.XFaction;
+import pw.xwy.factions.objects.faction.XPlayerConfig;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.managers.FactionManager;
 
 import java.io.File;
 import java.io.IOException;

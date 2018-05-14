@@ -1,4 +1,4 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
 import java.util.UUID;
 

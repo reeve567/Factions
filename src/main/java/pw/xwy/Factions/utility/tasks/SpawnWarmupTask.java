@@ -1,8 +1,8 @@
-package pw.xwy.Factions.utility.tasks;
+package pw.xwy.factions.utility.tasks;
 
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.objects.TeleportWarmupTask;
-import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.TeleportWarmupTask;
+import pw.xwy.factions.objects.faction.XPlayer;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

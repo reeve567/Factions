@@ -1,9 +1,9 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
 import org.bukkit.Chunk;
 import org.bukkit.scheduler.BukkitTask;
-import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.utility.tasks.ChunkValueTask;
+import pw.xwy.factions.XFactionsCore;
+import pw.xwy.factions.utility.tasks.ChunkValueTask;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/13/18 6:24 PM                             /

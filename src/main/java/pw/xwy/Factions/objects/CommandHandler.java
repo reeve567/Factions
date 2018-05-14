@@ -1,4 +1,4 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.factions.objects;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/14/18 9:45 AM                             /

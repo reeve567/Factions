@@ -1,13 +1,13 @@
-package pw.xwy.Factions.utility.tasks;
+package pw.xwy.factions.utility.tasks;
 
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.scheduler.BukkitRunnable;
-import pw.xwy.Factions.objects.faction.XChunk;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.utility.Configurations.Spawners;
+import pw.xwy.factions.objects.faction.XChunk;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.utility.Configurations.Spawners;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

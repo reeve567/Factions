@@ -1,6 +1,6 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.factions.objects;
 
-import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.faction.XPlayer;
 
 import java.util.ArrayList;
 

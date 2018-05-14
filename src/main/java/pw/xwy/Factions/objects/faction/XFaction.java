@@ -1,10 +1,10 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.ClaimManager;
-import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.managers.ClaimManager;
+import pw.xwy.factions.utility.managers.FactionManager;
 
 import java.util.ArrayList;
 import java.util.List;

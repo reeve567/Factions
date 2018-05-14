@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility.inventories;
+package pw.xwy.factions.utility.inventories;
 // made by reeve
 // on 1:44 AM
 
@@ -7,7 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.Factions.enums.sell.Miscellaneous;
+import pw.xwy.factions.enums.sell.Miscellaneous;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

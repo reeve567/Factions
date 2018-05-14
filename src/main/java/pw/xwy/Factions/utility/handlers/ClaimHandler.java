@@ -1,14 +1,14 @@
-package pw.xwy.Factions.utility.handlers;
+package pw.xwy.factions.utility.handlers;
 
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import pw.xwy.Factions.objects.faction.XFaction;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.utility.managers.ClaimManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.objects.faction.XFaction;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.utility.managers.ClaimManager;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

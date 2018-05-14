@@ -1,10 +1,10 @@
-package pw.xwy.Factions.utility.managers;
+package pw.xwy.factions.utility.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.objects.faction.*;
-import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.factions.XFactionsCore;
+import pw.xwy.factions.objects.faction.*;
+import pw.xwy.factions.utility.StringUtility;
 
 import java.io.File;
 import java.util.*;

@@ -1,4 +1,4 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/16/18 3:00 PM                             /

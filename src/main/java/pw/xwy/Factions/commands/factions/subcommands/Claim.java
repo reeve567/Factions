@@ -1,13 +1,13 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
 import org.bukkit.Chunk;
-import pw.xwy.Factions.objects.CommandHandler;
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.faction.XFaction;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.factions.objects.CommandHandler;
+import pw.xwy.factions.objects.SubCommand;
+import pw.xwy.factions.objects.faction.XFaction;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.managers.FactionManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

@@ -1,10 +1,10 @@
-package pw.xwy.Factions.enums.sell;
+package pw.xwy.factions.enums.sell;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import pw.xwy.Factions.utility.ItemNames;
+import pw.xwy.factions.utility.ItemNames;
 
 import java.util.ArrayList;
 import java.util.List;

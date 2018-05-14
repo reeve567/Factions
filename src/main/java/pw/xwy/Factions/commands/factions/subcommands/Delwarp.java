@@ -1,4 +1,4 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/14/18 9:17 PM                             /
@@ -9,9 +9,9 @@ package pw.xwy.Factions.commands.factions.subcommands;
 //                                                                             /
 ////////////////////////////////////////////////////////////////////////////////
 
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.utility.Configurations.Messages;
+import pw.xwy.factions.objects.SubCommand;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.utility.Configurations.Messages;
 
 public class Delwarp extends SubCommand {
 	public Delwarp() {

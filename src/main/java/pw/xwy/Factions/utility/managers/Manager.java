@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility.managers;
+package pw.xwy.factions.utility.managers;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/10/18 12:49 AM                            /

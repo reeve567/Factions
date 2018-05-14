@@ -1,7 +1,7 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
 import org.bukkit.Chunk;
-import pw.xwy.Factions.utility.managers.ClaimManager;
+import pw.xwy.factions.utility.managers.ClaimManager;
 
 import java.util.ArrayList;
 import java.util.HashSet;

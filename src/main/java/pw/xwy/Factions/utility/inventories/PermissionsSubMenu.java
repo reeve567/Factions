@@ -1,12 +1,12 @@
-package pw.xwy.Factions.utility.inventories;
+package pw.xwy.factions.utility.inventories;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.Factions.objects.ItemBuilder;
-import pw.xwy.Factions.objects.faction.XRank;
+import pw.xwy.factions.objects.ItemBuilder;
+import pw.xwy.factions.objects.faction.XRank;
 
 import java.util.ArrayList;
 import java.util.Arrays;

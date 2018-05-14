@@ -1,13 +1,13 @@
-package pw.xwy.Factions.utility.inventories;
+package pw.xwy.factions.utility.inventories;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
-import pw.xwy.Factions.objects.ItemBuilder;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.objects.faction.XRank;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.objects.ItemBuilder;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.objects.faction.XRank;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

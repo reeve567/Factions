@@ -1,10 +1,10 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.factions.objects;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.factions.utility.StringUtility;
 
 import java.util.ArrayList;
 import java.util.List;

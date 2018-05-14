@@ -1,17 +1,17 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.utility.Configurations.Config;
-import pw.xwy.Factions.utility.Configurations.Messages;
-import pw.xwy.Factions.utility.Configurations.Spawners;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.ClaimManager;
-import pw.xwy.Factions.utility.managers.FactionManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.utility.Configurations.Config;
+import pw.xwy.factions.utility.Configurations.Messages;
+import pw.xwy.factions.utility.Configurations.Spawners;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.managers.ClaimManager;
+import pw.xwy.factions.utility.managers.FactionManager;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 import java.util.*;
 

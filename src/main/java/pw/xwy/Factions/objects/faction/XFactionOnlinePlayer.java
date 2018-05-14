@@ -1,7 +1,7 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
-import pw.xwy.Factions.enums.ChatType;
-import pw.xwy.Factions.objects.TeleportWarmupTask;
+import pw.xwy.factions.enums.ChatType;
+import pw.xwy.factions.objects.TeleportWarmupTask;
 
 import java.util.List;
 

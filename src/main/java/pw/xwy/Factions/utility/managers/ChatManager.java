@@ -1,16 +1,16 @@
-package pw.xwy.Factions.utility.managers;
+package pw.xwy.factions.utility.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import pw.xwy.Factions.enums.ChatType;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.objects.faction.XFactionOnlinePlayer;
-import pw.xwy.Factions.objects.faction.XOfflinePlayer;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.factions.enums.ChatType;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.objects.faction.XFactionOnlinePlayer;
+import pw.xwy.factions.objects.faction.XOfflinePlayer;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.utility.StringUtility;
 
 import java.util.ArrayList;
 import java.util.UUID;

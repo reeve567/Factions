@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility.handlers;
+package pw.xwy.factions.utility.handlers;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -11,14 +11,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.Factions.enums.sell.Sell;
-import pw.xwy.Factions.objects.Glow;
-import pw.xwy.Factions.objects.ItemBuilder;
-import pw.xwy.Factions.objects.faction.XRank;
-import pw.xwy.Factions.utility.ItemUtility;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.inventories.*;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.enums.sell.Sell;
+import pw.xwy.factions.objects.Glow;
+import pw.xwy.factions.objects.ItemBuilder;
+import pw.xwy.factions.objects.faction.XRank;
+import pw.xwy.factions.utility.ItemUtility;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.inventories.*;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

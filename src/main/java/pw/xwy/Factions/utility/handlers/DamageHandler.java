@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility.handlers;
+package pw.xwy.factions.utility.handlers;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/4/18 10:57 AM                             /
@@ -15,9 +15,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 public class DamageHandler implements Listener {
 	

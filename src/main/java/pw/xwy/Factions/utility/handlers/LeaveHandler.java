@@ -1,11 +1,11 @@
-package pw.xwy.Factions.utility.handlers;
+package pw.xwy.factions.utility.handlers;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

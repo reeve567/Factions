@@ -1,4 +1,4 @@
-package pw.xwy.Factions.commands.shop;
+package pw.xwy.factions.commands.shop;
 // made by reeve
 // on 2:50 PM
 
@@ -7,8 +7,8 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import pw.xwy.Factions.objects.CommandHandler;
-import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.factions.objects.CommandHandler;
+import pw.xwy.factions.utility.StringUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /
@@ -30,7 +30,7 @@ public class Sell {
 			int money = 0;
 			if (player.hasPermission("FactionsShop.sell")) {
 				if (player.getItemInHand() != null) {
-					for (pw.xwy.Factions.enums.sell.Sell s : pw.xwy.Factions.enums.sell.Sell.values()) {
+					for (pw.xwy.factions.enums.sell.Sell s : pw.xwy.factions.enums.sell.Sell.values()) {
 						if (!found && s.getMaterial().equals(player.getItemInHand().getType())) {
 							
 							found = true;

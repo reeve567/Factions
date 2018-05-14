@@ -1,4 +1,4 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/9/18 3:21 PM                              /
@@ -10,10 +10,10 @@ package pw.xwy.Factions.commands.factions.subcommands;
 ////////////////////////////////////////////////////////////////////////////////
 
 import org.bukkit.Bukkit;
-import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.objects.CommandHandler;
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.faction.XPlayer;
+import pw.xwy.factions.XFactionsCore;
+import pw.xwy.factions.objects.CommandHandler;
+import pw.xwy.factions.objects.SubCommand;
+import pw.xwy.factions.objects.faction.XPlayer;
 
 @CommandHandler
 public class Reload extends SubCommand {

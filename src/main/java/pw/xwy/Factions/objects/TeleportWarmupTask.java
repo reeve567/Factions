@@ -1,4 +1,4 @@
-package pw.xwy.Factions.objects;
+package pw.xwy.factions.objects;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/4/18 4:29 PM                              /
@@ -11,8 +11,8 @@ package pw.xwy.Factions.objects;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 public abstract class TeleportWarmupTask extends BukkitRunnable {
 	

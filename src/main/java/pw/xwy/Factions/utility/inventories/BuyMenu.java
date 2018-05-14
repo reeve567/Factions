@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility.inventories;
+package pw.xwy.factions.utility.inventories;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -6,9 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import pw.xwy.Factions.objects.Menu;
-import pw.xwy.Factions.utility.ItemUtility;
-import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.factions.objects.Menu;
+import pw.xwy.factions.utility.ItemUtility;
+import pw.xwy.factions.utility.StringUtility;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

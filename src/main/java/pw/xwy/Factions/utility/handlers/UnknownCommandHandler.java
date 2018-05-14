@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility.handlers;
+package pw.xwy.factions.utility.handlers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

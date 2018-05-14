@@ -1,6 +1,6 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
-import pw.xwy.Factions.utility.managers.FactionManager;
+import pw.xwy.factions.utility.managers.FactionManager;
 
 import java.util.UUID;
 

@@ -1,15 +1,15 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
-import pw.xwy.Factions.XFactionsCore;
-import pw.xwy.Factions.objects.CommandHandler;
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.faction.XFaction;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.utility.Configurations.Config;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.FactionManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.XFactionsCore;
+import pw.xwy.factions.objects.CommandHandler;
+import pw.xwy.factions.objects.SubCommand;
+import pw.xwy.factions.objects.faction.XFaction;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.utility.Configurations.Config;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.managers.FactionManager;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
 import java.util.List;

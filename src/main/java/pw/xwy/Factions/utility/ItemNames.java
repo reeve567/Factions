@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility;
+package pw.xwy.factions.utility;
 // made by reeve
 // on 12:17 AM
 

@@ -1,4 +1,4 @@
-package pw.xwy.Factions.commands.factions.subcommands;
+package pw.xwy.factions.commands.factions.subcommands;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/16/18 6:28 PM                             /
@@ -10,11 +10,11 @@ package pw.xwy.Factions.commands.factions.subcommands;
 ////////////////////////////////////////////////////////////////////////////////
 
 import org.bukkit.Bukkit;
-import pw.xwy.Factions.objects.SubCommand;
-import pw.xwy.Factions.objects.faction.XPlayer;
-import pw.xwy.Factions.objects.faction.XPlayerFaction;
-import pw.xwy.Factions.objects.faction.XRank;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.objects.SubCommand;
+import pw.xwy.factions.objects.faction.XPlayer;
+import pw.xwy.factions.objects.faction.XPlayerFaction;
+import pw.xwy.factions.objects.faction.XRank;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 import java.util.UUID;
 

@@ -1,7 +1,7 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
 import java.util.List;

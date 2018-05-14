@@ -1,4 +1,4 @@
-package pw.xwy.Factions.utility.tasks;
+package pw.xwy.factions.utility.tasks;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/4/18 9:35 AM                              /
@@ -10,9 +10,9 @@ package pw.xwy.Factions.utility.tasks;
 ////////////////////////////////////////////////////////////////////////////////
 
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.objects.TeleportWarmupTask;
-import pw.xwy.Factions.utility.Configurations.Config;
-import pw.xwy.Factions.utility.StringUtility;
+import pw.xwy.factions.objects.TeleportWarmupTask;
+import pw.xwy.factions.utility.Configurations.Config;
+import pw.xwy.factions.utility.StringUtility;
 
 public class HomeWarmupTask extends TeleportWarmupTask {
 	

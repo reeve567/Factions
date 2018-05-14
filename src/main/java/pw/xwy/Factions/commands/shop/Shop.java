@@ -1,12 +1,12 @@
-package pw.xwy.Factions.commands.shop;
+package pw.xwy.factions.commands.shop;
 // made by reeve
 // on 2:50 PM
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.objects.CommandHandler;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.inventories.MainMenu;
+import pw.xwy.factions.objects.CommandHandler;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.inventories.MainMenu;
 
 ////////////////////////////////////////////////////////////////////////////////
 // File copyright last updated on: 2/3/18 9:22 AM                              /

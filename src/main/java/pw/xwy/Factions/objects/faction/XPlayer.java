@@ -1,17 +1,17 @@
-package pw.xwy.Factions.objects.faction;
+package pw.xwy.factions.objects.faction;
 
 import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import pw.xwy.Factions.enums.ChatType;
-import pw.xwy.Factions.objects.TeleportWarmupTask;
-import pw.xwy.Factions.utility.Configurations.Config;
-import pw.xwy.Factions.utility.Configurations.Messages;
-import pw.xwy.Factions.utility.StringUtility;
-import pw.xwy.Factions.utility.managers.FactionManager;
-import pw.xwy.Factions.utility.managers.PlayerManager;
+import pw.xwy.factions.enums.ChatType;
+import pw.xwy.factions.objects.TeleportWarmupTask;
+import pw.xwy.factions.utility.Configurations.Config;
+import pw.xwy.factions.utility.Configurations.Messages;
+import pw.xwy.factions.utility.StringUtility;
+import pw.xwy.factions.utility.managers.FactionManager;
+import pw.xwy.factions.utility.managers.PlayerManager;
 
 import java.util.ArrayList;
 import java.util.List;
