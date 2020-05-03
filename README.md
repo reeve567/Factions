@@ -1,16 +1,6 @@
 # Factions
 
-<strong>Jenkins:</strong>
-
-*Link and username/password no longer exist*
-
-Use Jenkins to get the latest build of the plugin
-
-Link: [here](http://xwy.pw)
-
-Username: factions
-
-Password: XtucnCYHwb20
+*This was originally a commission, however the payment was not given and I had no use for the plugin myself*
 
 <strong>How it works</strong>:
 
